@@ -290,8 +290,13 @@ natbib=true
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{fontspec}
-\setmainfont{GaramondNo8}%TeX Gyre Pagella}
-\setromanfont{GaramondNo8}
+\setmainfont{GaramondNo8}[
+Extension      = .ttf,
+UprightFont    = *-Regular,
+BoldFont       = *-Bold,
+ItalicFont     = *-Italic,
+BoldItalicFont = *-Bold-Italic
+]
 \setsansfont{Open Sans}
 \setmonofont{Ubuntu Mono}
 \usepackage[math-style=ISO,
