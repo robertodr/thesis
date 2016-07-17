@@ -3,34 +3,37 @@
 %*******************************************************
 \begin{titlepage}
     % if you want the titlepage to be centered, uncomment and fine-tune the line below (KOMA classes environment)
-    \begin{addmargin}[-1cm]{-3cm}
+    \begin{addmargin}[-1.5cm]{-1.5cm}
+    \drop=0.1\textheight
+    \vspace*{\drop}
     \begin{center}
-        \large  
+      {\LARGE\textsc{\myUni}}\\
+      \myFaculty \\ [0.2\drop]
+      \includegraphics[width=4.cm]{gfx/UiT}
+      \\ [0.2\drop]
+      \myDegree \\ [\drop]
+      \rule{1.1\textwidth}{1pt}\par
+      \vspace{0.5\baselineskip}
+      {\begingroup\color{Maroon}\Large{\myTitle}\endgroup \\
+      \vspace{\baselineskip}
+      \large  \mySubtitle }\\%[0.5\baselineskip]
+      \rule{1.1\textwidth}{1pt}\par
+      \vspace{\drop}
+      \begin{tabular}{l c r}
+        \large \textbf{Advisor} & \makebox[.4\textwidth]{} & \large \textbf{Coadvisor} \\ [.1\drop]
+        Ass.~Prof.~Luca \textsc{Frediani}
+        & \makebox[.4\textwidth]{}
+        & Prof.~Benedetta \textsc{Mennucci} \\
+      \end{tabular} \\ [.6\drop]
+      {\large\textbf{Candidate}} \\ [.1\drop]
+      \Large{Roberto \textsc{Di Remigio}}
+      \vfill
+%      {\large \myAA}
 
-        \hfill
+      \myTime\ -- \myVersion
 
-        \vfill
+      \vfill
 
-        \begingroup
-            \color{Maroon}\spacedallcaps{\myTitle} \\ \bigskip
-        \endgroup
-
-        \spacedlowsmallcaps{\myName}
-
-        \vfill
-
-        \includegraphics[width=6cm]{gfx/TFZsuperellipse_bw} \\ \medskip
-
-        \mySubtitle \\ \medskip   
-        %\myDegree \\
-        %\myDepartment \\                            
-        %\myFaculty \\
-        %\myUni \\ \bigskip
-
-        \myTime\ -- \myVersion
-
-        \vfill                      
-
-    \end{center}  
-  \end{addmargin}       
-\end{titlepage}   
+    \end{center}
+  \end{addmargin}
+\end{titlepage}

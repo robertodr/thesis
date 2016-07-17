@@ -23,8 +23,11 @@
 % 1. Configure classicthesis for your needs here, e.g., remove "drafting" below
 % in order to deactivate the time-stamp on the pages
 % ****************************************************************************************************
-\PassOptionsToPackage{drafting,%listings,
-                      floatperchapter,parts %linedheaders,%beramono,eulermath,
+\PassOptionsToPackage{dottedtoc,
+                      linedheaders,
+                      floatperchapter,
+                      listings,
+                      drafting
                      }{classicthesis}
 % ********************************************************************
 % Available options for classicthesis.sty
@@ -73,12 +76,12 @@
 % ********************************************************************
 % Packages with options that might require adjustments
 % ********************************************************************
-\PassOptionsToPackage{american,italian}{babel}   % change this to your language(s)
-% Spanish languages need extra options in order to work with this template
-%\PassOptionsToPackage{spanish,es-lcroman}{babel}
-	\usepackage{babel}
-
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\setotherlanguages{italian, french, norsk}
+\setdefaultlanguage{english}
 \usepackage{csquotes}
+\usepackage{xpatch}
 \PassOptionsToPackage{%
 style=phys,
 maxcitenames=3,
@@ -105,8 +108,6 @@ natbib=true
 % ********************************************************************
 % General useful packages
 % ********************************************************************
-\PassOptionsToPackage{T1}{fontenc} % T2A for cyrillics
-    \usepackage{fontenc}
 \usepackage{textcomp} % fix warning with missing font shapes
 \usepackage{scrhack} % fix warnings when using KOMA with listings package
 \usepackage{xspace} % to get the spacing after macros right
@@ -210,6 +211,10 @@ natbib=true
 % language you use, e.g., american, ngerman
 % (as chosen when loading babel/AtBeginDocument)
 % ********************************************************************
+%\PassOptionsToPackage{american,italian}{babel}   % change this to your language(s)
+% Spanish languages need extra options in order to work with this template
+%\PassOptionsToPackage{spanish,es-lcroman}{babel}
+% \usepackage{babel}
 \makeatletter
 \@ifpackageloaded{babel}%
     {%
@@ -264,7 +269,9 @@ natbib=true
 % Changing the text area
 % ********************************************************************
 %\linespread{1.05} % a bit more for Palatino
-\areaset[current]{312pt}{761pt} % 686 (factor 2.2) + 33 head + 42 head \the\footskip
+\linespread{1.05} % a bit more for Palatino
+%\areaset[current]{312pt}{761pt} % 686 (factor 2.2) + 33 head + 42 head \the\footskip
+\areaset[1.5cm]{402pt}{682pt}
 \setlength{\marginparwidth}{7em}%
 \setlength{\marginparsep}{2em}%
 
@@ -286,6 +293,8 @@ natbib=true
 % 9. MY OWN ADJUSTMENTS
 % ****************************************************************************************************
 
+\newlength{\drop}% for my convenience
+
 %%% Font stuff
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -299,8 +308,6 @@ BoldItalicFont = *-Bold-Italic
 ]
 \usepackage[math-style=ISO,
             bold-style=ISO]{unicode-math}
-\usepackage{polyglossia}
-\setdefaultlanguage{english}
 \usepackage{microtype}
 \usepackage{booktabs}
 \usepackage{url}
@@ -308,11 +315,34 @@ BoldItalicFont = *-Bold-Italic
             textsize=small]{todonotes}
 \usepackage{wrapfig}
 
+\DeclareBibliographyCategory{cited}
+\AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
+
 \DeclareFieldFormat[article]{title}{}
 \AtBeginBibliography{
 \DeclareFieldFormat{prefixnumber}{\mkbibbold{#1}}
 \DeclareFieldFormat{labelnumber}{\mkbibbold{#1}}
 }
 
+\defbibenvironment{nolabelbib}
+  {\list
+     {}
+     {\setlength{\leftmargin}{\bibhang}%
+      \setlength{\itemindent}{-\leftmargin}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}}
+  {\endlist}
+  {\item}
+
 %%% To include the published papers
 \usepackage{pdfpages}
+
+\usepackage{epigraph}
+\setlength\epigraphwidth{8cm}
+\setlength\epigraphrule{0pt}
+\renewcommand{\textflush}{flushleft}
+
+\usepackage{braket}
+
+\usepackage[inline]{showlabels}
+\usepackage{showkeys}
