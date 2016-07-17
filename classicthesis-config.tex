@@ -45,7 +45,7 @@
 % ****************************************************************************************************
 \newcommand{\myTitle}{A Classic Thesis Style\xspace}
 \newcommand{\mySubtitle}{An Homage to The Elements of Typographic Style\xspace}
-\newcommand{\myDegree}{Doktor-Ingenieur (Dr.-Ing.)\xspace}
+\newcommand{\myDegree}{Philosphiae Doctor (Ph. D.)\xspace}
 \newcommand{\myName}{Roberto Di Remigio\xspace}
 \newcommand{\myProf}{Luca Frediani\xspace}
 \newcommand{\myOtherProf}{Benedetta Mennucci\xspace}
@@ -118,6 +118,7 @@ natbib=true
     %\renewcommand{\bflabel}[1]{{#1}\hfill} % fix the list of acronyms --> no longer working
     %\renewcommand*{\acsfont}[1]{\textsc{#1}}
     \renewcommand*{\aclabelfont}[1]{\acsfont{#1}}
+
 % ****************************************************************************************************
 
 
@@ -178,27 +179,6 @@ natbib=true
     \usepackage{hyperref}  % backref linktocpage pagebackref
 \usepackage{graphicx}
 
-
-% ********************************************************************
-% Hyperreferences
-% ********************************************************************
-\hypersetup{%
-    %draft, % = no hyperlinking at all (useful in b/w printouts)
-    colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
-    % uncomment the following line if you want to have black links (e.g., for printing)
-    %colorlinks=false, linktocpage=false, pdfstartpage=3, pdfstartview=FitV, pdfborder={0 0 0},%
-    breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,%
-    plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
-    hypertexnames=true, pdfhighlight=/O,%nesting=true,%frenchlinks,%
-    urlcolor=webbrown, linkcolor=RoyalBlue, citecolor=webgreen, %pagecolor=RoyalBlue,%
-    %urlcolor=Black, linkcolor=Black, citecolor=Black, %pagecolor=Black,%
-    pdftitle={\myTitle},%
-    pdfauthor={\textcopyright\ \myName, \myUni, \myFaculty},%
-    pdfsubject={},%
-    pdfkeywords={},%
-    pdfcreator={pdfLaTeX},%
-    pdfproducer={LaTeX with hyperref and classicthesis}%
-}
 
 % ********************************************************************
 % Setup autoreferences
@@ -334,3 +314,35 @@ BoldItalicFont = *-Bold-Italic
 
 \usepackage[version=4]{mhchem}
 \usepackage{xpatch}
+
+%%% Colors
+% Blue
+\definecolor{PMS2229}{RGB}{0, 156, 182}
+% Red
+\definecolor{PMS1797}{RGB}{203, 51, 59}
+% Orange
+\definecolor{PMS138}{RGB}{222, 124, 0}
+% Yellow
+\definecolor{PMS130}{RGB}{242, 169, 0}
+
+% ********************************************************************
+% Hyperreferences
+% ********************************************************************
+\hypersetup{%
+    %draft, % = no hyperlinking at all (useful in b/w printouts)
+    colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
+    % uncomment the following line if you want to have black links (e.g., for printing)
+    %colorlinks=false, linktocpage=false, pdfstartpage=3, pdfstartview=FitV, pdfborder={0 0 0},%
+    breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,%
+    plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
+    hypertexnames=true, pdfhighlight=/O,%nesting=true,%frenchlinks,%
+    urlcolor=PMS138, linkcolor=PMS2229, citecolor=webgreen, %pagecolor=RoyalBlue,%
+    %urlcolor=Black, linkcolor=Black, citecolor=Black, %pagecolor=Black,%
+    pdftitle={\myTitle},%
+    pdfauthor={\textcopyright\ \myName, \myUni, \myFaculty},%
+    pdfsubject={},%
+    pdfkeywords={},%
+    pdfcreator={XeLaTeX},%
+    pdfproducer={LaTeX with hyperref and classicthesis}%
+}
+
