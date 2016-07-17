@@ -1,16 +1,39 @@
 %*******************************************************
 % Publications
 %*******************************************************
-\pdfbookmark[1]{Publications}{publications}
+\thispagestyle{empty}
+\refstepcounter{dummy}
+\pdfbookmark[1]{Publications}{Publications}
 \chapter*{Publications}%\graffito{This is just an early --~and currently ugly~-- test!}
 
 This thesis is based on the following scientific papers:
 
-%\noindent Put your publications from the thesis here. The packages
-%\texttt{multibib} or \texttt{bibtopic} etc. can be used to handle
-%multiple different bibliographies in your document.
+\begin{enumerate}[label=\textbf{\Roman{*} },ref=\Roman{*}]
 
-\begin{refsection}[ownpubs]
-    \nocite{*} % is local to to the enclosing refsection
-    \printbibliography[env=nolabelbib, notcategory=cited, heading=none]
-\end{refsection}
+\item
+  \textbf{R. Di Remigio}, R. Bast, L. Frediani, and T. Saue:
+  "Four-Component Relativistic Calculations in Solution with the
+  Polarizable Continuum Model of Solvation: Theory,
+  Implementation, and Application to the Group 16 Dihydrides
+  \ce{H2X} (\ce{X} = \ce{O}, \ce{S}, \ce{Se}, \ce{Te},
+  \ce{Po})",
+\textit{J. Phys. Chem. A}, \textrm{2015}, \textbf{119}, 5061--5077
+\label{relapcm}
+
+\item
+  M. Bugeanu, \textbf{R. Di Remigio}, K. Mozgawa, S. S. Reine, H.
+  Harbrecht,  and L. Frediani:
+  "Wavelet Formulation of the Polarizable Continuum Model. II. Use of
+  Piecewise Bilinear Boundary Elements",
+  \textit{Phys. Chem. Chem. Phys.}, \textrm{2015}, \textbf{17},
+  31566--31581
+\label{wemlin}
+
+\item \textbf{R. Di Remigio}, K. Mozgawa, H. Cao, V. Weijo, and L.
+  Frediani:
+  "A Polarizable Continuum Model for Molecules at Spherical
+  Diffuse Interfaces",
+  \textit{J. Chem. Phys.}, \textrm{2016}, \textbf{144}, 124103
+\label{spherical}
+
+\end{enumerate}

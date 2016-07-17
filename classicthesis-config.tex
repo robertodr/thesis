@@ -81,7 +81,6 @@
 \setotherlanguages{italian, french, norsk}
 \setdefaultlanguage{english}
 \usepackage{csquotes}
-\usepackage{xpatch}
 \PassOptionsToPackage{%
 style=phys,
 maxcitenames=3,
@@ -316,25 +315,6 @@ BoldItalicFont = *-Bold-Italic
             textsize=small]{todonotes}
 \usepackage{wrapfig}
 
-\DeclareBibliographyCategory{cited}
-\AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
-
-\DeclareFieldFormat[article]{title}{}
-\AtBeginBibliography{
-\DeclareFieldFormat{prefixnumber}{\mkbibbold{#1}}
-\DeclareFieldFormat{labelnumber}{\mkbibbold{#1}}
-}
-
-\defbibenvironment{nolabelbib}
-  {\list
-     {}
-     {\setlength{\leftmargin}{\bibhang}%
-      \setlength{\itemindent}{-\leftmargin}%
-      \setlength{\itemsep}{\bibitemsep}%
-      \setlength{\parsep}{\bibparsep}}}
-  {\endlist}
-  {\item}
-
 %%% To include the published papers
 \usepackage{pdfpages}
 
@@ -349,3 +329,8 @@ BoldItalicFont = *-Bold-Italic
 \usepackage{showkeys}
 
 \usepackage[bottom]{footmisc}
+
+\usepackage[inline]{enumitem}
+
+\usepackage[version=4]{mhchem}
+\usepackage{xpatch}
