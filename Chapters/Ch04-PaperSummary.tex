@@ -1,10 +1,30 @@
+% mainfile: ../RobertoDiRemigioPhDThesis.tex
 %************************************************
 \chapter{Summary of the papers}\label{ch:papers-summary}
+
+In the following, I provide a brief summary of the motivations, contents and
+conclusions of the papers this thesis is based on.
+In addition, I give a description of my contributions to the work leading to
+the publication of each of the papers.
+\todo[inline]{Write something along these lines: "My coauthors have all read and approved."}
+
+\section*{Software}
 
 The codes used in the papers are all interfaced to the \pcmsolver library,
 of which I am the main developer and maintainer.
 
-\section{Paper I. Continuum solvation in the relativistic regime}
+\section*{Paper I. Continuum solvation in the relativistic regime}
+
+Systems containing heavy elements are notoriously challenging for quantum chemistry.
+In addition to their significantly large sizes, one has to properly include the
+effect of special relativity in the quantum chemical description in order to
+achieve at least qualitative agreement with experiment.
+Additional complications arise if one needs to also include environment effects.
+Continuum models arguably represent a cost-effective strategy to achieve a first
+approximation of these effects.
+In this paper, we presented the first derivation and implementation of the \acs{PCM}
+coupled to a \acs{SCF} description of the solute in the fully relativistic, four-component
+regime.
 
 I contributed the theoretical derivation of the quantum/classical polarizable
 terms in a four-component \acs{SCF} framework, for energies and linear response
@@ -20,8 +40,52 @@ for the results reported in the paper.
 Finally, I wrote the first draft of the paper and coordinated editing of
 all subsequent versions.
 
-\section{Paper II. The wavelet boundary element method for PCM}
-\section{Paper III: Continuum modelling of non homogeneous environments}
+\section*{Paper II. The wavelet Galerkin boundary element method for PCM}
+
+Continuum solvation models are inherently parametrized. Apart from solvent permittivities,
+the atomic radii and molecular surface definition play a crucial role
+in determining the performance of the models.
+However, the numerical accuracy of the \acs{BEM} procedure used to numerically solve the
+underlying \acs{BIE} is a not-so-often studied aspect of these models.
+Traditionally, collocation methods have been used, but these require parametrization of some of the necessary surface integrals.
+Galerkin methods do not suffer from such a limitation and additionally preserve symmetry of the underlying
+boundary integral operators.
+The use of biorthogonal wavelet bases as finite elements achieves sparsity in
+the \acs{BEM} procedure, due to their intrinsically hierarchical structure and
+the existence of \emph{a priori} and \emph{a posteriori} matrix compression
+estimates.
+Thus, wavelet Galerkin \acs{BEM} represents a valid alternative to traditional collocation methods,
+both to achieve a better computational scaling and to provide accurate, benchmark results.
+
+This work builds upon and extends previous work by~\citeauthor{Weijo2010-hy}
+\citeauthor{Weijo2010-hy} used \ac{PWC} bases to show that superior accuracy
+and convergence could be obtained for the calculation of molecular energies.
+In this work we showed that faster convergence can be achieved when \ac{PWL} bases are used instead.
+Moreover, the same holds for the calculation of static electric properties.
+Notably, the traditional collocation solver cannot guarantee the same accuracy,
+even for very large finite element bases. This suggests that, in some cases,
+\acs{BEM} collocation methodologies might slow down or even prevent the
+convergence of the quantum mechanical response equations solvers.
+
+For this paper, I provided template interface and test sets for the cavity
+generator\autocite{Harbrecht2009-no, Harbrecht2011-dk}
+and wavelet Galerkin \acs{BEM} solver\autocite{Harbrecht2004-uo, Harbrecht2006-ug, Dahmen2006-pj}
+with \pcmsolver.
+These were used to interface with the new C++ implementation of the wavelet
+Galerkin solvers of Monica Bugeanu.
+I implemented the interface between the \LSDALTON quantum chemistry software
+package and the \pcmsolver software library. The interface allows to run \acs{HF} and
+\acs{KS}-\acs{DFT} single-point and linear response calculations.
+I, together with coauthor Krzysztof Mozgawa, performed the benchmark quantum
+chemical calculations presented in the paper.
+Finally, I coordinated the editing of all manuscript drafts. I wrote Sections 2.1 and 2.3,
+while Sections 3 and 4 were co-written with the first author, Monica Bugeanu.
+I performed most of the data analysis and produced tables and graphs.
+
+The interface to \LSDALTON was later released in version ...
+providing \acs{PCM} capabilities to the software package.
+
+\section*{Paper III: Continuum modelling of non homogeneous environments}
 
 
 %************************************************

@@ -1,56 +1,54 @@
 \chapter*{Notations, conventions and units}
 \addcontentsline{toc}{section}{\tocEntry{Notations, conventions and units}}
 
-%A number of notations and typographic conventions has been adopted in order to maintain consistency throughout. We summarize them here:
-%\begin{table*}[!h]
-%\begin{tabular}{c l}
-% $\mathcal{A}, \mathcal{D}, \ldots$ & integral operators over a closed subset of $\mathbb{R}^2$ \\
-% $H, \varPhi, \ldots$ & first or second quantized $N$-electron operators \\
-% $\vect{r}, \vect{r}^\prime, \ldots$ & position vectors in $\mathbb{R}^3$ \\
-% $\vect{s}, \vect{s}^\prime, \ldots$ & position vectors in a closed subset of $\mathbb{R}^2$ \\
-% $\vect{v}, \vect{q}, \ldots$ & vectors in an arbitrary vector space \\
-% $\mat{K}, \mat{F}, \ldots$ & matrices in an arbitrary vector space \\
-% $0_N, I_N$ & the zero and the identity in an $N$-dimensional vector space
-%\end{tabular}
-%\end{table*}
-%
-%Summation over repeated indices, both discrete and continuous, is always to be understood:
-%\begin{alignat*}{2}
-% f_r = C_{\kappa r}g_{\kappa} \equiv \sum_{\kappa}C_{\kappa r}g_{\kappa}, \quad&\quad
-% f(\vect{r}) = U(\vect{r},\vect{r}^\prime)g(\vect{r}^\prime) \equiv \int\diff\vect{r}^\prime U(\vect{r},\vect{r}^\prime)g(\vect{r}^\prime).
-%\end{alignat*}
-%
-%Further conventions have been adopted for the indices of functions. Lower case Latin letters are used for MO 4-spinors, while lower case
-%Greek letters ($\kappa, \lambda, \mu, \ldots$) are reserved for one-electron basis functions in 2-spinor or scalar form.
-%Specific ranges of letters are used as follows:
-%\begin{table*}[!h]
-%\begin{tabular}{c l}
-% $r, s, t, \ldots$ & general MO 4-spinor indices \\
-% $i, j, k, \ldots$ & occupied MO 4-spinor indices \\
-% $a, b, c, \ldots$ & virtual MO 4-spinor indices
-%\end{tabular}
-%\end{table*}
-%
-%Upper case Latin letters always refer to functions in vector spaces other than the two listed above. Complex conjugation will always be shown using
-%a dagger ($\dagger$) instead of a star ($*$).
-%
-%SI-based atomic units have been used \cite{Whiffen1978}:
-%\begin{equation*}
-% \si{\electronmass} = \si{\elementarycharge} = \hslash = \frac{1}{4\pi\diel_0} = 1
-%\end{equation*}
-%the unit of length is the Bohr \si{\bohr}, while that of energy is the Hartree \si{\hartree}.
-%The speed of light is then:
-%\begin{equation*}
-% c = \SI{137.035999074}{\bohr\hartree\per\planckbar}
-%\end{equation*}
-%
-%
-%Some useful conversion constants to SI units are here listed \cite{CODATA2010}:
-%\begin{subequations}
-% \begin{align*}
-%  \SI{1}{\bohr} &= \SI{0.52917721092}{\angstrom} = \SI{5.2917721092e-11}{\meter} \\
-%  \SI{1}{\hartree} &= \SI{27.21138505}{\electronvolt} = \SI{2625.4996404}{\kilo\joule\per\mole} \\
-%  \SI{1}{\debye} &= \SI{3.3356410E-30}{\coulomb\meter} \\
-%  \SI{1}{\angstrom\cubed} &= \SI{1.11264984E-40}{\coulomb\squared\meter\squared\per\joule}
-% \end{align*}
-%\end{subequations}
+A number of notations and typographic conventions has been adopted in
+order to maintain consistency throughout. We summarize them here:
+\begin{table*}[!h]
+\begin{tabular}{c l}
+ $\bi{A}, \bi{D}, \ldots$ & integral operators over a closed subset of $\mathbb{R}^2$ \\
+ $H, \varPhi, \ldots$ & first or second quantized $N$-electron operators \\
+ $\vect{r}, \vect{r}^\prime, \ldots$ & position vectors in $\mathbb{R}^3$ \\
+ $\vect{s}, \vect{s}^\prime, \ldots$ & position vectors in a closed subset of $\mathbb{R}^2$ \\
+ $\vect{v}, \vect{q}, \ldots$ & vectors in an arbitrary vector space \\
+ $\mat{K}, \mat{F}, \ldots$ & matrices in an arbitrary vector space \\
+ $0_N, I_N$ & the zero and the identity in an $N$-dimensional vector space
+\end{tabular}
+\end{table*}
+
+Further conventions have been adopted for the indices of functions.
+Lower case Latin letters are used for MO 4-spinors, while lower case
+Greek letters ($\kappa, \lambda, \mu, \ldots$) are reserved for
+one-electron basis functions in 2-spinor or scalar form.
+Specific ranges of letters are used as follows:
+\begin{table*}[!h]
+\begin{tabular}{c l}
+ $r, s, t, \ldots$ & general MO 4-spinor indices \\
+ $i, j, k, \ldots$ & occupied MO 4-spinor indices \\
+ $a, b, c, \ldots$ & virtual MO 4-spinor indices
+\end{tabular}
+\end{table*}
+
+Upper case Latin letters always refer to functions in vector spaces
+other than the two listed above. Complex conjugation will always be
+shown using a dagger ($\dagger$) instead of a star ($*$).
+
+Hartree atomic units have been used:~\autocite{Whiffen1978}
+\begin{equation*}
+ \si{\electronmass} = \si{\elementarycharge} = \hslash = 4\pi\diel_0 = 1
+\end{equation*}
+the unit of length is the Bohr \si{\bohr}, while that of energy is the Hartree \si{\hartree}.
+The speed of light is then:
+\begin{equation*}
+ c = \SI{137.035999074}{\bohr\hartree\per\planckbar}
+\end{equation*}
+
+Some useful conversion constants to SI units are here
+listed:~\autocite{Mohr2012-zc}
+\begin{subequations}
+ \begin{align*}
+  \SI{1}{\bohr} &= \SI{0.52917721092}{\angstrom} = \SI{5.2917721092e-11}{\meter} \\
+  \SI{1}{\hartree} &= \SI{27.21138505}{\electronvolt} = \SI{2625.4996404}{\kilo\joule\per\mole} \\
+  \SI{1}{\debye} &= \SI{3.3356410E-30}{\coulomb\meter} \\
+  \SI{1}{\angstrom\cubed} &= \SI{1.11264984E-40}{\coulomb\squared\meter\squared\per\joule}
+ \end{align*}
+\end{subequations}

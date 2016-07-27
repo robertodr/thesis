@@ -113,7 +113,7 @@ natbib=true
 \usepackage{mparhack} % get marginpar right
 \usepackage{fixltx2e} % fixes some LaTeX stuff --> since 2015 in the LaTeX kernel (see below)
 %\usepackage[latest]{latexrelease} % will be used once available in more distributions (ISSUE #107)
-\PassOptionsToPackage{printonlyused,smaller}{acronym}
+\PassOptionsToPackage{printonlyused}{acronym}
     \usepackage{acronym} % nice macros for handling all acronyms in the thesis
     %\renewcommand{\bflabel}[1]{{#1}\hfill} % fix the list of acronyms --> no longer working
     %\renewcommand*{\acsfont}[1]{\textsc{#1}}
@@ -275,7 +275,6 @@ natbib=true
 \newlength{\drop}% for my convenience
 
 %%% Font stuff
-\usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{fontspec}
 \setmainfont{GaramondNo8}[
@@ -294,6 +293,8 @@ BoldItalicFont = *-Bold-Italic
 \usepackage[colorinlistoftodos,
             textsize=small]{todonotes}
 \usepackage{wrapfig}
+
+\usepackage{siunitx}
 
 %%% To include the published papers
 \usepackage{pdfpages}

@@ -1,9 +1,102 @@
+%%%%% Units of measure
+\DeclareSIUnit[number-unit-product = \;]\debye{D}
+\DeclareSIUnit[number-unit-product = \;]\au{a.u.}
+
+%%%%% URLs
 \newcommand{\GitHub}{\href{https://github.com/robertodr}{GitHub}}
 \newcommand{\GitLab}{\href{https://gitlab.com/u/robertodr}{GitLab}}
-\newcommand{\pcmsolver}{\href{http://pcmsolver.readthedocs.org}{\texttt{PCMSolver}}}
-\newcommand{\psicode}{\href{http://www.psicode.org}{\texttt{Psi4}}}
-\newcommand{\DIRAC}{\href{http://www.diracprogram.org}{\texttt{DIRAC}}}
-\newcommand{\DALTON}{\href{http://www.daltonprogram.org}{\texttt{DALTON}}}
-\newcommand{\LSDALTON}{\href{http://www.daltonprogram.org}{\texttt{LSDALTON}}}
+\newcommand{\pcmsolver}{\href{http://pcmsolver.readthedocs.org}{\textsc{PCMSolver}}~}
+\newcommand{\psicode}{\href{http://www.psicode.org}{\textsc{Psi4}}~}
+\newcommand{\DIRAC}{\href{http://www.diracprogram.org}{\textsc{DIRAC}}~}
+\newcommand{\DALTON}{\href{http://www.daltonprogram.org}{\textsc{DALTON}}~}
+\newcommand{\LSDALTON}{\href{http://www.daltonprogram.org}{\textsc{LSDALTON}}~}
 \newcommand{\GPL}{\href{https://www.gnu.org/licenses/gpl.html}{GPL}}
 \newcommand{\LGPL}{\href{https://www.gnu.org/licenses/lgpl.html}{LGPL}}
+
+%%%%% General
+\newcommand*{\diff}{\mathop{}\!\mathrm{d}} % Differential
+\newcommand*{\Supp}{\mathop{}\!\mathrm{Supp}}
+\newcommand*{\deriv}[3][]{% Derivative
+\frac{\diff^{#1}#2}{\diff #3^{#1}}}
+\newcommand*{\pderiv}[3][]{%
+\frac{\partial^{#1}#2}% Partial derivative
+{\partial #3^{#1}}}
+\newcommand*{\vect}[1]{\mathbf{#1}} % Vector
+\newcommand*{\mat}[1]{\mathbf{#1}}% Matrix
+\newcommand*{\Tr}{\mathrm{Tr}}% Trace
+\newcommand*{\supp}[1]{\Supp(#1)}
+
+%%%%% PCM stuff
+\newcommand*{\diel}{\varepsilon} % Permittivity
+\newcommand*{\diels}{\varepsilon_\mathrm{s}}
+\newcommand*{\dield}{\varepsilon_\infty}
+\newcommand*{\bi}[1]{\hat{\mathcal{#1}}} % Boundary integral operator
+\newcommand*{\PCM}{\bi{Y}} % The PCM boundary integral operator
+\newcommand*{\MM}{\bi{W}} % The MM classical matrix
+\newcommand*{\MMPCM}{\bi{X}} % The MM/PCM interaction kernel
+\newcommand*{\scalprod}[2]{(#1, #2)_{\Gamma}} % Scalar product
+\newcommand*{\s}{\mathrm{s}} % Sources
+\newcommand*{\p}{\mathrm{p}} % Polarization degree of freedom
+\newcommand*{\V}{\mathbb{V}} % Supermatrix
+\newcommand*{\asc}{\sigma} % ASC
+\newcommand*{\esp}{\varphi} % MEP
+\newcommand*{\Ylm}[4]{\mathcal{Y}_{#1}^{#2}(#3, #4)}
+\newcommand*{\BarYlm}[4]{\overline{\mathcal{Y}}_{#1}^{#2}(#3, #4)}
+
+%%%%% Response theory stuff
+\newcommand*{\aveQ}{\left\lbrace\mathcal{Q}(t)\right\rbrace_T}% Time-averaged quasi-energy
+\newcommand*{\response}[3]{\Braket{\Braket{#1; #2}}_{#3}}% Response function
+\newcommand*{\pertmat}[1]{\tilde{\mat{#1}}}
+\newcommand*{\aveL}{\lbrace\tilde{L}(\pertmat{C}, \pertmat{\lambda}, \tilde{\sigma}, t)\rbrace_T}% Time-averaged quasi-energy
+\newcommand*{\aveLa}{\lbrace\tilde{L}^a(\pertmat{C}, \pertmat{\lambda}, \tilde{\sigma}, t)\rbrace_T}% Time-averaged quasi-energy
+\newcommand*{\pertPCM}[1]{\PCM^{(#1)}}
+\newcommand*{\eqtr}{\overset{\Tr}{=}}
+\newcommand*{\eqavetr}{\overset{\lbrace\Tr\rbrace_T}{=}}
+\newcommand*{\herm}[1]{\left[#1\right]^{\oplus}}
+\newcommand*{\aherm}[1]{\left[#1\right]^{\ominus}}
+\newcommand*{\hermitian}[1]{\mat{#1} + \mat{#1}^\dagger}
+\newcommand*{\ahermitian}[1]{\mat{#1} - \mat{#1}^\dagger}
+\newcommand*{\breveFock}[1]{\breve{\mat{\mathcal{F}}}_\omega^{#1}}
+\newcommand*{\rspParam}[1]{\mat{X}^{#1}}
+\newcommand*{\RHS}[1]{\mat{M}_\mathrm{RHS}^{#1}}
+\newcommand*{\Dp}[1]{\mat{D}_\mathrm{P}^{#1}}
+\newcommand*{\Dh}[1]{\mat{D}_\mathrm{H}^{#1}}
+\newcommand*{\ASCp}[1]{\asc_\mathrm{P}^{#1}}
+\newcommand*{\ASCh}[1]{\asc_\mathrm{H}^{#1}}
+\newcommand*{\Gn}[1]{\mathcal{G}^{0, #1}}
+\newcommand*{\Gderiv}[2]{\mat{\mathcal{G}}^{#1, #2}}
+\newcommand*{\genHessian}{\mat{E}^{[2]}}
+\newcommand*{\genMetric}{\mat{S}^{[2]}}
+
+%%%%% Coupled cluster stuff
+\newcommand*{\commutator}[3][]{\left[ #2, #3 \right]^{#1}} % Commutator
+\newcommand*{\anticommutator}[2]{% Anticommutator
+\left[ #1, #2 \right]_{+}}
+\newcommand*{\lag}[1]{\mathcal{L}^\mathcal{#1}_\mathrm{eff}}
+\newcommand*{\expo}[1]{\mathrm{e}^{#1}}
+\newcommand*{\twoel}[2]{\Braket{#1 \| #2}}
+\newcommand*{\tamp}[1]{t_{#1}} % Cluster amplitude
+\newcommand*{\tampEq}[1]{\Omega_{#1}} % Cluster amplitude vector function
+\newcommand*{\sd}[1]{{}^*#1}
+\newcommand*{\tbar}[1]{\bar{t}_{#1}} % Multiplier
+\newcommand*{\tbarEq}[1]{\bar{\Omega}_{#1}} % Multiplier vector function
+\newcommand*{\cluster}[1]{\tau_{#1}} % Cluster operator
+\newcommand*{\denom}[1]{\epsilon_{#1}} % Energy denominator
+\newcommand*{\cons}[1]{a_{#1}^{\dagger}}% Constructor operator
+\newcommand*{\anni}[1]{a_{#1}} % Annihilation operator
+\newcommand*{\sigmaEq}{\Omega^{\sigma}} % Multiplier vector function
+\newcommand*{\BCH}[2]{#1+\commutator{#1}{#2}+\frac{1}{2}\commutator{\commutator{#1}{#2}}{#2}
++ \ldots} % BCH expansion up to second order
+\newcommand*{\BCHfirst}[2]{\commutator{#1}{#2}}% BCH 1st order
+\newcommand*{\BCHsecond}[2]{\frac{1}{2}\commutator{\commutator{#1}{#2}}{#2}}% BCH 2nd order
+\newcommand*{\BCHthird}[2]{\frac{1}{6}\commutator{\commutator{\commutator{#1}{#2}}{#2}}{#2}} %BCH 3rd order
+% BCH 4th order
+\newcommand*{\BCHfourth}[2]{\frac{1}{24}\commutator{\commutator{\commutator{\commutator{#1}{#2}}{#2}}{#2}}{#2}}
+% \Phi
+\newcommand*{\RTerm}[3]{{}^{#1}R^{#2}_{#3}}
+\newcommand*{\STerm}[3]{{}^{#1}S^{#2}_{#3}}
+\newcommand*{\UTerm}[4]{{}^{#1}U^{#2}_{#3 #4}}
+% \esp
+\newcommand*{\MEPRTerm}[3]{{}^{#1}\underline{R}^{#2}_{#3}}
+\newcommand*{\MEPSTerm}[3]{{}^{#1}\underline{S}^{#2}_{#3}}
+\newcommand*{\MEPUTerm}[4]{{}^{#1}\underline{U}^{#2}_{#3 #4}}
