@@ -1,0 +1,31 @@
+\tikzstyle{decision}=[diamond, fill=red!20, text width=5.5em, text badly centered, inner sep=0pt]
+\tikzstyle{pcmsolver}=[rectangle, minimum size=6mm, rounded corners=3mm, very thick, fill=Blue!20, text width=14em, text centered]
+\tikzstyle{qmprog}=[rectangle, minimum size=6mm, rounded corners=3mm, text centered, very thick, fill=Green!20, text width=14em]
+
+\begin{tikzpicture}[]
+%skip up/.style={to path={-- ++(0,#1) -| (\tikztotarget)}},
+%skip right/.style={to path={-- ++(#1,0) -| (\tikztotarget)}}]
+\node (MEP) [qmprog] { Molecular electrostatic potential at the cavity: \\ $
+ v_I = \sum_A \frac{Z_A}{|\vect{R}_A-\vect{s}_I|} +  \sum_{\kappa\lambda} D_{\lambda\kappa}
+\left[\int\diff\vect{r}\frac{-\Omega_{\kappa\lambda}(\vect{r})}{|\vect{r}-\vect{s}_I|}\right]$ };
+\node (CHG) [pcmsolver, below=of MEP] { Apparent Surface Charge:\\ $\vect{q} = \mat{K} \vect{v}$ };
+\node (energy) [pcmsolver, below=of CHG] { Polarization energy:\\ 
+$U_\mathrm{pol} = \vect{q}\cdot\vect{v}$};
+\node (fock) [qmprog, below=of energy, distance=30mm] { Fock matrix:\\
+$f_{\kappa\lambda} = f^\mathrm{vac}_{\kappa\lambda} + \vect{q}\cdot\vect{v}^\mathrm{e}_{\kappa\lambda}$ };
+%\node (iter) [qmprog, below=of fock, distance=150mm] { Iterate SCF };
+\node (conv) [decision, below=of fock] { SCF converged?};
+\node (end) [qmprog, below=of conv] { Finalize SCF};
+\path (MEP) edge[->] (CHG)
+      %(nucchg) edge[->] (elepot)
+      %(elepot) edge[->] (elechg)
+      (CHG) edge[->] (energy)
+      (energy) edge[->] (fock)
+      (fock)   edge[->] (conv)
+ %     (iter)   edge[->] (conv)
+      (conv)   edge[->] node[anchor=east]{yes} (end);
+\draw [->] (conv.east) -- ++(1,0) node[anchor=south] {no} --++(1,0) |- (MEP.east);
+\draw [<-] (MEP.west) -- ++ (-1,0) node[anchor=south]
+      {\textcolor{Blue}{Cavity}} node [anchor=north] {\textcolor{Green}{\!\!\!\!Geometry}, \textcolor{Green}{$\mat{D}$}} -- ++(-1,0);
+\draw [<-] (CHG.west) -- ++ (-1,0) node[anchor=south] {\textcolor{Blue}{BE solver}} -- ++(-1,0);
+\end{tikzpicture}

@@ -4,6 +4,7 @@
 
 In the following, I provide a brief summary of the motivations, contents and
 conclusions of the papers this thesis is based on.
+Figures and tables here reported are taken \emph{verbatim} from the published work.
 In addition, I give a description of my contributions to the work leading to
 the publication of each of the papers.
 \todo[inline]{Write something along these lines: "My coauthors have all read and approved."}
@@ -25,6 +26,42 @@ approximation of these effects.
 In this paper, we presented the first derivation and implementation of the \acs{PCM}
 coupled to a \acs{SCF} description of the solute in the fully relativistic, four-component
 regime.
+
+\begin{figure}[!htb]
+\centering
+\scalebox{0.8}{\input{gfx/algorithm.tikz}}
+\caption{
+  Schematic view of the implemented SCF algorithm. Computations/data in
+  \textcolor{Blue}{blue} are on the \pcmsolver side, in
+  \textcolor{Green}{green} on the \DIRAC side.
+  }
+\label{fig:algorithm}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{0.5\textwidth}
+\missingfigure{Reobtain this figure: H2O\_MEP-diff-pcmdc-dc}
+\caption{\ce{H2O}: $\mathrm{MEP}_\mathrm{PCM-DC} - \mathrm{MEP}_\mathrm{DC}$}
+\label{fig:H2Odiff_pcmdc-dc}
+\end{subfigure}%
+\begin{subfigure}[b]{0.5\textwidth}
+\missingfigure{Reobtain this figure: H2Po\_MEP-diff-pcmdc-dc}
+\caption{\ce{H2Po}: $\mathrm{MEP}_\mathrm{PCM-DC} - \mathrm{MEP}_\mathrm{DC}$}
+\label{fig:H2Podiff_pcmdc-dc}
+\end{subfigure}
+\caption{
+  \todo[inline]{Recalculate MEP maps and reobtain these plots using ParaView.}
+  Molecular electrostatic potential (\acs{MEP}) maps for \ce{H2O} and \ce{H2Po} at
+  the \acs{DFT}/PBE0 level of theory.
+  The isocontours are in the range $[-0.02, 0.02] \si{\hartree\per\elementarycharge}$ and are
+  color-coded from red to blue.
+  The values plotted are differences between the values obtained for the
+  Hamiltonians referred to in the subcaptions. The geometry optimized \emph{in
+  vacuo}, using the \acl{DC} Hamiltonian as reference.
+  \acs{PCM}-\acs{DC}: \acl{DC} in water, \acs{DC}: \acl{DC} \emph{in vacuo}.}
+\label{fig:MEP_maps}
+\end{figure}
 
 I contributed the theoretical derivation of the quantum/classical polarizable
 terms in a four-component \acs{SCF} framework, for energies and linear response
@@ -84,7 +121,7 @@ I performed most of the data analysis and produced tables and graphs.
 
 \begin{figure}[tb]
  \centering
-  \missingfigure{Take figure from paper!}
+  \missingfigure{Reobtain plot from paper using a style similar to that in MPA paper}
   \caption[Convergence of $\alpha_\mathrm{iso}$ with respect to the number of molecular
   electrostatic potential (MEP) evaluation points on the cavity surface.]
   {Convergence of $\alpha_\mathrm{iso}$ with respect to the number of
