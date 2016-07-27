@@ -1,12 +1,97 @@
-%************************************************
+% mainfile: ../RobertoDiRemigioPhDThesis.tex
 \chapter{Continuum solvation models}\label{ch:CSM}
-%************************************************
-%*****************************************
-%*****************************************
-%*****************************************
-%*****************************************
-%*****************************************
 
+\section{A unifying view of classical polarizable models}
 
+Variational functional for implicit models, \acs{PCM} in this case:
+\begin{equation}
+ U_\mathrm{PCM} = \frac{1}{2}\scalprod{\sigma}{\PCM\sigma} + \scalprod{\esp}{\sigma}
+\end{equation}
 
+Variational functional for explicit models, could be MMpol or PE or FQ:
+\begin{equation}
+  U_\mathrm{MM} = \frac{1}{2}\kappa\MM\kappa + \kappa\zeta
+\end{equation}
 
+The PCM equations will be written in the ``complete basis'' meaning that
+we will introduce the usual boundary-element method (BEM) discretization
+at the very end of the derivation. In other words, we will be working
+with the exact integral equation and not with its discretized
+counterpart. As a consequence, the apparent surface charge $\sigma$ and
+the electrostatic potential $\esp$ will have a \emph{continuous}
+dependence on a ``cavity surface'' index $\vect{s}$. Whenever a
+charge-potential product is present it is then to be interpreted as the
+\emph{surface integral}, i.e. the scalar product in the suitable,
+infinite-dimensional vector space on the cavity boundary $\Gamma$. The
+following shorthand notation will be adopted:
+\begin{equation}
+ \sigma\esp = \scalprod{\sigma}{\esp}
+\end{equation}
+
+Coupled implicit/explicit polarization energy functional:
+\begin{equation}
+  U_\mathrm{pol} =
+   \frac{1}{2}\sigma\PCM\sigma + \sigma\esp
+ + \frac{1}{2}\kappa\MM\kappa + \kappa\zeta
+ + \sigma\bi{X}\kappa
+\end{equation}
+where one has:
+\begin{equation}
+  \sigma\MMPCM\kappa = \kappa\MMPCM^\dagger\sigma
+\end{equation}
+and $\MMPCM$ is the implicit/explicit interaction kernel. This is
+charge/dipole or charge/charge interaction kernel for the MMpol and PE models
+or the FQ model, respectively.
+The global minimum of the convex functional is found by differentiating
+it with respect to the variational degrees of freedom, \ie{} the
+\acl{ASC} (\acs{ASC}) density $\sigma$ and the classical point
+charges/dipoles $\kappa$. This leads to the coupled equations:
+\begin{align}
+  \PCM\sigma + \esp + \MMPCM\kappa &= 0 \\
+  \MM\kappa  + \zeta + \MMPCM^\dagger\sigma &= 0
+\end{align}
+or in the commonly found matrix form:
+\begin{equation}
+  \begin{pmatrix}
+    \PCM & \MMPCM^\dagger \\
+    \MMPCM & \MM
+  \end{pmatrix}
+  \begin{pmatrix}
+   \sigma \\
+   \kappa
+  \end{pmatrix}
+  =
+  -
+  \begin{pmatrix}
+   \esp \\
+   \zeta
+  \end{pmatrix}
+\end{equation}
+Finally, let us re-express the equations above in a "supermatrix"
+formalism:
+\begin{equation}
+  U_\mathrm{pol} =
+  \frac{1}{2}\p^\dagger\V\p + \p^\dagger\s
+\end{equation}
+where:
+\begin{alignat}{3}
+  \p =
+  \begin{pmatrix}
+    \sigma \\
+    \kappa
+  \end{pmatrix},
+  \quad&
+  \s =
+  \begin{pmatrix}
+   \esp \\
+   \zeta
+  \end{pmatrix},
+  \quad&
+  \V =
+  \begin{pmatrix}
+    \PCM & \MMPCM^\dagger \\
+    \MMPCM & \MM
+  \end{pmatrix}
+\end{alignat}
+The supermatrix form will prove particularly useful in the following
+derivations.
