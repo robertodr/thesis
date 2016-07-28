@@ -2,6 +2,13 @@
 %************************************************
 \chapter{Summary of the publications}\label{ch:publications-summary}
 
+\epigraph{$\frac{1}{2}$ research and $\frac{1}{2}\,\,T\acute{\epsilon}\chi\nu\eta$
+
+          $\frac{1}{2}$ observation, $\frac{1}{2}\,\,T\acute{\epsilon}\chi\nu\eta$
+
+          $\frac{1}{2}$ training, $\frac{1}{2}\,\,T\acute{\epsilon}\chi\nu\eta$}{
+  --- \textsc{Ezra Pound}, \textit{Canto LXXXV}}
+
 In the following, I provide a brief summary of the motivations, contents and
 conclusions of the papers this thesis is based on.
 Figures and tables here reported are taken \emph{verbatim} from the published work.
@@ -30,7 +37,7 @@ regime.
 \begin{figure}[!htb]
 \centering
 \scalebox{0.8}{\input{gfx/algorithm.tikz}}
-\caption{
+\caption[Modular approach to programming a \acs{PCM} functionality into an existing \acs{SCF} code.]{
   Schematic view of the implemented SCF algorithm. Computations/data in
   \textcolor{Blue}{blue} are on the \pcmsolver side, in
   \textcolor{Green}{green} on the \DIRAC side.
@@ -38,6 +45,7 @@ regime.
 \label{fig:algorithm}
 \end{figure}
 
+\todo[inline]{Recalculate MEP maps and reobtain these plots using ParaView.}
 \begin{figure}
 \centering
 \begin{subfigure}[b]{0.5\textwidth}
@@ -50,8 +58,8 @@ regime.
 \caption{\ce{H2Po}: $\mathrm{MEP}_\mathrm{PCM-DC} - \mathrm{MEP}_\mathrm{DC}$}
 \label{fig:H2Podiff_pcmdc-dc}
 \end{subfigure}
-\caption{
-  \todo[inline]{Recalculate MEP maps and reobtain these plots using ParaView.}
+\caption[Molecular electrostatic potential (\acs{MEP}) maps for \ce{H2O} and \ce{H2Po} at
+  the \acs{DFT}/PBE0 level of theory.]{
   Molecular electrostatic potential (\acs{MEP}) maps for \ce{H2O} and \ce{H2Po} at
   the \acs{DFT}/PBE0 level of theory.
   The isocontours are in the range $[-0.02, 0.02] \si{\hartree\per\elementarycharge}$ and are
