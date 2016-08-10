@@ -10,11 +10,15 @@ import matplotlib.pyplot as plt
 
 import numpy as np
 
-params = {'text.usetex': False, 'mathtext.fontset': 'stixsans'}
-mpl.rcParams.update(params)
 mpl.style.use('ggplot')
 # The colors are from the ggplot style, consistent with grey background
 ggplot = ['#E24A33', '#348ABD', '#988ED5', '#777777', '#FBC15E', '#8EBA42', '#FFB5B8']
+
+params = {'text.usetex': False,
+          'mathtext.fontset': 'stixsans',
+          'font.size' : 14
+         }
+mpl.rcParams.update(params)
 
 limit = 76.678052
 # Get the data
@@ -80,13 +84,8 @@ ax2.set_xticklabels(labels)
 
 l4 = ax2.plot((1.5, 5.5), (limit, limit), label='Limit', ls='-.', color=ggplot[3])
 
-#ax.set_ylim([-5.26, -5.16])
 ax.yaxis.set_major_formatter(y_formatter)
 ax.set_ylabel(r'Isotropic polarizability $[a_0^3]$')
-ax.yaxis.set_ticks_position('none')
-
-ax.xaxis.set_ticks_position('none')
-ax2.xaxis.set_ticks_position('none')
 
 ax.grid(False)
 ax2.grid(False)
