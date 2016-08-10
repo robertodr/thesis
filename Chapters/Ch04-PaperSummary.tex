@@ -34,6 +34,14 @@ approximation of these effects.
 In this paper, we presented the first derivation and implementation of the \acs{PCM}
 coupled to a \acs{SCF} description of the solute in the fully relativistic, four-component
 regime.
+Our preliminary calculations on the group 16 dihydrides \ce{H2X} (\ce{X} =
+\ce{O}, \ce{S}, \ce{Se}, \ce{Te}, \ce{Po}) have shown that the method predicts
+a noticeable interplay of relativistic and solvent effects when heavier
+elements are involved.
+The main point of the paper was, however, the adoption of a fully modular
+programming strategy. We showed that it is entirely possible to adopt the same
+\acs{PCM} code and implementation "checkpoints" across altogether different
+problem domains.
 
 \begin{figure}[!htb]
 \centering
@@ -46,6 +54,9 @@ regime.
 \label{fig:algorithm}
 \end{figure}
 
+As a by-product of the 4-component implementation, we were able to obtain and visualize \acs{MEP} maps
+from 4-component \acs{SCF} wave functions. These add yet another interpretive tool to the toolbox available
+in the 4-component relativistic regime.
 \todo[inline]{Recalculate MEP maps and reobtain these plots using ParaView.}
 \begin{figure}
 \centering
@@ -71,6 +82,8 @@ regime.
   \acs{PCM}-\acs{DC}: \acl{DC} in water, \acs{DC}: \acl{DC} \emph{in vacuo}.}
 \label{fig:MEP_maps}
 \end{figure}
+The interface to \DIRAC was later released in the 2014 and later versions,
+providing \acs{PCM} capabilities to the software package.
 
 I contributed the theoretical derivation of the quantum/classical polarizable
 terms in a four-component \acs{SCF} framework, for energies and linear response
@@ -100,8 +113,10 @@ The use of biorthogonal wavelet bases as finite elements achieves sparsity in
 the \acs{BEM} procedure, due to their intrinsically hierarchical structure and
 the existence of \emph{a priori} and \emph{a posteriori} matrix compression
 estimates.
-Thus, wavelet Galerkin \acs{BEM} represents a valid alternative to traditional collocation methods,
-both to achieve a better computational scaling and to provide accurate, benchmark results.
+Thus, wavelet Galerkin \acs{BEM} represents a valid alternative to traditional
+collocation methods, both to achieve a better computational scaling and to
+provide accurate, benchmark results.\autocite{Harbrecht2004-uo,
+Harbrecht2006-ug, Dahmen2006-pj}
 
 This work builds upon and extends previous work by~\citeauthor{Weijo2010-hy}
 \citeauthor{Weijo2010-hy} used \ac{PWC} bases to show that superior accuracy
@@ -114,9 +129,8 @@ even for very large finite element bases. This suggests that, in some cases,
 convergence of the quantum mechanical response equations solvers.
 
 For this paper, I provided template interface and test sets for the cavity
-generator\autocite{Harbrecht2009-no, Harbrecht2011-dk}
-and wavelet Galerkin \acs{BEM} solver\autocite{Harbrecht2004-uo, Harbrecht2006-ug, Dahmen2006-pj}
-with \pcmsolver.
+generator\autocite{Harbrecht2009-no, Harbrecht2011-dk} and wavelet Galerkin
+\acs{BEM} solver with \pcmsolver.
 These were used to interface with the new C++ implementation of the wavelet
 Galerkin solvers of Monica Bugeanu.
 I implemented the interface between the \LSDALTON quantum chemistry software
@@ -149,20 +163,73 @@ I performed most of the data analysis and produced tables and graphs.
   \label{fig:alpha_convergence}
 \end{figure}
 
-
-The interface to \LSDALTON was later released in version ...
+Finally, the interface to \LSDALTON was later released in the 2016 version,
 providing \acs{PCM} capabilities to the software package.
 
 \section*{Paper III: Continuum modelling of non homogeneous environments}
 
+Continuum solvation models offer a simple route to the treatment of non
+homogeneous environments.
+The general integral equation formulation exposed in Chapter~\ref{ch:CSM} is in
+fact transparent with respect to the definition of the Green's function for the
+space portion exterior to the cavity.
+As already shown by \citeauthor{Cances1998-og}, the same mathematical formalism can easily accommodate
+environments characterized by distance-dependent or anisotropic Green's functions, such as those for
+ionic liquids (in the weakly interacting regime described by the linearized Poisson--Boltzmann equation)
+and liquid crystals, respectively.
+\citeauthor{Frediani2004-er} showed that a numerical representation of the
+Green's function is sufficient to obtain the boundary integral operators in the
+\acs{PCM} integral equation.
+The authors introduced a numerical integration procedure to calculate the
+Green's function for an environment characterized by spatially varying, yet
+cilindrically symmetric, permittivity functions: a model for planar diffuse interfaces.
 
-%************************************************
-%*****************************************
-%*****************************************
-%*****************************************
-%*****************************************
-%*****************************************
+In this work, a similar procedure was introduced to tackle diffuse interfaces
+in spherical symmetry.
+In contrast to previously existing work, our implementation offer a more robust
+treatment of thin interfaces, with a rather generic functional form for the
+permittivity profile.
+We thoroughly analyzed the necessity for the \emph{a posteriori} removal of the
+Coulomb singularity from the computed Green's function and its efficient
+implementation.
+Transfer of ions and molecules across spherically symmetric interfaces exhibits
+peculiar properties. These arise as consequence of both interface width and
+interface curvature.
+In this work, we analyzed both effect on the water-vapor and oil-water transfer
+of \ce{Li+}, \ce{Br-}, acetone, \emph{para}-nitroaniline and the L0 dye.
 
+\begin{figure}[tb]
+  \centering
+  \begin{subfigure}[t]{.49\linewidth}
+  \centering
+  %\includegraphics[width=.49\linewidth]{placeholder}
+  % Figure8a <--> dipole_acetone_perpendicular
+\missingfigure{Reobtain this figure}
+  \caption{Width effect}
+  \label{fig:profile_dipole_acetone_width}
+  \end{subfigure}
+  ~
+  \begin{subfigure}[t]{.49\linewidth}
+  \centering
+  %\includegraphics[width=.49\linewidth]{placeholder}
+  % Figure8b <--> curv_fullprofile_dip_acetone
+\missingfigure{Reobtain this figure}
+  \caption{Radius effect}
+  \label{fig:profile_dipole_acetone_fullprofile}
+  \end{subfigure}
 
-
-
+  \begin{subfigure}[t]{.49\linewidth}
+  \centering
+  %\includegraphics[width=.49\linewidth]{placeholder}
+  % Figure8c <--> curv_dip_acetone
+\missingfigure{Reobtain this figure}
+  \caption{Curvature effect}
+  \label{fig:profile_dipole_acetone_curvature}
+  \end{subfigure}
+  \caption[Width, radius and curvature effect on the dipole moment of acetone for water-air droplet phase transfer.]
+  {Dipole moment profiles for acetone (with dipole moment
+  perpendicular to the interface) transfer at water droplet in air, for
+  varying interface widths, values of $R_0$ and the curvature effect on
+  dipole moment, respectively.}
+  \label{fig:profile_dipole_acetone}
+\end{figure}
