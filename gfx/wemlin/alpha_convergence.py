@@ -85,10 +85,10 @@ ax2.set_xticklabels(labels)
 l4 = ax2.plot((1.5, 5.5), (limit, limit), label='Limit', ls='-.', color=ggplot[3])
 
 ax.yaxis.set_major_formatter(y_formatter)
-ax.set_ylabel(r'Isotropic polarizability $[a_0^3]$')
-
 ax.grid(False)
 ax2.grid(False)
+ax.yaxis.grid(True)
+ax.set_ylabel(r'Isotropic polarizability $[a_0^3]$')
 
 lines = l1 + l2 + l3 + l4
 labels = [l.get_label() for l in lines]

@@ -22,6 +22,8 @@ the publication of each of the papers.
 The codes used in the papers are all interfaced to the \pcmsolver library,
 of which I am the main developer and maintainer.
 
+\refstepcounter{dummy}
+\addcontentsline{toc}{section}{\tocEntry{Continuum solvation in the relativistic regime}}
 \section*{Paper I. Continuum solvation in the relativistic regime}
 
 Systems containing heavy elements are notoriously challenging for quantum chemistry.
@@ -45,7 +47,7 @@ problem domains.
 
 \begin{figure}[!htb]
 \centering
-\scalebox{0.8}{\input{gfx/algorithm.tikz}}
+\scalebox{0.8}{\input{gfx/relapcm/algorithm.tikz}}
 \caption[Modular approach to programming a \acs{PCM} functionality into an existing \acs{SCF} code.]{
   Schematic view of the implemented SCF algorithm. Computations/data in
   \textcolor{Blue}{blue} are on the \pcmsolver side, in
@@ -99,6 +101,8 @@ for the results reported in the paper.
 Finally, I wrote the first draft of the paper and coordinated editing of
 all subsequent versions.
 
+\refstepcounter{dummy}
+\addcontentsline{toc}{section}{\tocEntry{The wavelet Galerkin boundary element method for PCM}}
 \section*{Paper II. The wavelet Galerkin boundary element method for PCM}
 
 Continuum solvation models are inherently parametrized. Apart from solvent permittivities,
@@ -118,10 +122,11 @@ collocation methods, both to achieve a better computational scaling and to
 provide accurate, benchmark results.\autocite{Harbrecht2004-uo,
 Harbrecht2006-ug, Dahmen2006-pj}
 
-This work builds upon and extends previous work by~\citeauthor{Weijo2010-hy}
-\citeauthor{Weijo2010-hy} used \ac{PWC} bases to show that superior accuracy
-and convergence could be obtained for the calculation of molecular energies.
-In this work we showed that faster convergence can be achieved when \ac{PWL} bases are used instead.
+Already~\citeauthor{Weijo2010-hy} had shown that using \ac{PWC} bases can lead
+to superior accuracy and convergence in the calculation of quantum mechanical
+molecular solvation energies.
+In this work we showed that even faster convergence can be achieved when
+\ac{PWL} bases are used instead.
 Moreover, the same holds for the calculation of static electric properties.
 Notably, the traditional collocation solver cannot guarantee the same accuracy,
 even for very large finite element bases. This suggests that, in some cases,
@@ -166,6 +171,8 @@ I performed most of the data analysis and produced tables and graphs.
 Finally, the interface to \LSDALTON was later released in the 2016 version,
 providing \acs{PCM} capabilities to the software package.
 
+\refstepcounter{dummy}
+\addcontentsline{toc}{section}{\tocEntry{Continuum modelling of non homogeneous environments}}
 \section*{Paper III: Continuum modelling of non homogeneous environments}
 
 Continuum solvation models offer a simple route to the treatment of non
@@ -192,37 +199,38 @@ permittivity profile.
 We thoroughly analyzed the necessity for the \emph{a posteriori} removal of the
 Coulomb singularity from the computed Green's function and its efficient
 implementation.
-Transfer of ions and molecules across spherically symmetric interfaces exhibits
-peculiar properties. These arise as consequence of both interface width and
-interface curvature.
+Interface width and curvature influence the transfer of ions and molecules across
+spherically symmetric interfaces and peculiar properties may arise.
 In this work, we analyzed both effect on the water-vapor and oil-water transfer
 of \ce{Li+}, \ce{Br-}, acetone, \emph{para}-nitroaniline and the L0 dye.
+Nonelectrostatic interactions were not included in our implementation, although
+they have been proved to be crucial for non homogeneous
+environments.~\autocite{Mozgawa2014-ad}
+Nevertheless our implementation represents a first significant step in the continuum treatment
+of such nontrivial environments.
 
 \begin{figure}[tb]
   \centering
   \begin{subfigure}[t]{.49\linewidth}
   \centering
-  %\includegraphics[width=.49\linewidth]{placeholder}
   % Figure8a <--> dipole_acetone_perpendicular
-\missingfigure{Reobtain this figure}
+  \includegraphics[width=\textwidth]{gfx/spherical/width.png}
   \caption{Width effect}
   \label{fig:profile_dipole_acetone_width}
   \end{subfigure}
   ~
   \begin{subfigure}[t]{.49\linewidth}
   \centering
-  %\includegraphics[width=.49\linewidth]{placeholder}
   % Figure8b <--> curv_fullprofile_dip_acetone
-\missingfigure{Reobtain this figure}
+  \includegraphics[width=\textwidth]{gfx/spherical/radius.png}
   \caption{Radius effect}
   \label{fig:profile_dipole_acetone_fullprofile}
   \end{subfigure}
 
   \begin{subfigure}[t]{.49\linewidth}
   \centering
-  %\includegraphics[width=.49\linewidth]{placeholder}
   % Figure8c <--> curv_dip_acetone
-\missingfigure{Reobtain this figure}
+  \includegraphics[width=\textwidth]{gfx/spherical/curvature.png}
   \caption{Curvature effect}
   \label{fig:profile_dipole_acetone_curvature}
   \end{subfigure}
@@ -233,3 +241,19 @@ of \ce{Li+}, \ce{Br-}, acetone, \emph{para}-nitroaniline and the L0 dye.
   dipole moment, respectively.}
   \label{fig:profile_dipole_acetone}
 \end{figure}
+
+I contributed most of the theoretical work for this paper, based on early drafts from coauthors
+Ville Weijo and Hui Cao. In particular, I derived the separation of
+the Coulomb singularity in its final form.
+Moreover, I contributed the implementation and testing of the Green's function code.
+The interface to the \LSDALTON program package, developed within paper II, was
+also used for this paper.
+I wrote the first draft of the paper and coordinated all subsequent editing stages.
+
+\refstepcounter{dummy}
+\addcontentsline{toc}{section}{\tocEntry{Relativistic calculation of EPR and pNMR parameters in solution}}
+\section*{Paper IV: Relativistic calculation of EPR and pNMR parameters in solution}
+
+\refstepcounter{dummy}
+\addcontentsline{toc}{section}{\tocEntry{Open-ended self-consistent field response theory in solution}}
+\section*{Paper V: Open-ended self-consistent field response theory in solution}
