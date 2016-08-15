@@ -1,8 +1,25 @@
 % mainfile: ../RobertoDiRemigioPhDThesis.tex
 %************************************************
-\chapter{Coupled cluster}\label{ch:PCMCC}
+\chapter{Treating solvation within correlated wave function models}\label{ch:PCMCC}
 
 \epigraph{Non temerai i terrori della notte non temerai il terrore}{--- \textsc{CCCP}}
+
+In this Chapter, I will summarize previous and current work on the
+formulation of quantum/classical polarizable models in the context of
+the highly accurate \acl{CC} model.
+This is an ongoing and yet unpublished collaboration with prof.~T.~Daniel Crawford
+(Virginia Tech) and Dr.~Andrew C.~Simmonett (NIH)
+The first part of this Chapter summarizes existing work, mainly by Cammi
+and Caricato, by recasting it in language of variational
+quantum/classical polarizable Hamiltonians.
+The second part of this Chapter illustrates how the variational language
+facilitates the formulation of a \acl{CC}-based \acl{PT} (\acs{CC}-\acs{PT})
+including a classical polarizable environment.
+I will finally show how the perturbation series can be successfully
+exploited to derive iterative and noniterative approximate \acs{CC}
+schemes.
+
+\pagebreak
 
 \section{Notation}
 Cluster operator:
@@ -82,8 +99,8 @@ In the subsequent correlated treatment one can separate the reaction
 field into reference and correlated components:
 \begin{equation}
   \begin{pmatrix}
-   \sigma \\
-   \kappa
+   \sigma^\mathrm{tot} \\
+   \kappa^\mathrm{tot}
   \end{pmatrix}
   =
   \begin{pmatrix}
@@ -92,8 +109,8 @@ field into reference and correlated components:
   \end{pmatrix}
   +
   \begin{pmatrix}
-   \sigma^\mathrm{CC} \\
-   \kappa^\mathrm{CC}
+   \sigma \\
+   \kappa
   \end{pmatrix}
 \end{equation}
 and similarly for the sources:
@@ -173,60 +190,112 @@ components:
 \begin{equation}
   \begin{aligned}
   U_\mathrm{pol} &=
-  \frac{1}{2}(\sigma^\mathrm{HF}+\sigma^\mathrm{CC})\PCM(\sigma^\mathrm{HF}+\sigma^\mathrm{CC})
-+ (\sigma^\mathrm{HF}+\sigma^\mathrm{CC})(\esp^\mathrm{HF}+\tilde{\esp}(\tamp{},\tbar{})) \\
-&+ \frac{1}{2}(\kappa^\mathrm{HF}+\kappa^\mathrm{CC})\MM(\kappa^\mathrm{HF}+\kappa^\mathrm{CC})
-+ (\kappa^\mathrm{HF}+\kappa^\mathrm{CC})(\zeta^\mathrm{HF}+\tilde{\zeta}(\tamp{},\tbar{})) \\
-&+ (\sigma^\mathrm{HF}+\sigma^\mathrm{CC})\bi{X}(\kappa^\mathrm{HF}+\kappa^\mathrm{CC}) \\
+  \frac{1}{2}(\sigma^\mathrm{HF}+\sigma)\PCM(\sigma^\mathrm{HF}+\sigma)
++ (\sigma^\mathrm{HF}+\sigma)(\esp^\mathrm{HF}+\tilde{\esp}(\tamp{},\tbar{})) \\
+&+ \frac{1}{2}(\kappa^\mathrm{HF}+\kappa)\MM(\kappa^\mathrm{HF}+\kappa)
++ (\kappa^\mathrm{HF}+\kappa)(\zeta^\mathrm{HF}+\tilde{\zeta}(\tamp{},\tbar{})) \\
+&+ (\sigma^\mathrm{HF}+\sigma)\bi{X}(\kappa^\mathrm{HF}+\kappa)
+  %%%% Steps
+= \left/ \text{Expand and collect} \right/ \\
 &=
     \frac{1}{2}\sigma^\mathrm{HF}\PCM\sigma^\mathrm{HF}
   + \sigma^\mathrm{HF}\esp^\mathrm{HF}
   + \frac{1}{2}\kappa^\mathrm{HF}\MM\kappa^\mathrm{HF}
   + \kappa^\mathrm{HF}\zeta^\mathrm{HF}
   + \sigma^\mathrm{HF}\bi{X}\kappa^\mathrm{HF} \\
-&+  \frac{1}{2}\sigma^\mathrm{CC}\PCM\sigma^\mathrm{CC}
-  + \sigma^\mathrm{CC}\tilde{\esp}(\tamp{},\tbar{})
-  + \frac{1}{2}\kappa^\mathrm{CC}\MM\kappa^\mathrm{CC}
-  + \kappa^\mathrm{CC}\tilde{\zeta}(\tamp{},\tbar{})
-  + \sigma^\mathrm{CC}\bi{X}\kappa^\mathrm{CC} \\
-&+  \frac{1}{2}\sigma^\mathrm{HF}\PCM\sigma^\mathrm{CC}
+&+  \frac{1}{2}\sigma\PCM\sigma
+  + \sigma\tilde{\esp}(\tamp{},\tbar{})
+  + \frac{1}{2}\kappa\MM\kappa
+  + \kappa\tilde{\zeta}(\tamp{},\tbar{})
+  + \sigma\bi{X}\kappa \\
+&+  \frac{1}{2}\sigma^\mathrm{HF}\PCM\sigma
   + \sigma^\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{})
-  + \frac{1}{2}\kappa^\mathrm{HF}\MM\kappa^\mathrm{CC}
+  + \frac{1}{2}\kappa^\mathrm{HF}\MM\kappa
   + \kappa^\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{})
-  + \sigma^\mathrm{HF}\bi{X}\kappa^\mathrm{CC} \\
-&+  \frac{1}{2}\sigma^\mathrm{CC}\PCM\sigma^\mathrm{HF}
-  + \sigma^\mathrm{CC}\esp^\mathrm{HF}
-  + \frac{1}{2}\kappa^\mathrm{CC}\MM\kappa^\mathrm{HF}
-  + \kappa^\mathrm{CC}\zeta^\mathrm{HF}
-  + \sigma^\mathrm{CC}\bi{X}\kappa^\mathrm{HF} \\
+  + \sigma^\mathrm{HF}\bi{X}\kappa \\
+&+  \frac{1}{2}\sigma\PCM\sigma^\mathrm{HF}
+  + \sigma\esp^\mathrm{HF}
+  + \frac{1}{2}\kappa\MM\kappa^\mathrm{HF}
+  + \kappa\zeta^\mathrm{HF}
+  + \sigma\bi{X}\kappa^\mathrm{HF} \\
+  %%%% Steps
+&= \left/
+  \frac{1}{2}\sigma^\mathrm{HF}\PCM\sigma^\mathrm{HF}
+  +
+  \frac{1}{2}\kappa^\mathrm{HF}\MM\kappa^\mathrm{HF}
+  +
+  \sigma^\mathrm{HF}\esp^\mathrm{HF}
+  +
+  \kappa^\mathrm{HF}\zeta^\mathrm{HF}
+  +
+  \sigma^\mathrm{HF}\bi{X}\kappa^\mathrm{HF}
+  =
+  \frac{1}{2}\sigma^\mathrm{HF}\esp^\mathrm{HF}
+  +
+  \frac{1}{2}\kappa^\mathrm{HF}\zeta^\mathrm{HF}
+  \right/ \\
 &=
     \frac{1}{2}\sigma^\mathrm{HF}\esp^\mathrm{HF}
   + \frac{1}{2}\kappa^\mathrm{HF}\zeta^\mathrm{HF} \\
-&+  \frac{1}{2}\sigma^\mathrm{CC}\PCM\sigma^\mathrm{CC}
-  + \sigma^\mathrm{CC}\tilde{\esp}(\tamp{},\tbar{})
-  + \frac{1}{2}\kappa^\mathrm{CC}\MM\kappa^\mathrm{CC}
-  + \kappa^\mathrm{CC}\tilde{\zeta}(\tamp{},\tbar{})
-  + \sigma^\mathrm{CC}\bi{X}\kappa^\mathrm{CC} \\
-&+ \sigma^\mathrm{CC}(\bi{Y}\sigma^\mathrm{HF} + \bi{X}\kappa^\mathrm{HF} + \esp^\mathrm{HF}) \\
-&+ \kappa^\mathrm{CC}(\bi{W}\kappa^\mathrm{HF} + \bi{X}^\dagger\sigma^\mathrm{HF} + \zeta^\mathrm{HF}) \\
+&+  \frac{1}{2}\sigma\PCM\sigma
+  + \sigma\tilde{\esp}(\tamp{},\tbar{})
+  + \frac{1}{2}\kappa\MM\kappa
+  + \kappa\tilde{\zeta}(\tamp{},\tbar{})
+  + \sigma\bi{X}\kappa \\
+&+  \frac{1}{2}\sigma^\mathrm{HF}\PCM\sigma
+  + \sigma^\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{})
+  + \frac{1}{2}\kappa^\mathrm{HF}\MM\kappa
+  + \kappa^\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{})
+  + \sigma^\mathrm{HF}\bi{X}\kappa \\
+&+  \frac{1}{2}\sigma\PCM\sigma^\mathrm{HF}
+  + \sigma\esp^\mathrm{HF}
+  + \frac{1}{2}\kappa\MM\kappa^\mathrm{HF}
+  + \kappa\zeta^\mathrm{HF}
+  + \sigma\bi{X}\kappa^\mathrm{HF} \\
+  %%%% Steps
+&= \left/
+  \frac{1}{2}\sigma\PCM\sigma^\mathrm{HF}
+  =
+  \frac{1}{2}\sigma^\mathrm{HF}\PCM\sigma;\quad
+  \frac{1}{2}\kappa\MM\kappa^\mathrm{HF}
+  =
+  \frac{1}{2}\kappa^\mathrm{HF}\MM\kappa; \quad
+  \sigma^\mathrm{HF}\bi{X}\kappa
+  =
+  \kappa\bi{X}^\dagger\sigma^\mathrm{HF}
+  \right/ \\
+&=
+    \frac{1}{2}\sigma^\mathrm{HF}\esp^\mathrm{HF}
+  + \frac{1}{2}\kappa^\mathrm{HF}\zeta^\mathrm{HF} \\
+&+  \frac{1}{2}\sigma\PCM\sigma
+  + \sigma\tilde{\esp}(\tamp{},\tbar{})
+  + \frac{1}{2}\kappa\MM\kappa
+  + \kappa\tilde{\zeta}(\tamp{},\tbar{})
+  + \sigma\bi{X}\kappa \\
+  &+ \sigma(\cancelto{0}{\bi{Y}\sigma^\mathrm{HF} + \bi{X}\kappa^\mathrm{HF} + \esp^\mathrm{HF}})
+  + \kappa(\cancelto{0}{\bi{W}\kappa^\mathrm{HF} + \bi{X}^\dagger\sigma^\mathrm{HF} + \zeta^\mathrm{HF}}) \\
 &+ \sigma^\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{}) + \kappa^\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{}) \\
-&=
+  %%%% Steps
+&= \left/
     \frac{1}{2}\sigma^\mathrm{HF}\esp^\mathrm{HF}
-  + \frac{1}{2}\kappa^\mathrm{HF}\zeta^\mathrm{HF} \\
-&+  \frac{1}{2}\sigma^\mathrm{CC}\PCM\sigma^\mathrm{CC}
-  + \sigma^\mathrm{CC}\tilde{\esp}(\tamp{},\tbar{})
-  + \frac{1}{2}\kappa^\mathrm{CC}\MM\kappa^\mathrm{CC}
-  + \kappa^\mathrm{CC}\tilde{\zeta}(\tamp{},\tbar{})
-  + \sigma^\mathrm{CC}\bi{X}\kappa^\mathrm{CC} \\
+  + \frac{1}{2}\kappa^\mathrm{HF}\zeta^\mathrm{HF}
+  \coloneqq U_\mathrm{pol}^\mathrm{ref}
+  \right/ \\
+&=
+  U_\mathrm{pol}^\mathrm{ref}
+  +  \frac{1}{2}\sigma\PCM\sigma
+  + \sigma\tilde{\esp}(\tamp{},\tbar{})
+  + \frac{1}{2}\kappa\MM\kappa
+  + \kappa\tilde{\zeta}(\tamp{},\tbar{})
+  + \sigma\bi{X}\kappa \\
 &+ \sigma^\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{}) + \kappa^\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{})
   \end{aligned}
 \end{equation}
-where we made use of the stationarity condition for the reference
-reaction field to eliminate a number of terms. Notice that the
-reference reaction energy still appears among the terms in the
-functional. However, these terms will not enter in the optimization of
-the \acs{CC} wave function and we will therefore drop them in the
-following, out of notational convenience:
+Notice that the reference reaction energy still appears among the terms
+in the functional. Obviously, these terms will not enter in the optimization of
+the \acs{CC} wave function.
+Introducing the supermatrix formalism, further simplifies the
+polarization functional:
 \begin{equation}
   \begin{aligned}
   U_\mathrm{pol} &=
@@ -236,68 +305,75 @@ following, out of notational convenience:
   + \kappa\tilde{\zeta}(\tamp{},\tbar{})
   + \sigma\bi{X}\kappa
   + \sigma^\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{}) +
-  \kappa^\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{}) \\
-  &= \frac{1}{2}\p^\dagger\V\p + \p^\dagger\tilde{\s}(\tamp{},\tbar{})
-  + \p^\mathrm{HF}\tilde{\s}(\tamp{},\tbar{})
+  \kappa^\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{})
+  + U_\mathrm{pol}^\mathrm{ref}
+  \\
+  &=
+  \frac{1}{2}\p^\dagger\V\p + \p^\dagger\tilde{\s}(\tamp{},\tbar{})
+  + \p^{\mathrm{HF}, \dagger}\tilde{\s}(\tamp{},\tbar{})
+  + U_\mathrm{pol}^\mathrm{ref}
 \end{aligned}
 \end{equation}
 
 One can then write the effective Lagrangian as:
 \begin{equation}
   \begin{aligned}
-  \lag{M}(\tamp{}, \tbar{}, \sigma) &=
+  \lag{M}(\tamp{}, \tbar{}, \p) &=
   \braket{\mathrm{HF} | \overline{H_0} | \mathrm{HF}}
   + \sum_{i=1}^{\mathcal{M}}\braket{\tamp{i} | \overline{H_0} | \mathrm{HF}} \\
-  &+ \frac{1}{2}\sigma\PCM\sigma
-  + \sigma\tilde{\esp}(\tamp{}, \tbar{})
-  + \frac{1}{2}\kappa\MM\kappa
-  + \kappa\tilde{\zeta}(\tamp{}, \tbar{})
-  + \sigma\bi{X}\kappa
-  + \sigma^\mathrm{HF}\tilde{\esp}(\tamp{}, \tbar{})
-  + \kappa^\mathrm{HF}\tilde{\zeta}(\tamp{}, \tbar{})
+  &+
+  \frac{1}{2}\p^\dagger\V\p + \p^\dagger\tilde{\s}(\tamp{},\tbar{})
+  + \p^{\mathrm{HF}, \dagger}\tilde{\s}(\tamp{},\tbar{})
+  + U_\mathrm{pol}^\mathrm{ref}
   \end{aligned}
 \end{equation}
 In accordance with previous work,\autocite{Cammi2009-gu, Caricato2011-tx} the
-Hamiltonian $H_0$ is augmented with the terms
-$\sigma^\mathrm{HF}\tilde{\esp}(\tamp{}, \tbar{})$ and
-$\kappa^\mathrm{HF}\tilde{\zeta}(\tamp{}, \tbar{})$
-part appearing in the previous functional yielding the \acl{PTE} (\acs{PTE}) Hamiltonian --
-$H$ -- and
+Hamiltonian $H_0$ is augmented with the
+$\p^{\mathrm{HF},\dagger}\tilde{\s}(\tamp{},\tbar{})$ term
+to yield the \acl{PTE} (\acs{PTE}) Hamiltonian -- $H$ -- and the
 eventually the \acl{PTED} (\acs{PTED}) Lagrangian:
 \begin{equation}\label{eq:pted-cc}
-  \begin{aligned}
-  \lag{M}(\tamp{}, \tbar{}, \sigma) &=
-  \braket{\mathrm{HF} | \overline{H} | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{H} | \mathrm{HF}} \\
-  &+ \frac{1}{2}\sigma\PCM\sigma
-  + \sigma\tilde{\esp}(\tamp{}, \tbar{})
-  + \frac{1}{2}\kappa\MM\kappa
-  + \kappa\tilde{\zeta}(\tamp{}, \tbar{})
-  + \sigma\bi{X}\kappa \\
-  &=
-  \braket{\mathrm{HF} | \overline{H} | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{H} | \mathrm{HF}}
+  \lag{M}(\tamp{}, \tbar{}, \p) =
+  {}^\mathrm{PTE}\lag{M}
   + \frac{1}{2}\p^\dagger\V\p + \p^\dagger\tilde{\s}(\tamp{},\tbar{})
-  \end{aligned}
 \end{equation}
-As noted by \citeauthor{Cammi2009-gu} for the implicit \acs{PCM} model,
-the \acs{PTE} Hamiltonian is computed in \acs{MP}-partitioned form by
-employing the "solvated" orbitals and Fock matrix:
-\begin{equation}
-  H = F + \Phi.
-\end{equation}
-$F$ is a diagonal one-electron operator and $\Phi$ is the
-fluctuation potential.
-The \acs{PTE} effective Lagrangian ${}^\mathrm{PTE}\lag{M}$ can be
-recovered by dropping the classical terms in the Lagrangian
-\eqref{eq:pted-cc}:
+where the \acs{PTE} Lagrangian has been introduced:
 \begin{equation}
 {}^\mathrm{PTE}\lag{M}
   =
   \braket{\mathrm{HF} | \overline{H} | \mathrm{HF}}
   + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{H} | \mathrm{HF}}
+  + U_\mathrm{pol}^\mathrm{ref}
 \end{equation}
-in accordance with the derivation of \citeauthor{Cammi2009-gu}.
+
+As noted by \citeauthor{Cammi2009-gu} for the implicit \acs{PCM} model,
+the \acs{PTE} Hamiltonian is computed in \acs{MP}-partitioned form by
+employing the ``solvated'' orbitals and Fock matrix:
+\begin{equation}
+  H = F + \Phi.
+\end{equation}
+$F$ is a diagonal one-electron operator and $\Phi$ is the
+fluctuation potential.
+The simple nature of the Fock operator lets us re-express the \acs{PTE}
+Lagrangian as follows:
+\begin{equation}
+{}^\mathrm{PTE}\lag{M}
+  =
+  G_0
+  + \sum_{i=1}^{\mathcal{M}}\tbar{\mu_i}\denom{\mu_i}\tamp{\mu_i}
+  + \braket{\mathrm{HF} | \overline{\Phi} | \mathrm{HF}}
+  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\Phi} | \mathrm{HF}}
+\end{equation}
+where $G_0 = E_0 + U_\mathrm{pol}^\mathrm{ref}$ is the reference free
+energy.
+
+Use of the \acs{PTE} Lagrangian yields \acs{CC} equations that are
+completely equivalent in form to those obtained \emph{in vacuo}.
+The model is also easily implemented, as it only requires access to a
+reference state optimized in the presence of the classical medium.
+The \acs{PTE} model thus offers an efficient approximation to the full
+\acs{PTED} model with a computational cost comparable to that of
+\emph{in vacuo} \acs{CC} theory.
 As shown by \citeauthor{Caricato2011-tx}, it is possible to achieve less
 drastic approximations of the \acs{PTED} Lagrangian. Such approximations
 can be easily derived within the current variational framework. We
@@ -385,17 +461,17 @@ range:
 \begin{equation}
   \sum_{i=1}^k n_i - m_O \leq v \leq \sum_{i=1}^k n_i + m_O -k
 \end{equation}
-The source operator is a nondiagonal, one-electron
-operator and hence has particle rank $m_\s = 1$.
 
-Eventually, one can cast the source terms entering the Lagrangian as
-follows:
+We first expand the source terms entering the Lagrangian as follows:
 \begin{equation}
   \tilde{\s}(\tamp{}, \tbar{}) =
   \braket{\mathrm{HF} | \BCHfirst{\s}{T} + \BCHsecond{\s}{T} | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \s + \BCHfirst{\s}{T} + \BCHsecond{\esp}{T} | \mathrm{HF}}
+  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \s + \BCHfirst{\s}{T} +
+  \BCHsecond{\esp}{T} | \mathrm{HF}},
 \end{equation}
-
+and since $\s$ has particle rank $m_\s = 1$ we can conclude that the
+following relationships hold:
+\begin{subequations}
 \begin{align}
   \braket{\mathrm{HF} |
   \BCHfirst{\s}{T_t}
@@ -407,7 +483,7 @@ follows:
   | \mathrm{HF}}
   &\quad\quad\text{nonzero contributions} \quad t + u = 1 \\
   \braket{\tbar{i} |
-  \esp
+  \s
   | \mathrm{HF} }
   &\quad\quad\text{nonzero contributions} \quad i = 1 \\
   \braket{\tbar{i} |
@@ -419,7 +495,7 @@ follows:
   | \mathrm{HF} }
   &\quad\quad\text{nonzero contributions} \quad t + u = i + 1
 \end{align}
-
+\end{subequations}
 For a general truncation level we accordingly obtain:
 \begin{equation}\label{eq:source-term}
   \tilde{\s}(\tamp{}, \tbar{}) =
@@ -427,8 +503,6 @@ For a general truncation level we accordingly obtain:
   + \braket{\tbar{1} | \s | \mathrm{HF}}
   + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \BCHfirst{\s}{T} + \BCHsecond{\s}{T} | \mathrm{HF}}
 \end{equation}
-which shows the unique role the singles amplitudes assume when a
-semiclassical environment model is introduced, \emph{vide infra}.
 Furthermore, for the \acs{CCS} model ($\mathcal{M} = 1$):
 \begin{equation}
   \tilde{\s}^1(\tamp{}, \tbar{}) =
@@ -462,95 +536,105 @@ terms are added:
 \end{equation}
 We note that:
 \begin{itemize}
-    \item double commutators involving the highest order cluster
-      operators can only lead to nonzero terms when $T_1$ is also
-      involved and by projection onto the highest order left \acs{CC}
-      state, \emph{e.g.}
-      $\braket{\tbar{2} | \commutator{\commutator{\s}{T_1}}{T_2} | \mathrm{HF}}$
-      and
-      $\braket{\tbar{3} | \commutator{\commutator{\s}{T_1}}{T_3} | \mathrm{HF}}$
+  \item singles amplitudes assume a unique role when a quantum/classical
+    Hamiltonian is introduced, a role that will be more evident in the
+    perturbative treatment,
+  \item double commutators involving the highest order cluster
+    operators can only lead to nonzero terms when $T_1$ is also
+    involved and by projection onto the highest order left \acs{CC}
+    state, \emph{e.g.}
+    $\braket{\tbar{2} | \commutator{\commutator{\s}{T_1}}{T_2} |
+    \mathrm{HF}} \neq 0$
+    and
+    $\braket{\tbar{3} | \commutator{\commutator{\s}{T_1}}{T_3} |
+    \mathrm{HF}} \neq 0$
 \end{itemize}
 
-\section{The PTED-CC equations}\label{sec:pted-cc-equations}
+\section{A family of PCM-CC models}\label{sec:pcm-cc-models}
 
 Differentiation of the effective Lagrangian in Eq.~\eqref{eq:pted-cc}
 with respect to the variational parameters $\tamp{\mu_i}$,
-$\tbar{\mu_i}$, $\sigma$ and $\kappa$ yields the \acs{PTED}-\acs{CC}
+$\tbar{\mu_i}$ and $\p$ yields the \acs{PTED}-\acs{CC}
 equations:
-\begin{equation}
-  \begin{aligned}
-   \pderiv{\lag{M}}{\tbar{\mu_i}} &=
-   \denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
-    + \sigma\braket{\mu_i | \overline{\esp} | \mathrm{HF}}
-    + \kappa\braket{\mu_i | \overline{\zeta} | \mathrm{HF}}
-    = \tampEq{\mu_i}(\tamp{}, \tbar{}, \sigma, \kappa) \\
-    \pderiv{\lag{M}}{\tamp{\mu_i}} &=
-    \denom{\mu_i}\tbar{\mu_i} +
-    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}} +
-    \sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}} \\
-    &+ \sigma\lbrace
-    \braket{\mathrm{HF} | \commutator{\esp}{\cluster{\mu_i}} +
-    \commutator{\commutator{\esp}{T}}{\cluster{\mu_i}}| \mathrm{HF}} +
-    \sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\overline{\esp}}{\cluster{\mu_i}} | \mathrm{HF}}
-             \rbrace
-             \\
-    &+ \kappa\lbrace
-    \braket{\mathrm{HF} | \commutator{\zeta}{\cluster{\mu_i}} +
-    \commutator{\commutator{\zeta}{T}}{\cluster{\mu_i}}| \mathrm{HF}} +
-    \sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\overline{\zeta}}{\cluster{\mu_i}} | \mathrm{HF}}
-             \rbrace
-    = \tbarEq{\mu_i}(\tamp{}, \tbar{}, \sigma, \kappa) \\
-    \pderiv{\lag{M}}{\sigma} &= \PCM\sigma + \MMPCM\kappa
-    + \tilde{\esp}(\tamp{},\tbar{}) =
-    \Omega_\sigma(\tamp{}, \tbar{}, \sigma, \kappa) \\
-    \pderiv{\lag{M}}{\kappa} &= \MM\kappa + \MMPCM^\dagger\sigma + \tilde{\zeta}(\tamp{},\tbar{}) =
-    \Omega_\kappa(\tamp{}, \tbar{}, \sigma, \kappa)
-  \end{aligned}
-\end{equation}
-Given the evident similarities between the implicit and explicit terms
-in the amplitudes and multipliers equations, we adopt the supermatrix
-formalism for the classical polarizable terms. The equations are thus
-recast as:
-\begin{equation}
-  \begin{aligned}
-   \pderiv{\lag{M}}{\tbar{\mu_i}} &=
+\begin{subequations}
+  \begin{align}
+   \tampEq{\mu_i}(\tamp{}, \tbar{}, \p)  &=
    \denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
    + \p^\dagger\braket{\mu_i | \overline{\s} | \mathrm{HF}}
-    = \tampEq{\mu_i}(\tamp{}, \tbar{}, \p) \\
-    \pderiv{\lag{M}}{\tamp{\mu_i}} &=
+             = 0 \label{eq:pted-cc-amplitudes}\\
+   \tbarEq{\mu_i}(\tamp{}, \tbar{}, \p)
+    &=
     \denom{\mu_i}\tbar{\mu_i} +
     \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}} +
-    \sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}} \\
+    \sum_{j}^{\mathcal{M}}\braket{\tbar{j} |
+    \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}}
+    \nonumber \\
     &+ \p^\dagger\lbrace
     \braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_i}} +
     \commutator{\commutator{\s}{T}}{\cluster{\mu_i}}| \mathrm{HF}} +
     \sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\overline{\s}}{\cluster{\mu_i}} | \mathrm{HF}}
              \rbrace
-    = \tbarEq{\mu_i}(\tamp{}, \tbar{}, \p) \\
-    \pderiv{\lag{M}}{{\p^{\dagger}}} &=
-    \V\p + \tilde{\s}(\tamp{}, \tbar{}) =
+             = 0 \label{eq:pted-cc-multipliers}\\
     \Omega_\p(\tamp{}, \tbar{}, \p)
-  \end{aligned}
-\end{equation}
+    &=
+    \V\p + \tilde{\s}(\tamp{}, \tbar{}) = 0
+    \label{eq:pted-cc-polarization}
+  \end{align}
+\end{subequations}
+These equations clearly show:
+\begin{enumerate}
+  \item The $\tilde{\s}(\tamp{}, \tbar{})$ expectation value term in the
+    polarization equation couples the amplitudes, multipliers and
+    polarization equations.
+    This requires a proper macroiteration/microiteration
+    self-consistency scheme for its implementation.~\autocite{Cammi2009-gu, Caricato2010-hx}
+  \item As a consequence, a single-point \acs{PTED}-\acs{CC} will
+    suffer from a $2\times$ prefactor in its computational cost with
+    respect to an \emph{in vacuo} \acs{CC} calculation.
+  \item Eq.~\eqref{eq:pted-cc-polarization} is \emph{directly} coupled to
+    the multipliers equation, Eq.~\eqref{eq:pted-cc-multipliers}, since
+    the source terms directly depends on amplitudes and multipliers, but
+    only \emph{indirectly} coupled to the amplitudes equation,
+    Eq.~\eqref{eq:pted-cc-amplitudes}.
+\end{enumerate}
 
+One might exploit point 3 above to reduce the prefactor of the method to
+that of an \emph{in vacuo} \acs{CC} calculation.
+The simplest approach is to neglect altogether the polarization equation
+and the polarization degree of freedom. This is equivalent to
+differentiating the polarization-independent \acs{PTE} effective
+Lagrangian:
+\begin{subequations}
+  \begin{align}
+   \tampEq{\mu_i}(\tamp{}, \tbar{}, \p)  &=
+   \denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
+    = 0 \\
+   \tbarEq{\mu_i}(\tamp{}, \tbar{}, \p)
+    &=
+    \denom{\mu_i}\tbar{\mu_i} +
+    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}} +
+    \sum_{j}^{\mathcal{M}}\braket{\tbar{j} |
+    \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}}
+    = 0
+  \end{align}
+\end{subequations}
+The \acs{PTE} scheme naturally preserves the scaling of the underlying \acs{CC}
+method.
+The \acs{PTE} scheme is advantageous since no coupling between the
+\acs{CC} amplitude and multiplier equations is introduced. However, the
+polarization included in the correlation treatment is the same as for
+the reference determinant, an approximation which appears questionable
+from the point of view of classical electrostatics.
+There is, in fact, no relaxation of the reference reaction
+field due to the correlated description of the electronic density.
 
-\section{Approximate Effective Lagrangians}\label{sec:approximate-lagrangians}
-
-We have already noted that the leading terms in the correlated source operator expectation
+The leading terms in the correlated source operator expectation
 value, Eq.~\eqref{eq:source-term}, prominently involve the singles
 cluster operator and the singles left \acs{CC} state.
 This simple fact led \citeauthor{Caricato2011-tx} to propose two
 intermediate approximations in between the \acs{PTE} and \acs{PTED}
 schemes: the \acs{PTES} and \acs{PTE(S)} schemes.
-The \acs{PTE} scheme is advantageous since no coupling between the
-\acs{CC} amplitude and multiplier equations is introduced. However, the
-polarization included in the correlation treatment is the same as for
-the reference determinant, an approximation which appears questionable
-from the point of view of classical electrostatics. On the contrary, the
-\acs{PTED} scheme describes the fully equilibrated electrostatic
-picture, at the expense of coupling the amplitude and multiplier
-equations.
-However, if we truncate the correlated source operator expectation value
+If we truncate the correlated source operator expectation value
 to the first term in Eq.~\eqref{eq:source-term}, the coupling between
 the \acs{CC} right and left states is broken, while still improving upon the
 reference reaction field with correlated contributions.
@@ -564,33 +648,25 @@ Lagrangian would then read as:
   \braket{\mathrm{HF} | \BCHfirst{\s}{T_1} | \mathrm{HF}}
 \end{equation}
 which uncouples all equations:
-\begin{equation}
-  \begin{aligned}
-   \pderiv{\lag{M}}{\tbar{\mu_i}} &=
-   \denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
-   =
-   ^{\mathrm{PTE(S)}}\tampEq{\mu_i}(\tamp{}, \tbar{}, \p) \\
-    \pderiv{\lag{M}}{\tamp{\mu_1}} &=
-    \denom{\mu_1}\tbar{\mu_1} +
+\begin{subequations}
+  \begin{align}
+   &\denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
+   = 0 \\
+    &\denom{\mu_1}\tbar{\mu_1} +
     \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_1}} | \mathrm{HF}} +
     \sum_{j}^{\mathcal{M}}\braket{\tbar{j} |
     \commutator{\overline{\Phi}}{\cluster{\mu_1}} | \mathrm{HF}}
     + \p^\dagger
     \braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_1}} | \mathrm{HF}}
-    =
-    ^{\mathrm{PTE(S)}}\tbarEq{\mu_1}(\tamp{}, \tbar{}, \p) \\
-    \pderiv{\lag{M}}{\tamp{\mu_i}} &=
-    \denom{\mu_i}\tbar{\mu_i} +
+    = 0 \\
+    &\denom{\mu_i}\tbar{\mu_i} +
     \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}} +
     \sum_{j}^{\mathcal{M}}\braket{\tbar{j} |
     \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}}
-    =
-    ^{\mathrm{PTE(S)}}\tbarEq{\mu_i}(\tamp{}, \tbar{}, \p) \quad \forall i \neq 1 \\
-    \pderiv{\lag{M}}{{\p^{\dagger}}} &=
-    \V\p + \braket{\mathrm{HF} | \BCHfirst{\s}{T_1} | \mathrm{HF}} =
-    ^{\mathrm{PTE(S)}}\Omega_\p(\tamp{}, \tbar{}, \p)
-  \end{aligned}
-\end{equation}
+    = 0  \quad \forall i \neq 1 \\
+    &\V\p + \braket{\mathrm{HF} | \BCHfirst{\s}{T_1} | \mathrm{HF}} = 0
+  \end{align}
+\end{subequations}
 The amplitude equations are formally equivalent to those derived in the
 \acs{PTE} scheme. The equations for multipliers are also formally
 equivalent to the \acs{PTE} equations, apart from the equation
@@ -605,33 +681,9 @@ $\braket{\mathrm{HF} | \BCHfirst{\s}{T_1} | \mathrm{HF}}$, solve for
 the polarization degrees of freedom and calculate the polarization
 energy as a correction to the \acs{CC} energy.
 Only when a first-order molecular property, such as the molecular
-gradient, is needed will the multipliers equations need to be solved.
-
-Summarizing:
-In the \acs{PTE} scheme, the effective Lagrangian has the same form as
-the \emph{in vacuo} case. However, the Hamiltonian includes the
-reference reaction field. The amplitudes and multipliers equations
-are formally identical to the \emph{in vacuo} case. Neither
-computational prefactor nor scaling are affected, since there is no
-coupling in between the two and the reaction field is fixed.
-In the \acs{PTES(S)} scheme, the source term in the effective Lagrangian
-is restricted to the $T_1$-dependent term only. The amplitudes
-equations are formally identical to the \acs{PTE} case and are
-uncoupled from the multipliers and the polarization equations.
-The multipliers equations are formally equivalent to the \acs{PTE}
-case, but for the singles multipliers, which feature a
-polarization-dependent term.
+gradient, is needed, will the multipliers equations need to be solved.
 In other words, only the $T_1$-dependent part of the \acs{CC} density is
 used to define the classical sources.
-In the \acs{PTES} scheme, the multipliers equations are formally
-equivalent to the \acs{PTED} case. However, the
-polarization-dependent term is calculated by only retaining the
-$T_1$-dependent term in the source. This retains the coupling between the
-amplitudes and polarization equations, but avoid coupling the
-multipliers equation.
-As for the \acs{PTE(S)} scheme, only the $T_1$-dependent part of the
-\acs{CC} density is in fact used to define the classical sources.
-In the \acs{PTED} scheme, \ldots
 
 \todo[inline]{Can't really figure out how the \acs{PTES} scheme can be
 devised in this framework. The idea seems to be to preserve the form of
@@ -643,17 +695,21 @@ term. This seems to miss, however, part of the terms in the \acs{PTES}
 multipliers equations, that are, in Caricato's treatment, still
 coupled with the \acs{PCM} equation.}
 
-\section{Coupled cluster perturbation theory for a quantum/classical
-  polarizable Hamiltonian}\label{sec:ccpt-polarizable}
+\section[Coupled Cluster Perturbation Theory]{
+Coupled Cluster Perturbation Theory for a Quantum/Classical Polarizable Hamiltonian}\label{sec:ccpt-polarizable}
 
 We will now develop a perturbative expansion of the effective \acs{CC}
 Lagrangian and derive the \acs{CC}\acs{PT} series when a
 quantum/classical polarizable Hamiltonian is used.
-The fluctuation potential $\Phi$ is the perturbation. As such $\Phi =
-O(1)$, while the cluster operators will be of first, at least, and higher
-order in the fluctuation potential.
-Orders will be counted assuming an Hartree--Fock closed-shell reference:
+The fluctuation potential $\Phi$ is assumed as the perturbation, hence
+it will be considered of order 1: $\Phi = O(1)$.
+Orders will be counted assuming closed-shell \acs{HF} reference:
 we will use square brackets $[i]$ for an $i$-th order contributions.
+
+The structure of the stationarity conditions
+Eqs.~\eqref{eq:pted-cc-amplitudes} and \eqref{eq:pted-cc-multipliers},
+already shows that $\tamp{\mu_i}^{[0]} = 0, \quad \forall i$ and
+$\tbar{\mu_i}^{[0]} = 0, \quad \forall i$.
 
 The \acs{PTED}-\acs{CC} equations are expanded in orders of the
 perturbation and terms are collected order by order. The use of an
@@ -679,12 +735,13 @@ and correspondingly for the polarization:
   \V\p^{[i]} + \tilde{\s}^{[i]} = 0
 \end{equation}
 
-The source operator $\s$ will
-be considered as \emph{zeroth-order} in the perturbation. The order of
-the contributions to $\tilde{\s}(\tamp{},\tbar{})$ will be solely
-determined by the amplitudes and multipliers.
-It is already clear that $\tilde{\s}(\tamp{},\tbar{})$ is at least first
-order in the fluctuation potential:
+The source operator $\s$ will be considered as \emph{zeroth-order} in
+the perturbation.
+The order of the contributions to $\tilde{\s}(\tamp{},\tbar{})$ will be
+solely determined by the amplitudes and multipliers.
+From the structure of \eqref{eq:pted-cc-polarization}, it is already
+clear that $\tilde{\s}(\tamp{},\tbar{})$ is at least first order in the
+fluctuation potential:
 \begin{equation}
   \tilde{\s}(\tamp{},\tbar{}) =
   \tilde{\s}^{[1]}
