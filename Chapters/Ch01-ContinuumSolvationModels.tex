@@ -53,8 +53,8 @@ charges/dipoles $\kappa$. This leads to the coupled equations:
 or in the commonly found matrix form:
 \begin{equation}
   \begin{pmatrix}
-    \PCM & \MMPCM^\dagger \\
-    \MMPCM & \MM
+    \PCM & \MMPCM \\
+    \MMPCM^\dagger & \MM
   \end{pmatrix}
   \begin{pmatrix}
    \sigma \\
@@ -71,7 +71,7 @@ Finally, let us re-express the equations above in a "supermatrix"
 formalism:
 \begin{equation}
   U_\mathrm{pol} =
-  \frac{1}{2}\p^\dagger\V\p + \p^\dagger\s
+  \frac{1}{2}{}^t\p\V\p + {}^t\p\s
 \end{equation}
 where:
 \begin{alignat}{3}
@@ -89,8 +89,8 @@ where:
   \quad&
   \V =
   \begin{pmatrix}
-    \PCM & \MMPCM^\dagger \\
-    \MMPCM & \MM
+    \PCM & \MMPCM \\
+    \MMPCM^\dagger & \MM
   \end{pmatrix}
 \end{alignat}
 The supermatrix form will prove particularly useful in the following

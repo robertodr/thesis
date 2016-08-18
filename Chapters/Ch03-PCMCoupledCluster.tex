@@ -9,12 +9,15 @@ formulation of quantum/classical polarizable models in the context of
 the highly accurate \acl{CC} model.
 This is an ongoing and yet unpublished collaboration with prof.~T.~Daniel Crawford
 (Virginia Tech) and Dr.~Andrew C.~Simmonett (NIH)
+
 The first part of this Chapter summarizes existing work, mainly by Cammi
 and Caricato, by recasting it in language of variational
 quantum/classical polarizable Hamiltonians.
+
 The second part of this Chapter illustrates how the variational language
 facilitates the formulation of a \acl{CC}-based \acl{PT} (\acs{CC}-\acs{PT})
 including a classical polarizable environment.
+
 I will finally show how the perturbation series can be successfully
 exploited to derive iterative and noniterative approximate \acs{CC}
 schemes.
@@ -80,18 +83,18 @@ determinant in the presence of the implicit/explicit environment.
 Then the corresponding variational degrees of freedom satisfy:
 \begin{equation}
   \begin{pmatrix}
-    \PCM & \MMPCM^\dagger \\
-    \MMPCM & \MM
+    \PCM & \MMPCM \\
+    \MMPCM^\dagger & \MM
   \end{pmatrix}
   \begin{pmatrix}
-   \sigma^\mathrm{HF} \\
-   \kappa^\mathrm{HF}
+   \sigma_\mathrm{HF} \\
+   \kappa_\mathrm{HF}
   \end{pmatrix}
   =
   -
   \begin{pmatrix}
-   \esp^\mathrm{HF} \\
-   \zeta^\mathrm{HF}
+   \esp_\mathrm{HF} \\
+   \zeta_\mathrm{HF}
   \end{pmatrix}
 \end{equation}
 and correspond to the \emph{reference reaction field}.
@@ -104,8 +107,8 @@ field into reference and correlated components:
   \end{pmatrix}
   =
   \begin{pmatrix}
-   \sigma^\mathrm{HF} \\
-   \kappa^\mathrm{HF}
+   \sigma_\mathrm{HF} \\
+   \kappa_\mathrm{HF}
   \end{pmatrix}
   +
   \begin{pmatrix}
@@ -121,8 +124,8 @@ and similarly for the sources:
   \end{pmatrix}
   =
   \begin{pmatrix}
-   \esp^\mathrm{HF} \\
-   \zeta^\mathrm{HF}
+   \esp_\mathrm{HF} \\
+   \zeta_\mathrm{HF}
   \end{pmatrix}
   +
   \begin{pmatrix}
@@ -162,11 +165,11 @@ one-electron operator to remove the reference source terms:
   \end{pmatrix}
   &=
   \begin{pmatrix}
-    \braket{\mathrm{HF} | \overline{\esp} - \esp^\mathrm{HF} | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\esp} - \esp^\mathrm{HF} | \mathrm{HF}} \\
-  \braket{\mathrm{HF} | \overline{\zeta} - \zeta^\mathrm{HF} | \mathrm{HF}}
+    \braket{\mathrm{HF} | \overline{\esp} - \esp_\mathrm{HF} | \mathrm{HF}}
+  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\esp} - \esp_\mathrm{HF} | \mathrm{HF}} \\
+  \braket{\mathrm{HF} | \overline{\zeta} - \zeta_\mathrm{HF} | \mathrm{HF}}
   + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\zeta} -
-  \zeta^\mathrm{HF}| \mathrm{HF}}
+  \zeta_\mathrm{HF}| \mathrm{HF}}
   \end{pmatrix}
   \\
   &=
@@ -190,95 +193,95 @@ components:
 \begin{equation}
   \begin{aligned}
   U_\mathrm{pol} &=
-  \frac{1}{2}(\sigma^\mathrm{HF}+\sigma)\PCM(\sigma^\mathrm{HF}+\sigma)
-+ (\sigma^\mathrm{HF}+\sigma)(\esp^\mathrm{HF}+\tilde{\esp}(\tamp{},\tbar{})) \\
-&+ \frac{1}{2}(\kappa^\mathrm{HF}+\kappa)\MM(\kappa^\mathrm{HF}+\kappa)
-+ (\kappa^\mathrm{HF}+\kappa)(\zeta^\mathrm{HF}+\tilde{\zeta}(\tamp{},\tbar{})) \\
-&+ (\sigma^\mathrm{HF}+\sigma)\bi{X}(\kappa^\mathrm{HF}+\kappa)
+  \frac{1}{2}(\sigma_\mathrm{HF}+\sigma)\PCM(\sigma_\mathrm{HF}+\sigma)
++ (\sigma_\mathrm{HF}+\sigma)(\esp_\mathrm{HF}+\tilde{\esp}(\tamp{},\tbar{})) \\
+&+ \frac{1}{2}(\kappa_\mathrm{HF}+\kappa)\MM(\kappa_\mathrm{HF}+\kappa)
++ (\kappa_\mathrm{HF}+\kappa)(\zeta_\mathrm{HF}+\tilde{\zeta}(\tamp{},\tbar{}))
++ (\sigma_\mathrm{HF}+\sigma)\bi{X}(\kappa_\mathrm{HF}+\kappa) \\
   %%%% Steps
-= \left/ \text{Expand and collect} \right/ \\
+&= \left/ \text{Expand and collect} \right/ \\
 &=
-    \frac{1}{2}\sigma^\mathrm{HF}\PCM\sigma^\mathrm{HF}
-  + \sigma^\mathrm{HF}\esp^\mathrm{HF}
-  + \frac{1}{2}\kappa^\mathrm{HF}\MM\kappa^\mathrm{HF}
-  + \kappa^\mathrm{HF}\zeta^\mathrm{HF}
-  + \sigma^\mathrm{HF}\bi{X}\kappa^\mathrm{HF} \\
+    \frac{1}{2}\sigma_\mathrm{HF}\PCM\sigma_\mathrm{HF}
+  + \sigma_\mathrm{HF}\esp_\mathrm{HF}
+  + \frac{1}{2}\kappa_\mathrm{HF}\MM\kappa_\mathrm{HF}
+  + \kappa_\mathrm{HF}\zeta_\mathrm{HF}
+  + \sigma_\mathrm{HF}\bi{X}\kappa_\mathrm{HF} \\
 &+  \frac{1}{2}\sigma\PCM\sigma
   + \sigma\tilde{\esp}(\tamp{},\tbar{})
   + \frac{1}{2}\kappa\MM\kappa
   + \kappa\tilde{\zeta}(\tamp{},\tbar{})
   + \sigma\bi{X}\kappa \\
-&+  \frac{1}{2}\sigma^\mathrm{HF}\PCM\sigma
-  + \sigma^\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{})
-  + \frac{1}{2}\kappa^\mathrm{HF}\MM\kappa
-  + \kappa^\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{})
-  + \sigma^\mathrm{HF}\bi{X}\kappa \\
-&+  \frac{1}{2}\sigma\PCM\sigma^\mathrm{HF}
-  + \sigma\esp^\mathrm{HF}
-  + \frac{1}{2}\kappa\MM\kappa^\mathrm{HF}
-  + \kappa\zeta^\mathrm{HF}
-  + \sigma\bi{X}\kappa^\mathrm{HF} \\
+&+  \frac{1}{2}\sigma_\mathrm{HF}\PCM\sigma
+  + \sigma_\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{})
+  + \frac{1}{2}\kappa_\mathrm{HF}\MM\kappa
+  + \kappa_\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{})
+  + \sigma_\mathrm{HF}\bi{X}\kappa \\
+&+  \frac{1}{2}\sigma\PCM\sigma_\mathrm{HF}
+  + \sigma\esp_\mathrm{HF}
+  + \frac{1}{2}\kappa\MM\kappa_\mathrm{HF}
+  + \kappa\zeta_\mathrm{HF}
+  + \sigma\bi{X}\kappa_\mathrm{HF} \\
   %%%% Steps
 &= \left/
-  \frac{1}{2}\sigma^\mathrm{HF}\PCM\sigma^\mathrm{HF}
+  \frac{1}{2}\sigma_\mathrm{HF}\PCM\sigma_\mathrm{HF}
   +
-  \frac{1}{2}\kappa^\mathrm{HF}\MM\kappa^\mathrm{HF}
+  \frac{1}{2}\kappa_\mathrm{HF}\MM\kappa_\mathrm{HF}
   +
-  \sigma^\mathrm{HF}\esp^\mathrm{HF}
+  \sigma_\mathrm{HF}\esp_\mathrm{HF}
   +
-  \kappa^\mathrm{HF}\zeta^\mathrm{HF}
+  \kappa_\mathrm{HF}\zeta_\mathrm{HF}
   +
-  \sigma^\mathrm{HF}\bi{X}\kappa^\mathrm{HF}
+  \sigma_\mathrm{HF}\bi{X}\kappa_\mathrm{HF}
   =
-  \frac{1}{2}\sigma^\mathrm{HF}\esp^\mathrm{HF}
+  \frac{1}{2}\sigma_\mathrm{HF}\esp_\mathrm{HF}
   +
-  \frac{1}{2}\kappa^\mathrm{HF}\zeta^\mathrm{HF}
+  \frac{1}{2}\kappa_\mathrm{HF}\zeta_\mathrm{HF}
   \right/ \\
 &=
-    \frac{1}{2}\sigma^\mathrm{HF}\esp^\mathrm{HF}
-  + \frac{1}{2}\kappa^\mathrm{HF}\zeta^\mathrm{HF} \\
+    \frac{1}{2}\sigma_\mathrm{HF}\esp_\mathrm{HF}
+  + \frac{1}{2}\kappa_\mathrm{HF}\zeta_\mathrm{HF} \\
 &+  \frac{1}{2}\sigma\PCM\sigma
   + \sigma\tilde{\esp}(\tamp{},\tbar{})
   + \frac{1}{2}\kappa\MM\kappa
   + \kappa\tilde{\zeta}(\tamp{},\tbar{})
   + \sigma\bi{X}\kappa \\
-&+  \frac{1}{2}\sigma^\mathrm{HF}\PCM\sigma
-  + \sigma^\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{})
-  + \frac{1}{2}\kappa^\mathrm{HF}\MM\kappa
-  + \kappa^\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{})
-  + \sigma^\mathrm{HF}\bi{X}\kappa \\
-&+  \frac{1}{2}\sigma\PCM\sigma^\mathrm{HF}
-  + \sigma\esp^\mathrm{HF}
-  + \frac{1}{2}\kappa\MM\kappa^\mathrm{HF}
-  + \kappa\zeta^\mathrm{HF}
-  + \sigma\bi{X}\kappa^\mathrm{HF} \\
+&+  \frac{1}{2}\sigma_\mathrm{HF}\PCM\sigma
+  + \sigma_\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{})
+  + \frac{1}{2}\kappa_\mathrm{HF}\MM\kappa
+  + \kappa_\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{})
+  + \sigma_\mathrm{HF}\bi{X}\kappa \\
+&+  \frac{1}{2}\sigma\PCM\sigma_\mathrm{HF}
+  + \sigma\esp_\mathrm{HF}
+  + \frac{1}{2}\kappa\MM\kappa_\mathrm{HF}
+  + \kappa\zeta_\mathrm{HF}
+  + \sigma\bi{X}\kappa_\mathrm{HF} \\
   %%%% Steps
 &= \left/
-  \frac{1}{2}\sigma\PCM\sigma^\mathrm{HF}
+  \frac{1}{2}\sigma\PCM\sigma_\mathrm{HF}
   =
-  \frac{1}{2}\sigma^\mathrm{HF}\PCM\sigma;\quad
-  \frac{1}{2}\kappa\MM\kappa^\mathrm{HF}
+  \frac{1}{2}\sigma_\mathrm{HF}\PCM\sigma;\quad
+  \frac{1}{2}\kappa\MM\kappa_\mathrm{HF}
   =
-  \frac{1}{2}\kappa^\mathrm{HF}\MM\kappa; \quad
-  \sigma^\mathrm{HF}\bi{X}\kappa
+  \frac{1}{2}\kappa_\mathrm{HF}\MM\kappa; \quad
+  \sigma_\mathrm{HF}\bi{X}\kappa
   =
-  \kappa\bi{X}^\dagger\sigma^\mathrm{HF}
+  \kappa\bi{X}^\dagger\sigma_\mathrm{HF}
   \right/ \\
 &=
-    \frac{1}{2}\sigma^\mathrm{HF}\esp^\mathrm{HF}
-  + \frac{1}{2}\kappa^\mathrm{HF}\zeta^\mathrm{HF} \\
+    \frac{1}{2}\sigma_\mathrm{HF}\esp_\mathrm{HF}
+  + \frac{1}{2}\kappa_\mathrm{HF}\zeta_\mathrm{HF} \\
 &+  \frac{1}{2}\sigma\PCM\sigma
   + \sigma\tilde{\esp}(\tamp{},\tbar{})
   + \frac{1}{2}\kappa\MM\kappa
   + \kappa\tilde{\zeta}(\tamp{},\tbar{})
   + \sigma\bi{X}\kappa \\
-  &+ \sigma(\cancelto{0}{\bi{Y}\sigma^\mathrm{HF} + \bi{X}\kappa^\mathrm{HF} + \esp^\mathrm{HF}})
-  + \kappa(\cancelto{0}{\bi{W}\kappa^\mathrm{HF} + \bi{X}^\dagger\sigma^\mathrm{HF} + \zeta^\mathrm{HF}}) \\
-&+ \sigma^\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{}) + \kappa^\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{}) \\
+  &+ \sigma(\cancelto{0}{\bi{Y}\sigma_\mathrm{HF} + \bi{X}\kappa_\mathrm{HF} + \esp_\mathrm{HF}})
+  + \kappa(\cancelto{0}{\bi{W}\kappa_\mathrm{HF} + \bi{X}^\dagger\sigma_\mathrm{HF} + \zeta_\mathrm{HF}}) \\
+&+ \sigma_\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{}) + \kappa_\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{}) \\
   %%%% Steps
 &= \left/
-    \frac{1}{2}\sigma^\mathrm{HF}\esp^\mathrm{HF}
-  + \frac{1}{2}\kappa^\mathrm{HF}\zeta^\mathrm{HF}
+    \frac{1}{2}\sigma_\mathrm{HF}\esp_\mathrm{HF}
+  + \frac{1}{2}\kappa_\mathrm{HF}\zeta_\mathrm{HF}
   \coloneqq U_\mathrm{pol}^\mathrm{ref}
   \right/ \\
 &=
@@ -288,7 +291,7 @@ components:
   + \frac{1}{2}\kappa\MM\kappa
   + \kappa\tilde{\zeta}(\tamp{},\tbar{})
   + \sigma\bi{X}\kappa \\
-&+ \sigma^\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{}) + \kappa^\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{})
+&+ \sigma_\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{}) + \kappa_\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{})
   \end{aligned}
 \end{equation}
 Notice that the reference reaction energy still appears among the terms
@@ -304,13 +307,13 @@ polarization functional:
   + \frac{1}{2}\kappa\MM\kappa
   + \kappa\tilde{\zeta}(\tamp{},\tbar{})
   + \sigma\bi{X}\kappa
-  + \sigma^\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{}) +
-  \kappa^\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{})
+  + \sigma_\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{}) +
+  \kappa_\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{})
   + U_\mathrm{pol}^\mathrm{ref}
   \\
   &=
-  \frac{1}{2}\p^\dagger\V\p + \p^\dagger\tilde{\s}(\tamp{},\tbar{})
-  + \p^{\mathrm{HF}, \dagger}\tilde{\s}(\tamp{},\tbar{})
+  \frac{1}{2}{}^t\p\V\p + {}^t\p\tilde{\s}(\tamp{},\tbar{})
+  + {}^t\p_\mathrm{HF}\tilde{\s}(\tamp{},\tbar{})
   + U_\mathrm{pol}^\mathrm{ref}
 \end{aligned}
 \end{equation}
@@ -322,20 +325,20 @@ One can then write the effective Lagrangian as:
   \braket{\mathrm{HF} | \overline{H_0} | \mathrm{HF}}
   + \sum_{i=1}^{\mathcal{M}}\braket{\tamp{i} | \overline{H_0} | \mathrm{HF}} \\
   &+
-  \frac{1}{2}\p^\dagger\V\p + \p^\dagger\tilde{\s}(\tamp{},\tbar{})
-  + \p^{\mathrm{HF}, \dagger}\tilde{\s}(\tamp{},\tbar{})
+  \frac{1}{2}{}^t\p\V\p + {}^t\p\tilde{\s}(\tamp{},\tbar{})
+  + {}^t\p_\mathrm{HF}\tilde{\s}(\tamp{},\tbar{})
   + U_\mathrm{pol}^\mathrm{ref}
   \end{aligned}
 \end{equation}
 In accordance with previous work,\autocite{Cammi2009-gu, Caricato2011-tx} the
 Hamiltonian $H_0$ is augmented with the
-$\p^{\mathrm{HF},\dagger}\tilde{\s}(\tamp{},\tbar{})$ term
+${}^t\p_\mathrm{HF}\tilde{\s}(\tamp{},\tbar{})$ term
 to yield the \acl{PTE} (\acs{PTE}) Hamiltonian -- $H$ -- and the
 eventually the \acl{PTED} (\acs{PTED}) Lagrangian:
 \begin{equation}\label{eq:pted-cc}
   \lag{M}(\tamp{}, \tbar{}, \p) =
   {}^\mathrm{PTE}\lag{M}
-  + \frac{1}{2}\p^\dagger\V\p + \p^\dagger\tilde{\s}(\tamp{},\tbar{})
+  + \frac{1}{2}{}^t\p\V\p + {}^t\p\tilde{\s}(\tamp{},\tbar{})
 \end{equation}
 where the \acs{PTE} Lagrangian has been introduced:
 \begin{equation}
@@ -481,7 +484,8 @@ following relationships hold:
   \braket{\mathrm{HF} |
   \commutator{\commutator{\s}{T_t}}{T_u}
   | \mathrm{HF}}
-  &\quad\quad\text{nonzero contributions} \quad t + u = 1 \\
+  &\quad\quad\text{nonzero contributions} \quad t + u = 1
+  \label{eq:HF-double-commutator} \\
   \braket{\tbar{i} |
   \s
   | \mathrm{HF} }
@@ -503,6 +507,9 @@ For a general truncation level we accordingly obtain:
   + \braket{\tbar{1} | \s | \mathrm{HF}}
   + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \BCHfirst{\s}{T} + \BCHsecond{\s}{T} | \mathrm{HF}}
 \end{equation}
+By virtue of Eq.~\eqref{eq:HF-double-commutator} the \acs{HF}
+expectation value of the double commutator was dropped.
+
 Furthermore, for the \acs{CCS} model ($\mathcal{M} = 1$):
 \begin{equation}
   \tilde{\s}^1(\tamp{}, \tbar{}) =
@@ -560,7 +567,8 @@ equations:
   \begin{align}
    \tampEq{\mu_i}(\tamp{}, \tbar{}, \p)  &=
    \denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
-   + \p^\dagger\braket{\mu_i | \overline{\s} | \mathrm{HF}}
+   + {}^t\p\braket{\mu_i | \s | \mathrm{HF}}\delta_{\mu_i\mu_1} \nonumber \\
+   &+ {}^t\p\braket{\mu_i | \BCHfirst{\s}{T} + \BCHsecond{\s}{T} | \mathrm{HF}}
              = 0 \label{eq:pted-cc-amplitudes}\\
    \tbarEq{\mu_i}(\tamp{}, \tbar{}, \p)
     &=
@@ -569,11 +577,12 @@ equations:
     \sum_{j}^{\mathcal{M}}\braket{\tbar{j} |
     \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}}
     \nonumber \\
-    &+ \p^\dagger\lbrace
-    \braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_i}} +
-    \commutator{\commutator{\s}{T}}{\cluster{\mu_i}}| \mathrm{HF}} +
-    \sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\overline{\s}}{\cluster{\mu_i}} | \mathrm{HF}}
-             \rbrace
+    &+
+    {}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}\delta_{\mu_i\mu_1} \nonumber \\
+    &+
+    {}^t\p\sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}
+    +
+    {}^t\p\sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\commutator{\s}{T}}{\cluster{\mu_i}} | \mathrm{HF}}
              = 0 \label{eq:pted-cc-multipliers}\\
     \Omega_\p(\tamp{}, \tbar{}, \p)
     &=
@@ -644,7 +653,7 @@ Lagrangian would then read as:
   ^{\mathrm{PTE(S)}}\lag{M}(\tamp{}, \tbar{}, \p) =
   \braket{\mathrm{HF} | \overline{H} | \mathrm{HF}}
   + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{H} | \mathrm{HF}}
-  + \frac{1}{2}\p^\dagger\V\p + \p^\dagger
+  + \frac{1}{2}{}^t\p\V\p + {}^t\p
   \braket{\mathrm{HF} | \BCHfirst{\s}{T_1} | \mathrm{HF}}
 \end{equation}
 which uncouples all equations:
@@ -656,7 +665,7 @@ which uncouples all equations:
     \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_1}} | \mathrm{HF}} +
     \sum_{j}^{\mathcal{M}}\braket{\tbar{j} |
     \commutator{\overline{\Phi}}{\cluster{\mu_1}} | \mathrm{HF}}
-    + \p^\dagger
+    + {}^t\p
     \braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_1}} | \mathrm{HF}}
     = 0 \\
     &\denom{\mu_i}\tbar{\mu_i} +
@@ -671,7 +680,7 @@ The amplitude equations are formally equivalent to those derived in the
 \acs{PTE} scheme. The equations for multipliers are also formally
 equivalent to the \acs{PTE} equations, apart from the equation
 determining the singles multipliers which is augmented by an additional term:
-$\p^\dagger\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_1}} |
+${}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_1}} |
 \mathrm{HF}}$
 This term is not, however, coupled to the other equations given that
 $\p$ is fixed once the singles amplitudes have been determined.
@@ -703,8 +712,9 @@ Lagrangian and derive the \acs{CC}\acs{PT} series when a
 quantum/classical polarizable Hamiltonian is used.
 The fluctuation potential $\Phi$ is assumed as the perturbation, hence
 it will be considered of order 1: $\Phi = O(1)$.
-Orders will be counted assuming closed-shell \acs{HF} reference:
+Orders will be counted assuming a closed-shell \acs{HF} reference:
 we will use square brackets $[i]$ for an $i$-th order contributions.
+We further assume that real wave functions are used.
 
 The structure of the stationarity conditions
 Eqs.~\eqref{eq:pted-cc-amplitudes} and \eqref{eq:pted-cc-multipliers},
@@ -786,29 +796,22 @@ expression:
 \subsection{First order equations}\label{sec:first-order-pt}
 
 \paragraph*{Amplitudes}
-\begin{equation}
-  \Omega_{\mu_i}^{[1]} = \denom{\mu_i}\tamp{\mu_i}^{[1]}
-  + \braket{\mu_i | \Phi | \mathrm{HF}}
-  + \p^{\dagger\,[1]}\braket{\mu_i | \bar{\s}^{[0]} | \mathrm{HF}}
-  + \p^{\dagger\,[0]}\braket{\mu_i | \bar{\s}^{[1]}  | \mathrm{HF}}
-  = 0
-\end{equation}
-And since $\p^{[0]} = 0$ and $\bar{\s}^{[0]} = \s$:
 \begin{equation}\label{eq:1st-order-amp}
   \Omega_{\mu_i}^{[1]} = \denom{\mu_i}\tamp{\mu_i}^{[1]}
   + \braket{\mu_i | \Phi | \mathrm{HF}}
-  + \p^{\dagger\,[1]}\braket{\mu_i | \s | \mathrm{HF}}
+  + {}^t\p^{[1]}\braket{\mu_i | \s | \mathrm{HF}}\delta_{\mu_i\mu_1}
   = 0
 \end{equation}
-Considering the singles and doubles excitation manifolds:
+Considering the singles, doubles and triples excitation manifolds:
 \begin{subequations}
   \begin{align}
   \Omega_{\mu_1}^{[1]} &= \denom{\mu_1}\tamp{\mu_1}^{[1]}
-  + \p^{\dagger\,[1]}\braket{\mu_1 | \s | \mathrm{HF}}
+  + {}^t\p^{[1]}\braket{\mu_1 | \s | \mathrm{HF}}
   = 0 \\
   \Omega_{\mu_2}^{[1]} &= \denom{\mu_2}\tamp{\mu_2}^{[1]}
   + \braket{\mu_2 | \Phi | \mathrm{HF}}
-  = 0
+  = 0 \\
+  \Omega_{\mu_3}^{[1]} &= \denom{\mu_3}\tamp{\mu_3}^{[1]} = 0
   \end{align}
 \end{subequations}
 Thus, despite the closed-shell \acs{HF} reference, the singles
@@ -816,33 +819,57 @@ amplitudes will already appear in first order, due to the
 quantum/classical coupling.
 
 \paragraph*{Multipliers}
-  \begin{equation}\label{eq:1st-order-mult}
-    \bar{\Omega}_{\mu_i}^{[1]} =
-      \denom{\mu_i}\tbar{\mu_i}^{[1]}
-      + \braket{\mathrm{HF} | \commutator{\Phi}{\cluster{\mu_i}} | \mathrm{HF}}
-      + \p^{\dagger\,[1]}\braket{\mathrm{HF} |
-      \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}} =0
-  \end{equation}
-Considering the singles and doubles excitation manifolds:
-\begin{subequations}
-  \begin{align}
-    \bar{\Omega}_{\mu_1}^{[1]} &= \denom{\mu_1}\tbar{\mu_1}^{[1]}
-      + \p^{\dagger\,[1]}\braket{\mathrm{HF} |
-      \commutator{\s}{\cluster{\mu_1}} | \mathrm{HF}}
-  = 0 \\
-    \bar{\Omega}_{\mu_2}^{[1]} &= \denom{\mu_2}\tbar{\mu_2}^{[1]}
-      + \braket{\mathrm{HF} | \commutator{\Phi}{\cluster{\mu_2}} | \mathrm{HF}}
-  = 0
-  \end{align}
-\end{subequations}
-Thus, despite the closed-shell \acs{HF} reference, the singles
+\begin{equation}%\label{eq:1st-order-mult}
+  \bar{\Omega}_{\mu_i}^{[1]} =
+    \denom{\mu_i}\tbar{\mu_i}^{[1]}
+    + \braket{\mathrm{HF} | \commutator{\Phi}{\cluster{\mu_i}} | \mathrm{HF}}
+    + {}^t\p^{[1]}\braket{\mathrm{HF} |
+    \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}\delta_{\mu_i\mu_1} =0
+\end{equation}
+and expanding the commutators:
+\begin{equation}\label{eq:1st-order-mult}
+  \bar{\Omega}_{\mu_i}^{[1]} =
+    \denom{\mu_i}\tbar{\mu_i}^{[1]}
+    + \braket{\mathrm{HF} | \Phi | \mu_i}
+    + {}^t\p^{[1]}\braket{\mathrm{HF} | \s | \mu_i}\delta_{\mu_i\mu_1} =0
+\end{equation}
+This clearly shows that Eq.~\eqref{eq:1st-order-amp}
+and Eq.~\eqref{eq:1st-order-mult} are complex conjugates. Under the
+assumption of real wave functions we can also conclude that:
+\begin{equation}
+  \tamp{\mu_i}^{[1]} = \tbar{\mu_i}^{[1]},\,\,\forall i
+\end{equation}
+Thus, as for the amplitudes, despite the closed-shell \acs{HF} reference, the singles
 multipliers will already appear in first order, due to the
 quantum/classical coupling.
+Moreover, as is the case \emph{in vacuo}, there are no triples contributions to
+the first order amplitudes and multipliers: $\tamp{\mu_3}^{[1]} = \tbar{\mu_3}^{[1]} = 0,\,\,\forall \mu$.
+
 \paragraph*{Polarization}
-  \begin{equation}\label{eq:1st-order-pol}
-    \V\p^{[1]} + \braket{\mathrm{HF} | \commutator{\s}{T_1^{[1]}}| \mathrm{HF}}
-    + \braket{\tbar{1}^{[1]} | \s | \mathrm{HF} } = 0
-  \end{equation}
+To first order, the polarization degree of freedom will be given as:
+\begin{equation}%\label{eq:1st-order-pol}
+  \V\p^{[1]} + \braket{\mathrm{HF} | \commutator{\s}{T_1^{[1]}}| \mathrm{HF}}
+  + \braket{\tbar{1}^{[1]} | \s | \mathrm{HF} } = 0
+\end{equation}
+Under the assumption of real wave functions, the equivalence of
+first order amplitudes and multipliers yields:
+\begin{equation}
+  \begin{aligned}
+  \braket{\mathrm{HF} | \commutator{\s}{T_1^{[1]}}| \mathrm{HF}}
+  %%%% Steps
+  &= \left/ T_1^{[1]} = \sum_{\mu_1}\ket{\mu_1}\tamp{\mu_1} \right/
+  =
+  \sum_{\mu_1}\braket{\mathrm{HF}|\s|\mu_1}\tamp{\mu_1} \\
+  %%%% Steps
+  &= \left/ \text{Complex conjugation and real wave functions} \right/ \\
+  &= \sum_{\mu_1}\braket{\mu_1 | \s | \mathrm{HF}}\tbar{\mu_1}
+  = \braket{\tbar{\mu_1}^{[1]} | \s | \mathrm{HF}}
+ \end{aligned}
+\end{equation}
+so that the first order polarization equation becomes:
+\begin{equation}\label{eq:1st-order-pol}
+  \V\p^{[1]} + 2\braket{\mathrm{HF} | \commutator{\s}{T_1^{[1]}}| \mathrm{HF}} = 0
+\end{equation}
 
 \subsection{Second order equations}\label{sec:second-order-pt}
 
@@ -850,8 +877,8 @@ quantum/classical coupling.
 \begin{equation}\label{eq:2nd-order-amp}
   \Omega_{\mu_i}^{[2]} = \denom{\mu_i}\tamp{\mu_i}^{[2]}
   + \braket{\mu_i | \commutator{\Phi}{T^{[1]}} | \mathrm{HF}}
-  + \p^{\dagger\,[2]}\braket{\mu_i | \s | \mathrm{HF}}
-  + \p^{\dagger\,[1]}\braket{\mu_i | \commutator{\s}{T^{[1]}} |
+  + {}^t\p^{[2]}\braket{\mu_i | \s | \mathrm{HF}}\delta_{\mu_i\mu_1}
+  + {}^t\p^{[1]}\braket{\mu_i | \commutator{\s}{T^{[1]}} |
   \mathrm{HF}}
   = 0
 \end{equation}
@@ -860,13 +887,13 @@ Considering the singles, doubles and triples excitation manifolds:
   \begin{align}
   \Omega_{\mu_1}^{[2]} &= \denom{\mu_1}\tamp{\mu_1}^{[2]}
   + \braket{\mu_1 | \commutator{\Phi}{T^{[1]}} | \mathrm{HF}}
-  + \p^{\dagger\,[2]}\braket{\mu_1 | \s | \mathrm{HF}}
-  + \p^{\dagger\,[1]}\braket{\mu_1 | \commutator{\s}{T^{[1]}} |
+  + {}^t\p^{[2]}\braket{\mu_1 | \s | \mathrm{HF}}
+  + {}^t\p^{[1]}\braket{\mu_1 | \commutator{\s}{T^{[1]}} |
   \mathrm{HF}}
   = 0 \\
   \Omega_{\mu_2}^{[2]} &= \denom{\mu_2}\tamp{\mu_2}^{[2]}
   + \braket{\mu_2 | \commutator{\Phi}{T^{[1]}} | \mathrm{HF}}
-  + \p^{\dagger\,[1]}\braket{\mu_2 | \commutator{\s}{T_2^{[1]}} |
+  + {}^t\p^{[1]}\braket{\mu_2 | \commutator{\s}{T_2^{[1]}} |
   \mathrm{HF}}
   = 0 \\
   \Omega_{\mu_3}^{[2]} &= \denom{\mu_3}\tamp{\mu_3}^{[2]}
@@ -874,24 +901,79 @@ Considering the singles, doubles and triples excitation manifolds:
   = 0
   \end{align}
 \end{subequations}
-The triples first appear to second order and are not \emph{directly}
+As already noted elsewhere~\autocite{Koch1997-nm, Helgaker2000-tz},
+the second term in Eq.~\eqref{eq:2nd-order-amp} can involve no higher
+than triple excitations.
+Moreover, the triples first appear to second order and are not \emph{directly}
 affected by the quantum/classical coupling.
+
 \paragraph*{Multipliers}
-  \begin{equation}\label{eq:2nd-order-mult}
-    \begin{aligned}
-    \bar{\Omega}_{\mu_i}^{[2]} &=
-      \denom{\mu_i}\tbar{\mu_i}^{[2]}
-      + \braket{\mathrm{HF} | \commutator{\commutator{\Phi}{T^{[1]}}}{\cluster{\mu_i}} | \mathrm{HF}}
-      + \sum_j\braket{\tbar{j}^{[1]} |
-      \commutator{\Phi}{\cluster{\mu_i}} | \mathrm{HF}} \\
-      &+ \p^{\dagger\,[2]}\braket{\mathrm{HF} |
-      \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}
-      + \p^{\dagger\,[1]}
-      \sum_j\braket{\tbar{j}^{[1]} |
-      \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}
-      =0
-    \end{aligned}
-  \end{equation}
+\begin{equation}
+  \begin{aligned}
+  \bar{\Omega}_{\mu_i}^{[2]} &=
+    \denom{\mu_i}\tbar{\mu_i}^{[2]}
+    + \braket{\mathrm{HF} | \commutator{\commutator{\Phi}{T^{[1]}}}{\cluster{\mu_i}} | \mathrm{HF}}
+    + \sum_j\braket{\tbar{j}^{[1]} |
+    \commutator{\Phi}{\cluster{\mu_i}} | \mathrm{HF}} \\
+    &+ {}^t\p^{[2]}\braket{\mathrm{HF} |
+    \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}\delta_{\mu_i\mu_1}
+    + {}^t\p^{[1]}
+    \sum_j\braket{\tbar{j}^{[1]} |
+    \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}
+    =0
+  \end{aligned}
+\end{equation}
+The double commutator term is null thus:~\autocite{Koch1997-nm, Helgaker2000-tz}
+\begin{equation}\label{eq:2nd-order-mult}
+  \begin{aligned}
+  \bar{\Omega}_{\mu_i}^{[2]} &=
+    \denom{\mu_i}\tbar{\mu_i}^{[2]}
+    + \sum_j\braket{\tbar{j}^{[1]} |
+    \commutator{\Phi}{\cluster{\mu_i}} | \mathrm{HF}} \\
+    &+ {}^t\p^{[2]}\braket{\mathrm{HF} |
+    \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}\delta_{\mu_i\mu_1}
+    + {}^t\p^{[1]}
+    \sum_j\braket{\tbar{j}^{[1]} |
+    \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}
+    =0
+  \end{aligned}
+\end{equation}
+\citeauthor{Koch1997-nm} showed that the \emph{in vacuo} second order
+amplitudes and multipliers equations are the complex conjugates of each
+other for the singles, doubles and tripled manifold. Under the further
+assumption of real wave functions thus $\tamp{\mu_i}^{[2]} =
+\tbar{\mu_i}^{[2]},\,\,\forall i = 1 - 3$.
+A similar conclusion holds also for the quantum/classical polarizable
+Hamiltonians here considered.
+First of all, the terms involving the second order polarization degree of
+freedom are identical:
+\begin{equation}
+    {}^t\p^{[2]}\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}\delta_{\mu_i\mu_1}
+    =
+    {}^t\p^{[2]}\braket{\mathrm{HF} | \s|\mu_i}\delta_{\mu_i\mu_1}
+    =
+    {}^t\p^{[2]}\braket{\mu_i| \s|\mathrm{HF}}\delta_{\mu_i\mu_1}
+\end{equation}
+since they are complex conjugates and real wave functions are assumed.
+Under the same set of assumptions, the first order terms are also identical:
+\begin{equation}
+  \begin{aligned}
+  {}^t\p^{[1]} \sum_j\braket{\tbar{j}^{[1]} | \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}
+  %%%% Steps
+  &= \left/ \sum_j\bra{\tbar{j}^{[1]}} = \sum_j\sum_{\mu_j}\tbar{\mu_j}\bra{\mu_j}  \right/ \\
+  &=
+  {}^t\p^{[1]} \sum_j\sum_{\mu_j}\tbar{\mu_j}^{[1]} \braket{\mu_j| \s | \mu_i}
+  %%%% Steps
+  = \left/ \text{Complex conjugation and real wave functions} \right/ \\
+  &=
+  {}^t\p^{[1]} \sum_j\sum_{\mu_j} \braket{\mu_i| \s | \mu_j} \tamp{\mu_j}^{[1]}
+  %%%% Steps
+  = \left/ \sum_j\sum_{\mu_j}\tamp{\mu_j}\ket{\mu_j}  = T^{[1]}\right/ \\
+  &=
+  {}^t\p^{[1]}\braket{\mu_i | \commutator{\s}{T^{[1]}} | \mathrm{HF}}
+ \end{aligned}
+\end{equation}
+
 Considering the singles, doubles and triples excitation manifolds:
 \begin{subequations}
   \begin{align}
@@ -900,9 +982,9 @@ Considering the singles, doubles and triples excitation manifolds:
       + \braket{\mathrm{HF} | \commutator{\commutator{\Phi}{T^{[1]}}}{\cluster{\mu_1}} | \mathrm{HF}}
       + \sum_j\braket{\tbar{j}^{[1]} |
       \commutator{\Phi}{\cluster{\mu_1}} | \mathrm{HF}} \\
-      &+ \p^{\dagger\,[2]}\braket{\mathrm{HF} |
+      &+ {}^t\p^{[2]}\braket{\mathrm{HF} |
       \commutator{\s}{\cluster{\mu_1}} | \mathrm{HF}}
-      + \p^{\dagger\,[1]}
+      + {}^t\p^{[1]}
       \braket{\tbar{1}^{[1]} |
       \commutator{\s}{\cluster{\mu_1}} | \mathrm{HF}}
       =0 \\
@@ -911,7 +993,7 @@ Considering the singles, doubles and triples excitation manifolds:
       + \braket{\mathrm{HF} | \commutator{\commutator{\Phi}{T^{[1]}}}{\cluster{\mu_2}} | \mathrm{HF}}
       + \sum_j\braket{\tbar{j}^{[1]} |
       \commutator{\Phi}{\cluster{\mu_2}} | \mathrm{HF}} \\
-      &+ \p^{\dagger\,[1]}
+      &+ {}^t\p^{[1]}
       \braket{\tbar{1}^{[1]} + \tbar{2}^{[1]} |
       \commutator{\s}{\cluster{\mu_2}} | \mathrm{HF}}
       =0 \\
@@ -927,19 +1009,25 @@ The triples first appear to second order and are not \emph{directly}
 affected by the quantum/classical coupling.
 
 \paragraph*{Polarization}
-  \begin{equation}\label{eq:2nd-order-pol}
-    \begin{aligned}
-    \V\p^{[2]} &+
-    \braket{\mathrm{HF} | \commutator{\s}{T_1^{[2]}}| \mathrm{HF}}
-    + \braket{\tbar{1}^{[2]} | \s | \mathrm{HF} }
-    + \braket{\tbar{1}^{[1]} | \commutator{\s}{T_1^{[1]}} | \mathrm{HF}}
-    \\
-    &+
-    \braket{\tbar{2}^{[1]} | \commutator{\s}{T_2^{[1]}} | \mathrm{HF}}
-    = 0
-  \end{aligned}
-  \end{equation}
-No triples contributions enter directly up to second order.
+\begin{equation}
+  \V\p^{[2]} +
+  \braket{\mathrm{HF} | \commutator{\s}{T_1^{[2]}}| \mathrm{HF}}
+  + \braket{\tbar{1}^{[2]} | \s | \mathrm{HF} }
+  + \braket{\tbar{1}^{[1]} | \commutator{\s}{T^{[1]}} | \mathrm{HF}}
+  + \braket{\tbar{2}^{[1]} | \commutator{\s}{T_2^{[1]}} | \mathrm{HF}}
+  = 0
+\end{equation}
+There are no explicit contributions from triples.
+Moreover, since the second order amplitudes and multipliers are
+identical up to the triples one has $\braket{\mathrm{HF} | \commutator{\s}{T_1^{[2]}}| \mathrm{HF}} = \braket{\tbar{1}^{[2]} | \s | \mathrm{HF} }$
+and thus:
+\begin{equation}\label{eq:2nd-order-pol}
+  \V\p^{[2]} +
+  2\braket{\mathrm{HF} | \commutator{\s}{T_1^{[2]}}| \mathrm{HF}}
+  + \braket{\tbar{1}^{[1]} | \commutator{\s}{T^{[1]}} | \mathrm{HF}}
+  + \braket{\tbar{2}^{[1]} | \commutator{\s}{T_2^{[1]}} | \mathrm{HF}}
+  = 0
+\end{equation}
 
 \subsection{Free energies up to fifth order}\label{sec:energies-pt}
 
@@ -957,37 +1045,51 @@ The reference energy can thus be recovered as usual:
   G_\mathrm{HF} = G^{[0]} + G^{[1]}
 \end{equation}
 where $G^{[0]}$ includes the quantum/classical coupling.
-\todo[inline]{Check this statement, the Lagrangian has a zeroth-order
-term!}
 
+We introduce the following notation:
+\begin{equation}
+  \tilde{\s}^{[m]}(\tamp{}^{[p]}, \tbar{}^{[q]})
+\end{equation}
+for a source term of $m$-th order formed by amplitudes up to and
+including $p$-th order and by multipliers up to and including $q$-th order.
+
+The second order energy correction will be formed including first order
+amplitudes and polarization, while using zeroth order multipliers:
 \begin{equation}\label{eq:second-order-G}
   \begin{aligned}
   G^{[2]} &= \braket{\mathrm{HF} | \commutator{\Phi}{T^{[1]}} | \mathrm{HF}}
-  + \frac{1}{2}\p^{\dagger\,[1]}\V\p^{[1]} +
-  \p^{\dagger\,[1]}\tilde{\s}^{[1]} \\
-  &= E^{[2]} + \frac{1}{2}\p^{\dagger\,[1]}\V\p^{[1]} +
-  \p^{\dagger\,[1]}
-  \braket{\mathrm{HF} | \commutator{\s}{T^{[1]}_1} | \mathrm{HF}}
+  + \frac{1}{2}{}^t\p^{[1]}\V\p^{[1]} +
+  {}^t\p^{[1]}\tilde{\s}^{[1]}(\tamp{}^{[1]}, \tbar{}^{[0]}) \\
+  &= E^{[2]} +
+  \frac{1}{2}{}^t\p^{[1]}\V\p^{[1]}
+  +
+  {}^t\p^{[1]}\braket{\mathrm{HF} | \commutator{\s}{T^{[1]}_1} | \mathrm{HF}} \\
+  &= \left/
+  \V\p^{[1]} + 2\braket{\mathrm{HF} | \commutator{\s}{T_1^{[1]}}| \mathrm{HF}} = 0
+  \right/ \\
+  &= E^{[2]}
   \end{aligned}
 \end{equation}
-Notice that the source term is here assembled in accordance to the $2n+1$
-and $2n+2$ rules, while this is not the case in the equations for the
-polarization.
+\todo[inline]{I feel like there is some important lesson/conclusion to
+draw from this.}
 
+The third order energy correction will be formed including first order
+amplitudes, multipliers and polarization:
 \begin{equation}\label{eq:third-order-G}
   \begin{aligned}
     G^{[3]} &= \sum_j\braket{\tbar{j}^{[1]} | \commutator{\Phi}{T^{[1]}} |
-    \mathrm{HF}} + \p^{\dagger\, [1]}\tilde{\s}^{[2]} \\
+    \mathrm{HF}} + {}^t\p^{[1]}\tilde{\s}^{[2]}(\tamp{}^{[1]}, \tbar{}^{[1]}) \\
     &= E^{[3]}
-    + \p^{\dagger\, [1]}
+    + {}^t\p^{[1]}
     \lbrace
-      \braket{\tbar{1}^{[1]} | \commutator{\s}{T^{[1]}_1} | \mathrm{HF}}
-    + \braket{\tbar{1}^{[1]} | \commutator{\s}{T^{[1]}_2} | \mathrm{HF}}
+      \braket{\tbar{1}^{[1]} | \commutator{\s}{T^{[1]}} | \mathrm{HF}}
     + \braket{\tbar{2}^{[1]} | \commutator{\s}{T^{[1]}_2} | \mathrm{HF}}
     \rbrace
   \end{aligned}
 \end{equation}
 
+The fourth order energy corrections will be formed including second
+order amplitudes and polarization, while using first order multipliers:
 \begin{equation}\label{eq:fourth-order-G}
   \begin{aligned}
     G^{[4]} &= \sum_j\braket{\tbar{j}^{[1]} | \commutator{\Phi}{T^{[2]}} |
@@ -995,30 +1097,94 @@ polarization.
     \frac{1}{2}\sum_j\braket{\tbar{j}^{[1]} |
     \commutator{\commutator{\Phi}{T^{[1]}}}{T^{[1]}} |
     \mathrm{HF}} \\
-    &+\frac{1}{2}\p^{\dagger\,[2]}\V\p^{[2]}
-    + \p^{\dagger\,[2]}\tilde{\s}^{[2]}
-    + \p^{\dagger\,[1]}\tilde{\s}^{[3]} \\
-    &= E^{[4]} + \frac{1}{2}\p^{\dagger\,[2]}\V\p^{[2]}
-    +\p^{\dagger\,[2]}
+    &+\frac{1}{2}{}^t\p^{[2]}\V\p^{[2]}
+    + {}^t\p^{[2]}\tilde{\s}^{[2]}(\tamp{}^{[2]}, \tbar{}^{[1]})
+    + {}^t\p^{[1]}\tilde{\s}^{[3]}(\tamp{}^{[2]}, \tbar{}^{[1]}) \\
+    &= E^{[4]} + \frac{1}{2}{}^t\p^{[2]}\V\p^{[2]}
+    +{}^t\p^{[2]}
     \lbrace
-      \braket{\tbar{1}^{[1]} | \commutator{\s}{T^{[1]}_1} | \mathrm{HF}}
-    + \braket{\tbar{1}^{[1]} | \commutator{\s}{T^{[1]}_2} | \mathrm{HF}}
-    + \braket{\tbar{2}^{[1]} | \commutator{\s}{T^{[1]}_2} | \mathrm{HF}}
+    \braket{\mathrm{HF} | \commutator{\s}{T_1^{[2]}} | \mathrm{HF}}
+    + \sum_i\braket{\tbar{i}^{[1]}| \commutator{\s}{T^{[1]}} | \mathrm{HF} }
     \rbrace \\
-    &+\p^{\dagger\,[1]}
+    &+{}^t\p^{[1]}
+    \lbrace
+    \sum_i\braket{\tbar{i}^{[1]} | \commutator{\s}{T^{[2]}} | \mathrm{HF}}
+    +
+    \sum_i\frac{1}{2}\braket{\tbar{i}^{[1]} |
+    \commutator{\commutator{\s}{T^{[1]}}}{T^{[1]}}
+    |
+    \mathrm{HF}}
+    \rbrace \\
+  %%%% Steps
+  &= \left/ \text{Remove null terms} \right/ \\
+    &= E^{[4]} \\
+    &+ \frac{1}{2}{}^t\p^{[2]}\V\p^{[2]}
+    +{}^t\p^{[2]}
+    \lbrace
+    \braket{\mathrm{HF} | \commutator{\s}{T_1^{[2]}} | \mathrm{HF}}
+    + \braket{\tbar{1}^{[1]}| \commutator{\s}{T^{[1]}} | \mathrm{HF} }
+    + \braket{\tbar{2}^{[1]}| \commutator{\s}{T_2^{[1]}} | \mathrm{HF} }
+    \rbrace \\
+    &+
+    {}^t\p^{[1]}
+    \lbrace
+    \braket{\tbar{1}^{[1]} | \commutator{\s}{T_1^{[2]} + T_2^{[2]}} | \mathrm{HF}}
+    +
+    \braket{\tbar{2}^{[1]} | \commutator{\s}{T_2^{[2]} + T_3^{[2]}} | \mathrm{HF}}
+    \rbrace \\
+    &+
+    {}^t\p^{[1]}
     \lbrace
     \frac{1}{2}\braket{\tbar{1}^{[1]} |
-    \commutator{\commutator{\s}{T^{[1]}_1}}{T^{[1]}_1}
+    \commutator{\commutator{\s}{T_1^{[1]}}}{T_1^{[1]}}
     |
     \mathrm{HF}}
-    + \braket{\tbar{2}^{[1]} |
-    \commutator{\commutator{\s}{T^{[1]}_1}}{T^{[1]}_2}
+    +
+    \braket{\tbar{2}^{[1]} |
+    \commutator{\commutator{\s}{T_1^{[1]}}}{T_2^{[1]}}
     |
     \mathrm{HF}}
-    \rbrace
+    \rbrace \\
+  %%%% Steps
+  &= \left/
+  \V\p^{[2]} +
+  2\braket{\mathrm{HF} | \commutator{\s}{T_1^{[2]}}| \mathrm{HF}}
+  + \braket{\tbar{1}^{[1]} | \commutator{\s}{T^{[1]}} | \mathrm{HF}}
+  + \braket{\tbar{2}^{[1]} | \commutator{\s}{T_2^{[1]}} | \mathrm{HF}}
+  = 0
+  \right/ \\
+    &= E^{[4]}
+    + \frac{1}{2}{}^t\p^{[2]}\braket{\tbar{1}^{[1]}| \commutator{\s}{T^{[1]}} | \mathrm{HF} }
+    + \frac{1}{2}{}^t\p^{[2]}\braket{\tbar{2}^{[1]}| \commutator{\s}{T_2^{[1]}} | \mathrm{HF} } \\
+    &+
+    {}^t\p^{[1]}
+    \braket{\tbar{1}^{[1]} | \commutator{\s}{T_1^{[2]} + T_2^{[2]}} | \mathrm{HF}}
+    +
+    \highlight{
+    {}^t\p^{[1]}
+    \braket{\tbar{2}^{[1]} | \commutator{\s}{T_2^{[2]} + T_3^{[2]}} | \mathrm{HF}}
+    }
+    \\
+    &+
+    {}^t\p^{[1]}
+    \lbrace
+    \frac{1}{2}\braket{\tbar{1}^{[1]} |
+    \commutator{\commutator{\s}{T_1^{[1]}}}{T_1^{[1]}}
+    |
+    \mathrm{HF}}
+    +
+    \braket{\tbar{2}^{[1]} |
+    \commutator{\commutator{\s}{T_1^{[1]}}}{T_2^{[1]}}
+    |
+    \mathrm{HF}}
+    \rbrace \\
   \end{aligned}
 \end{equation}
+\todo[inline]{There is one term involving second order triples and first
+order polarization}
 
+Eventually, the fifth order energy correction is formed including second order
+amplitudes, multipliers and polarization:
 \begin{equation}\label{eq:fifth-order-G}
   \begin{aligned}
     G^{[5]} &=
@@ -1036,29 +1202,89 @@ polarization.
     \frac{1}{2}\sum_j\braket{\tbar{j}^{[2]} |
     \commutator{\commutator{\Phi}{T^{[1]}}}{T^{[1]}}
     | \mathrm{HF}}
-    + \p^{\dagger\,[2]}\tilde{\s}^{[3]}
-    + \p^{\dagger\,[1]}\tilde{\s}^{[4]} \\
+    + {}^t\p^{[2]}\tilde{\s}^{[3]}(\tamp{}^{[2]}, \tbar{}^{[2]})
+    + {}^t\p^{[1]}\tilde{\s}^{[4]}(\tamp{}^{[2]}, \tbar{}^{[2]}) \\
     &= E^{[5]}
-    + \p^{\dagger\,[2]}
+    + {}^t\p^{[2]}
     \lbrace
-    \frac{1}{2}\braket{\tbar{1}^{[1]} |
-    \commutator{\commutator{\s}{T_1^{[1]}}}{T_1^{[1]}}
+    \sum_i\braket{\tbar{i}^{[1]} | \commutator{\s}{T^{[2]}} | \mathrm{HF}}
+    +
+    \sum_i\braket{\tbar{i}^{[1]} |
+    \frac{1}{2}\commutator{\commutator{\s}{T^{[1]}}}{T^{[1]}}
     | \mathrm{HF}}
-    + \braket{\tbar{2}^{[1]} |
-    \commutator{\commutator{\s}{T_1^{[1]}}}{T_2^{[1]}}
+    +
+    \sum_i\braket{\tbar{i}^{[2]} | \commutator{\s}{T^{[1]}} | \mathrm{HF}}
+    \rbrace \\
+    &+ {}^t\p^{[1]}
+    \lbrace
+    \sum_i\braket{\tbar{i}^{[2]} | \commutator{\s}{T^{[2]}} | \mathrm{HF}}
+    +
+    \sum_i\braket{\tbar{i}^{[2]} |
+    \frac{1}{2}\commutator{\commutator{\s}{T^{[1]}}}{T^{[1]}}
+    | \mathrm{HF}}
+    +
+    \sum_i\braket{\tbar{i}^{[1]} |
+    \commutator{\commutator{\s}{T^{[1]}}}{T^{[2]}}
     | \mathrm{HF}}
     \rbrace \\
-    &+ \p^{\dagger\,[1]}
-    \lbrace
+  %%%% Steps
+  &= \left/ \text{Remove null terms} \right/ \\
+    &= E^{[5]}
+    + {}^t\p^{[2]}\braket{\tbar{1}^{[1]} | \commutator{\s}{T_1^{[2]} + T_2^{[2]}} | \mathrm{HF}}
+    + \highlight{
+    {}^t\p^{[2]}\braket{\tbar{2}^{[1]} | \commutator{\s}{T_2^{[2]} + T_3^{[2]}} | \mathrm{HF}}
+    } \\
+    &+ {}^t\p^{[2]}\braket{\tbar{1}^{[2]} | \commutator{\s}{T^{[1]}} | \mathrm{HF}}
+    + {}^t\p^{[2]}
     \braket{\tbar{1}^{[1]} |
-    \commutator{\commutator{\s}{T_1^{[2]}}}{T_1^{[1]}}
+    \frac{1}{2}\commutator{\commutator{\s}{T_1^{[1]}}}{T_1^{[1]}}
     | \mathrm{HF}}
-    + \braket{\tbar{2}^{[1]} |
-    \commutator{\commutator{\s}{T_1^{[2]}}}{T_2^{[1]}}
+    + {}^t\p^{[2]}
+    \braket{\tbar{2}^{[1]} |
+    \commutator{\commutator{\s}{T_1^{[1]}}}{T_2^{[1]}}
     | \mathrm{HF}}
-    + \braket{\tbar{2}^{[1]} |
+    \\
+    &+
+    {}^t\p^{[1]}
+    \braket{\tbar{1}^{[2]} | \commutator{\s}{T_1^{[2]} + T_2^{[2]}} | \mathrm{HF}}
+    +
+    \highlight{
+    {}^t\p^{[1]}
+    \braket{\tbar{2}^{[2]} | \commutator{\s}{T_2^{[2]} + T_3^{[2]}} | \mathrm{HF}}
+    }
+    +
+    \highlight{
+    {}^t\p^{[1]}
+    \braket{\tbar{3}^{[2]} | \commutator{\s}{T_3^{[2]}} | \mathrm{HF}}
+    } \\
+    &+
+    {}^t\p^{[1]}
+    \braket{\tbar{1}^{[2]} |
+    \frac{1}{2}\commutator{\commutator{\s}{T_1^{[1]}}}{T_1^{[1]}}
+    | \mathrm{HF}}
+    +
+    {}^t\p^{[1]}
+    \braket{\tbar{2}^{[2]} |
+    \commutator{\commutator{\s}{T_1^{[1]}}}{T_2^{[1]}}
+    | \mathrm{HF}} \\
+    &+
+    \highlight{
+    {}^t\p^{[1]}
+    \braket{\tbar{3}^{[2]} |
+    \frac{1}{2}\commutator{\commutator{\s}{T_2^{[1]}}}{T_2^{[1]}}
+    | \mathrm{HF}}
+    } \\
+    &+ {}^t\p^{[1]}
+    \braket{\tbar{1}^{[1]} |
+    \commutator{\commutator{\s}{T_1^{[1]}}}{T_1^{[2]}}
+    | \mathrm{HF}}
+    + {}^t\p^{[1]}
+    \braket{\tbar{2}^{[1]} |
     \commutator{\commutator{\s}{T_1^{[1]}}}{T_2^{[2]}}
+    | \mathrm{HF}} \\
+    &+ {}^t\p^{[1]}
+    \braket{\tbar{2}^{[1]} |
+    \commutator{\commutator{\s}{T_2^{[1]}}}{T_1^{[2]}}
     | \mathrm{HF}}
-    \rbrace
   \end{aligned}
 \end{equation}
