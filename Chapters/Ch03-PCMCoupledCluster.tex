@@ -2,6 +2,8 @@
 %************************************************
 \chapter{Treating solvation within correlated wave function models}\label{ch:PCMCC}
 
+\epigraph{Potius sero quam numquam}{--- \textsc{Titus Livius}, \textit{Ab Urbe Condita}}
+
 \epigraph{Non temerai i terrori della notte non temerai il terrore}{--- \textsc{CCCP}}
 
 In this Chapter, I will summarize previous and current work on the
@@ -282,7 +284,7 @@ components:
 &= \left/
     \frac{1}{2}\sigma_\mathrm{HF}\esp_\mathrm{HF}
   + \frac{1}{2}\kappa_\mathrm{HF}\zeta_\mathrm{HF}
-  \coloneqq U_\mathrm{pol}^\mathrm{ref}
+  \coloneq U_\mathrm{pol}^\mathrm{ref}
   \right/ \\
 &=
   U_\mathrm{pol}^\mathrm{ref}
@@ -1017,7 +1019,9 @@ affected by the quantum/classical coupling.
   + \braket{\tbar{2}^{[1]} | \commutator{\s}{T_2^{[1]}} | \mathrm{HF}}
   = 0
 \end{equation}
-There are no explicit contributions from triples.
+There are no explicit contributions from triples. This means that the
+\acs{CCSD} polarization is correct through fourth order in the
+fluctuation potential.
 Moreover, since the second order amplitudes and multipliers are
 identical up to the triples one has $\braket{\mathrm{HF} | \commutator{\s}{T_1^{[2]}}| \mathrm{HF}} = \braket{\tbar{1}^{[2]} | \s | \mathrm{HF} }$
 and thus:
@@ -1052,22 +1056,30 @@ We introduce the following notation:
 \end{equation}
 for a source term of $m$-th order formed by amplitudes up to and
 including $p$-th order and by multipliers up to and including $q$-th order.
+Green boxes will be put around terms that are formally equivalent to the
+vacuum expression for the energy corrections. Red boxes will appear
+around quantum/classical coupling terms that involve the triples
+manifold.
 
 The second order energy correction will be formed including first order
 amplitudes and polarization, while using zeroth order multipliers:
 \begin{equation}\label{eq:second-order-G}
   \begin{aligned}
-  G^{[2]} &= \braket{\mathrm{HF} | \commutator{\Phi}{T^{[1]}} | \mathrm{HF}}
+  G^{[2]} &=
+  \highlight{green}{
+  \braket{\mathrm{HF} | \commutator{\Phi}{T^{[1]}} | \mathrm{HF}}
+  }
   + \frac{1}{2}{}^t\p^{[1]}\V\p^{[1]} +
   {}^t\p^{[1]}\tilde{\s}^{[1]}(\tamp{}^{[1]}, \tbar{}^{[0]}) \\
-  &= E^{[2]} +
+  &= \highlight{green}{E^{[2]}}
+  +
   \frac{1}{2}{}^t\p^{[1]}\V\p^{[1]}
   +
   {}^t\p^{[1]}\braket{\mathrm{HF} | \commutator{\s}{T^{[1]}_1} | \mathrm{HF}} \\
   &= \left/
   \V\p^{[1]} + 2\braket{\mathrm{HF} | \commutator{\s}{T_1^{[1]}}| \mathrm{HF}} = 0
   \right/ \\
-  &= E^{[2]}
+  &= \highlight{green}{E^{[2]}}
   \end{aligned}
 \end{equation}
 \todo[inline]{I feel like there is some important lesson/conclusion to
@@ -1077,9 +1089,11 @@ The third order energy correction will be formed including first order
 amplitudes, multipliers and polarization:
 \begin{equation}\label{eq:third-order-G}
   \begin{aligned}
-    G^{[3]} &= \sum_j\braket{\tbar{j}^{[1]} | \commutator{\Phi}{T^{[1]}} |
-    \mathrm{HF}} + {}^t\p^{[1]}\tilde{\s}^{[2]}(\tamp{}^{[1]}, \tbar{}^{[1]}) \\
-    &= E^{[3]}
+    G^{[3]} &=
+    \highlight{green}{\sum_j\braket{\tbar{j}^{[1]} | \commutator{\Phi}{T^{[1]}} | \mathrm{HF}}}
+    + {}^t\p^{[1]}\tilde{\s}^{[2]}(\tamp{}^{[1]}, \tbar{}^{[1]}) \\
+    &=
+    \highlight{green}{E^{[3]}}
     + {}^t\p^{[1]}
     \lbrace
       \braket{\tbar{1}^{[1]} | \commutator{\s}{T^{[1]}} | \mathrm{HF}}
@@ -1092,15 +1106,19 @@ The fourth order energy corrections will be formed including second
 order amplitudes and polarization, while using first order multipliers:
 \begin{equation}\label{eq:fourth-order-G}
   \begin{aligned}
-    G^{[4]} &= \sum_j\braket{\tbar{j}^{[1]} | \commutator{\Phi}{T^{[2]}} |
-    \mathrm{HF}} +
-    \frac{1}{2}\sum_j\braket{\tbar{j}^{[1]} |
-    \commutator{\commutator{\Phi}{T^{[1]}}}{T^{[1]}} |
-    \mathrm{HF}} \\
+    G^{[4]} &=
+    \highlight{green}
+    {
+    \sum_j\braket{\tbar{j}^{[1]} | \commutator{\Phi}{T^{[2]}} | \mathrm{HF}}
+    +
+    \sum_j\braket{\tbar{j}^{[1]} |
+    \frac{1}{2}\commutator{\commutator{\Phi}{T^{[1]}}}{T^{[1]}} | \mathrm{HF}}
+    }
+    \\
     &+\frac{1}{2}{}^t\p^{[2]}\V\p^{[2]}
     + {}^t\p^{[2]}\tilde{\s}^{[2]}(\tamp{}^{[2]}, \tbar{}^{[1]})
     + {}^t\p^{[1]}\tilde{\s}^{[3]}(\tamp{}^{[2]}, \tbar{}^{[1]}) \\
-    &= E^{[4]} + \frac{1}{2}{}^t\p^{[2]}\V\p^{[2]}
+    &= \highlight{green}{E^{[4]}} + \frac{1}{2}{}^t\p^{[2]}\V\p^{[2]}
     +{}^t\p^{[2]}
     \lbrace
     \braket{\mathrm{HF} | \commutator{\s}{T_1^{[2]}} | \mathrm{HF}}
@@ -1117,7 +1135,7 @@ order amplitudes and polarization, while using first order multipliers:
     \rbrace \\
   %%%% Steps
   &= \left/ \text{Remove null terms} \right/ \\
-    &= E^{[4]} \\
+  &= \highlight{green}{E^{[4]}} \\
     &+ \frac{1}{2}{}^t\p^{[2]}\V\p^{[2]}
     +{}^t\p^{[2]}
     \lbrace
@@ -1153,14 +1171,14 @@ order amplitudes and polarization, while using first order multipliers:
   + \braket{\tbar{2}^{[1]} | \commutator{\s}{T_2^{[1]}} | \mathrm{HF}}
   = 0
   \right/ \\
-    &= E^{[4]}
+  &= \highlight{green}{E^{[4]}}
     + \frac{1}{2}{}^t\p^{[2]}\braket{\tbar{1}^{[1]}| \commutator{\s}{T^{[1]}} | \mathrm{HF} }
     + \frac{1}{2}{}^t\p^{[2]}\braket{\tbar{2}^{[1]}| \commutator{\s}{T_2^{[1]}} | \mathrm{HF} } \\
     &+
     {}^t\p^{[1]}
     \braket{\tbar{1}^{[1]} | \commutator{\s}{T_1^{[2]} + T_2^{[2]}} | \mathrm{HF}}
     +
-    \highlight{
+    \highlight{red}{
     {}^t\p^{[1]}
     \braket{\tbar{2}^{[1]} | \commutator{\s}{T_2^{[2]} + T_3^{[2]}} | \mathrm{HF}}
     }
@@ -1188,23 +1206,28 @@ amplitudes, multipliers and polarization:
 \begin{equation}\label{eq:fifth-order-G}
   \begin{aligned}
     G^{[5]} &=
+    \highlight{green}
+    {
     \frac{1}{2}\braket{\mathrm{HF} |
     \commutator{\commutator{\Phi}{T^{[2]}}}{T^{[2]}}
     | \mathrm{HF}}
     +
     \sum_j \braket{\tbar{j}^{[1]} |
     \commutator{\commutator{\Phi}{T^{[2]}}}{T^{[1]}}
-    | \mathrm{HF}} \\
-    &+ \sum_j \braket{\tbar{j}^{[2]} |
+    | \mathrm{HF}}
+    }
+    \\
+    &+ \highlight{green}{\sum_j \braket{\tbar{j}^{[2]} |
       \commutator{\Phi}{T^{[2]}}
     | \mathrm{HF}}
     +
     \frac{1}{2}\sum_j\braket{\tbar{j}^{[2]} |
     \commutator{\commutator{\Phi}{T^{[1]}}}{T^{[1]}}
     | \mathrm{HF}}
+    }
     + {}^t\p^{[2]}\tilde{\s}^{[3]}(\tamp{}^{[2]}, \tbar{}^{[2]})
     + {}^t\p^{[1]}\tilde{\s}^{[4]}(\tamp{}^{[2]}, \tbar{}^{[2]}) \\
-    &= E^{[5]}
+    &= \highlight{green}{E^{[5]}}
     + {}^t\p^{[2]}
     \lbrace
     \sum_i\braket{\tbar{i}^{[1]} | \commutator{\s}{T^{[2]}} | \mathrm{HF}}
@@ -1229,9 +1252,9 @@ amplitudes, multipliers and polarization:
     \rbrace \\
   %%%% Steps
   &= \left/ \text{Remove null terms} \right/ \\
-    &= E^{[5]}
+  &= \highlight{green}{E^{[5]}}
     + {}^t\p^{[2]}\braket{\tbar{1}^{[1]} | \commutator{\s}{T_1^{[2]} + T_2^{[2]}} | \mathrm{HF}}
-    + \highlight{
+    + \highlight{red}{
     {}^t\p^{[2]}\braket{\tbar{2}^{[1]} | \commutator{\s}{T_2^{[2]} + T_3^{[2]}} | \mathrm{HF}}
     } \\
     &+ {}^t\p^{[2]}\braket{\tbar{1}^{[2]} | \commutator{\s}{T^{[1]}} | \mathrm{HF}}
@@ -1248,12 +1271,12 @@ amplitudes, multipliers and polarization:
     {}^t\p^{[1]}
     \braket{\tbar{1}^{[2]} | \commutator{\s}{T_1^{[2]} + T_2^{[2]}} | \mathrm{HF}}
     +
-    \highlight{
+    \highlight{red}{
     {}^t\p^{[1]}
     \braket{\tbar{2}^{[2]} | \commutator{\s}{T_2^{[2]} + T_3^{[2]}} | \mathrm{HF}}
     }
     +
-    \highlight{
+    \highlight{red}{
     {}^t\p^{[1]}
     \braket{\tbar{3}^{[2]} | \commutator{\s}{T_3^{[2]}} | \mathrm{HF}}
     } \\
@@ -1268,7 +1291,7 @@ amplitudes, multipliers and polarization:
     \commutator{\commutator{\s}{T_1^{[1]}}}{T_2^{[1]}}
     | \mathrm{HF}} \\
     &+
-    \highlight{
+    \highlight{red}{
     {}^t\p^{[1]}
     \braket{\tbar{3}^{[2]} |
     \frac{1}{2}\commutator{\commutator{\s}{T_2^{[1]}}}{T_2^{[1]}}
@@ -1287,4 +1310,156 @@ amplitudes, multipliers and polarization:
     \commutator{\commutator{\s}{T_2^{[1]}}}{T_1^{[2]}}
     | \mathrm{HF}}
   \end{aligned}
+\end{equation}
+
+\section[Noniterative Triples Corrections to PCM-CCSD]{
+Noniterative Perturbative Triples Corrections to PCM-CCSD}\label{sec:ccsd-t-noniterative}
+
+The \acs{PTED}-\acs{CCSD} scheme for the quantum/classical coupling is
+only includes singles and doubles in its excitation manifold and is thus
+correct up to third order in perturbation theory:
+\begin{subequations}
+  \begin{align}
+    \tamp{\mu_i}^{*} &= \tamp{\mu_i}^{[1]} + \tamp{\mu_i}^{[2]} + O(3) \\
+    \tbar{\mu_i}^{*} &= \tbar{\mu_i}^{[1]} + \tbar{\mu_i}^{[2]} + O(3) \\
+    \p^{*} &= \p^{[1]} + \p^{[2]} + \p^{[3]} + O(4)
+  \end{align}
+\end{subequations}
+We will denote the \acs{CCSD} converged parameters with a $*$ superscript.
+
+Already in fourth order connected triples make their appearance and any
+model going beyond third order must then take their effect into account.
+We first select the fourth and fifth order contributions to the energy
+involving connected triples.
+\begin{equation}\label{eq:triples-fourth-order}
+  G_T^{[4]} =
+  \highlight{red}{\braket{\tbar{1}^{[1]} | \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}}
+  + \braket{\tbar{2}^{[1]}| \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}
+  + {}^t\p^{[1]}\braket{\tbar{2}^{[1]} | \commutator{\s}{T_3^{[2]}} | \mathrm{HF}}
+\end{equation}
+\begin{equation}\label{eq:triples-fifth-order}
+  \begin{aligned}
+  G_T^{[5]} &=
+    \highlight{red}{
+    \braket{\tbar{2}^{[1]} |
+    \commutator{\commutator{\Phi}{T_3^{[2]}}}{T_1^{[1]}}
+    | \mathrm{HF}}
+    } \\
+    &+
+    \braket{\tbar{1}^{[2]} | \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}
+  + \braket{\tbar{2}^{[2]} | \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}
+  + \braket{\tbar{3}^{[2]} | \commutator{\Phi}{T_2^{[2]}} | \mathrm{HF}}
+  + \braket{\tbar{3}^{[2]} | \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}
+  \\
+    &+
+    \frac{1}{2}\braket{\tbar{3}^{[2]} |
+    \commutator{\commutator{\Phi}{T_2^{[1]}}}{T_2^{[1]}}
+    | \mathrm{HF}}
+  +
+  \highlight{red}{
+    \braket{\tbar{3}^{[2]} |
+    \commutator{\commutator{\Phi}{T_1^{[1]}}}{T_2^{[1]}}
+    | \mathrm{HF}}
+   }
+   \\
+   &+
+    {}^t\p^{[2]}\braket{\tbar{2}^{[1]} | \commutator{\s}{T_3^{[2]}} | \mathrm{HF}}
+  + {}^t\p^{[1]}\braket{\tbar{2}^{[2]} | \commutator{\s}{T_3^{[2]}} | \mathrm{HF}} \\
+  &+ {}^t\p^{[1]}\braket{\tbar{3}^{[2]} | \commutator{\s}{T_3^{[2]}} | \mathrm{HF}}
+  + {}^t\p^{[1]}\braket{\tbar{3}^{[2]} |
+    \frac{1}{2}\commutator{\commutator{\s}{T_2^{[1]}}}{T_2^{[1]}}
+    | \mathrm{HF}}
+  \end{aligned}
+\end{equation}
+Terms in red boxes are vacuum-like terms that appear due to nonzero
+first order singles amplitudes and multipliers.
+
+\subsection{The \texorpdfstring{$\Lambda\text{CCSD}[\text{T}]$}{CCSD[aT]} and \texorpdfstring{$\text{CCSD}[\text{T}]$}{CCSD[T]} models}
+
+\todo[inline]{References for the a-CCSD[T] and CCSD[T] models!!!}
+
+The [T] noniterative triples corrections are formed by adding the fourth
+order \acs{CC}\acs{PT} terms arising from connected triples on top of
+the \acs{CCSD} energy. The \emph{converged} \acs{CCSD} amplitudes,
+multipliers and polarization are however used instead of the
+perturbative quantities in Eq.~\eqref{eq:triples-fourth-order}.
+The correction term is thus improved, since the \acs{CCSD} quantities
+are determined to infinite order, within the singles and doubles space.
+The asymmetric $\Lambda\text{CCSD}[\text{T}]$ correction is then
+obtained as:
+\begin{equation}\label{eq:4-lambda-bracket-t}
+  G_{\Lambda[\text{T}]} =
+  {}^*G_{\Lambda[\text{T}]}^{[4]} =
+  \highlight{red}{\braket{\tbar{1}^{*} | \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}}
+  + \braket{\tbar{2}^{*}| \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}
+  + {}^t\p^{*}\braket{\tbar{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}}
+\end{equation}
+Replacing the perturbation multipliers by converged \acs{CCSD}
+amplitudes leads to the symmetric CCSD[T] model:
+\begin{equation}\label{eq:4-bracket-t}
+  G_{[\text{T}]} =
+  {}^*G_{[\text{T}]}^{[4]} =
+  \highlight{red}{\braket{\tamp{1}^{*} | \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}}
+  + \braket{\tamp{2}^{*}| \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}
+  + {}^t\p^{*}\braket{\tamp{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}}
+\end{equation}
+
+\subsection{The
+\texorpdfstring{$\Lambda\text{CCSD}(\text{T})$}{CCSD(aT)} and CCSD(T) models}
+
+\todo[inline]{References for the a-CCSD(T) and CCSD(T) models!!!}
+
+The (T) noniterative triples corrections are formed by adding some fifth
+order terms to the fourth order [T] correction given above.
+Also for the (T) corrections, the \emph{converged} \acs{CCSD} amplitudes, multipliers and polarization
+are used instead of the perturbative quantities.
+The fifth order terms involving projection of
+$\commutator{\Phi}{T_3^{*}}$ on the singles and doubles manifold are
+chosen to form the additional perturbative correction.
+
+The correction term is thus improved, since the \acs{CCSD} quantities
+are determined to infinite order, within the singles and doubles space.
+The asymmetric $\Lambda\text{CCSD}(\text{T})$ correction is then
+obtained as:
+\begin{equation}\label{eq:5-lambda-parens-t}
+ \begin{aligned}
+  G_{\Lambda(\text{T})} =
+  {}^*G_{\Lambda[\text{T}]}^{[4]} +
+  {}^*G_{\Lambda(\text{T})}^{[5]} &=
+    \braket{\tbar{1}^{*} | \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}
+  + \braket{\tbar{2}^{*} | \commutator{\Phi}{T_3^{*}} | \mathrm{HF}} \\
+  &+ {}^t\p^{*}\braket{\tbar{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}}
+  + {}^t\p^{*}\braket{\tbar{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}}
+ \end{aligned}
+\end{equation}
+Replacing the perturbation multipliers by converged \acs{CCSD}
+amplitudes leads to the symmetric CCSD(T) model:
+\begin{equation}\label{eq:5-parens-t}
+ \begin{aligned}
+  G_{(\text{T})} = {}^*G_{[\text{T}]}^{[4]} + {}^*G_{(\text{T})}^{[5]}
+  &=
+    \braket{\tamp{1}^{*} | \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}
+  + \braket{\tamp{2}^{*} | \commutator{\Phi}{T_3^{*}} | \mathrm{HF}} \\
+  &+ {}^t\p^{*}\braket{\tamp{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}}
+  + {}^t\p^{*}\braket{\tamp{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}}
+ \end{aligned}
+\end{equation}
+
+\subsection{MBPT Terms in the
+\texorpdfstring{$\Lambda\text{CCSD}(\text{T})$}{CCSD(aT)} and CCSD(T) models}
+
+Triples excitations enter the \acs{MBPT} equations for the singles and
+doubles amplitudes and multipliers at third order. Thus the \acs{CCSD}
+amplitudes and multipliers are correct through second order in the
+fluctuation potential, while the polarization is correct through third
+order. Moreover, amplitudes and multipliers are equal to one another.
+
+We can rework the energy correction given above so that the perturbative
+counterparts clearly appear.
+For the fourth order terms one has:
+\begin{equation}
+  {}^*G_{\Lambda[\text{T}]}^{[4]} =
+  \highlight{red}{\braket{\tbar{1}^{[1]} | \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}}
+  + \braket{\tbar{2}^{*}| \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}
+  + {}^t\p^{*}\braket{\tbar{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}}
 \end{equation}

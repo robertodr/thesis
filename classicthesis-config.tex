@@ -291,6 +291,11 @@ BoldItalicFont = *-Bold-Italic
 ]
 \usepackage[math-style=ISO,
             bold-style=ISO]{unicode-math}
+\setmathfont{xits-math}[
+Path           = fonts/,
+Extension      = .otf,
+BoldFont       = *bold,
+]
 \usepackage{microtype}
 \usepackage{booktabs}
 \usepackage{url}
@@ -308,7 +313,6 @@ BoldItalicFont = *-Bold-Italic
 \setlength\epigraphrule{0pt}
 \renewcommand{\textflush}{flushleft}
 
-\usepackage{mathtools}
 \usepackage{braket}
 \usepackage{cancel}
 \allowdisplaybreaks
