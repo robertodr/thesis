@@ -652,7 +652,7 @@ reference reaction field with correlated contributions.
 This is the essence of the \acs{PTE(S)} approximation. The effective
 Lagrangian would then read as:
 \begin{equation}\label{eq:ptes-cc}
-  ^{\mathrm{PTE(S)}}\lag{M}(\tamp{}, \tbar{}, \p) =
+  {}^{\mathrm{PTE(S)}}\lag{M}(\tamp{}, \tbar{}, \p) =
   \braket{\mathrm{HF} | \overline{H} | \mathrm{HF}}
   + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{H} | \mathrm{HF}}
   + \frac{1}{2}{}^t\p\V\p + {}^t\p
@@ -661,21 +661,21 @@ Lagrangian would then read as:
 which uncouples all equations:
 \begin{subequations}
   \begin{align}
-   &\denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
+  {}^{\mathrm{PTE(S)}}\tampEq{\mu_i}(\tamp{}, \tbar{})  &=
+   \denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
    = 0 \\
-    &\denom{\mu_1}\tbar{\mu_1} +
-    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_1}} | \mathrm{HF}} +
-    \sum_{j}^{\mathcal{M}}\braket{\tbar{j} |
-    \commutator{\overline{\Phi}}{\cluster{\mu_1}} | \mathrm{HF}}
-    + {}^t\p
-    \braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_1}} | \mathrm{HF}}
-    = 0 \\
-    &\denom{\mu_i}\tbar{\mu_i} +
+   {}^{\mathrm{PTE(S)}}\tbarEq{\mu_i}(\tamp{}, \tbar{}, \p) &=
+    \denom{\mu_i}\tbar{\mu_i} +
     \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}} +
     \sum_{j}^{\mathcal{M}}\braket{\tbar{j} |
     \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}}
-    = 0  \quad \forall i \neq 1 \\
-    &\V\p + \braket{\mathrm{HF} | \BCHfirst{\s}{T_1} | \mathrm{HF}} = 0
+    \nonumber \\
+    &+
+    {}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}\delta_{\mu_i\mu_1}
+    = 0 \\
+    {}^{\mathrm{PTE(S)}}\Omega_\p(\tamp{}, \tbar{}, \p)
+    &=
+    \V\p + \braket{\mathrm{HF} | \BCHfirst{\s}{T_1} | \mathrm{HF}} = 0
   \end{align}
 \end{subequations}
 The amplitude equations are formally equivalent to those derived in the
@@ -899,7 +899,7 @@ Considering the singles, doubles and triples excitation manifolds:
   \mathrm{HF}}
   = 0 \\
   \Omega_{\mu_3}^{[2]} &= \denom{\mu_3}\tamp{\mu_3}^{[2]}
-  + \braket{\mu_3 | \commutator{\Phi}{T^{[1]}} | \mathrm{HF}}
+  + \braket{\mu_3 | \commutator{\Phi}{T_2^{[1]}} | \mathrm{HF}}
   = 0
   \end{align}
 \end{subequations}
@@ -926,6 +926,8 @@ affected by the quantum/classical coupling.
   \end{aligned}
 \end{equation}
 The double commutator term is null thus:~\autocite{Koch1997-nm, Helgaker2000-tz}
+\todo[inline]{Check this statement... I am not 100\% sure and I have
+found no derivation...}
 \begin{equation}\label{eq:2nd-order-mult}
   \begin{aligned}
   \bar{\Omega}_{\mu_i}^{[2]} &=
@@ -981,9 +983,8 @@ Considering the singles, doubles and triples excitation manifolds:
   \begin{align}
     \bar{\Omega}_{\mu_1}^{[2]} &=
       \denom{\mu_1}\tbar{\mu_1}^{[2]}
-      + \braket{\mathrm{HF} | \commutator{\commutator{\Phi}{T^{[1]}}}{\cluster{\mu_1}} | \mathrm{HF}}
       + \sum_j\braket{\tbar{j}^{[1]} |
-      \commutator{\Phi}{\cluster{\mu_1}} | \mathrm{HF}} \\
+      \commutator{\Phi}{\cluster{\mu_1}} | \mathrm{HF}} \nonumber \\
       &+ {}^t\p^{[2]}\braket{\mathrm{HF} |
       \commutator{\s}{\cluster{\mu_1}} | \mathrm{HF}}
       + {}^t\p^{[1]}
@@ -992,16 +993,14 @@ Considering the singles, doubles and triples excitation manifolds:
       =0 \\
     \bar{\Omega}_{\mu_2}^{[2]} &=
       \denom{\mu_2}\tbar{\mu_2}^{[2]}
-      + \braket{\mathrm{HF} | \commutator{\commutator{\Phi}{T^{[1]}}}{\cluster{\mu_2}} | \mathrm{HF}}
       + \sum_j\braket{\tbar{j}^{[1]} |
-      \commutator{\Phi}{\cluster{\mu_2}} | \mathrm{HF}} \\
-      &+ {}^t\p^{[1]}
+      \commutator{\Phi}{\cluster{\mu_2}} | \mathrm{HF}}
+      + {}^t\p^{[1]}
       \braket{\tbar{1}^{[1]} + \tbar{2}^{[1]} |
       \commutator{\s}{\cluster{\mu_2}} | \mathrm{HF}}
       =0 \\
     \bar{\Omega}_{\mu_3}^{[2]} &=
       \denom{\mu_3}\tbar{\mu_3}^{[2]}
-      + \braket{\mathrm{HF} | \commutator{\commutator{\Phi}{T^{[1]}}}{\cluster{\mu_3}} | \mathrm{HF}}
       + \sum_j\braket{\tbar{j}^{[1]} |
       \commutator{\Phi}{\cluster{\mu_3}} | \mathrm{HF}}
       =0
@@ -1320,12 +1319,16 @@ only includes singles and doubles in its excitation manifold and is thus
 correct up to third order in perturbation theory:
 \begin{subequations}
   \begin{align}
-    \tamp{\mu_i}^{*} &= \tamp{\mu_i}^{[1]} + \tamp{\mu_i}^{[2]} + O(3) \\
-    \tbar{\mu_i}^{*} &= \tbar{\mu_i}^{[1]} + \tbar{\mu_i}^{[2]} + O(3) \\
+    \tamp{\mu_i}^{*} &= \tamp{\mu_i}^{[1]} + \tamp{\mu_i}^{[2]} + O(3)
+    \label{eq:tamp-star} \\
+    \tbar{\mu_i}^{*} &= \tbar{\mu_i}^{[1]} + \tbar{\mu_i}^{[2]} + O(3)
+    \label{eq:tbar-star} \\
     \p^{*} &= \p^{[1]} + \p^{[2]} + \p^{[3]} + O(4)
+    \label{eq:p-star}
   \end{align}
 \end{subequations}
 We will denote the \acs{CCSD} converged parameters with a $*$ superscript.
+\todo[inline]{Check the statement above about $\p^{*}$.}
 
 Already in fourth order connected triples make their appearance and any
 model going beyond third order must then take their effect into account.
@@ -1373,6 +1376,10 @@ involving connected triples.
 \end{equation}
 Terms in red boxes are vacuum-like terms that appear due to nonzero
 first order singles amplitudes and multipliers.
+
+\todo[inline]{WARNING. I am not 100\% sure that the multipliers
+equations are complex conjugate to the amplitudes equations also in
+second order!}
 
 \subsection{The \texorpdfstring{$\Lambda\text{CCSD}[\text{T}]$}{CCSD[aT]} and \texorpdfstring{$\text{CCSD}[\text{T}]$}{CCSD[T]} models}
 
@@ -1425,10 +1432,9 @@ obtained as:
  \begin{aligned}
   G_{\Lambda(\text{T})} =
   {}^*G_{\Lambda[\text{T}]}^{[4]} +
-  {}^*G_{\Lambda(\text{T})}^{[5]} &=
-    \braket{\tbar{1}^{*} | \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}
-  + \braket{\tbar{2}^{*} | \commutator{\Phi}{T_3^{*}} | \mathrm{HF}} \\
-  &+ {}^t\p^{*}\braket{\tbar{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}}
+  {}^*G_{\Lambda(\text{T})}^{[5]} =
+  \sum_{j=1}^2
+    \braket{\tbar{j}^{*} | \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}
   + {}^t\p^{*}\braket{\tbar{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}}
  \end{aligned}
 \end{equation}
@@ -1436,11 +1442,11 @@ Replacing the perturbation multipliers by converged \acs{CCSD}
 amplitudes leads to the symmetric CCSD(T) model:
 \begin{equation}\label{eq:5-parens-t}
  \begin{aligned}
-  G_{(\text{T})} = {}^*G_{[\text{T}]}^{[4]} + {}^*G_{(\text{T})}^{[5]}
-  &=
-    \braket{\tamp{1}^{*} | \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}
-  + \braket{\tamp{2}^{*} | \commutator{\Phi}{T_3^{*}} | \mathrm{HF}} \\
-  &+ {}^t\p^{*}\braket{\tamp{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}}
+  G_{(\text{T})} =
+  {}^*G_{[\text{T}]}^{[4]} +
+  {}^*G_{(\text{T})}^{[5]} =
+  \sum_{j=1}^2
+    \braket{\tamp{j}^{*} | \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}
   + {}^t\p^{*}\braket{\tamp{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}}
  \end{aligned}
 \end{equation}
@@ -1456,10 +1462,91 @@ order. Moreover, amplitudes and multipliers are equal to one another.
 
 We can rework the energy correction given above so that the perturbative
 counterparts clearly appear.
-For the fourth order terms one has:
+First of all, we notice that $T_3^{*} = T_3^{[2]} + \tilde{T}_3$ contains higher than second order
+contributions where $\tilde{T}_3$ contains third and higher order contributions to the
+connected triples. In particular, the following holds:
 \begin{equation}
-  {}^*G_{\Lambda[\text{T}]}^{[4]} =
-  \highlight{red}{\braket{\tbar{1}^{[1]} | \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}}
-  + \braket{\tbar{2}^{*}| \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}
-  + {}^t\p^{*}\braket{\tbar{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}}
+  \denom{\mu_3}\tamp{\mu_3}^{*} =
+  - \braket{\mu_3 |\commutator{\Phi}{T_2^{1}} | \mathrm{HF}}
+  - \braket{\mu_3 | \commutator{\Phi}{T_2^[2]} | \mathrm{HF}}
+  + O(3)
 \end{equation}
+such that:
+\begin{equation}
+  \tilde{T}_3
+  = \sum_{\mu_3}\tilde{t}_{\mu_3}\cluster{\mu_3}
+  \coloneq \sum_{\mu_3}
+  \left(-\denom{\mu_3}^{-1}\braket{\mu_3 |
+  \commutator{\Phi}{T_3^{[2]}}
+  | \mathrm{HF}}\right)
+  \cluster{\mu_3}
+\end{equation}
+
+Using Eqs.~\eqref{eq:tamp-star}--\eqref{eq:p-star} one can expand the
+energy correction as follows:
+\begin{equation}
+  \begin{aligned}
+  G_{\Lambda(\text{T})} &=
+  \sum_{j=1}^2 \braket{\tbar{j}^{*} | \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}
+  + {}^t\p^{*}\braket{\tbar{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}} \\
+  &= \left/ \text{Insert perturbative expansions of parameters} \right/ \\
+  &=
+  \sum_{j=1}^2 \braket{\tbar{j}^{[1]}+\tbar{j}^{[2]} |
+  \commutator{\Phi}{T_3^{[2]} + \tilde{T}_3} | \mathrm{HF}} \\
+  &+ ({}^t\p^{[1]} + {}^t\p^{[2]})
+  \braket{\tbar{2}^{[1]} + \tbar{2}^{[2]} | \commutator{\s}{T_3^{[2]} + \tilde{T}_3} | \mathrm{HF}} \\
+  &= \left/ \text{Expand} \right/ \\
+  &\highlight{green}{
+  \sum_{j=1}^2 \braket{\tbar{j}^{[1]} | \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}
+  }
+  + \highlight{blue}{
+  \sum_{j=1}^2 \braket{\tbar{j}^{[1]} | \commutator{\Phi}{\tilde{T}_3} | \mathrm{HF}}
+  }
+  + \highlight{blue}{
+  \sum_{j=1}^2 \braket{\tbar{j}^{[2]} | \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}
+  } \\
+  &+
+  \highlight{green}{
+  {}^t\p^{[1]} \braket{\tbar{2}^{[1]} | \commutator{\s}{T_3^{[2]}} | \mathrm{HF}}
+  }
+  + \highlight{blue}{
+  {}^t\p^{[1]} \braket{\tbar{2}^{[2]} | \commutator{\s}{T_3^{[2]}} | \mathrm{HF}}
+  } \\
+  &+ \highlight{blue}{
+  {}^t\p^{[1]} \braket{\tbar{2}^{[1]} | \commutator{\s}{\tilde{T}_3} | \mathrm{HF}}
+  }
+  + \highlight{blue}{
+  {}^t\p^{[2]} \braket{\tbar{2}^{[1]} | \commutator{\s}{T_3^{[2]}} | \mathrm{HF}}
+  }
+  + O(6) \\
+  &= \left/ \text{Use definition of $\tilde{T}_3$ and triples multipliers equation} \right/ \\
+  &\highlight{green}{
+  \sum_{j=1}^2 \braket{\tbar{j}^{[1]} | \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}
+  }
+  + \highlight{blue}{
+  \braket{\tbar{3}^{[2]} | \commutator{\Phi}{T_2^{[2]}} | \mathrm{HF}}
+  }
+  + \highlight{blue}{
+  \sum_{j=1}^2 \braket{\tbar{j}^{[2]} | \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}
+  } \\
+  &+
+  \highlight{green}{
+  {}^t\p^{[1]} \braket{\tbar{2}^{[1]} | \commutator{\s}{T_3^{[2]}} | \mathrm{HF}}
+  }
+  + \highlight{blue}{
+  {}^t\p^{[1]} \braket{\tbar{2}^{[2]} | \commutator{\s}{T_3^{[2]}} | \mathrm{HF}}
+  } \\
+  &+ \highlight{blue}{
+  {}^t\p^{[1]} \braket{\tbar{2}^{[1]} | \commutator{\s}{\tilde{T}_3} | \mathrm{HF}}
+  }
+  + \highlight{blue}{
+  {}^t\p^{[2]} \braket{\tbar{2}^{[1]} | \commutator{\s}{T_3^{[2]}} | \mathrm{HF}}
+  }
+  + O(6) \\
+  \end{aligned}
+\end{equation}
+
+\todo[inline]{Don't really know what to do with the
+${}^t\p^{[1]} \braket{\tbar{2}^{[1]} | \commutator{\s}{\tilde{T}_3} | \mathrm{HF}}$ term.
+I think it is correctly identified as $O(5)$, but that it's among the
+discarded terms.}
