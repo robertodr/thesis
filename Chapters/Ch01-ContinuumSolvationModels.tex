@@ -1,7 +1,8 @@
 % mainfile: ../RobertoDiRemigioPhDThesis.tex
 \chapter{Continuum solvation models}\label{ch:CSM}
 
-\section{A unifying view of classical polarizable models}
+\section{A unifying view of classical polarizable
+models}\label{sec:variational}
 
 Variational functional for implicit models, \acs{PCM} in this case:
 \begin{equation}
@@ -29,7 +30,7 @@ following shorthand notation will be adopted:
 \end{equation}
 
 Coupled implicit/explicit polarization energy functional:
-\begin{equation}
+\begin{equation}\label{eq:pcm-mm-functional}
   U_\mathrm{pol} =
    \frac{1}{2}\sigma\PCM\sigma + \sigma\esp
  + \frac{1}{2}\kappa\MM\kappa + \kappa\zeta
@@ -96,3 +97,33 @@ where:
 and the ${}^t\p$ symbol denotes the transposed supervector $\p$.
 The supermatrix form will prove particularly useful in the following
 derivations.
+
+\section{Perché è figo}
+
+\todo[inline]{PUT REFERENCES HERE!!!}
+The variational formulation offers a series of advantages.
+The classical energy functional:
+\begin{equation}
+  U_\mathrm{pol} =
+   \frac{1}{2}\sigma\PCM\sigma + \sigma\esp
+ + \frac{1}{2}\kappa\MM\kappa + \kappa\zeta
+ + \sigma\bi{X}\kappa
+\end{equation}
+renders itself to a straightforward physical interpretation. In the
+three bilinear terms, \ie{} the ones mediated by an interaction
+operator, we can identify the self-interaction of the classical
+polarization with itself, be it purely implicit:
+$\frac{1}{2}\sigma\PCM\sigma$, purely explicit
+$\frac{1}{2}\kappa\MM\kappa$ or mixed $\sigma\MMPCM\kappa$.
+These terms are positive definite and give rise to an unfavorable
+contribution, which is counterbalanced by the linear terms. These terms
+mediate the interaction between the induced polarization and the
+inducing fields: $\esp$ and $\zeta$. While $\esp$ is quite clearly the
+\acl{MEP} (\acs{MEP}), $\zeta$ can either be the molecular electric
+field (MMpol and PE models) or again the \acs{MEP} (FQ model).
+In any case, both will be determined by the quantum mechanical molecular
+charge density and can thus be formulated as expectation values of
+one-electron operators. Eventually, this achieves the coupling between
+the classical -- $\sigma$ and $\kappa$ -- and
+the quantum mechanical variational degrees of freedom.
+
