@@ -1,9 +1,8 @@
 % mainfile: ../RobertoDiRemigioPhDThesis.tex
 %************************************************
-\chapter{Treating solvation within correlated wave function models}\label{ch:PCMCC}
+\chapter{A New Perspective on Electron Correlation and Solvation}\label{ch:solvation-correlation}
 
 \epigraph{Potius sero quam numquam}{--- \textsc{Titus Livius}, \textit{Ab Urbe Condita}}
-
 \epigraph{Non temerai i terrori della notte non temerai il terrore}{--- \textsc{CCCP}}
 
 I will present results on the formulation of quantum/classical
@@ -242,8 +241,8 @@ and similarly for the sources:
   \end{pmatrix}
   +
   \begin{pmatrix}
-    \tilde{\esp}(\tamp{}, \tbar{}) \\
-   \tilde{\zeta}(\tamp{}, \tbar{})
+    \esp_{\mathrm{N}}(\tamp{}, \tbar{}) \\
+    \zeta_{\mathrm{N}}(\tamp{}, \tbar{})
   \end{pmatrix} \\
   &=
   \begin{pmatrix}
@@ -271,17 +270,24 @@ rewritten as:
 \end{subequations}
 taking advantage of the fact that both $\esp$ and $\kappa$ are
 nondiagonal, one-electron operators and hence their commutator
-expansions truncate at the third term.
-Next, we apply a shift to the correlation part of the source term one-electron
-operators to remove the reference source terms:
+expansions truncate at the third term. Moreover, normal-ordering of the
+operators has been introduced.~\autocite{Crawford2000-ey, Shavitt}
+This is equivalent to applying a shift to the correlation part of the
+source term one-electron operators to remove the reference source terms:
 \begin{equation}
   \begin{aligned}
   \begin{pmatrix}
-   \braket{\mathrm{HF} | \tilde{\esp} | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \tilde{\esp} | \mathrm{HF}} \\
-   \braket{\mathrm{HF} | \tilde{\zeta} | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \tilde{\zeta} | \mathrm{HF}}
+    \esp_{\mathrm{N}}(\tamp{}, \tbar{}) \\
+    \zeta_{\mathrm{N}}(\tamp{}, \tbar{})
   \end{pmatrix}
+  &=
+  \begin{pmatrix}
+   \braket{\mathrm{HF} | \tilde{\esp} | \mathrm{HF}}
+  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\esp} | \mathrm{HF}} \\
+   \braket{\mathrm{HF} | \tilde{\zeta} | \mathrm{HF}}
+  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\zeta} | \mathrm{HF}}
+  \end{pmatrix}
+  \\
   &=
   \begin{pmatrix}
     \braket{\mathrm{HF} | \overline{\esp} - \esp_\mathrm{HF} | \mathrm{HF}}
@@ -290,32 +296,17 @@ operators to remove the reference source terms:
   + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\zeta} -
   \zeta_\mathrm{HF}| \mathrm{HF}}
   \end{pmatrix}
-  \\
-  =
-  \begin{pmatrix}
-   \braket{\mathrm{HF} | \tilde{\esp} | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\esp} | \mathrm{HF}} \\
-   \braket{\mathrm{HF} | \tilde{\zeta} | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\zeta} | \mathrm{HF}}
-  \end{pmatrix}
-  &=
-  \begin{pmatrix}
-    \tilde{\esp}(\tamp{}, \tbar{}) \\
-    \tilde{\zeta}(\tamp{}, \tbar{})
-  \end{pmatrix}
 \end{aligned}
 \end{equation}
-which is equivalent to imposing normal ordering of the
-operators.~\autocite{Shavitt}
 
 Eventually, the polarization functional can be rewritten as:
 \begin{equation}
   \begin{aligned}
   U_\mathrm{pol} &=
   \frac{1}{2}(\sigma_\mathrm{HF}+\sigma)\PCM(\sigma_\mathrm{HF}+\sigma)
-+ (\sigma_\mathrm{HF}+\sigma)(\esp_\mathrm{HF}+\tilde{\esp}(\tamp{},\tbar{})) \\
++ (\sigma_\mathrm{HF}+\sigma)(\esp_\mathrm{HF}+\esp_{\mathrm{N}}(\tamp{},\tbar{})) \\
 &+ \frac{1}{2}(\kappa_\mathrm{HF}+\kappa)\MM(\kappa_\mathrm{HF}+\kappa)
-+ (\kappa_\mathrm{HF}+\kappa)(\zeta_\mathrm{HF}+\tilde{\zeta}(\tamp{},\tbar{}))
++ (\kappa_\mathrm{HF}+\kappa)(\zeta_\mathrm{HF}+\zeta_{\mathrm{N}}(\tamp{},\tbar{}))
 + (\sigma_\mathrm{HF}+\sigma)\bi{X}(\kappa_\mathrm{HF}+\kappa) \\
   %%%% Steps
 &= \left/ \text{Expand and collect} \right/ \\
@@ -326,14 +317,14 @@ Eventually, the polarization functional can be rewritten as:
   + \kappa_\mathrm{HF}\zeta_\mathrm{HF}
   + \sigma_\mathrm{HF}\bi{X}\kappa_\mathrm{HF} \\
 &+  \frac{1}{2}\sigma\PCM\sigma
-  + \sigma\tilde{\esp}(\tamp{},\tbar{})
+  + \sigma\esp_{\mathrm{N}}(\tamp{},\tbar{})
   + \frac{1}{2}\kappa\MM\kappa
-  + \kappa\tilde{\zeta}(\tamp{},\tbar{})
+  + \kappa\zeta_{\mathrm{N}}(\tamp{},\tbar{})
   + \sigma\bi{X}\kappa \\
 &+  \frac{1}{2}\sigma_\mathrm{HF}\PCM\sigma
-  + \sigma_\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{})
+  + \sigma_\mathrm{HF}\esp_{\mathrm{N}}(\tamp{},\tbar{})
   + \frac{1}{2}\kappa_\mathrm{HF}\MM\kappa
-  + \kappa_\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{})
+  + \kappa_\mathrm{HF}\zeta_{\mathrm{N}}(\tamp{},\tbar{})
   + \sigma_\mathrm{HF}\bi{X}\kappa \\
 &+  \frac{1}{2}\sigma\PCM\sigma_\mathrm{HF}
   + \sigma\esp_\mathrm{HF}
@@ -360,14 +351,14 @@ Eventually, the polarization functional can be rewritten as:
     \frac{1}{2}\sigma_\mathrm{HF}\esp_\mathrm{HF}
   + \frac{1}{2}\kappa_\mathrm{HF}\zeta_\mathrm{HF} \\
 &+  \frac{1}{2}\sigma\PCM\sigma
-  + \sigma\tilde{\esp}(\tamp{},\tbar{})
+  + \sigma\esp_{\mathrm{N}}(\tamp{},\tbar{})
   + \frac{1}{2}\kappa\MM\kappa
-  + \kappa\tilde{\zeta}(\tamp{},\tbar{})
+  + \kappa\zeta_{\mathrm{N}}(\tamp{},\tbar{})
   + \sigma\bi{X}\kappa \\
 &+  \frac{1}{2}\sigma_\mathrm{HF}\PCM\sigma
-  + \sigma_\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{})
+  + \sigma_\mathrm{HF}\esp_{\mathrm{N}}(\tamp{},\tbar{})
   + \frac{1}{2}\kappa_\mathrm{HF}\MM\kappa
-  + \kappa_\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{})
+  + \kappa_\mathrm{HF}\zeta_{\mathrm{N}}(\tamp{},\tbar{})
   + \sigma_\mathrm{HF}\bi{X}\kappa \\
 &+  \frac{1}{2}\sigma\PCM\sigma_\mathrm{HF}
   + \sigma\esp_\mathrm{HF}
@@ -390,13 +381,13 @@ Eventually, the polarization functional can be rewritten as:
     \frac{1}{2}\sigma_\mathrm{HF}\esp_\mathrm{HF}
   + \frac{1}{2}\kappa_\mathrm{HF}\zeta_\mathrm{HF} \\
 &+  \frac{1}{2}\sigma\PCM\sigma
-  + \sigma\tilde{\esp}(\tamp{},\tbar{})
+  + \sigma\esp_{\mathrm{N}}(\tamp{},\tbar{})
   + \frac{1}{2}\kappa\MM\kappa
-  + \kappa\tilde{\zeta}(\tamp{},\tbar{})
+  + \kappa\zeta_{\mathrm{N}}(\tamp{},\tbar{})
   + \sigma\bi{X}\kappa \\
   &+ \sigma(\cancelto{0}{\bi{Y}\sigma_\mathrm{HF} + \bi{X}\kappa_\mathrm{HF} + \esp_\mathrm{HF}})
   + \kappa(\cancelto{0}{\bi{W}\kappa_\mathrm{HF} + \bi{X}^\dagger\sigma_\mathrm{HF} + \zeta_\mathrm{HF}}) \\
-&+ \sigma_\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{}) + \kappa_\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{}) \\
+&+ \sigma_\mathrm{HF}\esp_{\mathrm{N}}(\tamp{},\tbar{}) + \kappa_\mathrm{HF}\zeta_{\mathrm{N}}(\tamp{},\tbar{}) \\
   %%%% Steps
 &= \left/
     \frac{1}{2}\sigma_\mathrm{HF}\esp_\mathrm{HF}
@@ -406,11 +397,11 @@ Eventually, the polarization functional can be rewritten as:
 &=
   U_\mathrm{pol}^\mathrm{ref}
   +  \frac{1}{2}\sigma\PCM\sigma
-  + \sigma\tilde{\esp}(\tamp{},\tbar{})
+  + \sigma\esp_{\mathrm{N}}(\tamp{},\tbar{})
   + \frac{1}{2}\kappa\MM\kappa
-  + \kappa\tilde{\zeta}(\tamp{},\tbar{})
+  + \kappa\zeta_{\mathrm{N}}(\tamp{},\tbar{})
   + \sigma\bi{X}\kappa \\
-&+ \sigma_\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{}) + \kappa_\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{})
+&+ \sigma_\mathrm{HF}\esp_{\mathrm{N}}(\tamp{},\tbar{}) + \kappa_\mathrm{HF}\zeta_{\mathrm{N}}(\tamp{},\tbar{})
   \end{aligned}
 \end{equation}
 
@@ -424,17 +415,17 @@ manipulations:
   \begin{aligned}
   U_\mathrm{pol} &=
     \frac{1}{2}\sigma\PCM\sigma
-    + \sigma\tilde{\esp}(\tamp{},\tbar{})
+    + \sigma\esp_{\mathrm{N}}(\tamp{},\tbar{})
   + \frac{1}{2}\kappa\MM\kappa
-  + \kappa\tilde{\zeta}(\tamp{},\tbar{})
+  + \kappa\zeta_{\mathrm{N}}(\tamp{},\tbar{})
   + \sigma\bi{X}\kappa
-  + \sigma_\mathrm{HF}\tilde{\esp}(\tamp{},\tbar{}) +
-  \kappa_\mathrm{HF}\tilde{\zeta}(\tamp{},\tbar{})
+  + \sigma_\mathrm{HF}\esp_{\mathrm{N}}(\tamp{},\tbar{}) +
+  \kappa_\mathrm{HF}\zeta_{\mathrm{N}}(\tamp{},\tbar{})
   + U_\mathrm{pol}^\mathrm{ref}
   \\
   &=
-  \frac{1}{2}{}^t\p\V\p + {}^t\p\tilde{\s}(\tamp{},\tbar{})
-  + {}^t\p_\mathrm{HF}\tilde{\s}(\tamp{},\tbar{})
+  \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})
+  + {}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})
   + U_\mathrm{pol}^\mathrm{ref}
 \end{aligned}
 \end{equation}
@@ -446,21 +437,21 @@ One can then write the effective Lagrangian as:
   \braket{\mathrm{HF} | \overline{H_0} | \mathrm{HF}}
   + \sum_{i=1}^{\mathcal{M}}\braket{\tamp{i} | \overline{H_0} | \mathrm{HF}} \\
   &+
-  \frac{1}{2}{}^t\p\V\p + {}^t\p\tilde{\s}(\tamp{},\tbar{})
-  + {}^t\p_\mathrm{HF}\tilde{\s}(\tamp{},\tbar{})
+  \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})
+  + {}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})
   + U_\mathrm{pol}^\mathrm{ref}
   \end{aligned}
 \end{equation}
 In accordance with previous work,\autocite{Cammi2009-gu,
 Caricato2011-tx} the Hamiltonian $H_0$ is augmented with the
-${}^t\p_\mathrm{HF}\tilde{\s}(\tamp{},\tbar{})$ term to yield the
+${}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})$ term to yield the
 \acl{PTE} (\acs{PTE}) Hamiltonian -- $H$ -- and eventually the
 \acl{PTED} (\acs{PTED}) Lagrangian:~\autocite{Olivares del Valle,
 Lipparini}
 \begin{equation}\label{eq:pted-cc}
   \lag{M}(\tamp{}, \tbar{}, \p) =
   {}^\mathrm{PTE}\lag{M}
-  + \frac{1}{2}{}^t\p\V\p + {}^t\p\tilde{\s}(\tamp{},\tbar{})
+  + \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})
 \end{equation}
 where the \acs{PTE} Lagrangian has been introduced:
 \begin{equation}
@@ -533,7 +524,7 @@ range:
 
 We first expand the source terms entering the Lagrangian as follows:
 \begin{equation}
-  \tilde{\s}(\tamp{}, \tbar{}) =
+  \s_{\mathrm{N}}(\tamp{}, \tbar{}) =
   \braket{\mathrm{HF} | \BCHfirst{\s}{T} + \BCHsecond{\s}{T} | \mathrm{HF}}
   + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \s + \BCHfirst{\s}{T} +
   \BCHsecond{\s}{T} | \mathrm{HF}},
@@ -570,7 +561,7 @@ By virtue of Eq.~\eqref{eq:HF-double-commutator} the \acs{HF}
 expectation value of the double commutator can be dropped. Thus, for a
 general truncation level we obtain:
 \begin{equation}\label{eq:source-term}
-  \tilde{\s}(\tamp{}, \tbar{}) =
+  \s_{\mathrm{N}}(\tamp{}, \tbar{}) =
   \braket{\mathrm{HF} | \BCHfirst{\s}{T_1} | \mathrm{HF}}
   + \braket{\tbar{1} | \s | \mathrm{HF}}
   + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \BCHfirst{\s}{T} + \BCHsecond{\s}{T} | \mathrm{HF}}
@@ -585,16 +576,21 @@ $\braket{\tbar{2} | \commutator{\commutator{\s}{T_1}}{T_2} |
 \commutator{\commutator{\s}{T_1}}{T_3} | \mathrm{HF}} \neq 0$
 More explicitly, for the \ac{CCS} model ($\mathcal{M} = 1$) one has:
 \begin{equation}
-  \tilde{\s}^1(\tamp{}, \tbar{}) =
+  \begin{aligned}
+  \s_{\mathrm{N}}^1(\tamp{}, \tbar{}) &=
+  \braket{\mathrm{HF} | \BCHfirst{\s}{T_1} | \mathrm{HF}}
+  + \braket{\tbar{1} | \check{\s} | \mathrm{HF}} \\
+  &=
   \braket{\mathrm{HF} | \BCHfirst{\s}{T_1} | \mathrm{HF}}
   + \braket{\tbar{1} | \s | \mathrm{HF}}
   + \braket{\tbar{1} | \BCHfirst{\s}{T_1} | \mathrm{HF}}
   + \frac{1}{2}\braket{\tbar{1} | \commutator{\commutator{\s}{T_1}}{T_1} | \mathrm{HF}}
+  \end{aligned}
 \end{equation}
 while for the \ac{CCSD} model ($\mathcal{M} = 2$):
 \begin{equation}
-  \tilde{\s}^2(\tamp{}, \tbar{}) =
-  \tilde{\s}^1(\tamp{}, \tbar{})
+  \s_{\mathrm{N}}^2(\tamp{}, \tbar{}) =
+  \s_{\mathrm{N}}^1(\tamp{}, \tbar{})
   + \braket{\tbar{1} | \BCHfirst{\s}{T_2} | \mathrm{HF}}
   + \braket{\tbar{2} | \BCHfirst{\s}{T_2} | \mathrm{HF}}
   + \braket{\tbar{2} | \commutator{\commutator{\s}{T_1}}{T_2} | \mathrm{HF}}
@@ -603,8 +599,8 @@ Eventually, within the \ac{CCSDT} model ($\mathcal{M} = 3$) four more
 terms are added:
 \begin{equation}
   \begin{aligned}
-  \tilde{\s}^3(\tamp{}, \tbar{}) &=
-  \tilde{\s}^2(\tamp{}, \tbar{})
+  \s_{\mathrm{N}}^3(\tamp{}, \tbar{}) &=
+  \s_{\mathrm{N}}^2(\tamp{}, \tbar{})
   + \braket{\tbar{2} | \BCHfirst{\s}{T_3} | \mathrm{HF}} \\
   &+ \braket{\tbar{3} | \BCHfirst{\s}{T_3} | \mathrm{HF}}
   + \frac{1}{2}
@@ -625,8 +621,7 @@ equations:
   \begin{align}
    \tampEq{\mu_i}(\tamp{}, \tbar{}, \p)  &=
    \denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
-%   + {}^t\p\braket{\mu_i | \s | \mathrm{HF}}\delta_{\mu_i\mu_1} \nonumber \\
-+ {}^t\p\braket{\mu_i | \overline{\s} | \mathrm{HF}}
+   + {}^t\p\braket{\mu_i | \overline{\s} | \mathrm{HF}}
              = 0 \label{eq:pted-cc-amplitudes}\\
    \tbarEq{\mu_i}(\tamp{}, \tbar{}, \p)
     &=
@@ -644,12 +639,12 @@ equations:
              = 0 \label{eq:pted-cc-multipliers}\\
     \Omega_\p(\tamp{}, \tbar{}, \p)
     &=
-    \V\p + \tilde{\s}(\tamp{}, \tbar{}) = 0
+    \V\p + \s_{\mathrm{N}}(\tamp{}, \tbar{}) = 0
     \label{eq:pted-cc-polarization}
   \end{align}
 \end{subequations}
 A coupling of the amplitudes and multipliers equations is introduced by
-the presence of the $\tilde{\s}(\tamp{}, \tbar{})$ expectation value
+the presence of the $\s_{\mathrm{N}}(\tamp{}, \tbar{})$ expectation value
 in the polarization equation.
 This requires a proper macroiteration/microiteration self-consistency
 scheme for its implementation.~\autocite{Cammi2009-gu, Caricato2010-hx}
@@ -671,24 +666,108 @@ and \acs{PTE}.
 
 \subsection*{PTES Scheme}
 
-\todo[inline]{MY CLAIM
+\todo[inline]{This is my claim. I am waiting on an answer from MC to
+clarify this section.}
+
 The first approximate scheme truncates the source term to its \acs{CCS}
-expectation value.}
+expectation value, yielding the effective Lagrangian:
+\begin{equation}\label{eq:ptes-cc}
+  {}^{\mathrm{PTES}}\lag{M}(\tamp{}, \tbar{}, \p) =
+  \braket{\mathrm{HF} | \overline{H} | \mathrm{HF}}
+  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{H} | \mathrm{HF}}
+  + \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}^1(\tamp{}, \tbar{})
+\end{equation}
+and the corresponding governing equations:
+\begin{subequations}
+  \begin{align}
+   \tampEq{\mu_i}(\tamp{}, \tbar{}, \p)  &=
+   \denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
+   + {}^t\p\braket{\mu_i | \check{\s} | \mathrm{HF}}
+             = 0 \\
+   \tbarEq{\mu_i}(\tamp{}, \tbar{}, \p)
+    &=
+    \denom{\mu_i}\tbar{\mu_i} +
+    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}} +
+    \sum_{j}^{\mathcal{M}}\braket{\tbar{j} |
+    \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}}
+    \nonumber \\
+    &+
+    {}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}\delta_{\mu_i\mu_1} \nonumber \\
+    &+
+    {}^t\p\sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}
+    +
+    {}^t\p\sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\commutator{\s}{T}}{\cluster{\mu_i}} | \mathrm{HF}}
+             = 0 \\
+    \Omega_\p(\tamp{}, \tbar{}, \p)
+    &=
+    \V\p + \s_{\mathrm{N}}^1(\tamp{}, \tbar{}) = 0
+  \end{align}
+\end{subequations}
+These equations are, however, still coupled due to the presence of the
+multipliers in the \acs{CCS} source term in the polarization equation.
+To break the coupling, we further approximate $\s_{\mathrm{N}}^1(\tamp{}, \tbar{})$
+with its multiplier-independent part:
+\begin{equation}
+  \s_{\mathrm{N}}^1(\tamp{}, \tbar{})
+  \simeq
+  \braket{\mathrm{HF} | \BCHfirst{\s}{T_1} | \mathrm{HF}}
+  =
+  \braket{\mathrm{HF} | \check{\s}_{\mathrm{N}} | \mathrm{HF}}
+\end{equation}
+so that the governing equations for the \acs{PTES} scheme become:
+\begin{subequations}
+  \begin{align}
+   {}^{\mathrm{PTES}}\tampEq{\mu_i}(\tamp{}, \tbar{}, \p)  &=
+   \denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
+   + {}^t\p\braket{\mu_i | \check{\s} | \mathrm{HF}}
+             = 0 \label{eq:ptes-cc-amplitudes}\\
+   {}^{\mathrm{PTES}}\tbarEq{\mu_i}(\tamp{}, \tbar{}, \p)
+    &=
+    \denom{\mu_i}\tbar{\mu_i} +
+    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}} +
+    \sum_{j}^{\mathcal{M}}\braket{\tbar{j} |
+    \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}}
+    \nonumber \\
+    &+
+    {}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}\delta_{\mu_i\mu_1} \nonumber \\
+    &+
+    {}^t\p\sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}
+    +
+    {}^t\p\sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\commutator{\s}{T}}{\cluster{\mu_i}} | \mathrm{HF}}
+             = 0 \label{eq:ptes-cc-multipliers}\\
+    {}^{\mathrm{PTES}}\Omega_\p(\tamp{}, \tbar{}, \p)
+    &=
+    \V\p + \braket{\mathrm{HF} | \check{\s}_{\mathrm{N}} | \mathrm{HF}} = 0
+    \label{eq:ptes-cc-polarization}
+  \end{align}
+\end{subequations}
+
+\todo[inline]{This thing looks very inconsistent with electrostatics...
+Moreover, it doesn't add up with Caricato's derivation. Maybe there are
+\emph{two different} polarization equations that are used? One when
+solving for the amplitudes and one when solving for the multipliers?}
 
 \subsection*{PTE(S) Scheme}
 
-If we further truncate the correlated source operator expectation value to the
-first term in Eq.~\eqref{eq:source-term}, the coupling between the
-\acs{CC} right and left states is broken, while still improving upon the
-reference reaction field with correlated contributions.
-This is the essence of the \acs{PTE(S)} approximation.~\autocite{Caricato2011-tx}
+The \acs{PTES} approximation can be brought one step further, by
+truncating the \acs{CCS} expectation value to its multiplier-independent
+term:
+\begin{equation}
+  \s_{\mathrm{N}}^1(\tamp{}, \tbar{})
+  \simeq
+  \braket{\mathrm{HF} | \BCHfirst{\s}{T_1} | \mathrm{HF}}
+  =
+  \braket{\mathrm{HF} | \check{\s}_{\mathrm{N}} | \mathrm{HF}}
+\end{equation}
+the coupling between the amplitudes and multipliers is broken, while
+still improving upon the reference reaction field with correlated
+contributions.~\autocite{Caricato2011-tx}
 The effective Lagrangian would then read as:
-\begin{equation}\label{eq:ptes-cc}
+\begin{equation}\label{eq:pte-s-cc}
   {}^{\mathrm{PTE(S)}}\lag{M}(\tamp{}, \tbar{}, \p) =
   \braket{\mathrm{HF} | \overline{H} | \mathrm{HF}}
   + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{H} | \mathrm{HF}}
-  + \frac{1}{2}{}^t\p\V\p + {}^t\p
-  \braket{\mathrm{HF} | \BCHfirst{\s}{T_1} | \mathrm{HF}}
+  + \frac{1}{2}{}^t\p\V\p + {}^t\p\braket{\mathrm{HF} | \check{\s}_{\mathrm{N}} | \mathrm{HF}}
 \end{equation}
 which uncouples all equations:
 \begin{subequations}
@@ -707,20 +786,19 @@ which uncouples all equations:
     = 0 \\
     {}^{\mathrm{PTE(S)}}\Omega_\p(\tamp{}, \tbar{}, \p)
     &=
-    \V\p + \braket{\mathrm{HF} | \BCHfirst{\s}{T_1} | \mathrm{HF}} = 0
+    \V\p + \braket{\mathrm{HF} | \check{\s}_{\mathrm{N}} | \mathrm{HF}} = 0
   \end{align}
 \end{subequations}
 The amplitude equations are formally equivalent to those derived in the
-\acs{PTE} scheme. The equations for multipliers are also formally
+\acs{PTE} scheme, \emph{vide infra}. The equations for multipliers are also formally
 equivalent to the \acs{PTE} equations, apart from the equation
-determining the singles multipliers which is augmented by an additional term:
-${}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_1}} |
-\mathrm{HF}}$
+determining the singles multipliers which features an additional term.
 This term is not, however, coupled to the other equations given that
 $\p$ is fixed once the singles amplitudes have been determined.
+
 Practical implementation of the \acs{PTE(S)} scheme will solve the
 \acs{PTE}-like amplitude equation, form the source term
-$\braket{\mathrm{HF} | \BCHfirst{\s}{T_1} | \mathrm{HF}}$, solve for
+$\braket{\mathrm{HF} | \check{\s}_\mathrm{N} | \mathrm{HF}}$, solve for
 the polarization degrees of freedom and calculate the polarization
 energy as a correction to the \acs{CC} energy.
 Only when a first-order molecular property, such as the molecular
@@ -730,16 +808,17 @@ used to define the classical sources.
 
 \subsection*{PTE Scheme}
 
-The simplest approach is to neglect altogether the polarization equation
-and the polarization degree of freedom. This is equivalent to
-differentiating the polarization-independent \acs{PTE} effective
-Lagrangian:
+Complete neglect of the polarization functional leads to the most
+drastic approximation to the full quantum/classical polarizable
+effective Lagrangian, the \acs{PTE} scheme.
+This is equivalent to differentiating the polarization-independent
+\acs{PTE} effective Lagrangian:
 \begin{subequations}
   \begin{align}
-   \tampEq{\mu_i}(\tamp{}, \tbar{}, \p)  &=
+ {}^{\mathrm{PTE}}\tampEq{\mu_i}(\tamp{}, \tbar{}, \p)  &=
    \denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
     = 0 \\
-   \tbarEq{\mu_i}(\tamp{}, \tbar{}, \p)
+   {}^{\mathrm{PTE}}\tbarEq{\mu_i}(\tamp{}, \tbar{}, \p)
     &=
     \denom{\mu_i}\tbar{\mu_i} +
     \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}} +
@@ -749,12 +828,12 @@ Lagrangian:
   \end{align}
 \end{subequations}
 The \acs{PTE} scheme naturally preserves the scaling of the underlying
-\acs{CC} method.
-The \acs{PTE} scheme is advantageous since no coupling between the
-\acs{CC} amplitude and multiplier equations is introduced.
-The model is also easily implemented, as it only requires access to a
-reference state optimized in the presence of the classical medium.
-The \acs{PTE} model thus offers an efficient approximation to the full
+\acs{CC} method, since no coupling between the \acs{CC} amplitudes and
+multipliers equations is introduced.
+The scheme only requires access to a
+reference state optimized in the presence of the classical medium and is
+thus readily implemented.
+The \acs{PTE} model offers an efficient approximation to the full
 \acs{PTED} model with a computational cost comparable to that of
 \emph{in vacuo} \acs{CC} theory.
 
@@ -764,22 +843,35 @@ questionable from the point of view of classical electrostatics. There
 is, in fact, no relaxation of the reference reaction field due to the
 correlated description of the electronic density.
 
-\section[Coupled Cluster Perturbation Theory]{
-Coupled Cluster Perturbation Theory for a Quantum/Classical Polarizable Hamiltonian}\label{sec:ccpt-polarizable}
+\section[Coupled Cluster Many-Body Perturbation Theory]{
+Coupled Cluster Many-Body Perturbation Theory}\label{sec:mbpt-polarizable}
 
-We will now develop a perturbative expansion of the effective \acs{CC}
-Lagrangian and derive the \acs{CC}\acs{PT} series when a
-quantum/classical polarizable Hamiltonian is used.
+We will now develop a perturbative many-body expansion of the effective
+\acs{CC} Lagrangian when a quantum/classical polarizable Hamiltonian is
+used.
+The use of a \acs{CC} Ansatz for the wave function ensures term-by-term
+size extensivity of the energy at all orders.~\autocite{Helgaker2000-tz}
 The fluctuation potential $\Phi$ is assumed as the perturbation, hence
 it will be considered of order 1: $\Phi = O(1)$.
-Orders will be counted assuming a closed-shell \acs{HF} reference:
-we will use square brackets $[i]$ for an $i$-th order contributions.
+We still assume a closed-shell \acs{HF} reference function and
+perturbation orders will be counted accordingly.
+A superscript index in square brackets - $[i]$ -  will denote an $i$-th
+order contribution.
 We further assume that real wave functions are used.
+\todo[inline]{Is this a necessary assumption??}
 
-The structure of the stationarity conditions
+The structure of the stationarity conditions,
 Eqs.~\eqref{eq:pted-cc-amplitudes} and \eqref{eq:pted-cc-multipliers},
-already shows that $\tamp{\mu_i}^{[0]} = 0, \quad \forall i$ and
-$\tbar{\mu_i}^{[0]} = 0, \quad \forall i$.
+already shows that $\tamp{\mu_i}^{[0]} = 0, \,\forall i$ and
+$\tbar{\mu_i}^{[0]} = 0, \, \forall i$.
+Thus cluster operators can be of order 1 and higher. We introduce the
+following notation for the $i$-th order cluster operators and
+multipliers states:
+\begin{alignat}{2}
+  T_p^{[i]} = \sum_{\mu_p}\tamp{\mu_p}^{[i]}\cluster{\mu_p},
+  \quad&
+  \bra{\tbar{p}^{[i]}} = \sum_{\mu_p}\tbar{\mu_p}^{[i]}\bra{\mu_p}
+\end{alignat}
 
 The \acs{PTED}-\acs{CC} equations are expanded in orders of the
 perturbation and terms are collected order by order. The use of an
@@ -794,64 +886,34 @@ The polarization equation couples to the multipliers and amplitudes
 equations \emph{via} the source term, see Eq.~\eqref{eq:source-term}.
 Its perturbative expansion will be given as:
 \begin{equation}\label{eq:source-term-pt}
-  \tilde{\s}(\tamp{},\tbar{}) =
-  \tilde{\s}^{[0]}
-  + \tilde{\s}^{[1]}
-  + \tilde{\s}^{[2]}
+  \s_{\mathrm{N}}(\tamp{},\tbar{}) =
+  \s_{\mathrm{N}}^{[0]}
+  + \s_{\mathrm{N}}^{[1]}
+  + \s_{\mathrm{N}}^{[2]}
   + \ldots
 \end{equation}
 and correspondingly for the polarization:
 \begin{equation}\label{eq:pol-eq-pt}
-  \V\p^{[i]} + \tilde{\s}^{[i]} = 0
+  \V\p^{[i]} + \s_{\mathrm{N}}^{[i]} = 0
 \end{equation}
 
 The source operator $\s$ will be considered as \emph{zeroth-order} in
 the perturbation.
-The order of the contributions to $\tilde{\s}(\tamp{},\tbar{})$ will be
+The order of the contributions to $\s_{\mathrm{N}}(\tamp{},\tbar{})$ will be
 solely determined by the amplitudes and multipliers.
 From the structure of \eqref{eq:pted-cc-polarization}, it is already
-clear that $\tilde{\s}(\tamp{},\tbar{})$ is at least first order in the
+clear that $\s_{\mathrm{N}}(\tamp{},\tbar{})$ is at least first order in the
 fluctuation potential:
 \begin{equation}
-  \tilde{\s}(\tamp{},\tbar{}) =
-  \tilde{\s}^{[1]}
-  + \tilde{\s}^{[2]}
+  \s_{\mathrm{N}}(\tamp{},\tbar{}) =
+  \s_{\mathrm{N}}^{[1]}
+  + \s_{\mathrm{N}}^{[2]}
   + \ldots
 \end{equation}
 which also implies:
 \begin{equation}
-  \V\p^{[0]} + \tilde{\s}^{[0]} = 0 \Rightarrow  \p^{[0]} = 0
+  \V\p^{[0]} + \s_{\mathrm{N}}^{[0]} = 0 \Rightarrow  \p^{[0]} = 0
 \end{equation}
-
-\paragraph*{Perturbative expansion of $\tilde{\s}$}
-
-\begin{equation}\label{eq:source-1st-order}
-  \tilde{\s}^{[1]}(\tamp{}, \tbar{}) =
-  \braket{\mathrm{HF} | \BCHfirst{\s}{T^{[1]}_1} | \mathrm{HF}}
-  + \braket{\tbar{1}^{[1]} | \s | \mathrm{HF}}
-\end{equation}
-In the free energy corrections we will use the $2n+1$ and $2n+2$ complying
-expression:
-\begin{equation}\label{eq:source-1st-order-rules}
-  \tilde{\s}^{[1]}(\tamp{}, \tbar{}) =
-  \braket{\mathrm{HF} | \BCHfirst{\s}{T^{[1]}_1} | \mathrm{HF}}
-\end{equation}
-
-\begin{equation}\label{eq:source-2nd-order}
-  \tilde{\s}^{[1]}(\tamp{}, \tbar{}) =
-  \braket{\mathrm{HF} | \BCHfirst{\s}{T^{[2]}_1} | \mathrm{HF}}
-  + \braket{\tbar{1}^{[2]} | \s | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i}^{[1]} | \BCHfirst{\s}{T^{[1]}} | \mathrm{HF}}
-\end{equation}
-In the free energy corrections we will use the $2n+1$ and $2n+2$ complying
-expression:
-\begin{equation}\label{eq:source-2nd-order-rules}
-  \tilde{\s}^{[2]}(\tamp{}, \tbar{}) =
-  \braket{\mathrm{HF} | \BCHfirst{\s}{T^{[2]}_1} | \mathrm{HF}}
-  + \braket{\tbar{i}^{[1]} | \BCHfirst{\s}{T^{[1]}} | \mathrm{HF}}
-\end{equation}
-
-
 
 \subsection{First order equations}\label{sec:first-order-pt}
 
@@ -862,7 +924,7 @@ expression:
   + {}^t\p^{[1]}\braket{\mu_i | \s | \mathrm{HF}}\delta_{\mu_i\mu_1}
   = 0
 \end{equation}
-Considering the singles, doubles and triples excitation manifolds:
+Explicitly considering the singles, doubles and triples excitation manifolds:
 \begin{subequations}
   \begin{align}
   \Omega_{\mu_1}^{[1]} &= \denom{\mu_1}\tamp{\mu_1}^{[1]}
@@ -903,7 +965,7 @@ Thus, as for the amplitudes, despite the closed-shell \acs{HF} reference, the si
 multipliers will already appear in first order, due to the
 quantum/classical coupling.
 Moreover, as is the case \emph{in vacuo}, there are no triples contributions to
-the first order amplitudes and multipliers: $\tamp{\mu_3}^{[1]} = \tbar{\mu_3}^{[1]} = 0,\,\,\forall \mu$.
+the first order amplitudes and multipliers: $\tamp{\mu_3}^{[1]} = \tbar{\mu_3}^{[1]} = 0$.
 
 \paragraph*{Polarization}
 To first order, the polarization degree of freedom will be given as:
@@ -917,13 +979,16 @@ first order amplitudes and multipliers yields:
   \begin{aligned}
   \braket{\mathrm{HF} | \commutator{\s}{T_1^{[1]}}| \mathrm{HF}}
   %%%% Steps
-  &= \left/ T_1^{[1]} = \sum_{\mu_1}\ket{\mu_1}\tamp{\mu_1} \right/
+  &= \left/ \text{Expand commutator}, T_1^{[1]} = \sum_{\mu_1}\ket{\mu_1}\tamp{\mu_1} \right/
   =
-  \sum_{\mu_1}\braket{\mathrm{HF}|\s|\mu_1}\tamp{\mu_1} \\
+  \sum_{\mu_1}\braket{\mathrm{HF}|\s|\mu_1}\tamp{\mu_1}^{[1]} \\
   %%%% Steps
   &= \left/ \text{Complex conjugation and real wave functions} \right/ \\
-  &= \sum_{\mu_1}\braket{\mu_1 | \s | \mathrm{HF}}\tbar{\mu_1}
-  = \braket{\tbar{\mu_1}^{[1]} | \s | \mathrm{HF}}
+  &= \sum_{\mu_1}\tbar{\mu_1}^{[1]}\braket{\mu_1 | \s | \mathrm{HF}} \\
+  %%%% Steps
+  &= \left/
+  \bra{\tbar{1}^{[1]}} = \sum_{\mu_1}\tbar{\mu_1}^{[1]}\bra{\mu_1} \right/
+  = \braket{\tbar{1}^{[1]} | \s | \mathrm{HF}}
  \end{aligned}
 \end{equation}
 so that the first order polarization equation becomes:
@@ -1109,7 +1174,7 @@ where $G^{[0]}$ includes the quantum/classical coupling.
 
 We introduce the following notation:
 \begin{equation}
-  \tilde{\s}^{[m]}(\tamp{}^{[p]}, \tbar{}^{[q]})
+  \s_{\mathrm{N}}^{[m]}(\tamp{}^{[p]}, \tbar{}^{[q]})
 \end{equation}
 for a source term of $m$-th order formed by amplitudes up to and
 including $p$-th order and by multipliers up to and including $q$-th order.
@@ -1127,7 +1192,7 @@ amplitudes and polarization, while using zeroth order multipliers:
   \braket{\mathrm{HF} | \commutator{\Phi}{T^{[1]}} | \mathrm{HF}}
   }
   + \frac{1}{2}{}^t\p^{[1]}\V\p^{[1]} +
-  {}^t\p^{[1]}\tilde{\s}^{[1]}(\tamp{}^{[1]}, \tbar{}^{[0]}) \\
+  {}^t\p^{[1]}\s_{\mathrm{N}}^{[1]}(\tamp{}^{[1]}, \tbar{}^{[0]}) \\
   &= \highlight{green}{E^{[2]}}
   +
   \frac{1}{2}{}^t\p^{[1]}\V\p^{[1]}
@@ -1148,7 +1213,7 @@ amplitudes, multipliers and polarization:
   \begin{aligned}
     G^{[3]} &=
     \highlight{green}{\sum_j\braket{\tbar{j}^{[1]} | \commutator{\Phi}{T^{[1]}} | \mathrm{HF}}}
-    + {}^t\p^{[1]}\tilde{\s}^{[2]}(\tamp{}^{[1]}, \tbar{}^{[1]}) \\
+    + {}^t\p^{[1]}\s_{\mathrm{N}}^{[2]}(\tamp{}^{[1]}, \tbar{}^{[1]}) \\
     &=
     \highlight{green}{E^{[3]}}
     + {}^t\p^{[1]}
@@ -1173,8 +1238,8 @@ order amplitudes and polarization, while using first order multipliers:
     }
     \\
     &+\frac{1}{2}{}^t\p^{[2]}\V\p^{[2]}
-    + {}^t\p^{[2]}\tilde{\s}^{[2]}(\tamp{}^{[2]}, \tbar{}^{[1]})
-    + {}^t\p^{[1]}\tilde{\s}^{[3]}(\tamp{}^{[2]}, \tbar{}^{[1]}) \\
+    + {}^t\p^{[2]}\s_{\mathrm{N}}^{[2]}(\tamp{}^{[2]}, \tbar{}^{[1]})
+    + {}^t\p^{[1]}\s_{\mathrm{N}}^{[3]}(\tamp{}^{[2]}, \tbar{}^{[1]}) \\
     &= \highlight{green}{E^{[4]}} + \frac{1}{2}{}^t\p^{[2]}\V\p^{[2]}
     +{}^t\p^{[2]}
     \lbrace
@@ -1282,8 +1347,8 @@ amplitudes, multipliers and polarization:
     \commutator{\commutator{\Phi}{T^{[1]}}}{T^{[1]}}
     | \mathrm{HF}}
     }
-    + {}^t\p^{[2]}\tilde{\s}^{[3]}(\tamp{}^{[2]}, \tbar{}^{[2]})
-    + {}^t\p^{[1]}\tilde{\s}^{[4]}(\tamp{}^{[2]}, \tbar{}^{[2]}) \\
+    + {}^t\p^{[2]}\s_{\mathrm{N}}^{[3]}(\tamp{}^{[2]}, \tbar{}^{[2]})
+    + {}^t\p^{[1]}\s_{\mathrm{N}}^{[4]}(\tamp{}^{[2]}, \tbar{}^{[2]}) \\
     &= \highlight{green}{E^{[5]}}
     + {}^t\p^{[2]}
     \lbrace
@@ -1368,6 +1433,8 @@ amplitudes, multipliers and polarization:
     | \mathrm{HF}}
   \end{aligned}
 \end{equation}
+
+\section[Iterative Approximations: CC2 and CC3]{Iterative Approximations to CCSD and CCSDT: the CC2 and CC3 Models}\label{sec:cc2-and-cc3}
 
 \section[Noniterative Triples Corrections to PCM-CCSD]{
 Noniterative Perturbative Triples Corrections to PCM-CCSD}\label{sec:ccsd-t-noniterative}
@@ -1525,8 +1592,8 @@ contributions where $\tilde{T}_3$ contains third and higher order contributions 
 connected triples. In particular, the following holds:
 \begin{equation}
   \denom{\mu_3}\tamp{\mu_3}^{*} =
-  - \braket{\mu_3 |\commutator{\Phi}{T_2^{1}} | \mathrm{HF}}
-  - \braket{\mu_3 | \commutator{\Phi}{T_2^[2]} | \mathrm{HF}}
+  - \braket{\mu_3 |\commutator{\Phi}{T_2^{[1]}} | \mathrm{HF}}
+  - \braket{\mu_3 | \commutator{\Phi}{T_2^{[2]}} | \mathrm{HF}}
   + O(3)
 \end{equation}
 such that:
