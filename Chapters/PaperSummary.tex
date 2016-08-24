@@ -24,6 +24,17 @@ the publication of each of the papers.
 The codes used in the papers are all interfaced to the \pcmsolver library,
 of which I am the main developer and maintainer.
 
+\begin{figure}[!htb]
+\centering
+\scalebox{0.8}{\input{gfx/relapcm/algorithm.tikz}}
+\caption[Modular approach to programming a \acs{PCM} functionality into an existing \acs{SCF} code.]{
+  Schematic view of the implemented SCF algorithm. Computations/data in
+  \textcolor{Blue}{blue} are on the \pcmsolver side, in
+  \textcolor{Green}{green} on the \DIRAC side.
+  }
+\label{fig:algorithm}
+\end{figure}
+
 \refstepcounter{dummy}
 \addcontentsline{toc}{section}{Continuum solvation in the relativistic regime}
 \section*{Paper I. Continuum solvation in the relativistic regime}
@@ -47,45 +58,9 @@ programming strategy. We showed that it is entirely possible to adopt the same
 \acs{PCM} code and implementation "checkpoints" across altogether different
 problem domains.
 
-\begin{figure}[!htb]
-\centering
-\scalebox{0.8}{\input{gfx/relapcm/algorithm.tikz}}
-\caption[Modular approach to programming a \acs{PCM} functionality into an existing \acs{SCF} code.]{
-  Schematic view of the implemented SCF algorithm. Computations/data in
-  \textcolor{Blue}{blue} are on the \pcmsolver side, in
-  \textcolor{Green}{green} on the \DIRAC side.
-  }
-\label{fig:algorithm}
-\end{figure}
-
 As a by-product of the 4-component implementation, we were able to obtain and visualize \acs{MEP} maps
 from 4-component \acs{SCF} wave functions. These add yet another interpretive tool to the toolbox available
 in the 4-component relativistic regime.
-\todo[inline]{Recalculate MEP maps and reobtain these plots using ParaView.}
-\begin{figure}
-\centering
-\begin{subfigure}[b]{0.5\textwidth}
-\missingfigure{Reobtain this figure: H2O\_MEP-diff-pcmdc-dc}
-\caption{\ce{H2O}: $\mathrm{MEP}_\mathrm{PCM-DC} - \mathrm{MEP}_\mathrm{DC}$}
-\label{fig:H2Odiff_pcmdc-dc}
-\end{subfigure}%
-\begin{subfigure}[b]{0.5\textwidth}
-\missingfigure{Reobtain this figure: H2Po\_MEP-diff-pcmdc-dc}
-\caption{\ce{H2Po}: $\mathrm{MEP}_\mathrm{PCM-DC} - \mathrm{MEP}_\mathrm{DC}$}
-\label{fig:H2Podiff_pcmdc-dc}
-\end{subfigure}
-\caption[Molecular electrostatic potential (\acs{MEP}) maps for \ce{H2O} and \ce{H2Po} at
-  the \acs{DFT}/PBE0 level of theory.]{
-  Molecular electrostatic potential (\acs{MEP}) maps for \ce{H2O} and \ce{H2Po} at
-  the \acs{DFT}/PBE0 level of theory.
-  The isocontours are in the range $[-0.02, 0.02] \si{\hartree\per\elementarycharge}$ and are
-  color-coded from red to blue.
-  The values plotted are differences between the values obtained for the
-  Hamiltonians referred to in the subcaptions. The geometry optimized \emph{in
-  vacuo}, using the \acl{DC} Hamiltonian as reference.
-  \acs{PCM}-\acs{DC}: \acl{DC} in water, \acs{DC}: \acl{DC} \emph{in vacuo}.}
-\label{fig:MEP_maps}
-\end{figure}
 The interface to \DIRAC was later released in the 2014 and later versions,
 providing \acs{PCM} capabilities to the software package.
 
@@ -149,27 +124,6 @@ Finally, I coordinated the editing of all manuscript drafts. I wrote Sections 2.
 while Sections 3 and 4 were co-written with the first author, Monica Bugeanu.
 I performed most of the data analysis and produced tables and graphs.
 
-\begin{figure}[tb]
- \centering
-  \includegraphics[width=\textwidth]{gfx/wemlin/alpha_convergence.png}
-  \caption[Convergence of $\alpha_\mathrm{iso}$ with respect to the number of molecular
-  electrostatic potential (MEP) evaluation points on the cavity surface.]
-  {Convergence of $\alpha_\mathrm{iso}$ with respect to the number of
-   molecular electrostatic potential (MEP) evaluation points on the cavity
-   surface.
-   The values reported are in $a_0^3$ and refer to benzene.
-   The lower axis reports the average area for the collocation
-   tesselation, while the upper axis refers to the patch level in the
-   wavelet Galerkin discretization. The annotation report the number of
-   MEP evaluation points.
-   The compression parameter triplet was set to $a = 2.5,\ d^\prime =
-   2.0,\ b = 0.01$ for the piecewise constant wavelets and to $a = 2.5,\
-   d^\prime = 3.0,\ b = 0.01$ for piecewise bilinear wavelets.
-   The limit value is extrapolated from the results obtained from the
-   piecewise bilinear wavelet Galerkin scheme.}
-  \label{fig:alpha_convergence}
-\end{figure}
-
 Finally, the interface to \LSDALTON was later released in the 2016 version,
 providing \acs{PCM} capabilities to the software package.
 
@@ -210,39 +164,6 @@ they have been proved to be crucial for non homogeneous
 environments.~\autocite{Mozgawa2014-ad}
 Nevertheless our implementation represents a first significant step in the continuum treatment
 of such nontrivial environments.
-
-\begin{figure}[tb]
-  \centering
-  \begin{subfigure}[t]{.49\linewidth}
-  \centering
-  % Figure8a <--> dipole_acetone_perpendicular
-  \includegraphics[width=\textwidth]{gfx/spherical/width.png}
-  \caption{Width effect}
-  \label{fig:profile_dipole_acetone_width}
-  \end{subfigure}
-  ~
-  \begin{subfigure}[t]{.49\linewidth}
-  \centering
-  % Figure8b <--> curv_fullprofile_dip_acetone
-  \includegraphics[width=\textwidth]{gfx/spherical/radius.png}
-  \caption{Radius effect}
-  \label{fig:profile_dipole_acetone_fullprofile}
-  \end{subfigure}
-
-  \begin{subfigure}[t]{.49\linewidth}
-  \centering
-  % Figure8c <--> curv_dip_acetone
-  \includegraphics[width=\textwidth]{gfx/spherical/curvature.png}
-  \caption{Curvature effect}
-  \label{fig:profile_dipole_acetone_curvature}
-  \end{subfigure}
-  \caption[Width, radius and curvature effect on the dipole moment of acetone for water-air droplet phase transfer.]
-  {Dipole moment profiles for acetone (with dipole moment
-  perpendicular to the interface) transfer at water droplet in air, for
-  varying interface widths, values of $R_0$ and the curvature effect on
-  dipole moment, respectively.}
-  \label{fig:profile_dipole_acetone}
-\end{figure}
 
 I contributed most of the theoretical work for this paper, based on early drafts from coauthors
 Ville Weijo and Hui Cao. In particular, I derived the separation of
