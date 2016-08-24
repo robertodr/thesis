@@ -3,15 +3,18 @@
 \DeclareSIUnit[number-unit-product = \;]\au{a.u.}
 
 %%%%% URLs
-\newcommand{\GitHub}{\href{https://github.com/robertodr}{GitHub}}
-\newcommand{\GitLab}{\href{https://gitlab.com/u/robertodr}{GitLab}}
+\newcommand{\GitHub}{\href{https://github.com/robertodr}{GitHub}~}
+\newcommand{\GitLab}{\href{https://gitlab.com/u/robertodr}{GitLab}~}
 \newcommand{\pcmsolver}{\href{http://pcmsolver.readthedocs.org}{\textsc{PCMSolver}}~}
 \newcommand{\psicode}{\href{http://www.psicode.org}{\textsc{Psi4}}~}
 \newcommand{\DIRAC}{\href{http://www.diracprogram.org}{\textsc{DIRAC}}~}
 \newcommand{\DALTON}{\href{http://www.daltonprogram.org}{\textsc{DALTON}}~}
 \newcommand{\LSDALTON}{\href{http://www.daltonprogram.org}{\textsc{LSDALTON}}~}
-\newcommand{\GPL}{\href{https://www.gnu.org/licenses/gpl.html}{GPL}}
-\newcommand{\LGPL}{\href{https://www.gnu.org/licenses/lgpl.html}{LGPL}}
+\newcommand{\git}{\href{https://git-scm.com/}{\texttt{git}}~}
+\newcommand{\cmake}{\href{https://cmake.org/}{\texttt{CMake}}~}
+\newcommand{\readthedocs}{\href{https://readthedocs.org/}{Read The Docs}~}
+\newcommand{\GPL}{\href{https://www.gnu.org/licenses/gpl.html}{GPL}~}
+\newcommand{\LGPL}{\href{https://www.gnu.org/licenses/lgpl.html}{LGPL}~}
 
 %%%%% General
 \newcommand*{\diff}{\mathop{}\!\mathrm{d}} % Differential
@@ -43,6 +46,18 @@
 \newcommand*{\esp}{\varphi} % MEP
 \newcommand*{\Ylm}[4]{\mathcal{Y}_{#1}^{#2}(#3, #4)}
 \newcommand*{\BarYlm}[4]{\overline{\mathcal{Y}}_{#1}^{#2}(#3, #4)}
+\newcommand*{\Li}{L_\mathrm{i}}
+\newcommand*{\ui}{u_\mathrm{i}}
+\newcommand*{\rhoi}{\rho_\mathrm{i}}
+\newcommand*{\Omegai}{\Omega_\mathrm{i}}
+\newcommand*{\partiali}{\partial_{L_\mathrm{i}}}
+\newcommand*{\Gi}{G_\mathrm{i}(x, y)}
+\newcommand*{\Le}{L_\mathrm{e}}
+\newcommand*{\ue}{u_\mathrm{e}}
+\newcommand*{\rhoe}{\rho_\mathrm{e}}
+\newcommand*{\Omegae}{\Omega_\mathrm{e}}
+\newcommand*{\partiale}{\partial_{L_\mathrm{e}}}
+\newcommand*{\Ge}{G_\mathrm{e}(x, y)}
 
 %%%%% Response theory stuff
 \newcommand*{\aveQ}{\left\lbrace\mathcal{Q}(t)\right\rbrace_T}% Time-averaged quasi-energy
@@ -105,3 +120,8 @@
 % Box around equation
 \newcommand{\highlight}[2]{%
   \colorbox{#1!50}{$\displaystyle#2$}}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
