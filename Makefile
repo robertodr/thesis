@@ -4,6 +4,7 @@ DOCUMENT=RobertoDiRemigioPhDThesis
 
 document:
 	xelatex ${DOCUMENT}.tex
+	makeindex ${DOCUMENT}.nlo -s nomencl.ist -o ${DOCUMENT}.nls
 	biber ${DOCUMENT}
 	xelatex ${DOCUMENT}.tex
 

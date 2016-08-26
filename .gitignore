@@ -20,3 +20,6 @@ papers/SC15.pdf
 papers/pcmepr.pdf
 papers/pcmopenrsp.pdf
 *.tdo
+*.nlo
+*.nls
+*.ilg

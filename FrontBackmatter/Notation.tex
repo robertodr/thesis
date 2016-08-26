@@ -1,95 +1,57 @@
-\chapter*{Notations, conventions and units}
-\addcontentsline{toc}{section}{\tocEntry{Notations, conventions and units}}
+\renewcommand\nomgroup[1]{%
+  \item[\bfseries
+  \ifstrequal{#1}{A}{Basic Notation}{%
+  \ifstrequal{#1}{B}{Vectors and Matrices}{%
+  \ifstrequal{#1}{C}{Operators}{}}{
+  \ifstrequal{#1}{D}{Function Spaces}{}}{
+  \ifstrequal{#1}{E}{Molecular Quantum Mechanics}{}}}%
+]}
 
+\renewcommand{\nomname}{
+Notations, Conventions and Units
+}
+\renewcommand{\nompreamble}{
 A number of notations and typographic conventions has been adopted in
-order to maintain consistency throughout. We summarize them here:
-
-\section*{Basic Notation}
-\begin{table*}[!h]
-\begin{tabular}{l l}
-  $u_E$ & Restriction (trace) of the function $u$ to the set $E$ \\
-  $\Span{\vect{v}_1, \ldots, \vect{v}_n}$ & Vector space spanned by the
-  vectors $\vect{v}_1, \ldots, \vect{v}_n$ \\
-  $\delta_{ij}$ & Kronecker symbol: $\delta_{ij}=1i$ if $i=j$ and 0
-  otherwise
-\end{tabular}
-\end{table*}
-
-\section*{Vectors and Matrices}
-\begin{tabular}{l l}
- $\vect{v}, \vect{q}$ & Vectors \\
- $\mat{K}, \mat{F}$ & Matrices \\
- $\mathbb{R}^{m, n}$ & Vector space of real-valued $m\times n$ matrices
- \\
- $\Tr\mat{A}$ & Trace of $\mat{A}$. For $\mat{A}\in\mathbb{R}^{n, n}$,
- $\Tr\mat{A}=\sum_{i=1}^n A_{ii}$ \\
- $0_N, I_N$ & the zero and the identity in an $N$-dimensional vector space
-\end{tabular}
-
-\section*{Operators}
-\begin{tabular}{c l}
- $\bi{A}, \bi{D}$ & integral operators \\
- $H, \varPhi$ & first or second quantized $N$-electron operators
-\end{tabular}
-
-\section*{Function Spaces}
-\begin{tabular}{c l}
- $\norm{u}{X}$ & Norm of $u$ in the normed space $X$ \\
- $\mathcal{C}^0(\Omega)$ & Space of continuous
- functions on $\Omega\subset\mathbb{R}^d$ \\
- $\mathcal{C}^k(\Omega)$ & Space of $k$ times
- continuously differentiable functions on $\Omega$ \\
- $L^p(\Omega)$ & Space of functions whose $p$-th power is Lebesgue
- integrable on $\Omega$ \\
- $\norm{u}{0, p, \Omega}$ & Norm in $L^p(\Omega)$: $\norm{u}{0, p,
- \Omega} = (\int_\Omega\diff\vect{r} |u(\vect{r})|^p)^\frac{1}{p}$ \\
- $\norm{u}{\Omega}$ & Norm in $L^2(\Omega)$:
- $\norm{u}{\Omega} = \norm{u}{0, 2,\Omega} = \sqrt{\int_\Omega\diff\vect{r} |u(\vect{r})|^2}$ \\
- $H^s(\Omega)$ & Sobolev space of order $s$ of functions whose
- derivative up to order $s$ are in $L^2(\Omega)$ \\
- $H_0^s(\Omega)$ & Space of functions in $H^2(\Omega)$ with null trace on the boundary of $\Omega$ \\
- $|u|_{s, \Omega}$ & Seminorm in $H^s(\Omega)$:
- $|u|_{s, \Omega} \coloneq \sum_{|\alpha|=s}\norm{\partial^\alpha u}{\Omega}$ \\
- $\norm{u}{s, \Omega}$ & Norm in $H^s(\Omega)$:
- $\norm{u}{s, \Omega} \coloneq \sum_{l \leq s} |u|_{l, \Omega}$
-\end{tabular}
-
-\todo[inline]{Clarify the notation for the 4-component basis in
-accordance with the EPR paper.}
-Further conventions have been adopted for the indices of functions.
-Lower case Latin letters are used for \ac{MO} 4-spinors, while lower case
-Greek letters ($\kappa, \lambda, \mu, \ldots$) are reserved for
-one-electron basis functions in 2-spinor or scalar form.
-Specific ranges of letters are used as follows:
-\begin{table*}[!h]
-\begin{tabular}{c l}
- $r, s, t, \ldots$ & general MO 4-spinor indices \\
- $i, j, k, \ldots$ & occupied MO 4-spinor indices \\
- $a, b, c, \ldots$ & virtual MO 4-spinor indices
-\end{tabular}
-\end{table*}
-
-Upper case Latin letters always refer to functions in vector spaces
-other than the two listed above. Complex conjugation will always be
-shown using a dagger ($\dagger$) instead of a star ($*$).
-
-Hartree atomic units have been used:~\autocite{Whiffen1978-xx}
+order to maintain consistency throughout. We summarize them here.
+Hartree atomic units are used throughout:~\autocite{Whiffen1978-xx, Mohr2012-zc}
 \begin{equation*}
- \si{\electronmass} = \si{\elementarycharge} = \hslash = 4\pi\diel_0 = 1
+  \si{\electronmass} = \si{\elementarycharge} = \hslash = 4\pi\diel_0 = 1
 \end{equation*}
 the unit of length is the Bohr \si{\bohr}, while that of energy is the Hartree \si{\hartree}.
 The speed of light is then:
 \begin{equation*}
- c = \SI{137.035999074}{\bohr\hartree\per\planckbar}
+  c = \SI{137.035999074}{\bohr\hartree\per\planckbar}
 \end{equation*}
+}
 
-Some useful conversion constants to SI units are here
-listed:~\autocite{Mohr2012-zc}
-\begin{subequations}
- \begin{align*}
-  \SI{1}{\bohr} &= \SI{0.52917721092}{\angstrom} = \SI{5.2917721092e-11}{\meter} \\
-  \SI{1}{\hartree} &= \SI{27.21138505}{\electronvolt} = \SI{2625.4996404}{\kilo\joule\per\mole} \\
-  \SI{1}{\debye} &= \SI{3.3356410E-30}{\coulomb\meter} \\
-  \SI{1}{\angstrom\cubed} &= \SI{1.11264984E-40}{\coulomb\squared\meter\squared\per\joule}
- \end{align*}
-\end{subequations}
+% Basic Notation
+\nomenclature[A, 01]{$u_E$}{Restriction (trace) of the function $u$ to the set $E$}
+\nomenclature[A, 02]{$\Span{\vect{v}_1, \ldots, \vect{v}_n}$}{Vector space spanned by the vectors $\vect{v}_1, \ldots, \vect{v}_n$}
+\nomenclature[A, 03]{$\delta_{ij}$}{Kronecker symbol: $\delta_{ij}=1i$ if $i=j$ and 0 otherwise}
+% Vectors and Matrices
+\nomenclature[B, 01]{$\vect{v}, \vect{q}$}{Vectors}
+\nomenclature[B, 02]{$\mat{K}, \mat{F}$}{Matrices}
+\nomenclature[B, 03]{$\mathbb{R}^{m, n}$}{Vector space of real-valued $m\times n$ matrices}
+\nomenclature[B, 04]{$\Tr\mat{A}$}{Trace of $\mat{A}$. For $\mat{A}\in\mathbb{R}^{n, n}$, $\Tr\mat{A}=\sum_{i=1}^n A_{ii}$}
+\nomenclature[B, 05]{$0_N, I_N$}{The zero and the identity in an $N$-dimensional vector space}
+% Operators
+\nomenclature[C, 01]{$\bi{A}, \bi{D}$}{Integral operators}
+\nomenclature[C, 02]{$H, \varPhi$}{First or second quantized $N$-electron operators}
+% Function Spaces
+\nomenclature[D, 01]{$\norm{u}{X}$}{Norm of $u$ in the normed space $X$}
+\nomenclature[D, 02]{$\mathcal{C}^0(\Omega)$}{Space of continuous functions on $\Omega\subset\mathbb{R}^d$}
+\nomenclature[D, 03]{$\mathcal{C}^k(\Omega)$}{Space of $k$ times continuously differentiable functions on $\Omega$}
+\nomenclature[D, 04]{$L^p(\Omega)$}{Space of functions whose $p$-th power is Lebesgue integrable on $\Omega$}
+\nomenclature[D, 05]{$\norm{u}{0, p, \Omega}$}{Norm in $L^p(\Omega)$: $\norm{u}{0, p, \Omega} = (\int_\Omega\diff\vect{r} |u(\vect{r})|^p)^\frac{1}{p}$}
+\nomenclature[D, 06]{$\norm{u}{\Omega}$}{Norm in $L^2(\Omega)$: $\norm{u}{\Omega} = \norm{u}{0, 2,\Omega} = \sqrt{\int_\Omega\diff\vect{r} |u(\vect{r})|^2}$}
+\nomenclature[D, 07]{$H^s(\Omega)$}{Sobolev space of order $s$ of functions whose derivative up to order $s$ are in $L^2(\Omega)$}
+\nomenclature[D, 08]{$H_0^s(\Omega)$}{Space of functions in $H^2(\Omega)$ with null trace on the boundary of $\Omega$}
+\nomenclature[D, 09]{$|u|_{s, \Omega}$}{Seminorm in $H^s(\Omega)$: $|u|_{s, \Omega} \coloneq \sum_{|\alpha|=s}\norm{\partial^\alpha u}{\Omega}$}
+\nomenclature[D, 10]{$\norm{u}{s, \Omega}$}{Norm in $H^s(\Omega)$: $\norm{u}{s, \Omega} \coloneq \sum_{l \leq s} |u|_{l, \Omega}$}
+% Molecular Quantum Mechanics
+\nomenclature[E, 01]{$r, s, t$}{General \acl{MO} indices}
+\nomenclature[E, 02]{$i, j, k$}{Occupied \acl{MO} indices}
+\nomenclature[E, 03]{$a, b, c$}{Virtual \acl{MO} indices}
+\nomenclature[E, 04]{$\kappa, \lambda, \mu$}{One-electron basis functions indices}
+
+\printnomenclature
