@@ -103,6 +103,15 @@ block=none
 \DeclareFieldFormat{prefixnumber}{\mkbibbold{#1}}
 \DeclareFieldFormat{labelnumber}{\mkbibbold{#1}}
 }
+\DeclareCiteCommand{\noparcite}%[\mkbibbrackets] CITATION LIKE in ref. 6 WITHOUT SQUARE BRACKETS
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}%
+   \usebibmacro{postnote}}
+
 
 \PassOptionsToPackage{fleqn}{amsmath}       % math environments and more by the AMS
     \usepackage{amsmath}
