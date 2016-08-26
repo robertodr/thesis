@@ -3,17 +3,56 @@
 
 A number of notations and typographic conventions has been adopted in
 order to maintain consistency throughout. We summarize them here:
+
+\section*{Basic Notation}
 \begin{table*}[!h]
-\begin{tabular}{c l}
- $\bi{A}, \bi{D}, \ldots$ & integral operators over a closed subset of $\mathbb{R}^2$ \\
- $H, \varPhi, \ldots$ & first or second quantized $N$-electron operators \\
- $\vect{r}, \vect{r}^\prime, \ldots$ & position vectors in $\mathbb{R}^3$ \\
- $\vect{s}, \vect{s}^\prime, \ldots$ & position vectors on a closed surface \\
- $\vect{v}, \vect{q}, \ldots$ & vectors in an arbitrary vector space \\
- $\mat{K}, \mat{F}, \ldots$ & matrices in an arbitrary vector space \\
- $0_N, I_N$ & the zero and the identity in an $N$-dimensional vector space
+\begin{tabular}{l l}
+  $u_E$ & Restriction (trace) of the function $u$ to the set $E$ \\
+  $\Span{\vect{v}_1, \ldots, \vect{v}_n}$ & Vector space spanned by the
+  vectors $\vect{v}_1, \ldots, \vect{v}_n$ \\
+  $\delta_{ij}$ & Kronecker symbol: $\delta_{ij}=1i$ if $i=j$ and 0
+  otherwise
 \end{tabular}
 \end{table*}
+
+\section*{Vectors and Matrices}
+\begin{tabular}{l l}
+ $\vect{v}, \vect{q}$ & Vectors \\
+ $\mat{K}, \mat{F}$ & Matrices \\
+ $\mathbb{R}^{m, n}$ & Vector space of real-valued $m\times n$ matrices
+ \\
+ $\Tr\mat{A}$ & Trace of $\mat{A}$. For $\mat{A}\in\mathbb{R}^{n, n}$,
+ $\Tr\mat{A}=\sum_{i=1}^n A_{ii}$ \\
+ $0_N, I_N$ & the zero and the identity in an $N$-dimensional vector space
+\end{tabular}
+
+\section*{Operators}
+\begin{tabular}{c l}
+ $\bi{A}, \bi{D}$ & integral operators \\
+ $H, \varPhi$ & first or second quantized $N$-electron operators
+\end{tabular}
+
+\section*{Function Spaces}
+\begin{tabular}{c l}
+ $\norm{u}{X}$ & Norm of $u$ in the normed space $X$ \\
+ $\mathcal{C}^0(\Omega)$ & Space of continuous
+ functions on $\Omega\subset\mathbb{R}^d$ \\
+ $\mathcal{C}^k(\Omega)$ & Space of $k$ times
+ continuously differentiable functions on $\Omega$ \\
+ $L^p(\Omega)$ & Space of functions whose $p$-th power is Lebesgue
+ integrable on $\Omega$ \\
+ $\norm{u}{0, p, \Omega}$ & Norm in $L^p(\Omega)$: $\norm{u}{0, p,
+ \Omega} = (\int_\Omega\diff\vect{r} |u(\vect{r})|^p)^\frac{1}{p}$ \\
+ $\norm{u}{\Omega}$ & Norm in $L^2(\Omega)$:
+ $\norm{u}{\Omega} = \norm{u}{0, 2,\Omega} = \sqrt{\int_\Omega\diff\vect{r} |u(\vect{r})|^2}$ \\
+ $H^s(\Omega)$ & Sobolev space of order $s$ of functions whose
+ derivative up to order $s$ are in $L^2(\Omega)$ \\
+ $H_0^s(\Omega)$ & Space of functions in $H^2(\Omega)$ with null trace on the boundary of $\Omega$ \\
+ $|u|_{s, \Omega}$ & Seminorm in $H^s(\Omega)$:
+ $|u|_{s, \Omega} \coloneq \sum_{|\alpha|=s}\norm{\partial^\alpha u}{\Omega}$ \\
+ $\norm{u}{s, \Omega}$ & Norm in $H^s(\Omega)$:
+ $\norm{u}{s, \Omega} \coloneq \sum_{l \leq s} |u|_{l, \Omega}$
+\end{tabular}
 
 \todo[inline]{Clarify the notation for the 4-component basis in
 accordance with the EPR paper.}

@@ -28,7 +28,12 @@
 \newcommand*{\mat}[1]{\mathbf{#1}}% Matrix
 \newcommand*{\Tr}{\mathrm{Tr}}% Trace
 \newcommand*{\supp}[1]{\Supp(#1)}
-\def\doubleunderline#1{\underline{\underline{#1}}}
+\newcommand*{\conv}{\mathop{}\!\mathrm{Conv}\,}
+\newcommand*{\hull}{\mathop{}\!\mathrm{Hull}\,}
+\newcommand*{\sing}{\mathop{}\!\mathrm{Sing}\,}
+\newcommand*{\dist}{\mathop{}\!\mathrm{Dist}}
+\newcommand*{\Span}[1]{\mathop{}\!\mathrm{Span}\{#1\}}
+\newcommand*{\norm}[2]{\| #1 \|_{#2}}
 
 %%%%% PCM stuff
 \newcommand*{\diel}{\varepsilon} % Permittivity
@@ -120,8 +125,55 @@
 % Box around equation
 \newcommand{\highlight}[2]{%
   \colorbox{#1!50}{$\displaystyle#2$}}
+% Color terms in equations
+\newcommand*{\mathcolor}{}
+\def\mathcolor#1#{\mathcoloraux{#1}}
+\newcommand*{\mathcoloraux}[3]{%
+  \protect\leavevmode
+    \begingroup
+        \color#1{#2}#3%
+          \endgroup
+}
 
 % Theorem environments
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{corollary}{Corollary}[theorem]
-\newtheorem{lemma}[theorem]{Lemma}
+%%% Definitions
+\newtheoremstyle{classicdef}%             % Name
+  {12pt}%                                 % Space above
+  {12pt}%                                 % Space below
+  {}%                                     % Body font
+  {}%                                     % Indent amount
+  {\bfseries\scshape}%                    % Theorem head font
+  {.}%                                    % Punctuation after theorem head
+  { }%                                    % Space after theorem head, ' ', or \newline
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%
+
+%%% Theorems, Lemmas, Corollaries
+\newtheoremstyle{classicthm}%             % Name
+  {12pt}%                                 % Space above
+  {12pt}%                                 % Space below
+  {\itshape}%                             % Body font
+  {}%                                     % Indent amount
+  {\bfseries\scshape}%                    % Theorem head font
+  {.}%                                    % Punctuation after theorem head
+  { }%                                    % Space after theorem head, ' ', or \newline
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%
+
+\theoremstyle{classicthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{corollary}{Corollary}
+\newtheorem{postulate}{Postulate}
+
+\theoremstyle{classicdef}
+\newtheorem{defin}{Definition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem{case}{Case}
+
+\newenvironment{Proof}{\vspace*{1.5pt}\begin{proof} \small{}}{\end{proof}\vspace*{1.5pt}}
+\renewenvironment{example}[1][]{\subparagraph*{Example} #1 \small{}}{}
