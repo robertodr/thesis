@@ -2,24 +2,49 @@
 %************************************************
 \chapter{Summary of the publications}\label{ch:publications-summary}
 
-\epigraph{$\frac{1}{2}$ research and $\frac{1}{2}\,\,T\acute{\epsilon}\chi\nu\eta$
+% Very ugly
+\epigraph{\textonehalf\,\,research\,\,\,\,\,\,\,\,\,\,\,\,and \textonehalf\,\,\,\,\,\,\,\,Tεχνη
 
-          $\frac{1}{2}$ observation, $\frac{1}{2}\,\,T\acute{\epsilon}\chi\nu\eta$
+          \textonehalf\,\,observation,\,\,\,\,\,\,\,\,\,\,\,\,\textonehalf\,\,\,\,\,\,\,\,Tεχνη
 
-          $\frac{1}{2}$ training, $\frac{1}{2}\,\,T\acute{\epsilon}\chi\nu\eta$}{
+          \textonehalf\,\,training,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\textonehalf\,\,\,\,\,\,\,\,Tεχνη}{
   --- \textsc{Ezra Pound}, \textit{Canto LXXXV}}
 
-In the following, I provide a brief summary of the motivations, contents and
+This final Chapter provides a brief overview of the motivations, results and
 conclusions of the papers this thesis is based on.
-Figures and tables here reported are minimally modified versions taken from the published work,
-captions are instead copied \emph{verbatim}.
-In addition, I give a description of my contributions to the work leading to
-the publication of each of the papers.
+All publications included in this thesis have involved some programming effort.
+I will also describe the principles we have striven to follow in developing our
+\acs{PCM} software library and its management philosophy.
+I will also give some details on the interfaces we have developed to different
+quantum chemistry codes.
+Finally, for each paper, I will give a description of my contributions to the
+work leading to its publication.
 \todo[inline]{Write something along these lines: "My coauthors have all read and approved."}
 
 \pagebreak
 
+\refstepcounter{dummy}
+\addcontentsline{toc}{section}{Software}
 \section*{Software}
+
+\todo[inline]{Have a closer look at this. I think it needs to be updated for the discussion
+on open-source software that went down on JPC Lett. some time ago.
+Also, acronyms should be properly set up.}
+
+A shorter version of this discussion has been accepted for publication in the
+proceedings of the \emph{Producing High Performance and Sustainable Software
+for Molecular Simulation} workshop held at the 2015 Supercomputing Conference.
+
+We have created an open-source, standalone library to provide \acs{PCM} functionality across
+altogether different quantum chemical program packages.
+The library serves as our development platform for the \acs{PCM}.
+Moreover, the interfaces developed to different quantum chemistry codes allow the exploration
+of new methodologies, significantly cutting down development times.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=.8\textwidth]{notpretty.png}
+\end{figure}
 
 The codes used in the papers are all interfaced to the \pcmsolver library,
 of which I am the main developer and maintainer.
@@ -35,49 +60,31 @@ of which I am the main developer and maintainer.
 \label{fig:algorithm}
 \end{figure}
 
-\todo[inline]{Have a closer look at this. I think it needs to be updated for the discussion
-on open source software that went down on JPC Lett. some time ago.
-Also, acronyms should be properly set up and reference to stuff not included in the thesis
-(time-dependent) removed.}
-It should also be mentioned that this has been accepted (in some partial/modified form)
-for publication as a proceeding:
-\begin{enumerate}
-\item
-  \textbf{R. Di Remigio}, T. D. Crawford, and L. Frediani
-  \\
-  PCMSolver: an Application Programming Interface
-  for the Polarizable Continuum Model
-  \\
-  Accepted for publication in the proceedings of the
-  \emph{Producing High Performance and Sustainable Software for
-  Molecular Simulation} workshop held at the 2015 Supercomputing
-  Conference
-\label{SC15}
-\end{enumerate}
-
-The growing complexity of quantum chemical program packages requires
-that an appropriate strategy be devised to implement new features.
-Scalability is of paramount importance, but it has become clear
-that maintainability and extensibility of the code play an equally
-important role in managing this growing complexity \cite{Wilson2014}.
+The growing complexity of quantum chemical program packages requires that an
+appropriate strategy be devised to implement new features.
+Scalability is of paramount importance, but it has become clear that
+maintainability and extensibility of the code play an equally important role in
+managing this growing complexity.~\autocite{Hatton1994-us, Hatton1997-ml,
+Hatton1997-bb, Ioannidis2005-aj, Merali2010-uy, Prinz2011-kz, Wilson2014-vh}
 
 The use of a \emph{modular programming paradigm} has been recognized as
 beneficial in many other scientific computing contexts. New features are
 isolated into libraries that can be accessed by host programs through a
-well-defined \emph{application programming interface} (API).
+well-defined \ac{API}.
 Computational tasks are thus implemented into separate, independent and
 interchangeable modules. These are \emph{developed} and \emph{tested}
-independently of the particular host program in which they will be used
-\cite{Dijkstra1968, Parnas1972}.  A well-defined API clearly delimits
-the boundaries of the functionality offered, thus forcing a programming
-style and standardisation of the functionality, eventually.
+independently of the particular host program in which they will be
+used.~\cite{Dijkstra1968-vy, Parnas1972-im}
+A well-defined \ac{API} clearly delimits the boundaries of the functionality
+offered, thus forcing a programming style and standardisation of the
+functionality, eventually.~\autocite{Reddy2011-sd}
 
 When coupled with \emph{open-source} licensing, modularity is a proper
 step towards ensuring reproducibility of results from scientific
 simulation software \cite{Gezelter2015-gz, Krylov2015-fs, Jacob2016-oq}.
 Open-source development can fully leverage the benefits
 of widespread, cloud-based, free, code development services, such as
-hosted distributed version control systems (DVCSs), continuous integration, code
+hosted \acp{DVCS}, \ac{CI}, code
 coverage, static and dynamic code analyses, nightly regression testing,
 public issue tracking, code review and so forth:
 adoption of a modern code development workflow is easily within reach.
@@ -89,17 +96,17 @@ to establish
 reproducibility, extensibility and sustainability of the software
 ecosystem.
 Open-source software, modular development of new functionalities
-and full-fledged exploitation of DVCSs ensure a much larger scientific
+and full-fledged exploitation of \acsp{DVCS} ensure a much larger scientific
 impact. Third-parties can easily contribute to
 the project: by improving the documentation, by reporting bugs or
 by actively extending the codebase with new functionality.
 
 The description of chemical phenomena in complex environments, such as
 solutions or proteins, is as challenging as it is important
-for an accurate prediction of a wide range of properties
-\cite{Reichardt2010}. Quantum chemistry is nowadays a valuable
+for an accurate prediction of a wide range of properties.~\autocite{Reichardt2010-le}
+  Quantum chemistry is nowadays a valuable
 tool: its simulations can provide significant insight into complex
-chemical phenomena \cite{Nobel1998, Nobel2013}.
+chemical phenomena.~\autocite{Nobel1998, Nobel2013}.
 The major challenge lies in providing a faithful, realistic, yet cost-effective
 description of the environment of the molecule:
 a molecule in solution can be represented by a quantum mechanical model
@@ -120,27 +127,27 @@ our chemical understanding. This is the idea at the basis of
 \emph{Continuum} (or \emph{implicit}) models, deal explicitly
 only with the degrees of freedom associated with the solute, while
 replacing the solvent with a structureless continuum characterized by
-its bulk properties \cite{Onsager1936}. Among these models, the \acl{PCM} (\acs{PCM})
-is the most widespread and successful \cite{Tomasi2005, mennucci}.
+its bulk properties \cite{Onsager1936-wf}. Among these models, the \acl{PCM} (\acs{PCM})
+is the most widespread and successful \cite{Tomasi2005-vm, Mennucci2008-xl}.
 
-The \acs{PCM} is also an ideal candidate for the creation of a solvation API.
+The \acs{PCM} is also an ideal candidate for the creation of a solvation \acs{API}.
 Its input from and output to \emph{any} quantum chemistry code is
 limited and well-defined.
-This provides a natural API design: the API functions can be compared
+This provides a natural \acs{API} design: the \acs{API} functions can be compared
 \emph{vis-à-vis} with the working equations derived for the different
 quantum chemical methods.
 
 We will elucidate the design principles adopted in the development of our
-\pcmsolver{} library: an \emph{open-source} API for the inclusion of the
+\pcmsolver library: an \emph{open-source} \acs{API} for the inclusion of the
 PCM in \emph{any} quantum chemistry code \cite{PCMSolver}.  Use of our
-API \emph{significantly} limits coding effort on the side of the host:
-continuum solvation at the self-consistent field
-(SCF) level of theory can be implemented in the host program almost out-of-the-box.  The module is
+\acs{API} \emph{significantly} limits coding effort on the side of the host:
+continuum solvation at the \acs{SCF}
+level of theory can be implemented in the host program almost out-of-the-box.  The module is
 agnostic of the host code internals and is tested separately from it.
 
 We will emphasize the role of the open-source licensing model and the
 importance of the modern workflows adopted in our project.  The adoption
-of \git as distributed version control system, \cmake for cross-platform builds and automatic
+of \git as \acs{DVCS}, \cmake for cross-platform builds and automatic
 documentation deployment on \readthedocs simplify extensibility of the
 module and promote third-party contributions to the code base, while
 continuous integration and nightly testing offer an invaluable level of
@@ -153,12 +160,12 @@ confidence in the code.
 
 \pcmsolver currently offers the basic PCM functionality already
 available in many widespread software packages, such as traditional
-collocation solvers for isotropic media \cite{Tomasi2005}.  Some unique
-functionalities are the wavelet Galerkin solvers on smooth molecular
-surfaces \cite{Weijo2010, Bugeanu2015}, the Green’s
-functions for spherical diffuse interfaces \cite{Mozgawa2015}
-and the delayed, time-dependent (TD) solvers for real-time TDSCF
-simulations \cite{Corni2015}.
+collocation solvers for isotropic media.~\autocite{Tomasi2005-vm}
+Some unique functionalities are the wavelet Galerkin solvers on smooth
+molecular surfaces~\autocite{Weijo2010-hy, Bugeanu2015-tp}, the Green’s
+functions for spherical diffuse interfaces~\autocite{DiRemigio2016-nn} and
+the delayed solvers for real-time \acl{TDSCF}
+simulations.~\autocite{Corni2015-pe}
 
 Careful usage of the C++ object-oriented paradigm is the key to this
 wide spectrum of functionalities. The library is in itself made of
@@ -167,21 +174,18 @@ level of the design.
 This allows us to mix languages internally: we currently have Fortran
 and C modules alongside the main C++ structure.
 Library internal classes balance the dynamic polymorphism offered by
-inheritance and the static polymorphism offered by template programming
-\cite{Alexandrescu2001, Sutter2004}.
+inheritance and the static polymorphism offered by template programming.
+~\autocite{Alexandrescu2001-bp, Sutter2004-nt, Langr2012-js}
 Preeminent use of composition over inheritance keeps the coupling
-between different modules as low as possible \cite{Gamma1994}.
+between different modules as low as possible.~\autocite{Gamma1995-fd}
 
-As a final example of the power of our modular strategy, we will present
-our recent work on different quantum chemistry program packages,
-tackling both uncorrelated and correlated wave functions \cite{DALTON,
-PSI4} and also including relativistic effects \cite{DIRAC14brief,
-DiRemigio2014}.  In particular, our recent work-in-progess on a
-variational reformulation of the polarizable continuum model--coupled
-cluster (PCM-CC) algorithm \cite{Cammi2009, Lipparini2011, Caricato2010a} within the
-\psicode{} program package will be presented with emphasis on possible
-applications to the prediction of the optical properties of chiral
-molecules in solution.
+References for the various codes we have created interfaces to.
+\psicode~\autocite{Turney2012-de}
+\DIRAC~\autocite{DIRAC15}
+\DALTON~\autocite{DALTON16, Aidas2013-rp}
+\LSDALTON~\autocite{LSDALTON16, Aidas2013-rp}
+\ReSpect~\autocite{ReSpect citation}
+KOALA~\autocite{Hofener2014-ex, Hofener2016-qz}
 
 \refstepcounter{dummy}
 \addcontentsline{toc}{section}{Continuum solvation in the relativistic regime}
