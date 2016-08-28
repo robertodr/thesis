@@ -101,305 +101,114 @@ electrostatics}
 
 \section{Continuum Electrostatics as a Boundary Integral Problem}\label{sec:IEF}
 
-\begin{figure}[h!]
+The physical setting of the \ac{PCM} is depicted in Figure \ref{fig:IEF}.
+The molecular solute, represented by its charge density
+$\rhoi$ is enclosed in a \emph{cavity} $\Omegai$.
+The boundary of the cavity $\Gamma\equiv\partial\Omegai$ is a
+2-manifold and is assumed to be continuously differentiable, \ie $\mathcal{C}^1$.
+The cavity is carved out of an infinite, structureless, continuum
+characterized by the bulk properties of the solvent.
+The continuum fully spans the external subdomain $\Omegae$.
+The source charge density is not assumed to be continuous: both
+classical point multipoles and quantum mechanical charge densities can
+be treated within the model.
+However, we assume that its support is entirely within the cavity,
+$\Supp(\rhoi) \subseteq \Omegai$. This assumption is, of course, false
+for quantum mechanical charge densities. It can however be proven that
+the errors induced by this \emph{charge penetration} are not so
+severe.~\autocite{Chipman2000-us, Cances2001-qs, Cances2001-qn}
+
+\begin{figure}[tb]
   \centering
-  \includegraphics[width=.65\textwidth]{IEF}
-  \caption{
+  \includegraphics[width=.5\textwidth]{IEF}
+  \caption[The physical setting of the polarizable continuum model.]{
   The physical setting of the \ac{PCM}. The molecular solute,
   represented by its, possibly quantum mechanical, charge density
   $\rho_\mathrm{i}$ is enclosed in a \emph{cavity} $\Omegai$.
   The boundary of the cavity $\Gamma\equiv\partial\Omegai$ is a
-  2-manifold and is assumed to be $\mathcal{C}^1.
+  continuously differentiable 2-manifold.
   We assume the material properties of the cavity to be those of vacuum,
   hence characterized by the Green's function
   $\Gi=\frac{1}{|\vect{r}-\vect{r}^\prime|}$.
   The cavity is carved out of an infinite, structureless, continuum
   characterized by its Green's function $\Ge$ and fully covering the
-  external subdomain $\Omegae$.}
+  external subdomain $\Omegae$.
+  }
   \label{fig:IEF}
 \end{figure}
 
-We assume Euclidean space $\mathbb{R}^3$ to be partitioned into two
-subdomains $\Omegai$ and $\Omegae$ sharing a boundary
-$\Gamma\equiv\partial\Omegai$.
-We further assume that $\Omegai$ is a closed domain, entirely contained
-inside $\Omegae$. The boundary $\Gamma$ is thus a closed surface, \ie~a
-closed 2-manifold in $\mathbb{R}^3$.
-The transmission problem is posed as follows:
-\todo[inline]{Some consideration on suitable functional spaces and the metric thereof.}
+This is a well-known problem in electrostatics~\autocite{Jackson1999, Vanderlinde2005-gf}
+and is called a \emph{transmission} problem in the mathematical
+literature on \acp{PDE}.~\autocite{Hackbusch1995-uq, Sauter2011-an}
+The problem is commonly posed as follows. Given the partition of Euclidean
+space $\mathbb{R}^3$ outlined above, find the solution $u(\vect{r})$
+to the following set:
 \begin{subequations}\label{eq:transmission}
   \begin{align}[left={\empheqlbrace}]
-  \Li u &= f_\mathrm{i} \,\, \text{in}\,\, \Omegai \label{eq:internal} \\
-  \Le u &= f_\mathrm{e} \,\, \text{in}\,\, \Omegae \label{eq:external} \\
-  [u] &= \ue - \ui = g_\mathrm{D} \,\, \text{on}\,\, \Gamma
+  \Li u &= \nabla^2 u = -4\pi\rhoi \,\, \text{in}\,\, \Omegai \label{eq:internal} \\
+  \Le u &= 0 \,\, \text{in}\,\, \Omegae \label{eq:external} \\
+  [u] &= \ue - \ui = 0 \,\, \text{on}\,\, \Gamma
   \label{eq:trace-jump} \\
-[\partial_L u] &= \partiale u - \partiali u = g_\mathrm{N} \,\,
-\text{on}\,\, \Gamma \label{eq:conormal-jump} \\
-|u| &\leq C \|x \|^{-1} \,\,\text{for}\,\,\| x \|\rightarrow\infty
+[\partial_L u] &= \partiale u - \partiali u = 0 \,\, \text{on}\,\, \Gamma \label{eq:conormal-jump} \\
+|u(\vect{r})| &\leq C \|\vect{r} \|^{-1} \,\,\text{for}\,\,\| \vect{r} \|\rightarrow\infty
 \label{eq:radiation}
 \end{align}
 \end{subequations}
-where the jump conditions (eqs. \eqref{eq:trace-jump} and
-\eqref{eq:conormal-jump}) are given in terms of Dirichlet and Neumann
-data for the solution $u$. The jump conditions are expressed in terms of
-trace operators for the solution $u$ and its conormal derivative. For
-notational simplicity, will use the symbols $\partiale$ and $\partiali$
+Eqs.~\eqref{eq:trace-jump} and \eqref{eq:conormal-jump}
+are the \emph{jump conditions}, expressed in terms of trace operators
+for the solution $u$ and its \emph{conormal} derivative.
+For notational simplicity, will use the symbols $\partiale$ and $\partiali$
 for the latter and only give it in explicit form when needed.
 Further mathematical details and technical results on the definition of
 function traces and their use in setting up the proper normal and
 conormal derivatives can be found in the excellent book by
 \citeauthor{Sauter2011-an}.~\autocite{Sauter2011-an}.
-The
-fundamental solutions, or Green's functions, for the elliptic
+The fundamental solutions, or Green's functions, for the elliptic
 differential operators $\Li$ and $\Le$ will be denoted by $\Gi$ and
 $\Ge$, respectively.
+As such the problem is formulated in the so-called \emph{strong} form:
+the sought-after solution $u$ has to be at least two times continuously
+differentiable.
+Moreover, the solution is a function supported over $\mathbb{R}^3$ which
+poses challenges to the numerical solution of the problem.
+We will take a different approach and reformulate it in terms of
+\emph{boundary integral operators}, \ie transform the \acsp{PDE} into a
+\ac{BIE}.
 
-We introduce the relevant boundary integral operators for the
-abovementioned transmission problem. They are three of the four
-components of the Calder\'on projector.
-For $v \in L^2(\Gamma)$, $x, y \in \Gamma$:
-\footnote{We can assume a less restrictive functional space, \ie a
-Sobolev space of fractional order.}
+The first step is to introduce the relevant boundary integral operators for the
+abovementioned transmission problem.
+They are three of the four components of the Calder\'on projector.
+For any function $v$ in the suitable function space and for $\vect{s}, \vect{s}^\prime \in \Gamma$:
 \begin{equation}
 \begin{aligned}
-(\bi{S}_\star v)(x) &= \int_\Gamma G_\star(x, y)v(y)\diff y \\
-(\bi{D}_\star v)(x) &= \int_\Gamma \partial_{L_\star,y}G_\star(x, y)v(y)\diff y \\
-(\bi{D}^\dagger_\star v)(x) &= \int_\Gamma \partial_{L_\star,x}G_\star(x, y)v(y)\diff y \\
+  (\bi{S}_\star v)(\vect{s}) &= \int_\Gamma
+  G_\star(\vect{s}, \vect{s}^\prime)v(\vect{s}^\prime)\diff \vect{s}^\prime \\
+  (\bi{D}_\star v)(\vect{s}) &= \int_\Gamma \partial_{L_\star,\vect{s}}
+  G_\star(\vect{s}, \vect{s}^\prime)v(\vect{s}^\prime)\diff \vect{s}^\prime \\
+  (\bi{D}^\dagger_\star v)(\vect{s}) &= \int_\Gamma
+\partial_{L_\star,\vect{s}^\prime}
+  G_\star(\vect{s}, \vect{s}^\prime)v(\vect{s}^\prime)\diff \vect{s}^\prime \\
 \end{aligned}
 \end{equation}
 where $\star$ is a placeholder for the $\mathrm{i}$ or $\mathrm{e}$ subscript.
-
-\begin{lemma}[Properties of the boundary integral operators]
-  The integral operators introduced above enjoy the following
-  properties~\autocite{Hsiao2008-xb, Sauter2011-an}:
-  \begin{enumerate}
-      \item on $L^2(\Gamma)$ $\bi{S}_\star$ is self-adjoint,
-        $\bi{D}^\dagger_\star$ is the adjoint operator of
-        $\bi{D}_\star$.
-      \item The commutation relations:
-        \begin{alignat}{2}
-          \bi{D}_\star\bi{S}_\star = \bi{S}_\star\bi{D}^\dagger_\star, \quad&
-          \bi{S}_\star\bi{D}_\star = \bi{D}^\dagger_\star\bi{S}_\star
-        \end{alignat}
-        hold
-      \item The operators:
-        \begin{subequations}
-          \begin{align}
-   \bi{S}_\star &: H^{-\frac{1}{2}}(\Gamma) \rightarrow H^{\frac{1}{2}}(\Gamma) \\
-   \bi{D}_\star &: H^{\frac{1}{2}}(\Gamma) \rightarrow H^{\frac{1}{2}}(\Gamma) \\
-   \bi{D}^\dagger_\star &: H^{-\frac{1}{2}}(\Gamma) \rightarrow H^{-\frac{1}{2}}(\Gamma)
-          \end{align}
-        \end{subequations}
-      \item The operator $\bi{S}_\star$ is coervice and admits a
-        continuous inverse in the aforementioned Sobolev spaces.
-      \item The operators $\lambda - \bi{D}_\star$ and $\lambda -
-        \bi{D}^\dagger_\star$ with $\lambda \in (-2\pi, +\infty)$
-        admit a continuous inverse in the aforementioned
-        Sobolev spaces.
-  \end{enumerate}
-\end{lemma}
-
-\subsection{Lemma of Integral Representation}
-For the transmission problem \ref{eq:transmission} there holds:
-\begin{itemize}
-\item $\forall x \in \Omegai$
+Our next step is to rewrite the $u$ as the sum of two contributions:
 \begin{equation}
-u = \bi{S}_\mathrm{i}(\partiali u)
-- \bi{D}_\mathrm{i}(\ui) + \int_{\Omegai} \Gi f_\mathrm{i}\diff y
+  u(\vect{r}) = \esp(\vect{r}) + \xi(\vect{r}) = \int_{\Omegai}
+  \frac{\rhoi(\vect{r}^\prime)}{|\vect{r}-\vect{r}^\prime|}
+  + \xi(\vect{r})
 \end{equation}
-\item $\forall x \in \Omegae$
-\begin{equation}
-u = -\bi{S}_\mathrm{e}(\partiale u)
-+ \bi{D}_\mathrm{e}(\ue) + \int_{\Omegae}\Ge f_\mathrm{e}\diff y
-\end{equation}
-\item $\forall x \in \Gamma$
-  \begin{equation}\label{eq:stat3}
-    \frac{1}{2}\ui = \bi{S}_\mathrm{i}(\partiali u)
-    - \bi{D}_\mathrm{i}(\ui) + \int_{\Omegai}\Gi f_\mathrm{i}\diff y
-  \end{equation}
-\item $\forall x \in \Gamma$
-  \begin{equation}\label{eq:stat4}
-    \frac{1}{2}\ue = -\bi{S}_\mathrm{e}(\partiale u)
-    + \bi{D}_\mathrm{e}(\ue) + \int_{\Omegae}\Ge f_\mathrm{e}\diff y
-  \end{equation}
-\end{itemize}
-
-Note that the figures refer to cases where the dielectric is supposed to
-be homogeneous and isotropic. The derivation are, however, general and
-do not assume homogeneity and isotropy.
-The source charge densities are not assumed to be continuous, the
-hypothesis that they are entirely supported in either of the internal or
-external subdomains is however made:
-\begin{alignat}{2}
-  \Supp(\rhoi) \subseteq \Omegai, \quad& \Supp(\rhoe) \subseteq \Omegae
-\end{alignat}
-
-This is the regular \acs{IEF} as derived in:~\autocite{Cances1998-og}
-\begin{subequations}
-\begin{align}
-  \nabla^2 u &= \rhoi \,\, \text{in}\,\, \Omegai \\
-  \Le u &= 0 \,\, \text{in}\,\, \Omegae \\
-  [u] &= \ue - \ui = 0 \,\, \text{on}\,\, \Gamma \\
-[\partial_L u] &= \partiale u - \partiali u = 0 \,\,
-\text{on}\,\, \Gamma \\
-|u| &\leq C \|x \|^{-1} \,\,\text{for}\,\,\| x \|\rightarrow\infty
-\end{align}
-\end{subequations}
-
-We introduce the following auxiliary potential:
-\begin{equation}
-  h(x) =
-  \begin{cases}
-    &\int_{\mathbb{R}^3}\Gi\rhoi(y)\diff y  \quad x \in \Omegai \\
-    &\int_{\mathbb{R}^3}\Ge\rhoi(y)\diff y  \quad x \in \Omegae
-  \end{cases}
-\end{equation}
-for which we have:\footnote{This can be checked by applying the
-differential operators to the definition of $h$ and then swapping
-differentiation and integration.}
-\begin{equation}
-  \begin{cases}
-    \nabla^2 h &= \rhoi \,\, \text{in}\,\, \Omegai \\
-    \Le h &= 0 \,\, \text{in}\,\, \Omegae
-  \end{cases}
-\end{equation}
-We then define the \emph{reaction potential} as:
-\begin{equation}
-  \xi = u - h
-\end{equation}
-such that:
-\begin{subequations}
-\begin{align}
-  \nabla^2 \xi &= 0 \,\, \text{in}\,\, \Omegai \\
-  \Le \xi &= 0 \,\, \text{in}\,\, \Omegae \\
-  -[\xi] &= [h] \,\, \text{on}\,\, \Gamma \\
-  -[\partial_L \xi] &= [\partial_L h] \,\, \text{on}\,\, \Gamma
-\end{align}
-\end{subequations}
-inside the cavity, the reaction potential can be represented by a
-\emph{single layer potential}, \ie by an apparent surface charge (ASC):
+the former is the electrostatic potential of $\rhoi$ \emph{in vacuo}
+(Newton potential), while the latter is the \emph{reaction} potential.
+The reaction potential describes the polarization in the medium.
+Moreover, it admits a integral representation as a single-layer
+potential:
 \begin{equation}
   \xi_\mathrm{i} = \bi{S}_\mathrm{i}\sigma
 \end{equation}
-
-Applying Eqs. \eqref{eq:stat3} and \eqref{eq:stat4} of the Lemma of Integral
-Representation to the reaction potential yields:
-\begin{align}
-  \frac{1}{2}\xi_\mathrm{i} &= \bi{S}_\mathrm{i}(\partiali \xi) -
-  \bi{D}_\mathrm{i}(\xi_\mathrm{i}) \\
-  -\frac{1}{2}\xi_\mathrm{e} &= \bi{S}_\mathrm{e}(\partiale \xi) -
-  \bi{D}_\mathrm{e}(\xi_\mathrm{e})
-\end{align}
-in both cases the last term, including the integration over the entire
-subdomain volume, drops out ($f_\mathrm{i} = 0 = f_\mathrm{e}$).
-While use of Eq. \eqref{eq:stat4} on the auxiliary potential $h$ yields:
-\begin{equation}
-  -\frac{1}{2}h_\mathrm{e} =
-  \bi{S}_\mathrm{e}(\partiale h) -
-  \bi{D}_\mathrm{e}(h_\mathrm{e})
-\end{equation}
-Together with the jump conditions one obtains:
-\begin{subequations}
-  \begin{align}
-    &\bi{S}_\mathrm{i}(\partiali \xi) - \bi{D}_\mathrm{i}(\xi_\mathrm{i})
-    = \frac{1}{2}\xi_\mathrm{i} \label{eq:first} \\
-    &\bi{S}_\mathrm{e}(\partiale \xi) - \bi{D}_\mathrm{e}(\xi_\mathrm{e})
-    = -\frac{1}{2}\xi_\mathrm{e} \label{eq:second} \\
-  &\bi{S}_\mathrm{e}(\partiale h) - \bi{D}_\mathrm{e}(h_\mathrm{e})
-  = -\frac{1}{2}h_\mathrm{e} \label{eq:third} \\
-  &\xi_\mathrm{i} - \xi_\mathrm{e} = h_\mathrm{e} - h_\mathrm{i}
-  \label{eq:fourth} \\
-  &\partiali \xi - \partiale \xi = \partiale h - \partiali h
-  \label{eq:fifth}
-  \end{align}
-\end{subequations}
-
-\begin{enumerate}
-  \item Add Eqs. \eqref{eq:second} and \eqref{eq:third}:
-    \begin{equation}
-    \bi{S}_\mathrm{e}(\partiale \xi + \partiale h) -
-    \bi{D}_\mathrm{e}(\xi_\mathrm{e} + h_\mathrm{e})
-    = -\frac{1}{2}(\xi_\mathrm{e} + h_\mathrm{e})
-    \end{equation}
-  \item Exploit Eqs. \eqref{eq:fourth} and \eqref{eq:fifth} to
-    eliminate the external traces and conormal derivatives:
-    \begin{equation}
-      \bi{S}_\mathrm{e}(\partiali \xi) + \left(\frac{1}{2} -
-      \bi{D}_\mathrm{e}\right)\xi_\mathrm{i} =
-      - \bi{S}_\mathrm{e}(\partiali h) - \left(\frac{1}{2} -
-      \bi{D}_\mathrm{e}\right)h_\mathrm{i}
-    \end{equation}
-  \item Introduce the integral representation of
-    $\xi_\mathrm{i}$:
-    \begin{equation}
-      \bi{S}_\mathrm{e}(\partiali \xi) + \left(\frac{1}{2} -
-      \bi{D}_\mathrm{e}\right)\bi{S}_\mathrm{i}\sigma =
-      - \bi{S}_\mathrm{e}(\partiali h) - \left(\frac{1}{2} -
-      \bi{D}_\mathrm{e}\right)h_\mathrm{i}
-    \end{equation}
-  \item Reorganize Eq. \eqref{eq:first}, using the commutation
-    relation and the integral representation of $\xi_\mathrm{i}$:
-    \begin{equation}
-    \partiali \xi = \left(\frac{1}{2} + \bi{D}^\dagger_\mathrm{i}\right)\sigma
-    \end{equation}
-    such that:
-    \begin{equation}
-      \left[ \bi{S}_\mathrm{e}\left(\frac{1}{2} + \bi{D}^\dagger_\mathrm{i}\right)
-      +
-      \left(\frac{1}{2} - \bi{D}_\mathrm{e}\right)\bi{S}_\mathrm{i}
-      \right]\sigma =
-      - \bi{S}_\mathrm{e}(\partiali h) - \left(\frac{1}{2} -
-      \bi{D}_\mathrm{e}\right)h_\mathrm{i}
-    \end{equation}
-  \item Employ the \ac{DtN} map to simplify
-    the RHS. The \acs{DtN} map is derived by applying Eq. \eqref{eq:stat3} to
-    the Newton potential:
-    \begin{equation}
-      \phi(x) = (\bi{N}\rhoi)(x) = \int_{\mathbb{R}^3}\Gi\rhoi(y)\diff y
-      = \left.h(x)\right|_{\Omegai}
-    \end{equation}
-    which is equal, in $\Omegai$, to the auxiliary potential $h(x)$.
-    With this definition one has:
-    \begin{equation}
-      \frac{1}{2}\phi_\mathrm{i} =
-      \bi{S}_\mathrm{i}(\partiali \phi) -
-      \bi{D}_\mathrm{i}(\phi_\mathrm{i}) + \int_{\Omegai}\Gi\rhoi(y)\diff y
-      =
-      \bi{S}_\mathrm{i}(\partiali \phi) -
-      \bi{D}_\mathrm{i}(\phi_\mathrm{i}) + \phi_\mathrm{i}
-    \end{equation}
-    eventually leading to the \acs{DtN} map:
-    \begin{equation}\label{eq:regular-DtN}
-      \left(\frac{1}{2} - \bi{D}_\mathrm{i}\right)\phi_\mathrm{i}
-      +\bi{S}_\mathrm{i}(\partiali \phi) = 0
-    \end{equation}
-  \item Having identified $\phi_\mathrm{i} \equiv h_\mathrm{i}$
-    and $\partiali \phi \equiv \partiali h$ and employing the \acs{DtN} map,
-    Eq.\eqref{eq:regular-DtN}, one obtains the \acs{IEF}-\acs{PCM} equation:
-    \begin{equation}\label{eq:full-IEF}
-      \left[ \bi{S}_\mathrm{e}\left(\frac{1}{2} + \bi{D}^\dagger_\mathrm{i}\right)
-      +
-      \left(\frac{1}{2} - \bi{D}_\mathrm{e}\right)\bi{S}_\mathrm{i}
-      \right]\sigma =
-      -\left[\left(\frac{1}{2}-\bi{D}_\mathrm{e}\right)
-      -\bi{S}_\mathrm{e}\bi{S}_\mathrm{i}^{-1}
-       \left(\frac{1}{2}-\bi{D}_\mathrm{i}\right)
-      \right]\phi
-    \end{equation}
-    where the subscript $\mathrm{i}$ for the Newton potential $\phi$ has
-    been dropped, given that it is continuous across the boundary
-    $\Gamma$.
-\end{enumerate}
-The above proves the existence of a representation of the reaction
-potential valid \emph{inside} the cavity in terms of an apparent surface
-charge density. We do not prove the uniqueness of this solution and
-refer the interested reader to the original
-paper.~\autocite{Cances1998-og}
-
-In the code, the Green's functions are defined \emph{without} the $4\pi$
-factors in the denominator. Instead of $\frac{1}{2}$ as coefficients to
-the identity operator, one will then have $2\pi$:
-\begin{equation}\label{eq:full-IEF-2pi}
+where $\sigma$ is the \ac{ASC}, the key quantity in the \acs{PCM}.
+As shown by \citeauthor{Cances1998-og}, the \acs{ASC} can be computed
+as the \emph{unique} solution to the following integral equation:
+\begin{equation}\label{eq:full-IEF}
   \left[ \bi{S}_\mathrm{e}\left(2\pi + \bi{D}^\dagger_\mathrm{i}\right)
   +
   \left(2\pi - \bi{D}_\mathrm{e}\right)\bi{S}_\mathrm{i}
@@ -407,29 +216,44 @@ the identity operator, one will then have $2\pi$:
   -\left[\left(2\pi-\bi{D}_\mathrm{e}\right)
   -\bi{S}_\mathrm{e}\bi{S}_\mathrm{i}^{-1}
   \left(2\pi-\bi{D}_\mathrm{i}\right)
-  \right]\phi
+  \right]\esp
 \end{equation}
+commonly called the \ac{IEF} equation.
+The Green's functions for the elliptic differential operators
+assume a central role in the boundary integral formulation and make the
+\acs{IEF} equation valid for a wide range of external
+environments: homogeneous isotropic, ionic and anisotropic
+liquids,~\autocite{Cances1998-og}
+and systems with interfaces.~\autocite{Corni2002-dr, Frediani2004-er,
+Delgado2013-kd, DiRemigio2016-nn}
 
-From Eq. \eqref{eq:full-IEF-2pi} we can derive the isotropic
-\acs{IEF}, the \acs{DPCM} and the \acs{CPCM} (by letting
-$\diel\rightarrow\infty$) equations.
-For a homogeneous, isotropic dielectric with permittivity $\diel$ the
-Green's function outside the cavity is simply given by scaling the one
-inside:
-\begin{equation}
-  \Ge = \frac{1}{\diel|x-y|} = \frac{1}{\diel} \Gi = \frac{1}{|x-y|}
-\end{equation}
-leading to the boundary integral operators:
+In the special and very common case of homogeneous and isotropic
+environments, \ie regular dielectric materials characterized by a scalar
+permittivity $\diel$, the Green's functions are:
 \begin{alignat}{2}
-  \bi{S}_\mathrm{i} = \diel\bi{S}_\mathrm{e} = \bi{S}, \quad&
-  \bi{D}_\mathrm{i} = \bi{D}_\mathrm{e} = \bi{D}
+  \Ge = \frac{1}{\diel|\vect{r}-\vect{r}^\prime|} = \frac{1}{\diel} \Gi,
+  \quad&
+  \Gi = \frac{1}{|\vect{r}-\vect{r}^\prime|}
 \end{alignat}
-Eventually, one has:
+yielding the isotropic \acs{IEF} equation:
 \begin{equation}\label{eq:isotropic-IEF}
-  \left[ 2\pi \left(\frac{\diel+1}{\diel-1}\right)
-  - \bi{D} \right]\bi{S}\sigma
-  =
-  -\left[2\pi-\bi{D}\right]\phi
+  \bi{R}_\diel\bi{S}\sigma = - \bi{R}_\infty\esp
+\end{equation}
+where the auxiliary operators:
+\begin{alignat}{2}
+  \bi{R}_\diel = \left[
+  2\pi \left(\frac{\diel+1}{\diel-1}\right) - \bi{D}
+  \right],
+  \quad&
+  \bi{R}_\infty =  \lim_{\diel\rightarrow\infty}\bi{R}_\diel
+  = 2\pi-\bi{D}
+\end{alignat}
+have been introduced.
+By letting the $\diel\rightarrow\infty$, one recovers the limiting case
+where conductor boundary conditions are imposed. This leads to the
+well-known \ac{COSMO} equation:~\autocite{Klamt1993-mj, Cossi2003-xe}
+\begin{equation}
+  \bi{S}\sigma = - \esp
 \end{equation}
 
 \section{Detour and Teaser: Weak Formulation of Partial Differential Equations}\label{sec:weak}
