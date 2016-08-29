@@ -184,7 +184,7 @@ References for the various codes we have created interfaces to.
 \DIRAC~\autocite{DIRAC15}
 \DALTON~\autocite{DALTON16, Aidas2013-rp}
 \LSDALTON~\autocite{LSDALTON16, Aidas2013-rp}
-\ReSpect~\autocite{ReSpect citation}
+\ReSpect~\autocite{ReSpect-3.5.0, OtherStuff}
 KOALA~\autocite{Hofener2014-ex, Hofener2016-qz}
 
 \refstepcounter{dummy}
@@ -208,11 +208,11 @@ elements are involved.
 The main point of the paper was, however, the adoption of a fully modular
 programming strategy. We showed that it is entirely possible to adopt the same
 \acs{PCM} code and implementation "checkpoints" across altogether different
-problem domains.
+problem domains, Fig.~\ref{fig:algorithm}.
 
-As a by-product of the 4-component implementation, we were able to obtain and visualize \acs{MEP} maps
-from 4-component \acs{SCF} wave functions. These add yet another interpretive tool to the toolbox available
-in the 4-component relativistic regime.
+As a by-product of the four-component implementation, we were able to obtain and visualize \acs{MEP} maps
+from four-component \acs{SCF} wave functions. These add yet another interpretive tool to the toolbox available
+in the four-component relativistic regime.
 The interface to \DIRAC was later released in the 2014 and later versions,
 providing \acs{PCM} capabilities to the software package.
 
@@ -264,7 +264,7 @@ convergence of the quantum mechanical response equations solvers.
 
 For this paper, I provided template interface and test sets for the cavity
 generator\autocite{Harbrecht2009-no, Harbrecht2011-dk} and wavelet Galerkin
-\acs{BEM} solver with \pcmsolver.
+\acs{BEM} solver\autocite{Harbrecht2004-uo, Harbrecht2006-ug} with \pcmsolver.
 These were used to interface with the new C++ implementation of the wavelet
 Galerkin solvers of Monica Bugeanu.
 I implemented the interface between the \LSDALTON quantum chemistry software
@@ -286,13 +286,23 @@ providing \acs{PCM} capabilities to the software package.
 
 Continuum solvation models offer a simple route to the treatment of non
 homogeneous environments.
-The general integral equation formulation exposed in Chapter~\ref{ch:CSM} is in
-fact transparent with respect to the definition of the Green's function for the
-space portion exterior to the cavity.
-As already shown by \citeauthor{Cances1998-og}, the same mathematical formalism can easily accommodate
-environments characterized by distance-dependent or anisotropic Green's functions, such as those for
-ionic liquids (in the weakly interacting regime described by the linearized Poisson--Boltzmann equation)
-and liquid crystals, respectively.
+The general integral equation formulation is in fact transparent with respect
+to the definition of the Green's function for the space portion exterior to the
+cavity.
+As outlined in Chapter \ref{ch:CSM}, the boundary integral operators in the
+\acs{IEF} equation:
+\begin{equation}
+  \left[ \bi{S}_\mathrm{e}\left(2\pi + \bi{D}^\dagger_\mathrm{i}\right)
+  +
+  \left(2\pi - \bi{D}_\mathrm{e}\right)\bi{S}_\mathrm{i}
+  \right]\sigma =
+  -\left[\left(2\pi-\bi{D}_\mathrm{e}\right)
+  -\bi{S}_\mathrm{e}\bi{S}_\mathrm{i}^{-1}
+  \left(2\pi-\bi{D}_\mathrm{i}\right)
+  \right]\esp,
+  \tag{\ref{eq:full-IEF} from Chapter \ref{ch:CSM}}
+\end{equation}
+can be set up once the Green's functions $\Gi$ and $Ge$ are known.~\autocite{Cances1998-og}
 \citeauthor{Frediani2004-er} showed that a numerical representation of the
 Green's function is sufficient to obtain the boundary integral operators in the
 \acs{PCM} integral equation.
@@ -302,7 +312,7 @@ cilindrically symmetric, permittivity functions: a model for planar diffuse inte
 
 In this work, a similar procedure was introduced to tackle diffuse interfaces
 in spherical symmetry.
-In contrast to previously existing work, our implementation offer a more robust
+In contrast to previously existing work, our implementation offers a more robust
 treatment of thin interfaces, with a rather generic functional form for the
 permittivity profile.
 We thoroughly analyzed the necessity for the \emph{a posteriori} removal of the
@@ -328,7 +338,28 @@ I wrote the first draft of the paper and coordinated all subsequent editing stag
 
 \refstepcounter{dummy}
 \addcontentsline{toc}{section}{Relativistic Calculation of EPR and pNMR Parameters in Solution}
-\section*{Paper IV: Relativistic calculation of EPR and pNMR parameters in solution}
+\section*{Paper IV: Relativistic Calculation of EPR and pNMR Parameters in Solution}
+
+Paper IV is a step further in our exploration of the interplay between
+relativistic and solvent effects initiated with Paper I.
+Whereas Paper I presented the essential framework for the coupling of
+four-component \acs{SCF} wave functions with a classical polarizable continuum,
+in this paper we explored the calculation of first-order magnetic properties:
+\ac{EPR} and \ac{pNMR} parameters.~\autocite{Repisky2010-ls, Malkin2011-nm,
+Komorovsky2013-xa, Cherry2016-ij}
+The two works are thus complementary since they explore two different classes
+of properties and present implementations in two algorithmically different
+relativistic quantum chemistry codes.
+In the relativistic framework, spin-orbit interactions are included from the
+outset in the variational optimization of the wave function.
+Hence, \acs{EPR} and \acs{pNMR} parameters are formulated as expectation
+values, by virtue of the Hellmann--Feynman theorem.~\autocite{Konishi2009-zb,
+Helgaker2000-tz}
+Moreover, the \ReSpect code can exploit the \emph{Kramers unrestricted} formalism,
+allowing for spin polarization and thus granting facile access to the computation
+of spin-dependent properties.~\autocite{Dyall2007-tu}
+The same modular programming strategy was adopted in crafting an interface between the
+relativistic four-component code \ReSpect\autocite{ReSpect-3.5.0} and \pcmsolver.
 
 My contributions to this paper include prototyping the interface between the
 \pcmsolver library and the \ReSpect quantum chemistry code.
@@ -345,6 +376,22 @@ package, providing \acs{PCM} and \acs{COSMO} capabilities.
 \refstepcounter{dummy}
 \addcontentsline{toc}{section}{Open-ended self-consistent field response theory in solution}
 \section*{Paper V: Open-ended self-consistent field response theory in solution}
+
+In recent years, the availability of strong lasers has allowed to
+design and carry out experiments where the high-order response of
+molecular materials can be routinely probed.
+The more intense the light source, the more complicated the interpretation of
+the measured signal.
+Our group has newly developed an open-ended methodology for the computation of
+\acs{SCF} response functions~\autocite{Thorvaldsen2008-sg, Ringholm2014-gx} and
+their residues.~\autocite{Friese2015-kb}
+These developments offer a route towards a synergistic experimental and
+theoretical approach to high-order absorption spectroscopies.
+Paper V grafts a classical polarizable continuum approach to solvation on top
+of the open-ended methodology of \citeauthor{Thorvaldsen2008-sg}.
+Still nowadays, continuum models represent a cost-effective methodology for the
+approximate inclusion of solvent effects, albeit their known limitations with respect
+to specific solute-solvent interactions.
 
 I developed the theoretical framework for the open-ended \acs{SCF} formulation
 of molecular response properties when a quantum/classical polarizable continuum
