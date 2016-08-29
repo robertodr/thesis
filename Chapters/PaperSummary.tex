@@ -2,12 +2,12 @@
 %************************************************
 \chapter{Summary of the publications}\label{ch:publications-summary}
 
-% Very ugly
-\epigraph{\textonehalf\,\,research\,\,\,\,\,\,\,\,\,\,\,\,and \textonehalf\,\,\,\,\,\,\,\,Tεχνη
+\epigraph{\textonehalf\,\,research \kern 20pt and \textonehalf \kern 20pt \textgreek{Tέχνη}
 
-          \textonehalf\,\,observation,\,\,\,\,\,\,\,\,\,\,\,\,\textonehalf\,\,\,\,\,\,\,\,Tεχνη
+          \textonehalf\,\,observation, \kern 22pt \textonehalf \kern 20pt \textgreek{Tέχνη}
 
-          \textonehalf\,\,training,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\textonehalf\,\,\,\,\,\,\,\,Tεχνη}{
+          \textonehalf\,\,training, \kern 39pt \textonehalf \kern 20pt \textgreek{Tέχνη}
+          }{
   --- \textsc{Ezra Pound}, \textit{Canto LXXXV}}
 
 This final Chapter provides a brief overview of the motivations, results and
@@ -220,11 +220,11 @@ I contributed the theoretical derivation of the quantum/classical polarizable
 terms in a four-component \acs{SCF} framework, for energies and linear response
 properties. I devised the coupling of the four-component program \DIRAC with
 \pcmsolver by providing the implementation and testing of:
-\begin{itemize}
+\begin{enumerate*}[label={\alph*)},font={\color{PMS1797}}]
   \item \acs{MEP} integrals for four-component wave functions,
-  \item the additional Fock matrix contributions,
+  \item the additional Fock matrix contributions and
   \item the additional terms in the response equations.
-\end{itemize}
+\end{enumerate*}
 I performed all the calculations and large part of the data analysis
 for the results reported in the paper.
 Finally, I wrote the first draft of the paper and coordinated editing of
@@ -270,10 +270,11 @@ Galerkin solvers of Monica Bugeanu.
 I implemented the interface between the \LSDALTON quantum chemistry software
 package and the \pcmsolver software library. The interface allows to run \acs{HF} and
 \acs{KS}-\acs{DFT} single-point and linear response calculations.
-I, together with coauthor Krzysztof Mozgawa, performed the benchmark quantum
+Together with coauthor Krzysztof Mozgawa, I performed the benchmark quantum
 chemical calculations presented in the paper.
-Finally, I coordinated the editing of all manuscript drafts. I wrote Sections 2.1 and 2.3,
-while Sections 3 and 4 were co-written with the first author, Monica Bugeanu.
+Finally, I coordinated the editing of all manuscript drafts.
+In particular, I wrote the first draft of Sections 2.1 and 2.3.
+The first draft of Sections 3 and 4 was co-written with the first author, Monica Bugeanu.
 I performed most of the data analysis and produced tables and graphs.
 
 Finally, the interface to \LSDALTON was later released in the 2016 version,
@@ -317,7 +318,7 @@ environments.~\autocite{Mozgawa2014-ad}
 Nevertheless our implementation represents a first significant step in the continuum treatment
 of such nontrivial environments.
 
-I contributed most of the theoretical work for this paper, based on early drafts from coauthors
+I contributed the theoretical work for this paper, based on earlier drafts from coauthors
 Ville Weijo and Hui Cao. In particular, I derived the separation of
 the Coulomb singularity in its final form.
 Moreover, I contributed the implementation and testing of the Green's function code.
@@ -326,9 +327,36 @@ also used for this paper.
 I wrote the first draft of the paper and coordinated all subsequent editing stages.
 
 \refstepcounter{dummy}
-\addcontentsline{toc}{section}{Relativistic calculation of EPR and pNMR parameters in solution}
+\addcontentsline{toc}{section}{Relativistic Calculation of EPR and pNMR Parameters in Solution}
 \section*{Paper IV: Relativistic calculation of EPR and pNMR parameters in solution}
+
+My contributions to this paper include prototyping the interface between the
+\pcmsolver library and the \ReSpect quantum chemistry code.
+The interface is maintained in collaboration with coauthor Michal Repisky, who also
+refined the implementation to achieve better computational performance.
+I tested the interface against one-component and four-component results obtained with
+the \LSDALTON and \DIRAC codes, respectively.
+I helped coauthors Michal Repisky, Stanislav Komorovsky and Peter Hrobarik
+with setting up the \acs{PCM} calculations described in the paper.
+Finally, I provided the first draft for Section 2 of the paper and took part in all editing stages.
+The interface to \ReSpect will be released in the next public version of the software
+package, providing \acs{PCM} and \acs{COSMO} capabilities.
 
 \refstepcounter{dummy}
 \addcontentsline{toc}{section}{Open-ended self-consistent field response theory in solution}
 \section*{Paper V: Open-ended self-consistent field response theory in solution}
+
+I developed the theoretical framework for the open-ended \acs{SCF} formulation
+of molecular response properties when a quantum/classical polarizable continuum
+Hamiltonian is used.~\autocite{Thorvaldsen2008-sg, Lipparini2010-be}
+I provided its implementation within the \DALTON code, by interfacing the
+\pcmsolver library and the open-ended \acs{SCF} response code of
+\citeauthor{Ringholm2014-gx}~\autocite{Ringholm2014-gx, Friese2015-kb}
+I performed extensive testing of the code by comparing with previously
+published implementations of the \acs{PCM}-\acs{SCF} response functions within
+\DALTON.~\autocite{Cammi2003-qy, Frediani2005-nc, Ferrighi2010-pm}
+Together with coauthors Maarten T.~P.~Beerepoot and Yann Cornaton, I carried out
+the multiphoton absorption calculations presented in the paper. I contributed
+to data collection and data analysis.
+I drafted the initial versions of Sections 2 and 3 of the manuscript and coordinated all
+editing stages with coauthor Maarten T. P. Beerepoot.

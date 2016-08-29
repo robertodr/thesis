@@ -78,12 +78,13 @@
 % ********************************************************************
 \usepackage{polyglossia}
 \setmainlanguage{english}
-\setotherlanguages{italian, french, norsk}
+\setotherlanguages{italian, french, norsk, greek}
 \setdefaultlanguage{english}
 \usepackage{csquotes}
 \PassOptionsToPackage{%
 style=phys,
-maxcitenames=3,
+maxcitenames=1,
+mincitenames=1,
 maxbibnames=100,
 firstinits=true,
 url=false,
@@ -289,14 +290,9 @@ block=none
 %%% Font stuff
 \usepackage{amssymb}
 \usepackage{fontspec}
-\setmainfont{GaramondNo8}[
-Path           = fonts/,
-Extension      = .ttf,
-UprightFont    = *-Regular,
-BoldFont       = *-Bold,
-ItalicFont     = *-Italic,
-BoldItalicFont = *-Bold-Italic
-]
+\setmainfont[Ligatures=TeX]{TeX Gyre Pagella}
+\newfontfamily\greekfont[Script=Greek]{TeX Gyre Pagella}
+\newfontfamily\greekfontsf[Script=Greek]{TeX Gyre Pagella}
 \usepackage[math-style=ISO,
             bold-style=ISO]{unicode-math}
 \setmathfont{xits-math}[
@@ -328,6 +324,7 @@ BoldFont       = *bold,
 \usepackage{amsthm}
 \allowdisplaybreaks
 
+% Comment before compiling final version
 \usepackage{showkeys}
 
 \usepackage[bottom]{footmisc}
