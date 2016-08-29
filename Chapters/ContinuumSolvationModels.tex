@@ -270,9 +270,11 @@ By letting the $\diel\rightarrow\infty$, one recovers the limiting case
 where conductor boundary conditions are imposed. This leads to the
 well-known \ac{COSMO} equation:~\autocite{Klamt1993-mj, Cossi2003-xe}
 \begin{equation}
-  \bi{S}\sigma = - \esp
+  \bi{S}\sigma = - f(\diel)\esp
 \end{equation}
-\todo[inline]{Mention correction factor $f(\diel)$.}
+where the factor $f(\diel) = \frac{\diel-1}{\diel+x},\, 0\leq x \leq 1$
+has been introduced to account for the error introduced by modelling the
+dielectric as a perfect conductor.
 
 \section{Detour and Teaser: Weak Formulation of Partial Differential Equations}\label{sec:weak}
 
