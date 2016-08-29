@@ -13,52 +13,22 @@
 This final Chapter provides a brief overview of the motivations, results and
 conclusions of the papers this thesis is based on.
 All publications included in this thesis have involved some programming effort.
-I will also describe the principles we have striven to follow in developing our
-\acs{PCM} software library and its management philosophy.
+In Section \ref{sec:software} I will describe the principles we have
+striven to follow in developing our \acs{PCM} software library and its
+management philosophy.
 I will also give some details on the interfaces we have developed to different
 quantum chemistry codes.
-Finally, for each paper, I will give a description of my contributions to the
-work leading to its publication.
-\todo[inline]{Write something along these lines: "My coauthors have all read and approved."}
+A shorter version of the material in Section \ref{sec:software} has been
+accepted for publication in the proceedings of the \emph{Producing High
+Performance and Sustainable Software for Molecular Simulation} workshop
+held at the 2015 Supercomputing Conference.~\autocite{SC15}
+Sections \ref{sec:relapcm}--\ref{sec:pcmopenrsp} contain very short
+summaries of the papers and a list of my contributions.
+My coauthors have all read and approved the description of contributions.
 
 \pagebreak
 
-\refstepcounter{dummy}
-\addcontentsline{toc}{section}{Software}
-\section*{Software}
-
-\todo[inline]{Have a closer look at this. I think it needs to be updated for the discussion
-on open-source software that went down on JPC Lett. some time ago.
-Also, acronyms should be properly set up.}
-
-A shorter version of this discussion has been accepted for publication in the
-proceedings of the \emph{Producing High Performance and Sustainable Software
-for Molecular Simulation} workshop held at the 2015 Supercomputing Conference.
-
-We have created an open-source, standalone library to provide \acs{PCM} functionality across
-altogether different quantum chemical program packages.
-The library serves as our development platform for the \acs{PCM}.
-Moreover, the interfaces developed to different quantum chemistry codes allow the exploration
-of new methodologies, significantly cutting down development times.
-
-\begin{figure}[!htb]
-\centering
-\includegraphics[width=.8\textwidth]{notpretty.png}
-\end{figure}
-
-The codes used in the papers are all interfaced to the \pcmsolver library,
-of which I am the main developer and maintainer.
-
-\begin{figure}[!htb]
-\centering
-\scalebox{0.8}{\input{gfx/algorithm.tikz}}
-\caption[Modular approach to programming a \acs{PCM} functionality into an existing \acs{SCF} code.]{
-  Schematic view of the implemented SCF algorithm. Computations/data in
-  \textcolor{Blue}{blue} are on the \pcmsolver side, in
-  \textcolor{Green}{green} on the \DIRAC side.
-  }
-\label{fig:algorithm}
-\end{figure}
+\section{Software}\label{sec:software}
 
 The growing complexity of quantum chemical program packages requires that an
 appropriate strategy be devised to implement new features.
@@ -100,6 +70,37 @@ and full-fledged exploitation of \acsp{DVCS} ensure a much larger scientific
 impact. Third-parties can easily contribute to
 the project: by improving the documentation, by reporting bugs or
 by actively extending the codebase with new functionality.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The codes used in the papers are all interfaced to the \pcmsolver library,
+of which I am the main developer and maintainer.
+
+Boost\autocite{boost}
+Eigen\autocite{eigen}
+libgetkw\autocite{libgetkw}
+libtaylor\autocite{libtaylor}
+
+We have created an open-source, standalone library to provide \acs{PCM}
+functionality across altogether different quantum chemical program
+packages.
+The library serves as our development platform for the \acs{PCM}.
+Moreover, the interfaces developed to different quantum chemistry codes
+allow the exploration of new methodologies, significantly cutting down
+development times.
+
+\begin{figure}[!htb]
+\centering
+\scalebox{0.8}{\input{gfx/algorithm.tikz}}
+\caption[Modular approach to programming a \acs{PCM} functionality into an existing \acs{SCF} code.]{
+  Schematic view of the implemented SCF algorithm. Computations/data in
+  \textcolor{Blue}{blue} are on the \pcmsolver side, in
+  \textcolor{Green}{green} on the \DIRAC side.
+  }
+\label{fig:algorithm}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The description of chemical phenomena in complex environments, such as
 solutions or proteins, is as challenging as it is important
@@ -153,9 +154,14 @@ module and promote third-party contributions to the code base, while
 continuous integration and nightly testing offer an invaluable level of
 confidence in the code.
 
-\begin{figure}[!htb]
+\begin{figure}[tb]
   \centering
-  \includegraphics[width=.5\textwidth]{pcmsolver-scheme}
+  \scalebox{0.8}{\input{gfx/pcmsolver-scheme.tikz}}
+  \caption[Schematic view of the relationship between a host quantum chemistry
+  program and the \pcmsolver library.]{
+  Schematic view of the relationship between a host quantum chemistry
+  program and the \pcmsolver library.
+  }
 \end{figure}
 
 \pcmsolver currently offers the basic PCM functionality already
@@ -166,6 +172,16 @@ molecular surfaces~\autocite{Weijo2010-hy, Bugeanu2015-tp}, the Green’s
 functions for spherical diffuse interfaces~\autocite{DiRemigio2016-nn} and
 the delayed solvers for real-time \acl{TDSCF}
 simulations.~\autocite{Corni2015-pe}
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=.8\textwidth]{pcmsolver-internals.png}
+  \caption[Internal structure of \pcmsolver.]
+  {
+  Internal structure of \pcmsolver. In the grey boxes the external
+  projects the library depends on.
+  }
+\end{figure}
 
 Careful usage of the C++ object-oriented paradigm is the key to this
 wide spectrum of functionalities. The library is in itself made of
@@ -187,9 +203,7 @@ References for the various codes we have created interfaces to.
 \ReSpect~\autocite{ReSpect-3.5.0, OtherStuff}
 KOALA~\autocite{Hofener2014-ex, Hofener2016-qz}
 
-\refstepcounter{dummy}
-\addcontentsline{toc}{section}{Continuum solvation in the relativistic regime}
-\section*{Paper I. Continuum solvation in the relativistic regime}
+\section{Continuum solvation in the relativistic regime}\label{sec:relapcm}
 
 Systems containing heavy elements are notoriously challenging for quantum chemistry.
 In addition to their significantly large sizes, one has to properly include the
@@ -230,9 +244,7 @@ for the results reported in the paper.
 Finally, I wrote the first draft of the paper and coordinated editing of
 all subsequent versions.
 
-\refstepcounter{dummy}
-\addcontentsline{toc}{section}{The wavelet Galerkin boundary element method for PCM}
-\section*{Paper II. The wavelet Galerkin boundary element method for PCM}
+\section{The Wavelet Galerkin Boundary Element Method for PCM}\label{sec:wemlin}
 
 Continuum solvation models are inherently parametrized. Apart from solvent permittivities,
 the atomic radii and molecular surface definition play a crucial role
@@ -280,9 +292,7 @@ I performed most of the data analysis and produced tables and graphs.
 Finally, the interface to \LSDALTON was later released in the 2016 version,
 providing \acs{PCM} capabilities to the software package.
 
-\refstepcounter{dummy}
-\addcontentsline{toc}{section}{Non homogeneous environments}
-\section*{Paper III: Non homogeneous environments}
+\section{Non homogeneous environments}\label{sec:spherical}
 
 Continuum solvation models offer a simple route to the treatment of non
 homogeneous environments.
@@ -336,9 +346,8 @@ The interface to the \LSDALTON program package, developed within paper II, was
 also used for this paper.
 I wrote the first draft of the paper and coordinated all subsequent editing stages.
 
-\refstepcounter{dummy}
-\addcontentsline{toc}{section}{Relativistic Calculation of EPR and pNMR Parameters in Solution}
-\section*{Paper IV: Relativistic Calculation of EPR and pNMR Parameters in Solution}
+\section{Relativistic Calculation of EPR and pNMR Parameters in
+Solution}\label{sec:pcmepr}
 
 Paper IV is a step further in our exploration of the interplay between
 relativistic and solvent effects initiated with Paper I.
@@ -373,9 +382,8 @@ Finally, I provided the first draft for Section 2 of the paper and took part in 
 The interface to \ReSpect will be released in the next public version of the software
 package, providing \acs{PCM} and \acs{COSMO} capabilities.
 
-\refstepcounter{dummy}
-\addcontentsline{toc}{section}{Open-ended self-consistent field response theory in solution}
-\section*{Paper V: Open-ended self-consistent field response theory in solution}
+\section{Open-ended self-consistent field response theory in
+solution}\label{sec:pcmopenrsp}
 
 In recent years, the availability of strong lasers has allowed to
 design and carry out experiments where the high-order response of
