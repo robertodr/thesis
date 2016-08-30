@@ -34,60 +34,61 @@ The growing complexity of quantum chemical program packages requires that an
 appropriate strategy be devised to implement new features.
 Scalability is of paramount importance, but it has become clear that
 maintainability and extensibility of the code play an equally important role in
-managing this growing complexity.~\autocite{Hatton1994-us, Hatton1997-ml,
-Hatton1997-bb, Ioannidis2005-aj, Merali2010-uy, Prinz2011-kz, Wilson2014-vh}
+managing software complexity\autocite{Wilson2014-vh} and ensuring
+scientific reproducibility.~\autocite{Hatton1994-us, Hatton1997-ml,
+Hatton1997-bb, Ioannidis2005-aj, Merali2010-uy, Prinz2011-kz}
 
-The use of a \emph{modular programming paradigm} has been recognized as
-beneficial in many other scientific computing contexts. New features are
-isolated into libraries that can be accessed by host programs through a
-well-defined \ac{API}.
+The idea of a \emph{modular programming paradigm} can be traced back to
+the dawn of computer science. \citeauthor{Dijkstra1968-zp}
+successfully used it in the development of the THE operating
+system~\autocite{Dijkstra1968-zp} already in 1968, while
+\citeauthor{Parnas1972-im} advocated it as a best practice already in
+1972.~\autocite{Parnas1972-im}
+Modularity is nothing more than a \emph{divide et impera} strategy
+applied to programming and it has been recognized as beneficial in many
+other scientific computing contexts.
+New features are isolated into libraries that can be accessed by host
+programs through a well-defined \ac{API}.
 Computational tasks are thus implemented into separate, independent and
-interchangeable modules. These are \emph{developed} and \emph{tested}
+interchangeable modules. These are \emph{developed}, \emph{tested},
+\emph{packaged} and \emph{distributed}
 independently of the particular host program in which they will be
-used.~\cite{Dijkstra1968-zp, Parnas1972-im}
+used.
 A well-defined \ac{API} clearly delimits the boundaries of the functionality
 offered, thus forcing a programming style and standardisation of the
 functionality, eventually.~\autocite{Reddy2011-sd}
 
 When coupled with \emph{open-source} licensing, modularity is a proper
 step towards ensuring reproducibility of results from scientific
-simulation software \cite{Gezelter2015-gz, Krylov2015-fs, Jacob2016-oq}.
-Open-source development can fully leverage the benefits
-of widespread, cloud-based, free, code development services, such as
-hosted \acp{DVCS}, \ac{CI}, code
-coverage, static and dynamic code analyses, nightly regression testing,
-public issue tracking, code review and so forth:
-adoption of a modern code development workflow is easily within reach.
+simulation software.~\autocite{Gezelter2015-gz, Krylov2015-fs,
+Jacob2016-oq}
+Open-source development can fully leverage the benefits of widespread,
+cloud-based, free, code development services, such as hosted \acp{DVCS},
+continuous integration (CI), code coverage, static and dynamic code
+analyses, nightly regression testing, public issue tracking, code review
+and so forth: adoption of a modern code development workflow is easily
+within reach.
 
 It is, of course, true that the above mentioned services are not
-exclusive prerogatives of open-source projects.
-However, an open review process of scientific software can often help
-to establish
+exclusive prerogatives of open-source projects. However, an open review
+process of scientific software can often help to establish
 reproducibility, extensibility and sustainability of the software
 ecosystem.
-Open-source software, modular development of new functionalities
-and full-fledged exploitation of \acsp{DVCS} ensure a much larger scientific
-impact. Third-parties can easily contribute to
-the project: by improving the documentation, by reporting bugs or
-by actively extending the codebase with new functionality.
+Open-source software, modular development of new functionalities and
+full-fledged exploitation of \acsp{DVCS} ensure a much larger scientific
+impact. Third-parties can easily contribute to the project: by improving
+the documentation, by reporting bugs or by actively extending the
+codebase with new functionality.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The codes used in the papers are all interfaced to the \pcmsolver library,
-of which I am the main developer and maintainer.
-
-Boost\autocite{boost}
-Eigen\autocite{eigen}
-libgetkw\autocite{libgetkw}
-libtaylor\autocite{libtaylor}
-
-We have created an open-source, standalone library to provide \acs{PCM}
-functionality across altogether different quantum chemical program
-packages.
-The library serves as our development platform for the \acs{PCM}.
-Moreover, the interfaces developed to different quantum chemistry codes
-allow the exploration of new methodologies, significantly cutting down
-development times.
+The \acs{PCM} is an ideal candidate for the creation of a solvation
+\acs{API}.
+Consider for example the schematic representation of a
+\acs{PCM}-\acs{SCF} algorithm given in Figure
+Its input from and output to \emph{any} quantum chemistry code is
+limited and well-defined.
+This provides a natural \acs{API} design: the \acs{API} functions can be compared
+\emph{vis-à-vis} with the working equations derived for the different
+quantum chemical methods.
 
 \begin{figure}[!htb]
 \centering
@@ -100,43 +101,27 @@ development times.
 \label{fig:algorithm}
 \end{figure}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The description of chemical phenomena in complex environments, such as
-solutions or proteins, is as challenging as it is important
-for an accurate prediction of a wide range of properties.~\autocite{Reichardt2010-le}
-  Quantum chemistry is nowadays a valuable
-tool: its simulations can provide significant insight into complex
-chemical phenomena.~\autocite{Nobel1998, Nobel2013}.
-The major challenge lies in providing a faithful, realistic, yet cost-effective
-description of the environment of the molecule:
-a molecule in solution can be represented by a quantum mechanical model
-comprising a great number of atoms, thousands or more. Such a simulation would,
-however, be impossible to carry out with the current state-of-the-art
-computational resources.
-Models must be devised to overcome the dimensionality ``disease'' and
-the idea of introducing different approximation levels for different
-parts of the system under study is particularly appealing, as it helps
-our chemical understanding. This is the idea at the basis of
-\emph{multiscale} models.
+The codes used in the papers are all interfaced to the \pcmsolver library,
+of which I am the main developer and maintainer.
 
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=.45\textwidth]{multiscale.jpg}
-\end{figure}
+Boost\autocite{boost}
+Eigen\autocite{eigen}
+libgetkw\autocite{libgetkw}
+libtaylor\autocite{libtaylor}
 
-\emph{Continuum} (or \emph{implicit}) models, deal explicitly
-only with the degrees of freedom associated with the solute, while
-replacing the solvent with a structureless continuum characterized by
-its bulk properties \cite{Onsager1936-wf}. Among these models, the \acl{PCM} (\acs{PCM})
-is the most widespread and successful \cite{Tomasi2005-vm, Mennucci2008-xl}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The \acs{PCM} is also an ideal candidate for the creation of a solvation \acs{API}.
-Its input from and output to \emph{any} quantum chemistry code is
-limited and well-defined.
-This provides a natural \acs{API} design: the \acs{API} functions can be compared
-\emph{vis-à-vis} with the working equations derived for the different
-quantum chemical methods.
+We have created an open-source, standalone library to provide \acs{PCM}
+functionality across altogether different quantum chemical program
+packages.
+The library serves as our development platform for the \acs{PCM}.
+Moreover, the interfaces developed to different quantum chemistry codes
+allow the exploration of new methodologies, significantly cutting down
+development times.
+
 
 We will elucidate the design principles adopted in the development of our
 \pcmsolver library: an \emph{open-source} \acs{API} for the inclusion of the
