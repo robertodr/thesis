@@ -263,11 +263,16 @@ urldate=long
 % Changing the text area
 % ********************************************************************
 %\linespread{1.05} % a bit more for Palatino
-\linespread{1.05} % a bit more for Palatino
-%\areaset[current]{312pt}{761pt} % 686 (factor 2.2) + 33 head + 42 head \the\footskip
-\areaset[1.5cm]{402pt}{682pt}
-\setlength{\marginparwidth}{7em}%
-\setlength{\marginparsep}{2em}%
+%\areaset[1.5cm]{402pt}{682pt}
+%\setlength{\marginparwidth}{7em}%
+%\setlength{\marginparsep}{2em}%
+% This is B5 paper format
+\usepackage[
+  paperwidth=17cm,
+  paperheight=24cm,
+  hmargin={2.2cm, 2cm},
+  vmargin={2cm, 2.5cm}
+]{geometry}
 
 % ********************************************************************
 % Using different fonts
