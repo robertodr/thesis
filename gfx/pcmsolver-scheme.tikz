@@ -19,11 +19,13 @@
 \begin{tikzpicture}
     %PCM Code part
     \node (pcm) [pcm]  {PCM code
-    \[ \mat{A}\textcolor{PMS1797}{\vect{q}} = \mat{B}\textcolor{PMS2229}{\vect{v}}%\mathcal{T}(\varepsilon)\sigma = -\mathcal{R}\phi
+    \[ 
+      \bi{R}_\diel\bi{S}\textcolor{PMS1797}{\sigma(\vect{s})} 
+      = - \bi{R}_\infty\textcolor{PMS2229}{\esp(\vect{s})}
     \]};
     \path (pcm.west)+(-3.2,0.0) node (inputpcm) [input] {\texttt{input.pcm}};
     \path (pcm.east)+(\blockdist,0) node (interfacepcm) [interface] {Module-side interface};
-    \path (pcm.south) +(0,-\parsdist) node (module) {\textbf{Module}};
+    \path (pcm.south) +(0,-\parsdist) node (module) {};
     \path (pcm.180)+(-1.0,0.0) node (parsing) {};
 
     \path (parsing)+(0.0,1.5) node (dummy1) {\small{Input parsing}};
@@ -56,7 +58,7 @@
     \path (qm.west)+(-3.2,0.0) node (inputqm) [input] {\texttt{input.qm}};
 
     \path (qm.east)+(\blockdist,0) node (interfaceqm) [interface] {Program-side interface};
-    \path (qm.south) +(0,-\parsdist) node (module) {\textbf{Program}};
+    \path (qm.south) +(0,-\parsdist) node (module) {};
     \path (qm.180)+(-1.0,0.0) node (parsing) {};
 
     \path (parsing)+(0.0,1.5) node (dummy1) {\small{Input parsing}};
@@ -84,9 +86,9 @@
     \end{pgfonlayer}
 
     \draw[PMS2229,thick,->] ([xshift= 5pt] interfaceqm.north) -- 
-    node [right,yshift=50.5pt] {\bfseries\textcolor{PMS2229}{$\vect{v}$}} ([xshift= 5pt] interfacepcm.south);
+    node [right,yshift=50.5pt] {\bfseries\textcolor{PMS2229}{$\esp(\vect{s})$}} ([xshift= 5pt] interfacepcm.south);
     \draw[PMS1797,thick,<-] ([xshift=-5pt] interfaceqm.north) -- 
-    node [left, yshift=-50pt] {\bfseries\textcolor{PMS1797}{$\vect{q}$}} ([xshift=-5pt] interfacepcm.south);
+    node [left, yshift=-50pt] {\bfseries\textcolor{PMS1797}{$\sigma(\vect{s})$}} ([xshift=-5pt] interfacepcm.south);
 
     %\draw[->] (interfacepcm.140) -- (interfaceqm.220);
     %\draw[->] (interfaceqm.40) -- (interfacepcm.320);

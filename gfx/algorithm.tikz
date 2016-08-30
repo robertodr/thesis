@@ -1,18 +1,17 @@
 \tikzstyle{decision}=[diamond, fill=PMS1797!20, text width=5.5em, text badly centered, inner sep=0pt]
-\tikzstyle{pcmsolver}=[rectangle, minimum size=6mm, rounded corners=3mm, very thick, fill=PMS2229!20, text width=14em, text centered]
-\tikzstyle{qmprog}=[rectangle, minimum size=6mm, rounded corners=3mm, text centered, very thick, fill=Green!20, text width=14em]
+\tikzstyle{pcmsolver}=[rectangle, minimum size=10mm, rounded corners=3mm, very thick, fill=PMS2229!20, text width=15em, text centered]
+\tikzstyle{qmprog}=[rectangle, minimum size=10mm, rounded corners=3mm, text centered, very thick, fill=Green!20, text width=15em]
 
 \begin{tikzpicture}[]
 %skip up/.style={to path={-- ++(0,#1) -| (\tikztotarget)}},
 %skip right/.style={to path={-- ++(#1,0) -| (\tikztotarget)}}]
-\node (MEP) [qmprog] { Molecular electrostatic potential at the cavity: \\ $
- v_I = \sum_A \frac{Z_A}{|\vect{R}_A-\vect{s}_I|} +  \sum_{\kappa\lambda} D_{\lambda\kappa}
-\left[\int\diff\vect{r}\frac{-\Omega_{\kappa\lambda}(\vect{r})}{|\vect{r}-\vect{s}_I|}\right]$ };
-\node (CHG) [pcmsolver, below=of MEP] { Apparent Surface Charge:\\ $\vect{q} = \mat{K} \vect{v}$ };
+\node (MEP) [qmprog] { Molecular electrostatic potential: \\ $\esp(\vect{s})$};
+\node (CHG) [pcmsolver, below=of MEP] { Apparent surface charge:\\ 
+$\bi{R}_\diel\bi{S}\sigma(\vect{s}) = - \bi{R}_\infty\esp(\vect{s})$ };
 \node (energy) [pcmsolver, below=of CHG] { Polarization energy:\\ 
-$U_\mathrm{pol} = \vect{q}\cdot\vect{v}$};
+$U_\mathrm{pol} = \frac{1}{2}\scalprod{\sigma(\vect{s})}{\esp(\vect{s})}$};
 \node (fock) [qmprog, below=of energy, distance=30mm] { Fock matrix:\\
-$f_{\kappa\lambda} = f^\mathrm{vac}_{\kappa\lambda} + \vect{q}\cdot\vect{v}^\mathrm{e}_{\kappa\lambda}$ };
+$f_{\kappa\lambda} = f^\mathrm{vac}_{\kappa\lambda} + \scalprod{\sigma(\vect{s})}{\esp_{\kappa\lambda}(\vect{s})}$ };
 %\node (iter) [qmprog, below=of fock, distance=150mm] { Iterate SCF };
 \node (conv) [decision, below=of fock] { SCF converged?};
 \node (end) [qmprog, below=of conv] { Finalize SCF};

@@ -34,14 +34,15 @@ The growing complexity of quantum chemical program packages requires that an
 appropriate strategy be devised to implement new features.
 Scalability is of paramount importance, but it has become clear that
 maintainability and extensibility of the code play an equally important role in
-managing software complexity\autocite{Wilson2014-vh} and ensuring
+managing software complexity\autocite{Wilson2014-vh, ssi, nsf-s2i2,
+netherlands-escience, coderefinery, molssi} and ensuring
 scientific reproducibility.~\autocite{Hatton1994-us, Hatton1997-ml,
 Hatton1997-bb, Ioannidis2005-aj, Merali2010-uy, Prinz2011-kz}
 
 The idea of a \emph{modular programming paradigm} can be traced back to
 the dawn of computer science. \citeauthor{Dijkstra1968-zp}
 successfully used it in the development of the THE operating
-system~\autocite{Dijkstra1968-zp} already in 1968, while
+system in 1968,~\autocite{Dijkstra1968-zp} while
 \citeauthor{Parnas1972-im} advocated it as a best practice already in
 1972.~\autocite{Parnas1972-im}
 Modularity is nothing more than a \emph{divide et impera} strategy
@@ -49,11 +50,12 @@ applied to programming and it has been recognized as beneficial in many
 other scientific computing contexts.
 New features are isolated into libraries that can be accessed by host
 programs through a well-defined \ac{API}.
-Computational tasks are thus implemented into separate, independent and
-interchangeable modules. These are \emph{developed}, \emph{tested},
-\emph{packaged} and \emph{distributed}
-independently of the particular host program in which they will be
-used.
+
+In this paradigm, computational tasks are implemented into separate,
+independent and interchangeable modules.
+Modules are to be thought as computational black boxes \emph{developed},
+\emph{tested}, \emph{packaged} and \emph{distributed} independently of
+the particular host program in which they will be used.
 A well-defined \ac{API} clearly delimits the boundaries of the functionality
 offered, thus forcing a programming style and standardisation of the
 functionality, eventually.~\autocite{Reddy2011-sd}
@@ -63,11 +65,13 @@ step towards ensuring reproducibility of results from scientific
 simulation software.~\autocite{Gezelter2015-gz, Krylov2015-fs,
 Jacob2016-oq}
 Open-source development can fully leverage the benefits of widespread,
-cloud-based, free, code development services, such as hosted \acp{DVCS},
-continuous integration (CI), code coverage, static and dynamic code
-analyses, nightly regression testing, public issue tracking, code review
-and so forth: adoption of a modern code development workflow is easily
-within reach.
+cloud-based, free, code development services, such as hosted
+\acp{DVCS},~\autocite{github, gitlab} continuous
+integration,~\autocite{travis-ci, appveyor-ci} code
+coverage,~\autocite{coveralls} static and dynamic code
+analyses,~\autocite{coverity-scan} nightly regression testing, public
+issue tracking, code review and so forth: adoption of a modern code
+development workflow is easily within reach.
 
 It is, of course, true that the above mentioned services are not
 exclusive prerogatives of open-source projects. However, an open review
@@ -81,112 +85,175 @@ the documentation, by reporting bugs or by actively extending the
 codebase with new functionality.
 
 The \acs{PCM} is an ideal candidate for the creation of a solvation
-\acs{API}.
-Consider for example the schematic representation of a
-\acs{PCM}-\acs{SCF} algorithm given in Figure
-Its input from and output to \emph{any} quantum chemistry code is
-limited and well-defined.
-This provides a natural \acs{API} design: the \acs{API} functions can be compared
-\emph{vis-à-vis} with the working equations derived for the different
-quantum chemical methods.
+\acs{API}. Consider for example the schematic representation of a
+\acs{PCM}-\acs{SCF} algorithm given in Figure \ref{fig:algorithm}.
+The input to and from the \acs{PCM} library is limited and well-defined,
+as are the components that host quantum chemistry codes need to
+implement.
+This provides a natural \acs{API} design: the \acs{API} functions can be
+compared \emph{vis-à-vis} with the working equations derived for the
+different quantum chemical methods.
 
-\begin{figure}[!htb]
+\begin{figure}[tb]
 \centering
-\scalebox{0.8}{\input{gfx/algorithm.tikz}}
+\scalebox{0.7}{\input{gfx/algorithm.tikz}}
 \caption[Modular approach to programming a \acs{PCM} functionality into an existing \acs{SCF} code.]{
-  Schematic view of the implemented SCF algorithm. Computations/data in
-  \textcolor{PMS2229}{blue} are on the \pcmsolver side, in
-  \textcolor{Green}{green} on the \DIRAC side.
+Schematic view of a \acs{PCM}-\acs{SCF} algorithm. Computations/data in
+\textcolor{PMS2229}{blue} are implemented by the \acs{PCM} \acs{API}.
+Computations/data in \textcolor{Green}{green} are implemented by the
+host quantum chemistry code.
   }
 \label{fig:algorithm}
 \end{figure}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The codes used in the papers are all interfaced to the \pcmsolver library,
-of which I am the main developer and maintainer.
-
-Boost\autocite{boost}
-Eigen\autocite{eigen}
-libgetkw\autocite{libgetkw}
-libtaylor\autocite{libtaylor}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-We have created an open-source, standalone library to provide \acs{PCM}
-functionality across altogether different quantum chemical program
-packages.
-The library serves as our development platform for the \acs{PCM}.
-Moreover, the interfaces developed to different quantum chemistry codes
-allow the exploration of new methodologies, significantly cutting down
-development times.
-
-
-We will elucidate the design principles adopted in the development of our
-\pcmsolver library: an \emph{open-source} \acs{API} for the inclusion of the
-PCM in \emph{any} quantum chemistry code \cite{PCMSolver}.  Use of our
-\acs{API} \emph{significantly} limits coding effort on the side of the host:
-continuum solvation at the \acs{SCF}
-level of theory can be implemented in the host program almost out-of-the-box.  The module is
-agnostic of the host code internals and is tested separately from it.
-
-We will emphasize the role of the open-source licensing model and the
-importance of the modern workflows adopted in our project.  The adoption
-of \git as \acs{DVCS}, \cmake for cross-platform builds and automatic
-documentation deployment on \readthedocs simplify extensibility of the
-module and promote third-party contributions to the code base, while
-continuous integration and nightly testing offer an invaluable level of
-confidence in the code.
-
-\begin{figure}[tb]
-  \centering
-  \scalebox{0.8}{\input{gfx/pcmsolver-scheme.tikz}}
-  \caption[Schematic view of the relationship between a host quantum chemistry
-  program and the \pcmsolver library.]{
-  Schematic view of the relationship between a host quantum chemistry
-  program and the \pcmsolver library.
-  }
-\end{figure}
-
-\pcmsolver currently offers the basic PCM functionality already
-available in many widespread software packages, such as traditional
-collocation solvers for isotropic media.~\autocite{Tomasi2005-vm}
-Some unique functionalities are the wavelet Galerkin solvers on smooth
-molecular surfaces~\autocite{Weijo2010-hy, Bugeanu2015-tp}, the Green’s
-functions for spherical diffuse interfaces~\autocite{DiRemigio2016-nn} and
-the delayed solvers for real-time \acl{TDSCF}
-simulations.~\autocite{Corni2015-pe}
-
-\begin{figure}[tb]
-  \centering
-  \includegraphics[width=.8\textwidth]{pcmsolver-internals.png}
-  \caption[Internal structure of \pcmsolver.]
-  {
-  Internal structure of \pcmsolver. In the grey boxes the external
-  projects the library depends on.
-  }
-\end{figure}
+The \pcmsolver library was developed to fulfill these requirements and
+offer the community an easy-to-use implementation of the \acs{PCM}.
+\pcmsolver is written in C++ with Fortran, C and Python components.
+Architectural and conceptual organization of the code is provided by the
+C++ layer. To ensure the largest possible impact, the code is C++03 ISO standard
+compliant, with external dependencies kept to a minimum.
+Tuples, container algorithms and functional programming tools are not
+part of the standard we chose to comply to.
+Parts of the Boost C++ libraries are used to alleviate these
+shortcomings.~\autocite{boost}
+Linear algebra operations are managed through the Eigen C++ template
+library.~\autocite{eigen}
+The Python layer provides input reading and parsing facilities,
+as implemented by the GetKw library .~\autocite{libgetkw}
+Cavity construction and discretization is handled either by the Fortan
+or by the C layer, depending on which computational \emph{backend} is
+needed.
+Evaluation of the Green's functions, needed to set up the representation
+of the boundary integral operators, leverages \ac{AD}. We use the Taylor library, a template C++
+implementation of \acs{AD}.~\autocite{Bartholomew-Biggs2000-db, libtaylor}
+The adoption of \git as \acs{DVCS}, \cmake for cross-platform builds and
+automatic documentation deployment on \readthedocs simplify
+extensibility of the module and promote third-party contributions to the
+code base. Continuous integration and nightly testing offer an
+invaluable level of confidence in the code.
 
 Careful usage of the C++ object-oriented paradigm is the key to this
 wide spectrum of functionalities. The library is in itself made of
 modules, communicating by means of composition at the outermost
-level of the design.
-This allows us to mix languages internally: we currently have Fortran
-and C modules alongside the main C++ structure.
+level of design.
+This is an indispensable feature to achieve frictionless language
+mixing.
 Library internal classes balance the dynamic polymorphism offered by
 inheritance and the static polymorphism offered by template programming.
 ~\autocite{Alexandrescu2001-bp, Sutter2004-nt, Langr2012-js}
 Preeminent use of composition over inheritance keeps the coupling
 between different modules as low as possible.~\autocite{Gamma1995-fd}
 
-References for the various codes we have created interfaces to.
-\psicode~\autocite{Turney2012-de}
-\DIRAC~\autocite{DIRAC15}
-\DALTON~\autocite{DALTON16, Aidas2013-rp}
-\LSDALTON~\autocite{LSDALTON16, Aidas2013-rp}
-\ReSpect~\autocite{ReSpect-3.5.0, OtherStuff}
-KOALA~\autocite{Hofener2014-ex, Hofener2016-qz}
+The library is released under the terms of the
+version 3 \ac{LGPL}, a standard open-source license.~\autocite{LGPLv3}
+We strongly believe that open-source software is the key to a larger
+impact for scientific software and a standard license means lower
+thresholds to adoption and third-party contributions.~\autocite{LGPLv3}
+The library serves as our development platform for the \acs{PCM}.
+The interfaces to different quantum chemistry codes allow us to explore
+new methodologies, significantly cutting down development times.
+Use of our \acs{API} \emph{significantly} limits coding effort on the
+side of the host: continuum solvation at the \acs{SCF} level of theory
+can be implemented in the host program almost out-of-the-box.
+
+The library was designed to allow host-\acs{API} communication through
+\emph{pure} functions, \ie{} free from side-effects.
+Such an implementation hinges on the theoretical realization that the
+\acs{PCM} layer is independent of the \acs{AO} or \acs{MO} spaces
+defined in the quantum chemical layer.
+Passing and modifying large data structures, such as the Fock and
+density matrices, can be completely avoided.
+As schematically depicted in Figure \ref{fig:algorithm},
+computation of the \acs{ASC} only depends on
+the electrostatic potential sampled at the cavity boundary:
+\begin{equation}
+ \esp(\vect{s}) =
+ \sum_A \frac{Z_A}{|\vect{R}_A-\vect{s}|} +  \sum_{\kappa\lambda} D_{\lambda\kappa}
+ \left[\int\diff\vect{r}\frac{-\Omega_{\kappa\lambda}(\vect{r})}{|\vect{r}-\vect{s}|}\right],
+\end{equation}
+which is the contraction of charge attraction integrals with a, possibly
+perturbed, density matrix, a task handled by the host program.
+Formation of the solvent contribution to the Fock matrix requires the
+computation of the scalar product
+$\scalprod{\sigma(\vect{s})}{\esp_{\kappa\lambda}(\vect{s})}$
+between the \acs{ASC} and the charge attraction integral matrix, again
+a task easily accomplished by the host program.
+As shown in Figure \ref{fig:pcmsolver-scheme}, data transfer between
+\pcmsolver and the host is limited to the communication of
+$\esp(\vect{s})$ and $\sigma(\vect{s})$ and can be implemented
+\emph{without} storing any quantity to disk, avoiding possibly costly
+I/O operations.
+
+\begin{figure}[tb]
+  \centering
+  \scalebox{0.7}{\input{gfx/pcmsolver-scheme.tikz}}
+  \caption[Schematic view of the relationship between a host quantum chemistry
+  program and the \pcmsolver library.]{
+  Schematic view of the relationship between a host quantum chemistry
+  program and the \pcmsolver library.
+  }
+  \label{fig:pcmsolver-scheme}
+\end{figure}
+
+The \acs{API} is implemented in ISO C99 as a \emph{context-aware} set of
+functions.~\autocite{library-ronacher, context-api-example}
+Upon initialization of the library, a \emph{context} object containing
+the state of the \acs{PCM} \acs{API} is constructed and a handle to it
+(a pointer in C++ parlance) is returned to the host program. Further
+transactions between \pcmsolver and the host program proceed through
+manipulations of the context object.
+\pcmsolver introduces the concept of surface functions:
+labelled instances of any quantity defined on the cavity surface.
+Bookkeeping of a possibly arbitrary number of such quantities is managed
+through a map storing labels and pointers to the contents of the
+functions.
+Listings \ref{lst:C-host} and \ref{lst:Fortran-host} show how calls to
+\pcmsolver \acs{API} functions might look like in an actual C or Fortran
+program, respectively.
+
+\lstinputlisting[language=C,
+                 caption={Relevant calls to \pcmsolver in a C host program.
+                 Ellipsis in the functions arguments list stand for omitted parameters.
+                 For the full, functional example visit
+                 \url{http://pcmsolver.readthedocs.io/en/latest/users/C-example.html}},
+                 label={lst:C-host}
+                ]{snippets/C_host.c}
+
+A context-aware \acs{API} offers a simple strategy for parallelization.
+The host program could spawn contexts on a per-process basis,
+limiting ownership and access to a context just to its parent process.
+Race conditions are trivially avoided in such a scenario.
+
+\lstinputlisting[language=Fortran,
+                 caption={Relevant calls to \pcmsolver in a Fortran host program.
+                 Notice the use of the standard Fortan ISO C bindings.
+                 Ellipsis in the functions arguments list stand for omitted parameters.
+                 For the full, functional example visit
+                 \url{http://pcmsolver.readthedocs.io/en/latest/users/fortran-example.html}},
+                 label={lst:Fortran-host}
+                 ]{snippets/Fortran_host.F90}
+
+\pcmsolver currently offers an implementation of the traditional collocation
+solvers for isotropic media,~\autocite{Tomasi2005-vm}
+together with some unique functionalities: the wavelet Galerkin solvers on smooth
+molecular surfaces,~\autocite{Weijo2010-hy, Bugeanu2015-tp} the Green’s
+functions for spherical diffuse interfaces~\autocite{DiRemigio2016-nn} and
+the delayed solvers for real-time \acl{TDSCF}
+simulations.~\autocite{Corni2015-pe}
+
+Programming effort in this thesis has not only been directed at the
+creation of the \pcmsolver library, but also at interfacing it with a
+number of quantum chemistry codes.
+The first interface was implemented and released within the \DIRAC code
+and is described in Paper I.~\autocite{DIRAC15, DiRemigio2015-ou}.
+Interfaces to the \LSDALTON\autocite{LSDALTON16, Aidas2013-rp} and
+\DALTON\autocite{LSDALTON16, Aidas2013-rp} codes have followed, as
+described in Paper II and Paper V, respectively.~\autocite{Bugeanu2015-tp, pcm-openrsp}
+Details about the interface to \ReSpect~\autocite{ReSpect-3.5.0} can be
+found in Paper IV.~\autocite{pcm-respect}
+Coupling with \psicode~\autocite{Turney2012-de} has allowed us to implement the
+\acs{PCM}-\acs{CC} developments described in this thesis.
+Finally, development of an interface with the KOALA code is underway.~\autocite{Hofener2014-ex, Hofener2016-qz}
 
 \section{Continuum solvation in the relativistic regime}\label{sec:relapcm}
 
