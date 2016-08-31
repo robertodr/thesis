@@ -9,7 +9,7 @@
 \node (CHG) [pcmsolver, below=of MEP] { Apparent surface charge:\\ 
 $\bi{R}_\diel\bi{S}\sigma(\vect{s}) = - \bi{R}_\infty\esp(\vect{s})$ };
 \node (energy) [pcmsolver, below=of CHG] { Polarization energy:\\ 
-$U_\mathrm{pol} = \frac{1}{2}\scalprod{\sigma(\vect{s})}{\esp(\vect{s})}$};
+$U_\mathrm{PCM} = \frac{1}{2}\scalprod{\sigma(\vect{s})}{\esp(\vect{s})}$};
 \node (fock) [qmprog, below=of energy, distance=30mm] { Fock matrix:\\
 $f_{\kappa\lambda} = f^\mathrm{vac}_{\kappa\lambda} + \scalprod{\sigma(\vect{s})}{\esp_{\kappa\lambda}(\vect{s})}$ };
 %\node (iter) [qmprog, below=of fock, distance=150mm] { Iterate SCF };

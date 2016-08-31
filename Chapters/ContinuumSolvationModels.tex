@@ -22,11 +22,12 @@ Developments of the \ac{PCM}, a continuum solvation model, are at the
 heart of this thesis.
 This Chapter is a brief exposition of the major points of the \acs{PCM}
 we have worked upon in the thesis.
-Section \ref{sec:IEF} will present some of the mathematical details of the
-formulation of the model. I will introduce the concept of \emph{weak}
-formulations of \acp{PDE} in Section \ref{sec:weak} and eventually show their
-use in the formulation of quantum/classical polarizable Hamiltonians in
-Section \ref{sec:variational}.
+Appendix \ref{app:mathematical-results} contains much of the
+mathematical details omitted from the exposition in this Chapter.
+Section \ref{sec:IEF} will present the formulation of the model.
+I will show how a variational approach can facilitate the formulation of
+quantum/classical polarizable Hamiltonians in Section
+\ref{sec:variational}.
 Section \ref{sec:BEM} will be devoted to the numerical strategies used
 in solving the \acs{PCM} equation.
 
@@ -135,31 +136,11 @@ for quantum mechanical charge densities. It can however be proven that
 the errors induced by this \emph{charge penetration} are not so
 severe.~\autocite{Chipman2000-us, Cances2001-qs, Cances2001-qn}
 
-\begin{figure}[tb]
-  \centering
-  \includegraphics[width=.5\textwidth]{IEF}
-  \caption[The physical setting of the polarizable continuum model.]{
-  The physical setting of the \ac{PCM}. The molecular solute,
-  represented by its, possibly quantum mechanical, charge density
-  $\rho_\mathrm{i}$ is enclosed in a \emph{cavity} $\Omegai$.
-  The boundary of the cavity $\Gamma\equiv\partial\Omegai$ is a
-  continuously differentiable 2-manifold.
-  We assume the material properties of the cavity to be those of vacuum,
-  hence characterized by the Green's function
-  $\Gi=\frac{1}{|\vect{r}-\vect{r}^\prime|}$.
-  The cavity is carved out of an infinite, structureless, continuum
-  characterized by its Green's function $\Ge$ and fully covering the
-  external subdomain $\Omegae$.
-  }
-  \label{fig:IEF}
-\end{figure}
-
 This is a well-known problem in electrostatics~\autocite{Jackson1999, Vanderlinde2005-gf}
 and is called a \emph{transmission} problem in the mathematical
 literature on \acp{PDE}.~\autocite{Hackbusch1995-uq, Sauter2011-an}
-The problem is commonly posed as follows. Given the partition of Euclidean
-space $\mathbb{R}^3$ outlined above, find the solution $u(\vect{r})$
-to the following set:
+Given the partition of Euclidean space $\mathbb{R}^3$ outlined above,
+find the solution $u(\vect{r})$ to the following set:
 \begin{subequations}\label{eq:transmission}
   \begin{align}[left={\empheqlbrace}]
   \Li u &= \nabla^2 u = -4\pi\rhoi \,\, \text{in}\,\, \Omegai \label{eq:internal} \\
@@ -192,21 +173,43 @@ We will take a different approach and reformulate it in terms of
 \emph{boundary integral operators}, \ie transform the \acsp{PDE} into a
 \ac{BIE}.
 
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=.5\textwidth]{IEF}
+  \caption[The physical setting of the polarizable continuum model.]{
+  The physical setting of the \ac{PCM}. The molecular solute,
+  represented by its, possibly quantum mechanical, charge density
+  $\rho_\mathrm{i}$ is enclosed in a \emph{cavity} $\Omegai$.
+  The boundary of the cavity $\Gamma\equiv\partial\Omegai$ is a
+  continuously differentiable 2-manifold.
+  We assume the material properties of the cavity to be those of vacuum,
+  hence characterized by the Green's function
+  $\Gi=\frac{1}{|\vect{r}-\vect{r}^\prime|}$.
+  The cavity is carved out of an infinite, structureless, continuum
+  characterized by its Green's function $\Ge$ and fully covering the
+  external subdomain $\Omegae$.
+  }
+  \label{fig:IEF}
+\end{figure}
+
 The first step is to introduce the relevant boundary integral operators for the
 above mentioned transmission problem.
 They are three of the four components of the Calder\'on projector.
 For any function $v$ in the suitable function space and for $\vect{s}, \vect{s}^\prime \in \Gamma$:
-\begin{equation}
-\begin{aligned}
+\begin{subequations}
+\begin{align}
   (\bi{S}_\star v)(\vect{s}) &= \int_\Gamma
-  G_\star(\vect{s}, \vect{s}^\prime)v(\vect{s}^\prime)\diff \vect{s}^\prime \\
+  G_\star(\vect{s}, \vect{s}^\prime)v(\vect{s}^\prime)\diff
+  \vect{s}^\prime \label{eq:S} \\
   (\bi{D}_\star v)(\vect{s}) &= \int_\Gamma \partial_{L_\star,\vect{s}}
-  G_\star(\vect{s}, \vect{s}^\prime)v(\vect{s}^\prime)\diff \vect{s}^\prime \\
+  G_\star(\vect{s}, \vect{s}^\prime)v(\vect{s}^\prime)\diff
+  \vect{s}^\prime \label{eq:D} \\
   (\bi{D}^\dagger_\star v)(\vect{s}) &= \int_\Gamma
 \partial_{L_\star,\vect{s}^\prime}
-  G_\star(\vect{s}, \vect{s}^\prime)v(\vect{s}^\prime)\diff \vect{s}^\prime \\
-\end{aligned}
-\end{equation}
+  G_\star(\vect{s}, \vect{s}^\prime)v(\vect{s}^\prime)\diff
+  \vect{s}^\prime \label{eq:D-dagger}
+\end{align}
+\end{subequations}
 where $\star$ is a placeholder for the $\mathrm{i}$ or $\mathrm{e}$ subscript.
 Our next step is to rewrite the $u$ as the sum of two contributions:
 \begin{equation}
@@ -217,7 +220,7 @@ Our next step is to rewrite the $u$ as the sum of two contributions:
 the former is the electrostatic potential of $\rhoi$ \emph{in vacuo}
 (Newton potential), while the latter is the \emph{reaction} potential.
 The reaction potential describes the polarization in the medium.
-Moreover, it admits a integral representation as a single-layer
+Moreover, it admits an integral representation as a single-layer
 potential:
 \begin{equation}
   \xi_\mathrm{i} = \bi{S}_\mathrm{i}\sigma
@@ -276,188 +279,117 @@ where the factor $f(\diel) = \frac{\diel-1}{\diel+x},\, 0\leq x \leq 1$
 has been introduced to account for the error introduced by modelling the
 dielectric as a perfect conductor.
 
-\section{Detour and Teaser: Weak Formulation of Partial Differential Equations}\label{sec:weak}
-
-From the strong to the weak formulation of \acp{PDE}.\autocite{Ern2004-oo}
-
-\begin{itemize}
-  \item Poisson's equation with conductor boundary conditions
-        % This is COSMO!
-        % This equation makes sense iff \Psi \in \mathcal{C}^2_0(C) (at least)
-        % \Psi = 0 \quad \forall \vect{r}\in\partial C
-        \begin{equation*}
-            \nabla^2\Psi = -4\pi\rho
-            % Dirichlet boundary conditions for a conductor
-          \quad \Psi \in \mathcolor{ForestGreen}{\mathcal{C}^2_0(C)}
-        \end{equation*}
-  \item Project onto the space of test functions
-        % Project onto the space of test functions
-        \begin{equation*}
-          \left\{
-          \begin{aligned}
-            &\text{Seek $\Psi\in\mathcolor{ForestGreen}{V_0}$ such that:}\\
-            &(\zeta, \nabla^2\Psi) =
-            -4\pi(\zeta, \rho) \quad
-            \forall
-            \zeta\in\mathcolor{BurntOrange}{\mathcal{C}^\infty_0(C)}
-          \end{aligned}
-          \right.
-        \end{equation*}
-  \item Use
-    $\eta\nabla^2\gamma = \nabla\cdot(\eta\nabla\gamma) - \nabla\eta\cdot\nabla\gamma$
-        % The integral of the first term on the RHS vanishes.
-        % It can be shown using Gauss' Theorem and the conductor
-        % boundary conditions.
-        \begin{equation*}
-          \left\{
-          \begin{aligned}
-            &\text{Seek $\Psi \in \mathcolor{ForestGreen}{H_0^1(C)}$ such that:}\\
-            &\mathcolor{Red}{(\nabla\zeta, \nabla\Psi)} =
-            \mathcolor{Blue}{-4\pi(\zeta, \rho)} \quad
-            \forall \zeta\in \mathcolor{BurntOrange}{H_0^1(C)}
-          \end{aligned}
-          \right.
-        \end{equation*}
-\end{itemize}
-\begin{equation*}
-  \Psi\in \mathcolor{BurntOrange}{H_0^1(C)} = \lbrace f : C \rightarrow
-  \mathbb{R} | f \in L^2(C), \nabla f \in L^2(C), f = 0 \forall \vect{s}
-  \in\partial C \rbrace
-\end{equation*}
-\begin{equation}
-  \left\{
-  \begin{aligned}
-    &\text{Seek $\Psi \in V$ such that:}\\
-    &\forall \zeta \in V \,\,\,\,\,
-    \mathcolor{Red}{a(\zeta, \Psi)} = \mathcolor{Blue}{b(\zeta)}
-  \end{aligned}
-  \right.
-  \label{eq:weak}
-\end{equation}
-
-% Hadamard well-posedness definition:
-% Problem \eqref{eq:weak} is well-posed if it admits one and only
-% one solution and the solution is bounded by the initial data, by
-% an a priori estimate (see Ern&Guermond, p.82, Def. 2.1)
-\begin{defin}[Well-posedness]\label{def:hadamard}
-  The weak problem Eq. \eqref{eq:weak} is \emph{well-posed} if it
-  admits one and only one solution and the solution is bounded by
-  the initial data by an \emph{a priori} estimate.
-\end{defin}
-\begin{defin}[Continuity]\label{def:continuity}
-  A bilinear form on a normed vector space $V$ is \emph{bounded}, or
-  \emph{continuous}, if there is a constant $C$ such that
-  $\forall u, v \in V$:
-  \[
-  a(u, v) \leq C\lVert u\rVert\lVert v\rVert
-  \]
-\end{defin}
-\begin{defin}[Coercivity]\label{def:coercivity}
-  A bilinear form on a normed vector space $V$ is \emph{coercive},
-  or \emph{elliptic}, if there is a constant $\alpha >0$ such that
-  $\forall u \in V$:
-  \[
-  a(u, u) \geq \alpha\lVert u\rVert^2
-  \]
-\end{defin}
-This implies that no eigenvalue of the linear operator associated
-to the bilinear form can be zero, hence that the operator is
-invertible!!~\autocite{Ern2004-oo}
-
-% Maybe present connection with Steepest Descent and Conjugate
-% Gradient?
-% Introduce a suitable vector space, equipped with a norm
-% derived from a scalar product.
-% The solution belongs to such a vector space, which is
-% bigger that in the strong formulation (less constraints on
-% the regularity of the solution)
-\begin{equation}
-  \left\{
-  \begin{aligned}
-    &\text{Seek $\Psi \in V$ such that:}\\
-    &\forall \zeta \in V \,\,\,\,\,
-    \mathcolor{Red}{a(\zeta, \Psi)} = \mathcolor{Blue}{b(\zeta)}
-  \end{aligned}
-  \right.
-\end{equation}
-\begin{lemma}[Lax--Milgram]
-  If the bilinear form $a$ is \emph{continous} and \emph{coercive}
-  in $V$, then, for any continuous linear form $b$, Problem~\eqref{eq:weak} is
-  \emph{well-posed}.
-\end{lemma}
-\begin{corollary}[Variational property]
-  If the bilinear form is \emph{symmetric} and \emph{positive}
-  the unique solution to Problem \eqref{eq:weak} is
-  the \emph{unique minimum} on $V$ of the functional:
-  \[
-  \mathcal{F}(\zeta) = \frac{1}{2}a(\zeta, \zeta) - b(\zeta)
-  \]
-\end{corollary}
-
-Weak formulation of \acs{BIE}s.\autocite{Hsiao2008-xb}
-
-
 \section{Numerical Approaches to Boundary Integral Equations}\label{sec:BEM}
 
-Approximability, conformity, consistency and asymptotic consistency
-of the approximation setting, $\inf$-$\sup$ condition, Céa's Lemma
-and generalized $\inf$-$\sup$ condition.~\autocite{Ern2004-oo,
-TesiFilippo}
-Additional cavity generators
-TsLess~\autocite{Pomelli2004-lb}
-DefPol~\autocite{Pomelli1998-ob, Pomelli1999-dc}
-FIXPVA~\autocite{Su2009-em}
-Other discretization schemes
-CSC~\autocite{York1999-xy, Scalmani2010-tw}
-SWIG~\autocite{Lange2010-jp, Lange2010-qo, Lange2011-eu}
-ddCOSMO and ddPCM~\autocite{Cances2013-jg, Lipparini2013-cy, Lipparini2014-to,
-Lipparini2014-fq, Stamm2016-fv}
+The solution of the \acs{IEF}-\acs{PCM} boundary integral equation can
+only be achieved analytically for simple cavity geometries, such as
+single spheres and ellipsoids.
+When more general molecular cavities are employed one has to resort to a
+numerical technique: the \ac{BEM}. This is implemented in four steps:
+\begin{enumerate*}[label={\alph*)},font={\color{PMS1797}}]
+    \item define the molecular cavity
+    \item mesh the molecular surface \label{item:mesh}
+    \item discretize the integral equation \label{item:discretize} and
+    \item solve the linear systems by a suitable numerical technique.
+\end{enumerate*}
+Many different approaches to these four steps have been presented, both
+in the field of the \acs{BEM} and in the context of the \acs{PCM}.
 
-\todo[inline]{CURRENTLY COPIED VERBATIM FROM THE SPHERICAL GREEN'S
-FUNCTION PAPER}
+The molecular cavity is usually defined as a set of atom-centered
+interlocking spheres. The radii are chosen from a suitable set, usually
+van der Waals radii.~\autocite{Bondi1964-dt, Mantina2009-hb}
+If one imagines to model a solvent molecule as a rigid sphere,
+three types of molecular surfaces can be defined:
+\begin{enumerate*}[label={\alph*)},font={\color{PMS1797}}]
+  \item
+    the union of the interlocking spheres surfaces is the \ac{vdWS},
+    Figure \ref{fig:vdWS}
+  \item the locus of points defined by the center of the solvent
+    spherical probe while rolling over the \acs{vdWS} is the
+    \ac{SAS}, Figure \ref{fig:SAS}
+  \item the locus of points defined by the contact point of the solvent
+    spherical probe while rolling over the \acs{vdWS} is the \ac{SES}, Figure \ref{fig:SES}.
+\end{enumerate*}
+\begin{figure}[tb]
+ \centering
+ \begin{subfigure}{.45\textwidth}
+   \centering
+   \includegraphics[width=.85\textwidth]{vdWS.png}
+   \caption{\acl{vdWS} (\acs{vdWS})}
+   \label{fig:vdWS}
+ \end{subfigure}
+ ~
+ \begin{subfigure}{.45\textwidth}
+   \centering
+   \includegraphics[width=.85\textwidth]{SAS.png}
+   \caption{\acl{SAS} (\acs{SAS})}
+   \label{fig:SAS}
+ \end{subfigure}
 
-The numerical solution of boundary integral equations, such as the
-\acs{IEF}-\acs{PCM}
-Eqs.~\eqref{eq:full-IEF-2pi}-\eqref{eq:isotropic-IEF}, can be achieved
-by the application of the \ac{BEM}.
-A discretization of the molecular cavity
-boundary is necessary.~\autocite{Pomelli2007-wq}
-The discretization of the
-molecular surface into finite elements leads to a corresponding
-discretization of both the integral operators and the functions in
-Eqs.~\eqref{eq:full-IEF-2pi}-\eqref{eq:isotropic-IEF}.
+ \begin{subfigure}{.45\textwidth}
+   \centering
+   \includegraphics[width=.85\textwidth]{SES.png}
+   \caption{\acl{SES} (\acs{SES})}
+   \label{fig:SES}
+ \end{subfigure}
+ \caption{Molecular surfaces from interlocking sets of atom-centered spheres.
+ Reproduced from \noparcite[ref.][]{Harbrecht2011-dk}.}
+\end{figure}
+Alternative definitions based on the isodensity surface of the molecular solute
+have been put forth.~\autocite{Foresman1996-wv}
 
-Different strategies are available to perform the
-discretization: the \emph{collocation} or the \emph{Galerkin}
-approach.~\cite{Hackbusch1995-uq, Ern2004-oo}
-The final result is the transformation of
-the original integral equation to a system of linear equations whose
-dimension relates to the number of finite elements generated by
-discretizing the boundary.  For general integral equations and
-discretization schemes, a dense system matrix is obtained. Moreover, the
-discretization scheme might not, in general, preserve the symmetry
-property of the original integral equation.
-
-In this paper we apply the traditional centroid collocation
-method~\autocite{Tomasi2005-vm, Pomelli2007-wq} on the cavity boundary
-discretization obtained \emph{via} the GePol
-algorithm.~\autocite{Pascual-Ahuir1987-uo, Pascual-Ahuir1990-lp,
+Steps \ref{item:mesh} and \ref{item:discretize} are closely intertwined,
+in the technical \acs{BEM} literature they go under the name of
+\emph{finite element discretization}.
+Let us define a mesh of the domain $\Gamma$ as an indexed collection of
+intervals with non-zero measure $\lbrace I_i\rbrace_{i=1}^{N_\mathrm{mesh}}$, where
+$N_\mathrm{mesh}$ is the size of the mesh.
+Then, in a rather informal sense, a finite element is the
+mathematical entity formed by the vector space of functions that are
+piecewise regular on any given interval in the mesh.~\autocite{Ern2004-oo}
+Basically, given an element in the mesh, we "attach" a basis set of
+piecewise polynomials of a prescribed degree and use this basis to
+provide a representation of quantities defined on $\Gamma$ within each
+mesh interval.
+Mesh generation for the molecular surfaces mentioned above is usually
+achieved by modified triangulation procedures. In this thesis we used
+the GePol algorithm~\autocite{Pascual-Ahuir1987-uo, Pascual-Ahuir1990-lp,
 Pomelli1998-qp, Pomelli2001-sj, Frediani2004-ua, Pomelli2007-wq}
-In this algorithm, the cavity is made of interlocking spheres, not all
-of them necessarily centered on the atoms. The surface is then
-discretized by means of $N_\mathrm{ts}$ small triangles $\Delta_i$ whose
-centroid defines the \emph{collocation point}. Once the centroid is
-properly defined, functions and operators are discretized by applying a
-one-point quadrature rule in the finite element centroid.
-The \acs{IEF}-\acs{PCM} equation is thus recast as:
+and the mesh generators of Harbrecht and Randrianarivony especially
+tailored for the wavelet \acs{BEM}.~\autocite{Harbrecht2009-no,
+Harbrecht2011-dk}
+
+The finite element discretization is usually carried out either by the
+\emph{collocation} or by the \emph{Galerkin} approach.\footnote{
+Indeed, it is possible to show that discretization by collocation
+corresponds to a Galerkin method with a very specific (and asymmetric)
+choice of \emph{trial} and \emph{test}
+spaces.~\autocite{Hackbusch1995-uq, Ern2004-oo}}
+This step transforms the original integral equation into a system of
+linear equations whose dimension relates to the underlying mesh size.
+For general integral equations and finite element discretizations,
+the \emph{stiffness matrix} obtained is dense and proper linear algebra
+techniques need to be employed in order to avoid a detrimental impact on
+computational performance.
+In addition, finite element discretization might destroy intrinsic
+symmetries of the original integral
+operators. These can be recovered by appropriate \emph{a posteriori}
+symmetrization procedures introducing, however, a degree of
+arbitrariness in the \acs{BEM} procedure.~\autocite{Lange2011-eu}
+
+In the GePol procedure, the molecular surface is meshed by means of
+$N_\mathrm{ts}$ spherical polygons $\Pi_i$ whose centroids define the
+collocation points. One-point quadrature rules are then applied at the
+centroid to obtain the matrix equation:
 \begin{equation}
-  \vect{q}
+ \mat{R}^{-1}\mat{T} \vect{q}
   =
-  \mat{T}^{-1}\mat{R}\vect{v}.
+  \vect{v}.
 \end{equation}
 $\vect{q}$ and $\vect{v}$ are vectors of dimension $N_\mathrm{ts}$
 collecting the values of the \acs{ASC} and \ac{MEP}
-at the collocation points.
+at the collocation points. $\mat{R}^{-1}\mat{T}$ is the stiffness
+matrix.
 The matrices representing the boundary integral operators are:
 \begin{align}
   \mat{T} &=
@@ -470,197 +402,124 @@ The matrices representing the boundary integral operators are:
 \end{align}
 $\mat{I}$ is the $N_\mathrm{ts}$-dimensional identity matrix while the
 other matrices are defined as:
-\begin{alignat}{2}
-  &\mat{A} = \mathrm{diag}(\cdots\,\, a_i = \mathrm{area}(\Delta_i)\,\, \cdots) \\
-  &S_{ii, \mathrm{i}} = k\sqrt{\frac{4\pi}{a_i}}, \quad
-  S_{ij, \mathrm{i}} = \frac{1}{|\vect{s}_i-\vect{s}_j|}\quad (i \neq j) \\
-  &D_{ii, \mathrm{i}} = -k\sqrt{\frac{\pi}{a_i}}\frac{1}{R_i}, \quad
-  D_{ij, \mathrm{i}} =
-  \frac{(\vect{s}_i-\vect{s}_j)\cdot\vect{n}_j}{|\vect{s}_i-\vect{s}_j|^3}\quad (i \neq j) \\
-  &S_{ii, \mathrm{e}} = \frac{S_{ii, \mathrm{i}}}{C(\vect{s}_i, \vect{s}_i)} +
-        G_\mathrm{img}(\vect{s}_i, \vect{s}_i), \quad
-  S_{ij, \mathrm{e}} =
-  \frac{1}{C(\vect{s}_i, \vect{s}_j)|\vect{s}_i-\vect{s}_j|} +
-  G_\mathrm{img}(\vect{s}_i, \vect{s}_j) \quad (i \neq j) \\
-  &D_{ii, \mathrm{e}} = \diel(\vect{s}_i)\left[
-  \frac{D_{ii, \mathrm{i}}}{C(\vect{s}_i, \vect{s}_i)}
-  -S_{ii, \mathrm{i}}
-  \frac{\nabla C(\vect{s}_i,
-  \vect{s}_i)\cdot\vect{n}_i}{C^2(\vect{s}_i, \vect{s}_i)}
-  +
-  \nabla G_\mathrm{img}(\vect{s}_i, \vect{s}_i)\cdot\vect{n}_i
-  \right] \\
-  &D_{ij, \mathrm{e}} =
-  \diel(\vect{s}_j)\left[
-  \frac{1}{C(\vect{s}_i, \vect{s}_j)}
-  \frac{(\vect{s}_i-\vect{s}_j)\cdot\vect{n}_j}{|\vect{s}_i-\vect{s}_j|^3}
-  -\frac{\nabla C(\vect{s}_i,
-  \vect{s}_j)\cdot\vect{n}_j}{C^2(\vect{s}_i, \vect{s}_j)}
-  \frac{1}{|\vect{s}_i-\vect{s}_j|}
-  + \nabla G_\mathrm{img}(\vect{s}_i, \vect{s}_j)\cdot\vect{n}_j
-  \right]\quad (i \neq j)
-\end{alignat}
+\begin{subequations}
+  \begin{align}
+    A_{ij} &= a_i\delta_{ij}, \quad a_i = \mathrm{area}(\Pi_i) \\
+    S_{ij, \mathrm{i}} &=
+    k\sqrt{\frac{4\pi}{a_i}}\delta_{ij} +
+    \frac{1}{|\vect{s}_i-\vect{s}_j|}(1-\delta_{ij}) \\
+    D_{ii, \mathrm{i}} &=
+    -k\sqrt{\frac{\pi}{a_i}}\frac{1}{R_i}\delta_{ij}
+    + \frac{(\vect{s}_i-\vect{s}_j)\cdot\vect{n}_j}{|\vect{s}_i-\vect{s}_j|^3}(1-\delta_{ij})
+  \end{align}
+\end{subequations}
 in terms of the centroids $\vect{s}_i, \vect{s}_j$, the finite elements
-areas and their curvatures $R_i$. The factor $k=1.07$ is introduced to achieve a better precision on the diagonal elements~\cite{Tomasi2005}.
+areas and their curvatures $R_i$.
+The factor $k=1.07$ is introduced to achieve a better precision on the
+diagonal elements.~\autocite{Tomasi2005-vm}
+Expressions for $\mat{S}_\mathrm{e}$, $\mat{D}_\mathrm{e}$ and
+$\mat{D}^\dagger_\mathrm{e}$ depend on the specific outer environment
+and can be found in the literature.~\autocite{Corni2002-dr, Frediani2004-er,
+Tomasi2005-vm, Delgado2013-kd, DiRemigio2016-nn}
 
-\todo[inline]{CURRENTLY COPIED VERBATIM FROM THE WAVELET PAPER}
+The wavelet Galerkin \acs{BEM} was also used in this thesis. This method
+preserves the fundamental symmetries of the boundary integral operators
+and achieves sparsity in the stiffness matrix.
+This sparsity can be leveraged to implement efficient algorithms with
+linear space and time complexity. The approach is thus superior
+to the traditional collocation method.
 
-Boundary integral equations, such as the \acs{IEF}-\acs{PCM}
-Eqs.~\eqref{eq:full-IEF-2pi}-\eqref{eq:isotropic-IEF},
-can conveniently be solved numerically by the application of the
-\ac{BEM}.
-Both the integral operators and the functions on which these act are
-defined solely on the boundary of the cavity.
+Given a hierarchical sequence of trial spaces
+$\lbrace V_l\rbrace_{l=1}^J$, one can decompose the $l$-th element in
+the hierarchy into the direct sum $V_l = V_{l-1} \oplus W_l$.
+$W_l$ is called the \emph{wavelet space} and is the, not necessarily
+orthogonal, complement to $V_{l-1}$.
+Recursively applying this splitting to the trial spaces hierarchy
+generates the wavelet decomposition, where all complementary spaces are
+spanned by the wavelet basis.
+The fundamental insight in the wavelet \acs{BEM} is to use the wavelet
+basis for the discretization step and employ the compression technique
+described by \citeauthor{Dahmen2006-pj} to build up the sparse system
+matrix.~\autocite{Harbrecht2004-uo, Harbrecht2004-ug, Dahmen2006-pj}
+Matrix compression is carried out in two rounds, \emph{a priori} and \emph{a
+posteriori}, resulting in a finger-like sparsity pattern for the
+stiffness matrix, Figure \ref{fig:finger-structure}.
+The number of relevant matrix entries scales proportional to $O(N_J)$
+with $N_J$ the number of degrees of freedom for a refinement of the
+geometry up to level $J$.
 
-The application of the boundary element method requires that the boundary of
-the molecular cavity is discretized by a number of suitable finite elements.
-The discretization of the boundary leads to a discretization of the integral
-operators. This discretization can be carried out by using either the
-\emph{collocation} or the \emph{Galerkin}
-approach.~\autocite{Hackbusch1995-uq, Ern2004-oo}
-In both cases, the integral equation is transformed to a system of
-linear equations whose dimension is related to the number of finite
-elements used in the discretization of the boundary.
-The resulting system matrix is, in general, a dense matrix. The
-boundary element method thus suffers from limitations imposed by the
-number of matrix elements to be stored and the memory and time
-requirements of solving the resulting linear system.
+\begin{figure}[tb]
+   \includegraphics[width=\textwidth]{a_2_l_0_5_fs.png}
+   \caption[Sparsity pattern achieved by the wavelet Galerkin \acs{BEM}.]{
+   Sparsity pattern achieved by the wavelet Galerkin \acs{BEM} for a
+   model problem (Laplace equation on 6 patches).
+   Reproduced from \noparcite[ref.][]{Bugeanu2015-tp}.
+   }
+   \label{fig:finger-structure}
+\end{figure}
 
-The use of a wavelet basis in the Galerkin approach has been proven
-beneficial in this respect.~\autocite{Harbrecht2004-uo, Dahmen2006-pj,
-Harbrecht2006-ug}.
-The resulting system matrices are quasi-sparse
-and can be further reduced to a sparse form by discarding
-negligible entries without considerable loss of precision.
+Continuity of meshes with respect to molecular distortions is a
+central issue for stable implementations of molecular gradients and
+recurs frequently in the literature.
+Numerous schemes have been proposed to solve or alleviate this issue.
+We here mention the TsLess~\autocite{Pomelli2004-lb} and
+DefPol~\autocite{Pomelli1998-ob, Pomelli1999-dc} approaches of
+\citeauthor{Pomelli1998-ob}, the FIXPVA
+modification~\autocite{Su2009-em} to the GePol algorithm put forth by
+\citeauthor{Su2009-em}.
+\citeauthor{Scalmani2010-tw} have recently proposed the \ac{CSC} scheme
+which uses a smooth \acs{vdWS} and 3D spherical Gaussian basis
+functions.~\autocite{Scalmani2010-tw, York1999-xy}
+Gaussian blurring was also advocated by \citeauthor{Lange2010-jp} in
+their \ac{SWIG} method.~\autocite{Lange2010-jp, Lange2010-qo}
+Both \acs{CSC} and \acs{SWIG} achieve continuous \acsp{PES} and smooth
+molecular gradients. However, their convergence to the exact solution of
+the underlying integral equation has yet to be proved.
+A completely different approach to the problem has been taken by
+\citeauthor{Cances2013-jg} by employing a domain decomposition
+method, guaranteed to converge to the exact solution.~\autocite{Quarteroni1999-jt}
+Moreover, for \acs{COSMO}, the formulation is embarrassingly
+parallel and has been implemented in a linearly scaling fashion.~\autocite{Cances2013-jg, Lipparini2013-cy, Lipparini2014-to,
+Lipparini2014-fq}
+Very recently the method has also been extended to general dielectric
+environments.~\autocite{Stamm2016-fv}
 
-The wavelet boundary element method starts by defining
-a sequence of hierarchical trial spaces,
-spanned by standard finite element ansatz functions:
+In the following, the \acs{PCM} equations will be written in the
+"complete basis" meaning that we will be working with the exact integral
+equation and not with its discretized counterpart.
+As a consequence, the apparent surface charge $\sigma$ and
+the electrostatic potential $\esp$ will have a \emph{continuous}
+dependence on a cavity surface "index" $\vect{s}$.
+A product involving any of these quantities will have to be
+interpreted as the \emph{surface integral}, \ie the scalar product in
+the suitable, infinite-dimensional vector space on the cavity boundary
+$\Gamma$.
+The following shorthand notations will be adopted:
 \begin{equation}
-  \{0\} = V_{-1} \subset V_0 \subset V_1 \subset \ldots
-  \subset V_J, \qquad V_j = \Span{\phi_{j,k} : k\in \Delta_{j}}.
+  \begin{aligned}
+  \sigma\PCM\sigma &=
+  \int_\Gamma\diff\vect{s}\sigma(\vect{s})\PCM\sigma(\vect{s})
+  =
+  \scalprod{\sigma(\vect{s})}{\PCM\sigma(\vect{s})} \\
+  \sigma\esp &=
+  \int_\Gamma\diff\vect{s}\sigma(\vect{s})\esp(\vect{s})
+  =
+  \scalprod{\sigma(\vect{s})}{\esp(\vect{s})}
+  \end{aligned}
 \end{equation}
-Here, $\Delta_j$ is an index set for the
-single-scale basis of the space $V_j$. In the wavelet method,
-the trial space $V_j$ is split into the direct sum $V_j = V_{j-1}
-\oplus W_j$. The resulting complementary space $W_j$ is called the
-wavelet space and is not necessarily orthogonal to $V_{j-1}$.
-% It suffices the equation $W_j \cap V_{j-1} = \{0\}$,
-Recursive splitting of the trial spaces leads to the wavelet
-decomposition $V_j = \bigoplus_{l = 0}^{j} W_l$.
-
-The complementary space is spanned by the wavelet basis:
-\begin{equation} W_j =
-  \Span{\psi_{j,k}: k \in \Delta_{j+1}
-\setminus \Delta_{j}}.
-\end{equation}
-The choice of this basis turns
-out to be very convenient, since we can exploit the compression
-technique described by \citeauthor{Dahmen2006-pj} to build up the sparse
-system matrix in the wavelet basis directly, avoiding the computation of
-non-relevant matrix entries.~\autocite{Dahmen2006-pj}
-The \emph{a priori} compression is carried out in two steps. In the
-first step, contributions from basis functions sufficiently far away
-from each other are discarded. In the following, elements of the matrix
-where one wavelet is in the smooth part of the other one are ignored.
-The number of relevant matrix entries scales proportional to $O(N_J)$ with
-$N_J$ the number of degrees of freedom for a refinement of the geometry
-up to level $J$.
-
-In order to understand the compression steps, let us introduce some
-notation. Let the \emph{convex hull} of the support of the wavelet $\psi_{j,k}$
-be:
-\begin{equation}
-  \Omega_{j,k} = \conv\hull\left(\supp \psi_{j,k}\right).
-\end{equation}
-Moreover, let the \emph{singular support} of the wavelet $\psi_{j,k}$ be:
-\begin{equation}
-  \Omega'_{j,k} = \sing\supp\psi_{j,k}
-\end{equation}
-It contains all the points in the support where the wavelet is not smooth.
-The compression steps are then governed by the following set of
-equations
-\begin{equation}
-  \left[A_J\right]_{\left(j,k\right)\left(j',k'\right)} =
-  \begin{cases}
-    \quad\quad 0 & \dist(\Omega_{j,k}, \Omega_{j',k'}) > B_{j,j'} \text{ and }j,j' \geq 0, \\
-    \quad\quad 0 & \dist(\Omega_{j,k}, \Omega_{j',k'}) \lesssim 2^{-\min\left\{j,j'\right\}} \,\text{and} \\
-      & \quad \dist(\Omega'_{j,k}, \Omega_{j',k'}) > B'_{j,j'} \text{ if }j' > j \geq 0, \\
-      & \quad \dist(\Omega_{j,k}, \Omega'_{j',k'}) > B'_{j,j'} \text{ if }j > j' \geq 0, \\
-    \langle A\psi_{j',k'},\psi_{j,k}\rangle, & \text{otherwise}
-  \end{cases}
-\label{eq:compression}
-\end{equation}
-where $\dist(\cdot, \cdot)$ denotes the distance, either between
-the bounding boxes of the wavelets or between the singular support and the
-bounding box. The first and second conditions represent the first and second
-compression step, respectively. The parameters $j,j'$ are the
-levels of the wavelets under consideration and the
-level-dependent cut-off parameters $B_{j,j'}$ and $B'_{j,j'}$ are given
-by
-\begin{align*}
-  B_{j,j'} &= a \max
-  \left\{2^{-\min\left\{j,j'\right\}},
-  2^{\frac{J\left(2d^\prime-op\right) -
-  \left(j+j'\right)\left(d^\prime+\tilde{d}\right)}{\left(2\tilde{d}+op\right)}}\right\}
-  \text{ and }\\ B'_{j,j'} &= a \max
-  \left\{2^{-\min\left\{j,j'\right\}},
-  2^{\frac{J\left(2d^\prime-op\right) -
-\left(j+j'\right)d^\prime-\max\left\{j,j'\right\}\tilde{d}}{\left(\tilde{d}+op\right)}}\right\}
-\end{align*}
-with $op$ being the order of the integral operator under consideration.
-For the first kind integral equation $op = -1$, while $op = 0$ for the second
-kind integral equation. The integer $\tilde{d}$ is related to the vanishing
-moments of the wavelet basis:
-\begin{equation}
-  \int \diff\vect{x}\,\,\vect{x}^r \psi_{j,k}(\vect{x}) = 0,
-\quad r = 0, \ldots \tilde{d}-1
-\end{equation}
-In the particular implementation, $\tilde{d}=3$ for the piecewise
-constant wavelet basis,  while $\tilde{d}=4$ for the piecewise bilinear
-parametrization.~\autocite{Harbrecht2013-hb}
-The compression can thus be adjusted by the parameters $a$ and
-$d^\prime$:
-\begin{equation}\label{eq:param}
-  a \geq 1, \quad d < d^\prime < \tilde{d} + op
-\end{equation}
-where $d$ is the approximation order of the trial spaces $V_j$:
-$d=1, 2$ for piecewise constant and
-piecewise bilinear ansatz functions, respectively.
-Note that, if the interaction between two wavelets, $\psi_{j,k}$ and $\psi_{j',k'}$, on
-level $j$ and $j'$ is neglected in the system matrix, all other
-interactions between wavelets resulting from the refinement of
-$\psi_{j,k}$ and $\psi_{j',k'}$ can also be ignored. Thus, the
-compression pattern of the system matrix is calculated
-hierarchically starting from the coarsest level.
-
-Once the compressed system matrix is assembled, we arrive at a sparse
-system matrix in the wavelet basis which can be compressed further by
-leaving out the sufficiently small elements. This post-processing step
-is governed by the rule
-\begin{equation}
-  \left[A_J\right]_{\left(j,k\right)\left(j',k'\right)}
-  \begin{cases}
-    \quad\quad 0 & \text{if } |\left[ A_J \right]_{\left(j,k\right)\left(j',k'\right)}| \leq \epsilon_{j,j'}\\
-    \left[A_J\right]_{\left(j,k\right)\left(j',k'\right)}, & \text{otherwise,}
-  \end{cases}
-  \label{eq:aposteriori}
-\end{equation}
-where the coefficients $\epsilon_{j,j'}$ are given by
-\begin{equation}
-%\epsilon_{j,j'} = b\min \left\{2^{-|j-j'|}, 2^{-\left(2J-\left(j+j'\right)\right)\frac{2d^\prime-op}{2\tilde{d}+op}}\right\} 2^{J\,op}2^{-2d^\prime\left(J-\frac{j+j'}{2}\right)},
-  \epsilon_{j,j'} = b\min \left\{2^{-|j-j'|}, 2^{-\left(2J-\left(j+j'\right)\right)\frac{2d^\prime-op}{2\tilde{d}+op}}\right\} 2^{-2d^\prime\left(J-\frac{j+j'}{2}\right)}
-\end{equation}
-with the \emph{a posteriori} compression parameter $b < 1$.
 
 \section[Variational Formulation of Classical Polarizable Models]{
 Above and Beyond: Classical Polarizable Models within a Variational Formulation}
 \label{sec:variational}
 
+\begin{equation}\label{eq:Y-operator}
+  \PCM = \bi{R}_\infty^{-1}\bi{R}_\diel\bi{S}
+\end{equation}
+
 Variational functional for implicit models, \acs{PCM} in this
 case:~\autocite{Lipparini2010-be, Lipparini2011-aj, Lipparini2016-mo}
 \begin{equation}
- U_\mathrm{PCM} = \frac{1}{2}\scalprod{\sigma}{\PCM\sigma} + \scalprod{\esp}{\sigma}
+ U_\mathrm{PCM} = \frac{1}{2}\sigma\PCM\sigma + \esp\sigma
 \end{equation}
 
 Variational functional for explicit models,~\autocite{Lipparini} could be
@@ -668,21 +527,6 @@ MMpol~\autocite{Curutchet} or PE~\autocite{Steindal, Kongsted, Olsen} or
 FQ~\autocite{Rick1994-mn, Rick1995-wu, Rick1996-om, Lipparini}:
 \begin{equation}
   U_\mathrm{MM} = \frac{1}{2}\kappa\MM\kappa + \kappa\zeta
-\end{equation}
-
-The PCM equations will be written in the ``complete basis'' meaning that
-we will introduce the usual \ac{BEM} discretization
-at the very end of the derivation. In other words, we will be working
-with the exact integral equation and not with its discretized
-counterpart. As a consequence, the apparent surface charge $\sigma$ and
-the electrostatic potential $\esp$ will have a \emph{continuous}
-dependence on a ``cavity surface'' index $\vect{s}$. Whenever a
-charge-potential product is present it is then to be interpreted as the
-\emph{surface integral}, i.e. the scalar product in the suitable,
-infinite-dimensional vector space on the cavity boundary $\Gamma$. The
-following shorthand notation will be adopted:
-\begin{equation}
- \sigma\esp = \scalprod{\sigma}{\esp}
 \end{equation}
 
 Coupled implicit/explicit polarization energy

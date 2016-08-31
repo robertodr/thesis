@@ -1,8 +1,147 @@
 \chapter{Some Mathematical Results}\label{app:mathematical-results}
 
+This appendix collects some results in the field of functional analysis and
+boundary integral equations. No proofs or examples are given, the interested
+reader is referred to the monographs by \citeauthor{Ern2004-oo},
+\citeauthor{Hsiao2008-xb} and \citeauthor{Sauter2011-an}\autocite{Ern2004-oo,
+Hsiao2008-xb, Sauter2011-an}
+
+\section{Preliminary Definitions}
+
+\begin{defin}[Sobolev spaces]
+Let $s$ and $p$ be two integers with $s\geq 0$ and $1\leq p \leq +\infty$.
+The so-called \emph{Sobolev space} $W^{s, p}(\Omega)$ is defined as
+\begin{equation}
+W^{s,p}(\Omega) =
+\left\lbrace
+u \in \mathcal{D}^\prime(\Omega) | \partial^\alpha u \in L^p(\Omega), |\alpha|\leq s
+\right\rbrace
+\end{equation}
+where $\mathcal{D}^\prime(\Omega)$ is the space of Schwartz distributions and the
+derivatives $\partial^\alpha u$ are understood in a distributional sense.
+\end{defin}
+
+\begin{lemma}[Hilbert Sobolev spaces]
+Let $s\geq 0$. The space $H^s(\Omega) = W^{s, 2}(\Omega)$ is a Hilbert space
+when equipped with the scalar product
+\begin{equation}
+(u, v)_{s, \Omega} = \sum_{|\alpha|\leq s}\int_\Omega\partial^\alpha u \partial^\alpha v.
+\end{equation}
+The associated norm is denoted by $\| \cdot \|_{s, \Omega}$.
+\end{lemma}
+
+\begin{defin}[Fractional Sobolev spaces]
+For $0 < s < 1$ and $1 \leq p < +\infty$, the so-called \emph{Sobolev space with fractional
+exponent} is defined as
+\begin{equation}
+W^{s, p}(\Omega) =
+\left\lbrace
+u \in L^p(\Omega) |
+\frac{u(\vect{r}) - u(\vect{r}^\prime)}{\| \vect{r} - \vect{r}^\prime\|^{s+\frac{d}{p}}}
+\in L^p(\Omega \times \Omega)
+\right\rbrace.
+\end{equation}
+Furthermore, when $s> 1$ is not integer, letting $\sigma = s - [s]$, where $[s]$ is the integer
+part of $s$, $W^{s,p}(\Omega)$ is defined as
+\begin{equation}
+W^{s, p}(\Omega) =
+\left\lbrace
+u \in W^{[s], p}(\Omega) |
+\partial^\alpha u \in W^{\sigma, p}(\Omega)\, \forall \alpha,\, |\alpha| = [s]
+\right\rbrace.
+\end{equation}
+When $p=2$, we denote $H^s(\Omega) = W^{s,2}(\Omega)$.
+\end{defin}
+
+\begin{defin}[Continuity]\label{def:continuity}
+  A bilinear form on a normed vector space $V$ is \emph{bounded}, or
+  \emph{continuous}, if there is a constant $C$ such that
+  $\forall u, v \in V$:
+  \[
+  a(u, v) \leq C\lVert u\rVert\lVert v\rVert
+  \]
+\end{defin}
+
+\begin{defin}[Coercivity]\label{def:coercivity}
+  A bilinear form on a normed vector space $V$ is \emph{coercive},
+  or \emph{elliptic}, if there is a constant $\alpha >0$ such that
+  $\forall u \in V$:
+  \[
+  a(u, u) \geq \alpha\lVert u\rVert^2
+  \]
+\end{defin}
+Coercivity implies that no eigenvalue of the linear operator associated to the
+bilinear form can be zero, hence its invertibility.~\autocite{Ern2004-oo}
+
+\begin{defin}[Abstract weak problem]\label{def:abstract-weak}
+An abstract weak problem is posed as follows:
+\begin{equation}
+  \left\{
+  \begin{aligned}
+    &\text{Seek $u \in W$ such that:}\\
+    &\forall v \in V \,\,\,\,\,
+    a(u, v) = b(v)
+  \end{aligned}
+  \right.
+  \label{eq:weak}
+\end{equation}
+where:
+\begin{itemize}
+  \item $W$ and $V$ are normed vector spaces. $W$ is the \emph{solution space},
+  $V$ the \emph{test space}.
+  \item $a$ is a \emph{continuous} bilinear form on $W \times V$.
+  \item $b$ is a \emph{continous} linear form on $V$.
+\end{itemize}
+\end{defin}
+
+\begin{defin}[Well-posedness]\label{def:hadamard}
+The abstract weak problem in Definition \ref{def:abstract-weak} is
+\emph{well-posed} if it admits one and only one solution and the solution is
+bounded by the \emph{a priori} estimate:
+\begin{equation}
+\exists c > 0, \forall f \in V^\prime, \|u\|_W \leq c \|f\|_{V^\prime}
+\end{equation}
+where $V^\prime$ is the dual space of $V$.
+\end{defin}
+
+\begin{defin}[Transmission problem]
+We assume Euclidean space $\mathbb{R}^3$ to be partitioned into two subdomains
+$\Omegai$ and $\Omegae$ sharing a boundary $\Gamma$. We further assume that
+$\Omegai$ is a closed domain, entirely contained inside $\Omegae$.
+The transmission problem is posed as follows:
+\begin{subequations}\label{eq:transmission-general}
+\begin{align}[left={\empheqlbrace}]
+  \Li u &= f_\mathrm{i} \,\, \text{in}\,\, \Omegai \\
+  \Le u &= f_\mathrm{e} \,\, \text{in}\,\, \Omegae \\
+  [u] &= \ue - \ui = g_\mathrm{D} \,\, \text{on}\,\, \Gamma
+   \\
+[\partial_L u] &= \partiale u - \partiali u = g_\mathrm{N} \,\,
+\text{on}\,\, \Gamma \\
+|u(\vect{r})| &\leq C \|\vect{r} \|^{-1} \,\,\text{for}\,\,\| \vect{r} \|\rightarrow\infty
+\end{align}
+\end{subequations}
+where the differential operators are assumed elliptic and the jump conditions are
+given in terms of Dirichlet $g_\mathrm{D}$ and Neumann $g_\mathrm{N}$ data.
+\end{defin}
+
+\section{Derivation of the IEF equation}
+I will show a detailed derivation of the \acs{IEF} equation
+for the \acs{PCM} transmission problem Eq.~\eqref{eq:transmission}:
+\begin{subequations}
+  \begin{align}[left={\empheqlbrace}]
+  \Li u &= \nabla^2 u = -4\pi\rhoi \,\, \text{in}\,\, \Omegai \\
+  \Le u &= 0 \,\, \text{in}\,\, \Omegae \\
+  [u] &= \ue - \ui = 0 \,\, \text{on}\,\, \Gamma \\
+[\partial_L u] &= \partiale u - \partiali u = 0 \,\, \text{on}\,\, \Gamma \\
+|u(\vect{r})| &\leq C \|\vect{r} \|^{-1} \,\,\text{for}\,\,\| \vect{r} \|\rightarrow\infty
+\end{align}
+\end{subequations}
+
+We first state two important results in the theory of boundary integral
+equations.
 \begin{lemma}[Properties of the boundary integral operators]
-  The integral operators introduced above enjoy the following
-  properties~\autocite{Hsiao2008-xb, Sauter2011-an}:
+  The integral operators introduced in Eqs.~\eqref{eq:S}-\eqref{eq:D-dagger}
+  enjoy the following properties~\autocite{Hsiao2008-xb, Sauter2011-an}:
   \begin{enumerate}
       \item on $L^2(\Gamma)$, $\bi{S}_\star$ is self-adjoint,
         $\bi{D}^\dagger_\star$ is the adjoint operator of
@@ -30,55 +169,49 @@
   \end{enumerate}
 \end{lemma}
 
-\subsection{Lemma of Integral Representation}
-For the transmission problem \ref{eq:transmission} there holds:
-\begin{itemize}
-\item $\forall x \in \Omegai$
+\begin{lemma}[Integral Representation]
+For the transmission problem \ref{eq:transmission-general} there holds:
+\begin{enumerate}
+\item $\forall \vect{r} \in \Omegai$
 \begin{equation}
 u = \bi{S}_\mathrm{i}(\partiali u)
-- \bi{D}_\mathrm{i}(\ui) + \int_{\Omegai} \Gi f_\mathrm{i}\diff y
+- \bi{D}_\mathrm{i}(\ui) + \int_{\Omegai} \Gi f_\mathrm{i}\diff \vect{r}^\prime
 \end{equation}
-\item $\forall x \in \Omegae$
+\item $\forall \vect{r} \in \Omegae$
 \begin{equation}
 u = -\bi{S}_\mathrm{e}(\partiale u)
-+ \bi{D}_\mathrm{e}(\ue) + \int_{\Omegae}\Ge f_\mathrm{e}\diff y
++ \bi{D}_\mathrm{e}(\ue) + \int_{\Omegae}\Ge f_\mathrm{e}\diff \vect{r}^\prime
 \end{equation}
-\item $\forall x \in \Gamma$
+\item $\forall \vect{r} \in \Gamma$
   \begin{equation}\label{eq:stat3}
     \frac{1}{2}\ui = \bi{S}_\mathrm{i}(\partiali u)
-    - \bi{D}_\mathrm{i}(\ui) + \int_{\Omegai}\Gi f_\mathrm{i}\diff y
+    - \bi{D}_\mathrm{i}(\ui) + \int_{\Omegai}\Gi f_\mathrm{i}\diff \vect{r}^\prime
   \end{equation}
-\item $\forall x \in \Gamma$
+\item $\forall \vect{r} \in \Gamma$
   \begin{equation}\label{eq:stat4}
     \frac{1}{2}\ue = -\bi{S}_\mathrm{e}(\partiale u)
-    + \bi{D}_\mathrm{e}(\ue) + \int_{\Omegae}\Ge f_\mathrm{e}\diff y
+    + \bi{D}_\mathrm{e}(\ue) + \int_{\Omegae}\Ge f_\mathrm{e}\diff \vect{r}^\prime
   \end{equation}
-\end{itemize}
+\end{enumerate}
+\end{lemma}
 
 We introduce the following auxiliary potential:
-\begin{equation}
-  h(x) =
-  \begin{cases}
-    &\int_{\mathbb{R}^3}\Gi\rhoi(y)\diff y  \quad x \in \Omegai \\
-    &\int_{\mathbb{R}^3}\Ge\rhoi(y)\diff y  \quad x \in \Omegae
-  \end{cases}
-\end{equation}
-for which we have:\footnote{This can be checked by applying the
-differential operators to the definition of $h$ and then swapping
-differentiation and integration.}
-\begin{equation}
-  \begin{cases}
+\begin{empheq}[left={h(\vect{r}) = \empheqlbrace}]{align}
+    &\int_{\mathbb{R}^3}\Gi\rhoi(\vect{r}^\prime)\diff \vect{r}^\prime  \quad \vect{r} \in \Omegai \\
+    &\int_{\mathbb{R}^3}\Ge\rhoi(\vect{r}^\prime)\diff \vect{r}^\prime  \quad \vect{r} \in \Omegae
+\end{empheq}
+for which we have:
+\begin{empheq}[left={\empheqlbrace}]{align}
     \nabla^2 h &= \rhoi \,\, \text{in}\,\, \Omegai \\
     \Le h &= 0 \,\, \text{in}\,\, \Omegae
-  \end{cases}
-\end{equation}
+\end{empheq}
 We then define the \emph{reaction potential} as:
 \begin{equation}
   \xi = u - h
 \end{equation}
 such that:
 \begin{subequations}
-\begin{align}
+  \begin{align}[left={\empheqlbrace}]
   \nabla^2 \xi &= 0 \,\, \text{in}\,\, \Omegai \\
   \Le \xi &= 0 \,\, \text{in}\,\, \Omegae \\
   -[\xi] &= [h] \,\, \text{on}\,\, \Gamma \\
@@ -86,30 +219,15 @@ such that:
 \end{align}
 \end{subequations}
 inside the cavity, the reaction potential can be represented by a
-\emph{single layer potential}, \ie by an apparent surface charge (ASC):
+\emph{single layer potential}:
 \begin{equation}
   \xi_\mathrm{i} = \bi{S}_\mathrm{i}\sigma
 \end{equation}
+where the function $\sigma$ is the, yet unknown, \acl{ASC}.
 
-Applying Eqs. \eqref{eq:stat3} and \eqref{eq:stat4} of the Lemma of Integral
-Representation to the reaction potential yields:
-\begin{align}
-  \frac{1}{2}\xi_\mathrm{i} &= \bi{S}_\mathrm{i}(\partiali \xi) -
-  \bi{D}_\mathrm{i}(\xi_\mathrm{i}) \\
-  -\frac{1}{2}\xi_\mathrm{e} &= \bi{S}_\mathrm{e}(\partiale \xi) -
-  \bi{D}_\mathrm{e}(\xi_\mathrm{e})
-\end{align}
-in both cases the last term, including the integration over the entire
-subdomain volume, drops out ($f_\mathrm{i} = 0 = f_\mathrm{e}$).
-While use of Eq. \eqref{eq:stat4} on the auxiliary potential $h$ yields:
-\begin{equation}
-  -\frac{1}{2}h_\mathrm{e} =
-  \bi{S}_\mathrm{e}(\partiale h) -
-  \bi{D}_\mathrm{e}(h_\mathrm{e})
-\end{equation}
-Together with the jump conditions one obtains:
-\begin{subequations}
-  \begin{align}
+To derive an equation for $\sigma$, we set up a system of equations containing
+the jump conditions and the integral representations of the reaction and auxiliary potentials:
+\begin{empheq}[left={\empheqlbrace}]{align}
     &\bi{S}_\mathrm{i}(\partiali \xi) - \bi{D}_\mathrm{i}(\xi_\mathrm{i})
     = \frac{1}{2}\xi_\mathrm{i} \label{eq:first} \\
     &\bi{S}_\mathrm{e}(\partiale \xi) - \bi{D}_\mathrm{e}(\xi_\mathrm{e})
@@ -120,96 +238,22 @@ Together with the jump conditions one obtains:
   \label{eq:fourth} \\
   &\partiali \xi - \partiale \xi = \partiale h - \partiali h
   \label{eq:fifth}
-  \end{align}
-\end{subequations}
-
-\begin{enumerate}
-  \item Add Eqs. \eqref{eq:second} and \eqref{eq:third}:
-    \begin{equation}
-    \bi{S}_\mathrm{e}(\partiale \xi + \partiale h) -
-    \bi{D}_\mathrm{e}(\xi_\mathrm{e} + h_\mathrm{e})
-    = -\frac{1}{2}(\xi_\mathrm{e} + h_\mathrm{e})
-    \end{equation}
-  \item Exploit Eqs. \eqref{eq:fourth} and \eqref{eq:fifth} to
-    eliminate the external traces and conormal derivatives:
-    \begin{equation}
-      \bi{S}_\mathrm{e}(\partiali \xi) + \left(\frac{1}{2} -
-      \bi{D}_\mathrm{e}\right)\xi_\mathrm{i} =
-      - \bi{S}_\mathrm{e}(\partiali h) - \left(\frac{1}{2} -
-      \bi{D}_\mathrm{e}\right)h_\mathrm{i}
-    \end{equation}
-  \item Introduce the integral representation of
-    $\xi_\mathrm{i}$:
-    \begin{equation}
-      \bi{S}_\mathrm{e}(\partiali \xi) + \left(\frac{1}{2} -
-      \bi{D}_\mathrm{e}\right)\bi{S}_\mathrm{i}\sigma =
-      - \bi{S}_\mathrm{e}(\partiali h) - \left(\frac{1}{2} -
-      \bi{D}_\mathrm{e}\right)h_\mathrm{i}
-    \end{equation}
-  \item Reorganize Eq. \eqref{eq:first}, using the commutation
-    relation and the integral representation of $\xi_\mathrm{i}$:
-    \begin{equation}
-    \partiali \xi = \left(\frac{1}{2} + \bi{D}^\dagger_\mathrm{i}\right)\sigma
-    \end{equation}
-    such that:
-    \begin{equation}
-      \left[ \bi{S}_\mathrm{e}\left(\frac{1}{2} + \bi{D}^\dagger_\mathrm{i}\right)
-      +
-      \left(\frac{1}{2} - \bi{D}_\mathrm{e}\right)\bi{S}_\mathrm{i}
-      \right]\sigma =
-      - \bi{S}_\mathrm{e}(\partiali h) - \left(\frac{1}{2} -
-      \bi{D}_\mathrm{e}\right)h_\mathrm{i}
-    \end{equation}
-  \item Employ the \ac{DtN} map to simplify
-    the RHS. The \acs{DtN} map is derived by applying Eq. \eqref{eq:stat3} to
-    the Newton potential:
-    \begin{equation}
-      \phi(x) = (\bi{N}\rhoi)(x) = \int_{\mathbb{R}^3}\Gi\rhoi(y)\diff y
-      = \left.h(x)\right|_{\Omegai}
-    \end{equation}
-    which is equal, in $\Omegai$, to the auxiliary potential $h(x)$.
-    With this definition one has:
-    \begin{equation}
-      \frac{1}{2}\phi_\mathrm{i} =
-      \bi{S}_\mathrm{i}(\partiali \phi) -
-      \bi{D}_\mathrm{i}(\phi_\mathrm{i}) + \int_{\Omegai}\Gi\rhoi(y)\diff y
-      =
-      \bi{S}_\mathrm{i}(\partiali \phi) -
-      \bi{D}_\mathrm{i}(\phi_\mathrm{i}) + \phi_\mathrm{i}
-    \end{equation}
-    eventually leading to the \acs{DtN} map:
-    \begin{equation}\label{eq:regular-DtN}
-      \left(\frac{1}{2} - \bi{D}_\mathrm{i}\right)\phi_\mathrm{i}
+\end{empheq}
+The final ingredient is the \ac{DtN} map, which can be derived by employing Eq.~\eqref{eq:stat3}
+to the Newton potential:
+\begin{equation}
+  \phi(\vect{r}) = (\bi{N}\rhoi)(\vect{r}) = \int_{\mathbb{R}^3}\Gi\rhoi(\vect{r}^\prime)\diff \vect{r}^\prime
+   = \left.h(\vect{r})\right|_{\Omegai}
+\end{equation}
+which is equal, in $\Omegai$, to the auxiliary potential $h(\vect{r})$.
+The \acs{DtN} map is thus given as:
+\begin{equation}\label{eq:regular-DtN}
+   \left(\frac{1}{2} - \bi{D}_\mathrm{i}\right)\phi_\mathrm{i}
       +\bi{S}_\mathrm{i}(\partiali \phi) = 0
-    \end{equation}
-  \item Having identified $\phi_\mathrm{i} \equiv h_\mathrm{i}$
-    and $\partiali \phi \equiv \partiali h$ and employing the \acs{DtN} map,
-    Eq.\eqref{eq:regular-DtN}, one obtains the \acs{IEF}-\acs{PCM} equation:
-    \begin{equation}
-      \left[ \bi{S}_\mathrm{e}\left(\frac{1}{2} + \bi{D}^\dagger_\mathrm{i}\right)
-      +
-      \left(\frac{1}{2} - \bi{D}_\mathrm{e}\right)\bi{S}_\mathrm{i}
-      \right]\sigma =
-      -\left[\left(\frac{1}{2}-\bi{D}_\mathrm{e}\right)
-      -\bi{S}_\mathrm{e}\bi{S}_\mathrm{i}^{-1}
-       \left(\frac{1}{2}-\bi{D}_\mathrm{i}\right)
-      \right]\phi
-  \tag{\ref{eq:full-IEF}}
-    \end{equation}
-    where the subscript $\mathrm{i}$ for the Newton potential $\phi$ has
-    been dropped, given that it is continuous across the boundary
-    $\Gamma$.
-\end{enumerate}
-The above proves the existence of a representation of the reaction
-potential valid \emph{inside} the cavity in terms of an apparent surface
-charge density. We do not prove the uniqueness of this solution and
-refer the interested reader to the original
-paper.~\autocite{Cances1998-og}
-
-In the code, the Green's functions are defined \emph{without} the $4\pi$
-factors in the denominator. Instead of $\frac{1}{2}$ as coefficients to
-the identity operator, one will then have $2\pi$:
-\begin{equation}\label{eq:full-IEF-2pi}
+\end{equation}
+With this last ingredient at hand, algebraic manipulations lead to the \acs{IEF}
+equation:
+\begin{equation}
   \left[ \bi{S}_\mathrm{e}\left(2\pi + \bi{D}^\dagger_\mathrm{i}\right)
   +
   \left(2\pi - \bi{D}_\mathrm{e}\right)\bi{S}_\mathrm{i}
@@ -217,27 +261,82 @@ the identity operator, one will then have $2\pi$:
   -\left[\left(2\pi-\bi{D}_\mathrm{e}\right)
   -\bi{S}_\mathrm{e}\bi{S}_\mathrm{i}^{-1}
   \left(2\pi-\bi{D}_\mathrm{i}\right)
-  \right]\phi
+  \right]\esp,
+  \tag{\ref{eq:full-IEF} from Chapter \ref{ch:CSM}}
 \end{equation}
 
-From Eq. \eqref{eq:full-IEF-2pi} we can derive the isotropic
-\acs{IEF}, the \acs{DPCM} and the \acs{CPCM} (by letting
-$\diel\rightarrow\infty$) equations.
-For a homogeneous, isotropic dielectric with permittivity $\diel$ the
-Green's function outside the cavity is simply given by scaling the one
-inside:
+\section{Weak Formulation of Partial Differential Equations}\label{sec:weak}
+
+Let us now take a step back and formulate a different strategy for the
+solution of the transmission problem.
+We will follow the exposition of \citeauthor{Ern2004-oo} quite closely
+in introducing the \emph{weak} formulation of \acp{PDE}.
+For simplicity, we assume Dirichlet boundary conditions for a conductor,
+\ie the basic assumption behind \acs{COSMO}.
+The \emph{strong} formulation of the electrostatic problem then reads:
+\begin{equation}\label{eq:poisson-cosmo}
+  \nabla^2\esp = -4\pi\rho,
+  \quad \esp \in \mathcolor{ForestGreen}{\mathcal{C}^2_0(\Omegai)},
+\end{equation}
+where $\mathcal{C}^2_0(\Omegai)$ is the vector space of twice
+continuously differentiable functions in $\Omegai$ with null trace on
+$\Gamma$.
+We can relax this regularity requirement on $\Psi$ by introducing the
+\emph{Hilbert Sobolev space} of test functions $H_0^1(\Omegai)$:
 \begin{equation}
-  \Ge = \frac{1}{\diel|x-y|} = \frac{1}{\diel} \Gi = \frac{1}{|x-y|}
+  H_0^1(\Omegai) = \lbrace
+  f : \Omegai \rightarrow \mathbb{R}
+  | f, \nabla f \in L^2(\Omegai), f_\Gamma = 0
+  \rbrace.
 \end{equation}
-leading to the boundary integral operators:
-\begin{alignat}{2}
-  \bi{S}_\mathrm{i} = \diel\bi{S}_\mathrm{e} = \bi{S}, \quad&
-  \bi{D}_\mathrm{i} = \bi{D}_\mathrm{e} = \bi{D}
-\end{alignat}
-Eventually, one has:
-\begin{equation}\label{eq:isotropic-IEF}
-  \left[ 2\pi \left(\frac{\diel+1}{\diel-1}\right)
-  - \bi{D} \right]\bi{S}\sigma
-  =
-  -\left[2\pi-\bi{D}\right]\phi
+Projecting the differential problem onto this space and using the
+$\eta\nabla^2\gamma = \nabla\cdot(\eta\nabla\gamma) - \nabla\eta\cdot\nabla\gamma$ identity
+one obtains the \emph{weak} formulation of the differential problem:
+\begin{equation}\label{eq:poisson-weak}
+  \left\{
+  \begin{aligned}
+    &\text{Seek $\Psi \in \mathcolor{ForestGreen}{H_0^1(\Omegai)}$ such that:}\\
+    &\mathcolor{PMS1797}{(\nabla\zeta, \nabla\Psi)} =
+    \mathcolor{PMS2229}{-4\pi(\zeta, \rho)} \quad
+    \forall \zeta\in \mathcolor{PMS130}{H_0^1(\Omegai)}
+  \end{aligned}
+  \right.
 \end{equation}
+The form $(\nabla\cdot, \nabla\cdot)$ is \emph{bilinear} and continuous
+in $H_0^1(\Omegai)\times H_0^1(\Omegai)$, while $-4\pi(\cdot, \rho)$ is
+\emph{linear} and continuous in $H_0^1(\Omegai)$.
+We rewrite Eq.~\eqref{eq:poisson-weak} in the abstract form:
+\begin{equation}
+  \left\{
+  \begin{aligned}
+    &\text{Seek $u \in V$ such that:}\\
+    &\forall v \in V \,\,\,\,\,
+    a(u, v) = b(v)
+  \end{aligned}
+  \right.
+  \label{eq:weak}
+\end{equation}
+and state the following fundamental results:
+\begin{lemma}[Lax--Milgram]
+  If the bilinear form $a$ is \emph{continous} and \emph{coercive}
+  in $V$, then, for any continuous linear form $b$, Problem~\eqref{eq:weak} is
+  \emph{well-posed}.
+\end{lemma}
+\begin{corollary}[Variational property]
+  If the bilinear form is \emph{symmetric} and \emph{positive}
+  the unique solution to Problem \eqref{eq:weak} is
+  the \emph{unique minimum} on $V$ of the functional:
+  \[
+  \mathcal{F}(u) = \frac{1}{2}a(u, u) - b(u)
+  \]
+\end{corollary}
+
+\todo[inline]{To write or not to write these????}
+
+Weak formulation of \acs{BIE}s.\autocite{Hsiao2008-xb}
+
+Approximability, conformity, consistency and asymptotic consistency
+of the approximation setting, $\inf$-$\sup$ condition, Céa's Lemma
+and generalized $\inf$-$\sup$ condition.~\autocite{Ern2004-oo,
+TesiFilippo}
+
