@@ -451,8 +451,8 @@ geometry up to level $J$.
 \begin{figure}[tb]
    \includegraphics[width=\textwidth]{a_2_l_0_5_fs.png}
    \caption[Sparsity pattern achieved by the wavelet Galerkin \acs{BEM}.]{
-   Sparsity pattern achieved by the wavelet Galerkin \acs{BEM} for a
-   model problem (Laplace equation on 6 patches).
+   Sparsity pattern achieved by the wavelet Galerkin \acs{BEM} when
+   solving the Laplace equation on 6 patches.
    Reproduced from \noparcite[ref.][]{Bugeanu2015-tp}.
    }
    \label{fig:finger-structure}
@@ -464,7 +464,7 @@ recurs frequently in the literature.
 Numerous schemes have been proposed to solve or alleviate this issue.
 We here mention the TsLess~\autocite{Pomelli2004-lb} and
 DefPol~\autocite{Pomelli1998-ob, Pomelli1999-dc} approaches of
-\citeauthor{Pomelli1998-ob}, the FIXPVA
+\citeauthor{Pomelli1998-ob} and the FIXPVA
 modification~\autocite{Su2009-em} to the GePol algorithm put forth by
 \citeauthor{Su2009-em}.
 \citeauthor{Scalmani2010-tw} have recently proposed the \ac{CSC} scheme
@@ -512,49 +512,101 @@ The following shorthand notations will be adopted:
 Above and Beyond: Classical Polarizable Models within a Variational Formulation}
 \label{sec:variational}
 
-\begin{equation}\label{eq:Y-operator}
-  \PCM = \bi{R}_\infty^{-1}\bi{R}_\diel\bi{S}
-\end{equation}
+The attentive reader will have noticed that, despite the focus of this
+thesis on continuum models for the quantum mechanical modelling of
+solvation, no mention has been made so far in this Chapter of any
+quantum aspect.
+The strategy usually adopted is to tailor a specific Hamiltonian, which
+includes classical contributions form the continuum and use it in the
+development of the quantum chemical model.
+Since the \acs{MEP} is a linear functional of the solute charge density,
+the \acs{ASC} itself incurs in a dependency on the solute charge
+density.
+Properly accounting for the mutual solute-solvent polarization induces a
+\emph{nonlinearity} in an otherwise linear problem.
+Manipulating such a \emph{nonlinear} Schr\"{o}dinger equation is
+theoretically cumbersome,\autocite{Sanhueza1979-bp, Heimsoeth1990-ki}
+but has been successfully exploited in the past.\autocite{Tomasi2005-vm}
 
-Variational functional for implicit models, \acs{PCM} in this
-case:~\autocite{Lipparini2010-be, Lipparini2011-aj, Lipparini2016-mo}
-\begin{equation}
- U_\mathrm{PCM} = \frac{1}{2}\sigma\PCM\sigma + \esp\sigma
-\end{equation}
+In this thesis we advocate a different theoretical approach: the
+variational formulation of classical polarizable models.
+Why so? In such a framework the \acs{ASC} becomes an additional,
+independent, variationally optimizable degree of freedom.
+This makes the coupling to, \eg, extended Lagrangian dynamics
+trivial.\autocite{Car1985-jw}
+It is well known that electrodynamics can be derived as the minimization
+of an action functional.\autocite{Jackson1999}
+The principle of least action is however formulated in terms of
+\emph{fields} and not more easily manageable quantities, such as the
+\acs{MEP} or the \acs{ASC}.
+A true energy functional has to fulfill the following
+properties:\autocite{Solis2013-ef}
+\begin{enumerate*}[label={\alph*)},font={\color{PMS1797}}]
+    \item physical extremal points,
+    \item equilibrium values are true energies \label{item:equil-prop} and
+    \item convexity (positive-definiteness)
+\end{enumerate*}
+\citeauthor{Allen2001-fp} and \citeauthor{Attard2003-vr} pioneering
+attempts resulted in functionals of scalar densities violating
+Property \ref{item:equil-prop} and could not thus be used in extended Lagrangian
+dynamics.\autocite{Allen2001-fp, Attard2003-vr, Attard2007-lk}
 
-Variational functional for explicit models,~\autocite{Lipparini} could be
-MMpol~\autocite{Curutchet} or PE~\autocite{Steindal, Kongsted, Olsen} or
-FQ~\autocite{Rick1994-mn, Rick1995-wu, Rick1996-om, Lipparini}:
-\begin{equation}
-  U_\mathrm{MM} = \frac{1}{2}\kappa\MM\kappa + \kappa\zeta
+In a seminal paper, \citeauthor{Lipparini2010-be} showed how the
+\acs{PCM} can be recast in a variational fashion yielding a true energy
+functional of the \acs{ASC}:\autocite{Lipparini2010-be, Lipparini2011-aj, Lipparini2016-mo}
+\begin{equation}\label{eq:pcm-functional}
+ U_\mathrm{PCM} = \frac{1}{2}\sigma\PCM\sigma + \esp\sigma,
+ \quad
+  \PCM \coloneq \bi{R}_\infty^{-1}\bi{R}_\diel\bi{S}.
 \end{equation}
+yielding Eq.~\eqref{eq:isotropic-IEF} upon minimization:
+\begin{equation}\label{eq:pcm-stationarity}
+  \pderiv{U_\mathrm{PCM}}{\sigma} = \PCM\sigma + \varphi = 0.
+\end{equation}
+It is interesting to note how this functional follows quite immediately
+from the integral equation formulation and standard results in the
+theory of boundary integral equations.\autocite{Hsiao2008-xb}
 
-Coupled implicit/explicit polarization energy
-functional:~\autocite{Lipparini}
+Explicit classical polarizable models can also be recast in a
+variational fashion allowing for their treatment on par with implicit
+classical polarizable models.
+The functional looks as follows:
+\begin{equation}\label{eq:mm-functional}
+  U_\mathrm{MM} = \frac{1}{2}\kappa\MM\kappa + \kappa\zeta,
+\end{equation}
+here $\kappa$ is the variational degree of freedom representing
+the polarization of the explicit environment. $\zeta$ is the inducing
+field, \emph{vide infra}. The reader is referred to the works of
+\citeauthor{Lipparini2011-rd} for a derivation of this functional.\autocite{Lipparini2011-rd, Lipparini2015-lq, Loco2016-oy}
+We have made no specific reference to the particular explicit
+model used. The variational framework is flexible enough to encompass
+either the MMpol,\autocite{Mennucci2013-go}
+the \ac{PE},\autocite{Olsen2010-wa, Olsen2011-io} or
+the \ac{FQ} model.\autocite{Rick1994-mn, Rick1995-wu, Rick1996-om,
+Lipparini2011-rd}
+
+Coupling the implicit and explicit polarizable models is straightforward
+in the variational framework:\autocite{Steindal2011-ki, Lipparini2011-rd,
+Caprasecca2012-ir, Lipparini2013-ud}
 \begin{equation}\label{eq:pcm-mm-functional}
   U_\mathrm{pol} =
    \frac{1}{2}\sigma\PCM\sigma + \sigma\esp
  + \frac{1}{2}\kappa\MM\kappa + \kappa\zeta
- + \sigma\bi{X}\kappa
+ + \sigma\bi{X}\kappa.
 \end{equation}
-where one has:
+An additional term, as first derived by
+\citeauthor{Steindal2011-ki},\autocite{Steindal2011-ki} was added to
+account for the mutual polarization between the implicit and explicit
+layers:
 \begin{equation}
   \sigma\MMPCM\kappa = \kappa\MMPCM^\dagger\sigma
 \end{equation}
-and $\MMPCM$ is the implicit/explicit interaction kernel. This is
-charge/dipole or charge/charge interaction kernel for the MMpol and
-\ac{PE} models
-or the \ac{FQ} model, respectively.
+$\MMPCM$ is the implicit/explicit interaction kernel, whose form depends
+on the specific explicit model chosen.
+
 The global minimum of the convex functional is found by differentiating
-it with respect to the variational degrees of freedom, \ie{} the
-\acl{ASC} (\acs{ASC}) density $\sigma$ and the classical point
-charges/dipoles $\kappa$. This leads to the coupled equations:
-\begin{align}
-  \PCM\sigma + \esp + \MMPCM\kappa &= 0 \\
-  \MM\kappa  + \zeta + \MMPCM^\dagger\sigma &= 0
-\end{align}
-or in the commonly found matrix form:
-\begin{equation}
+with respect to the variational degrees of freedom:
+\begin{equation}\label{eq:pcm-mm-stationarity}
   \begin{pmatrix}
     \PCM & \MMPCM \\
     \MMPCM^\dagger & \MM
@@ -570,6 +622,42 @@ or in the commonly found matrix form:
    \zeta
   \end{pmatrix}
 \end{equation}
+While $\esp$ is quite clearly the \acs{MEP}, $\zeta$ can either be the
+molecular electric field (MMpol and \acs{PE} models) or again the
+\acs{MEP} (\acs{FQ} model).
+In any case, both will be determined by the quantum mechanical molecular
+charge density and can thus be formulated as expectation values of
+one-electron operators.
+Eventually, this achieves the coupling between the classical -- $\sigma$
+and $\kappa$ -- and the quantum mechanical variational degrees of
+freedom.
+
+The functionals in Eqs.~\eqref{eq:pcm-functional},
+\eqref{eq:mm-functional} and \eqref{eq:pcm-mm-functional} all have a
+clear physical meaning.
+They describe charge distributions interacting (unfavorably) with
+themselves and (favorably) with their respective inducing external
+fields and constitutes the polarization energy of the medium.
+The topic of variational formulations is particularly important in the
+field of \acs{MD} simulations.\autocite{Jadhao2012-gf, Jadhao2013-ry, Jadhao2013-hs,
+Solis2013-ef}
+Our focus however is on the quantum mechanical calculations of molecular
+properties and the variational formulation is advantageous since it
+dispenses us from manipulating cumbersome nonlinear coupling terms in
+the Hamiltonian.
+Moreover, the stationarity condition Eq.~\ref{eq:pcm-mm-stationarity}
+entails the existence of a classical Hellmann--Feynman theorem:
+\begin{equation}\label{eq:classical-HF}
+  \deriv{U_\mathrm{pol}}{\lambda} = \pderiv{U_\mathrm{pol}}{\lambda}
+  + \pderiv{U_\mathrm{pol}}{\sigma}\pderiv{\sigma}{\lambda}
+  + \pderiv{U_\mathrm{pol}}{\kappa}\pderiv{\kappa}{\lambda}
+  = \pderiv{U_\mathrm{pol}}{\lambda},
+\end{equation}
+which is paramount in the formulation of molecular properties, see
+Chapter \ref{ch:molprop}.
+The variational formulation also lends itself to an implementation
+in terms of simultaneous optimization.\autocite{Lipparini2011-aj}
+
 Finally, let us re-express the equations above in a "supermatrix"
 formalism:
 \begin{equation}
@@ -599,34 +687,3 @@ where:
 and the ${}^t\p$ symbol denotes the transposed supervector $\p$.
 The supermatrix form will prove particularly useful in the following
 derivations.
-
-\todo[inline]{PUT REFERENCES HERE!!!}
-The variational formulation offers a series of advantages.
-The classical energy functional:
-\begin{equation}
-  U_\mathrm{pol} =
-   \frac{1}{2}\sigma\PCM\sigma + \sigma\esp
- + \frac{1}{2}\kappa\MM\kappa + \kappa\zeta
- + \sigma\bi{X}\kappa
-\end{equation}
-renders itself to a straightforward physical interpretation. In the
-three bilinear terms, \ie{} the ones mediated by an interaction
-operator, we can identify the self-interaction of the classical
-polarization with itself, be it purely implicit:
-$\frac{1}{2}\sigma\PCM\sigma$, purely explicit
-$\frac{1}{2}\kappa\MM\kappa$ or mixed $\sigma\MMPCM\kappa$.
-These terms are positive definite and give rise to an unfavorable
-contribution, which is counterbalanced by the linear terms. These terms
-mediate the interaction between the induced polarization and the
-inducing fields: $\esp$ and $\zeta$. While $\esp$ is quite clearly the
-\acl{MEP} (\acs{MEP}), $\zeta$ can either be the molecular electric
-field (MMpol and \acs{PE} models) or again the \acs{MEP} (\acs{FQ} model).
-In any case, both will be determined by the quantum mechanical molecular
-charge density and can thus be formulated as expectation values of
-one-electron operators. Eventually, this achieves the coupling between
-the classical -- $\sigma$ and $\kappa$ -- and
-the quantum mechanical variational degrees of freedom.
-
-\todo[inline]{Mention the classical equivalent of the Hellmann--Feynman
-theorem and why it is particularly useful in formulating response
-theory.}
