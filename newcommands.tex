@@ -25,8 +25,8 @@
 \newcommand*{\pderiv}[3][]{%
 \frac{\partial^{#1}#2}% Partial derivative
 {\partial #3^{#1}}}
-\newcommand*{\vect}[1]{\mathbf{#1}} % Vector
-\newcommand*{\mat}[1]{\mathbf{#1}}% Matrix
+\newcommand*{\vect}[1]{\symbf{#1}} % Vector
+\newcommand*{\mat}[1]{\symbf{#1}}% Matrix
 \newcommand*{\Tr}{\mathrm{Tr}}% Trace
 \newcommand*{\supp}[1]{\Supp(#1)}
 \newcommand*{\conv}{\mathop{}\!\mathrm{Conv}\,}
@@ -44,7 +44,7 @@
 \newcommand*{\PCM}{\bi{Y}} % The PCM boundary integral operator
 \newcommand*{\MM}{\bi{W}} % The MM classical matrix
 \newcommand*{\MMPCM}{\bi{X}} % The MM/PCM interaction kernel
-\newcommand*{\scalprod}[2]{(#1, #2)_{\Gamma}} % Scalar product
+\newcommand*{\scalprod}[3][\Gamma]{\left(#2, #3\right)_{#1}} % Scalar product
 \newcommand*{\s}{\mathrm{s}} % Sources
 \newcommand*{\p}{\mathrm{p}} % Polarization degree of freedom
 \newcommand*{\V}{\mathbb{V}} % Supermatrix

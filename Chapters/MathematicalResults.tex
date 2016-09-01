@@ -125,8 +125,8 @@ given in terms of Dirichlet $g_\mathrm{D}$ and Neumann $g_\mathrm{N}$ data.
 \end{defin}
 
 \section{Derivation of the IEF equation}
-I will show a detailed derivation of the \acs{IEF} equation
-for the \acs{PCM} transmission problem Eq.~\eqref{eq:transmission}:
+I will show a detailed derivation of the \acrshort{IEF} equation
+for the \acrshort{PCM} transmission problem Eq.~\eqref{eq:transmission}:
 \begin{subequations}
   \begin{align}[left={\empheqlbrace}]
   \Li u &= \nabla^2 u = -4\pi\rhoi \,\, \text{in}\,\, \Omegai \\
@@ -223,7 +223,7 @@ inside the cavity, the reaction potential can be represented by a
 \begin{equation}
   \xi_\mathrm{i} = \bi{S}_\mathrm{i}\sigma
 \end{equation}
-where the function $\sigma$ is the, yet unknown, \acl{ASC}.
+where the function $\sigma$ is the, yet unknown, \acrlong*{ASC}.
 
 To derive an equation for $\sigma$, we set up a system of equations containing
 the jump conditions and the integral representations of the reaction and auxiliary potentials:
@@ -239,19 +239,19 @@ the jump conditions and the integral representations of the reaction and auxilia
   &\partiali \xi - \partiale \xi = \partiale h - \partiali h
   \label{eq:fifth}
 \end{empheq}
-The final ingredient is the \ac{DtN} map, which can be derived by employing Eq.~\eqref{eq:stat3}
+The final ingredient is the \gls{DtN} map, which can be derived by employing Eq.~\eqref{eq:stat3}
 to the Newton potential:
 \begin{equation}
   \phi(\vect{r}) = (\bi{N}\rhoi)(\vect{r}) = \int_{\mathbb{R}^3}\Gi\rhoi(\vect{r}^\prime)\diff \vect{r}^\prime
    = \left.h(\vect{r})\right|_{\Omegai}
 \end{equation}
 which is equal, in $\Omegai$, to the auxiliary potential $h(\vect{r})$.
-The \acs{DtN} map is thus given as:
+The \acrshort{DtN} map is thus given as:
 \begin{equation}\label{eq:regular-DtN}
    \left(\frac{1}{2} - \bi{D}_\mathrm{i}\right)\phi_\mathrm{i}
       +\bi{S}_\mathrm{i}(\partiali \phi) = 0
 \end{equation}
-With this last ingredient at hand, algebraic manipulations lead to the \acs{IEF}
+With this last ingredient at hand, algebraic manipulations lead to the \acrshort{IEF}
 equation:
 \begin{equation}
   \left[ \bi{S}_\mathrm{e}\left(2\pi + \bi{D}^\dagger_\mathrm{i}\right)
@@ -272,7 +272,7 @@ solution of the transmission problem.
 We will follow the exposition of \citeauthor{Ern2004-oo} quite closely
 in introducing the \emph{weak} formulation of \acp{PDE}.
 For simplicity, we assume Dirichlet boundary conditions for a conductor,
-\ie the basic assumption behind \acs{COSMO}.
+\ie the basic assumption behind \acrshort{COSMO}.
 The \emph{strong} formulation of the electrostatic problem then reads:
 \begin{equation}\label{eq:poisson-cosmo}
   \nabla^2\esp = -4\pi\rho,
@@ -333,8 +333,9 @@ and state the following fundamental results:
 
 \todo[inline]{To write or not to write these????}
 
-Weak formulation of \acs{BIE}s.\autocite{Hsiao2008-xb}
+Weak formulation of \acrshort{BIE}s.\autocite{Hsiao2008-xb}
 
+\section{The Galerkin Method}
 Approximability, conformity, consistency and asymptotic consistency
 of the approximation setting, $\inf$-$\sup$ condition, Céa's Lemma
 and generalized $\inf$-$\sup$ condition.~\autocite{Ern2004-oo,

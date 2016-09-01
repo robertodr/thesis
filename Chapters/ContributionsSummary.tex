@@ -14,7 +14,7 @@ This final Chapter provides a brief overview of the motivations, results and
 conclusions of the papers this thesis is based on.
 All publications included in this thesis have involved some programming effort.
 In Section \ref{sec:software} I will describe the principles we have
-striven to follow in developing our \acs{PCM} software library and its
+striven to follow in developing our \acrshort{PCM} software library and its
 management philosophy.
 I will also give some details on the interfaces we have developed to different
 quantum chemistry codes.
@@ -49,14 +49,14 @@ Modularity is nothing more than a \emph{divide et impera} strategy
 applied to programming and it has been recognized as beneficial in many
 other scientific computing contexts.
 New features are isolated into libraries that can be accessed by host
-programs through a well-defined \ac{API}.
+programs through a well-defined \gls{API}.
 
 In this paradigm, computational tasks are implemented into separate,
 independent and interchangeable modules.
 Modules are to be thought as computational black boxes \emph{developed},
 \emph{tested}, \emph{packaged} and \emph{distributed} independently of
 the particular host program in which they will be used.
-A well-defined \ac{API} clearly delimits the boundaries of the functionality
+A well-defined \gls{API} clearly delimits the boundaries of the functionality
 offered, thus forcing a programming style and standardisation of the
 functionality, eventually.~\autocite{Reddy2011-sd}
 
@@ -84,22 +84,22 @@ impact. Third-parties can easily contribute to the project: by improving
 the documentation, by reporting bugs or by actively extending the
 codebase with new functionality.
 
-The \acs{PCM} is an ideal candidate for the creation of a solvation
-\acs{API}. Consider for example the schematic representation of a
-\acs{PCM}-\acs{SCF} algorithm given in Figure \ref{fig:algorithm}.
-The input to and from the \acs{PCM} library is limited and well-defined,
+The \acrshort{PCM} is an ideal candidate for the creation of a solvation
+\acrshort{API}. Consider for example the schematic representation of a
+\acrshort{PCM}-\acrshort{SCF} algorithm given in Figure \ref{fig:algorithm}.
+The input to and from the \acrshort{PCM} library is limited and well-defined,
 as are the components that host quantum chemistry codes need to
 implement.
-This provides a natural \acs{API} design: the \acs{API} functions can be
+This provides a natural \acrshort{API} design: the \acrshort{API} functions can be
 compared \emph{vis-à-vis} with the working equations derived for the
 different quantum chemical methods.
 
 \begin{figure}[tb]
 \centering
 \scalebox{0.7}{\input{gfx/algorithm.tikz}}
-\caption[Modular approach to programming a \acs{PCM} functionality into an existing \acs{SCF} code.]{
-Schematic view of a \acs{PCM}-\acs{SCF} algorithm. Computations/data in
-\textcolor{PMS2229}{blue} are implemented by the \acs{PCM} \acs{API}.
+\caption[Modular approach to programming a \acrshort{PCM} functionality into an existing \acrshort{SCF} code.]{
+Schematic view of a \acrshort{PCM}-\acrshort{SCF} algorithm. Computations/data in
+\textcolor{PMS2229}{blue} are implemented by the \acrshort{PCM} \acrshort{API}.
 Computations/data in \textcolor{Green}{green} are implemented by the
 host quantum chemistry code.
   }
@@ -107,7 +107,7 @@ host quantum chemistry code.
 \end{figure}
 
 The \pcmsolver library was developed to fulfill these requirements and
-offer the community an easy-to-use implementation of the \acs{PCM}.
+offer the community an easy-to-use implementation of the \acrshort{PCM}.
 \pcmsolver is written in C++ with Fortran, C and Python components.
 Architectural and conceptual organization of the code is provided by the
 C++ layer. To ensure the largest possible impact, the code is C++03 ISO standard
@@ -124,9 +124,9 @@ Cavity construction and discretization is handled either by the Fortan
 or by the C layer, depending on which computational \emph{backend} is
 needed.
 Evaluation of the Green's functions, needed to set up the representation
-of the boundary integral operators, leverages \ac{AD}. We use the Taylor library, a template C++
-implementation of \acs{AD}.~\autocite{Bartholomew-Biggs2000-db, libtaylor}
-The adoption of \git as \acs{DVCS}, \cmake for cross-platform builds and
+of the boundary integral operators, leverages \gls{AD}. We use the Taylor library, a template C++
+implementation of \acrshort{AD}.~\autocite{Bartholomew-Biggs2000-db, libtaylor}
+The adoption of \git as \acrshort{DVCS}, \cmake for cross-platform builds and
 automatic documentation deployment on \readthedocs simplify
 extensibility of the module and promote third-party contributions to the
 code base. Continuous integration and nightly testing offer an
@@ -145,26 +145,26 @@ Preeminent use of composition over inheritance keeps the coupling
 between different modules as low as possible.~\autocite{Gamma1995-fd}
 
 The library is released under the terms of the
-version 3 \ac{LGPL}, a standard open-source license.~\autocite{LGPLv3}
+version 3 \gls{LGPL}, a standard open-source license.~\autocite{LGPLv3}
 We strongly believe that open-source software is the key to a larger
 impact for scientific software and a standard license means lower
 thresholds to adoption and third-party contributions.~\autocite{LGPLv3}
-The library serves as our development platform for the \acs{PCM}.
+The library serves as our development platform for the \acrshort{PCM}.
 The interfaces to different quantum chemistry codes allow us to explore
 new methodologies, significantly cutting down development times.
-Use of our \acs{API} \emph{significantly} limits coding effort on the
-side of the host: continuum solvation at the \acs{SCF} level of theory
+Use of our \acrshort{API} \emph{significantly} limits coding effort on the
+side of the host: continuum solvation at the \acrshort{SCF} level of theory
 can be implemented in the host program almost out-of-the-box.
 
-The library was designed to allow host-\acs{API} communication through
+The library was designed to allow host-\acrshort{API} communication through
 \emph{pure} functions, \ie{} free from side-effects.
 Such an implementation hinges on the theoretical realization that the
-\acs{PCM} layer is independent of the \acs{AO} or \acs{MO} spaces
+\acrshort{PCM} layer is independent of the \acrshort{AO} or \acrshort{MO} spaces
 defined in the quantum chemical layer.
 Passing and modifying large data structures, such as the Fock and
 density matrices, can be completely avoided.
 As schematically depicted in Figure \ref{fig:algorithm},
-computation of the \acs{ASC} only depends on
+computation of the \acrshort{ASC} only depends on
 the electrostatic potential sampled at the cavity boundary:
 \begin{equation}
  \esp(\vect{s}) =
@@ -176,7 +176,7 @@ perturbed, density matrix, a task handled by the host program.
 Formation of the solvent contribution to the Fock matrix requires the
 computation of the scalar product
 $\scalprod{\sigma(\vect{s})}{\esp_{\kappa\lambda}(\vect{s})}$
-between the \acs{ASC} and the charge attraction integral matrix, again
+between the \acrshort{ASC} and the charge attraction integral matrix, again
 a task easily accomplished by the host program.
 As shown in Figure \ref{fig:pcmsolver-scheme}, data transfer between
 \pcmsolver and the host is limited to the communication of
@@ -195,10 +195,10 @@ I/O operations.
   \label{fig:pcmsolver-scheme}
 \end{figure}
 
-The \acs{API} is implemented in ISO C99 as a \emph{context-aware} set of
+The \acrshort{API} is implemented in ISO C99 as a \emph{context-aware} set of
 functions.~\autocite{library-ronacher, context-api-example}
 Upon initialization of the library, a \emph{context} object containing
-the state of the \acs{PCM} \acs{API} is constructed and a handle to it
+the state of the \acrshort{PCM} \acrshort{API} is constructed and a handle to it
 (a pointer in C++ parlance) is returned to the host program. Further
 transactions between \pcmsolver and the host program proceed through
 manipulations of the context object.
@@ -208,7 +208,7 @@ Bookkeeping of a possibly arbitrary number of such quantities is managed
 through a map storing labels and pointers to the contents of the
 functions.
 Listings \ref{lst:C-host} and \ref{lst:Fortran-host} show how calls to
-\pcmsolver \acs{API} functions might look like in an actual C or Fortran
+\pcmsolver \acrshort{API} functions might look like in an actual C or Fortran
 program, respectively.
 
 \lstinputlisting[language=C,
@@ -219,7 +219,7 @@ program, respectively.
                  label={lst:C-host}
                 ]{snippets/C_host.c}
 
-A context-aware \acs{API} offers a simple strategy for parallelization.
+A context-aware \acrshort{API} offers a simple strategy for parallelization.
 The host program could spawn contexts on a per-process basis,
 limiting ownership and access to a context just to its parent process.
 Race conditions are trivially avoided in such a scenario.
@@ -238,7 +238,7 @@ solvers for isotropic media,~\autocite{Tomasi2005-vm}
 together with some unique functionalities: the wavelet Galerkin solvers on smooth
 molecular surfaces,~\autocite{Weijo2010-hy, Bugeanu2015-tp} the Green’s
 functions for spherical diffuse interfaces~\autocite{DiRemigio2016-nn} and
-the delayed solvers for real-time \acl{TDSCF}
+the delayed solvers for real-time \acrlong*{TDSCF}
 simulations.~\autocite{Corni2015-pe}
 
 Programming effort in this thesis has not only been directed at the
@@ -252,7 +252,7 @@ described in Paper II and Paper V, respectively.~\autocite{Bugeanu2015-tp, pcm-o
 Details about the interface to \ReSpect~\autocite{ReSpect-3.5.0} can be
 found in Paper IV.~\autocite{pcm-respect}
 Coupling with \psicode~\autocite{Turney2012-de} has allowed us to implement the
-\acs{PCM}-\acs{CC} developments described in this thesis.
+\acrshort{PCM}-\acrshort{CC} developments described in this thesis.
 Finally, development of an interface with the KOALA code is underway.~\autocite{Hofener2014-ex, Hofener2016-qz}
 
 \section{Continuum solvation in the relativistic regime}\label{sec:relapcm}
@@ -264,8 +264,8 @@ achieve at least qualitative agreement with experiment.
 Additional complications arise if one needs to also include environment effects.
 Continuum models arguably represent a cost-effective strategy to achieve a first
 approximation of these effects.
-In this paper, we presented the first derivation and implementation of the \acs{PCM}
-coupled to a \acs{SCF} description of the solute in the fully relativistic, four-component
+In this paper, we presented the first derivation and implementation of the \acrshort{PCM}
+coupled to a \acrshort{SCF} description of the solute in the fully relativistic, four-component
 regime.
 Our preliminary calculations on the group 16 dihydrides \ce{H2X} (\ce{X} =
 \ce{O}, \ce{S}, \ce{Se}, \ce{Te}, \ce{Po}) have shown that the method predicts
@@ -273,21 +273,21 @@ a noticeable interplay of relativistic and solvent effects when heavier
 elements are involved.
 The main point of the paper was, however, the adoption of a fully modular
 programming strategy. We showed that it is entirely possible to adopt the same
-\acs{PCM} code and implementation "checkpoints" across altogether different
+\acrshort{PCM} code and implementation "checkpoints" across altogether different
 problem domains, Fig.~\ref{fig:algorithm}.
 
-As a by-product of the four-component implementation, we were able to obtain and visualize \acs{MEP} maps
-from four-component \acs{SCF} wave functions. These add yet another interpretive tool to the toolbox available
+As a by-product of the four-component implementation, we were able to obtain and visualize \acrshort{MEP} maps
+from four-component \acrshort{SCF} wave functions. These add yet another interpretive tool to the toolbox available
 in the four-component relativistic regime.
 The interface to \DIRAC was later released in the 2014 and later versions,
-providing \acs{PCM} capabilities to the software package.
+providing \acrshort{PCM} capabilities to the software package.
 
 I contributed the theoretical derivation of the quantum/classical polarizable
-terms in a four-component \acs{SCF} framework, for energies and linear response
+terms in a four-component \acrshort{SCF} framework, for energies and linear response
 properties. I devised the coupling of the four-component program \DIRAC with
 \pcmsolver by providing the implementation and testing of:
 \begin{enumerate*}[label={\alph*)},font={\color{PMS1797}}]
-  \item \acs{MEP} integrals for four-component wave functions,
+  \item \acrshort{MEP} integrals for four-component wave functions,
   \item the additional Fock matrix contributions and
   \item the additional terms in the response equations.
 \end{enumerate*}
@@ -301,39 +301,39 @@ all subsequent versions.
 Continuum solvation models are inherently parametrized. Apart from solvent permittivities,
 the atomic radii and molecular surface definition play a crucial role
 in determining the performance of the models.
-However, the numerical accuracy of the \acs{BEM} procedure used to numerically solve the
-underlying \acs{BIE} is a not-so-often studied aspect of these models.
+However, the numerical accuracy of the \acrshort{BEM} procedure used to numerically solve the
+underlying \acrshort{BIE} is a not-so-often studied aspect of these models.
 Traditionally, collocation methods have been used, but these require parametrization of some of the necessary surface integrals.
 Galerkin methods do not suffer from such a limitation and additionally preserve symmetry of the underlying
 boundary integral operators.
 The use of biorthogonal wavelet bases as finite elements achieves sparsity in
-the \acs{BEM} procedure, due to their intrinsically hierarchical structure and
+the \acrshort{BEM} procedure, due to their intrinsically hierarchical structure and
 the existence of \emph{a priori} and \emph{a posteriori} matrix compression
 estimates.
-Thus, wavelet Galerkin \acs{BEM} represents a valid alternative to traditional
+Thus, wavelet Galerkin \acrshort{BEM} represents a valid alternative to traditional
 collocation methods, both to achieve a better computational scaling and to
 provide accurate, benchmark results.\autocite{Harbrecht2004-uo,
 Harbrecht2006-ug, Dahmen2006-pj}
 
-Already~\citeauthor{Weijo2010-hy} had shown that using \ac{PWC} bases can lead
+Already~\citeauthor{Weijo2010-hy} had shown that using \gls{PWC} bases can lead
 to superior accuracy and convergence in the calculation of quantum mechanical
 molecular solvation energies.
 In this work we showed that even faster convergence can be achieved when
-\ac{PWL} bases are used instead.
+\gls{PWL} bases are used instead.
 Moreover, the same holds for the calculation of static electric properties.
 Notably, the traditional collocation solver cannot guarantee the same accuracy,
 even for very large finite element bases. This suggests that, in some cases,
-\acs{BEM} collocation methodologies might slow down or even prevent the
+\acrshort{BEM} collocation methodologies might slow down or even prevent the
 convergence of the quantum mechanical response equations solvers.
 
 For this paper, I provided template interface and test sets for the cavity
 generator\autocite{Harbrecht2009-no, Harbrecht2011-dk} and wavelet Galerkin
-\acs{BEM} solver\autocite{Harbrecht2004-uo, Harbrecht2006-ug} with \pcmsolver.
+\acrshort{BEM} solver\autocite{Harbrecht2004-uo, Harbrecht2006-ug} with \pcmsolver.
 These were used to interface with the new C++ implementation of the wavelet
 Galerkin solvers of Monica Bugeanu.
 I implemented the interface between the \LSDALTON quantum chemistry software
-package and the \pcmsolver software library. The interface allows to run \acs{HF} and
-\acs{KS}-\acs{DFT} single-point and linear response calculations.
+package and the \pcmsolver software library. The interface allows to run \acrshort{HF} and
+\acrshort{KS}-\acrshort{DFT} single-point and linear response calculations.
 Together with coauthor Krzysztof Mozgawa, I performed the benchmark quantum
 chemical calculations presented in the paper.
 Finally, I coordinated the editing of all manuscript drafts.
@@ -342,7 +342,7 @@ The first draft of Sections 3 and 4 was co-written with the first author, Monica
 I performed most of the data analysis and produced tables and graphs.
 
 Finally, the interface to \LSDALTON was later released in the 2016 version,
-providing \acs{PCM} capabilities to the software package.
+providing \acrshort{PCM} capabilities to the software package.
 
 \section{Non homogeneous environments}\label{sec:spherical}
 
@@ -352,7 +352,7 @@ The general integral equation formulation is in fact transparent with respect
 to the definition of the Green's function for the space portion exterior to the
 cavity.
 As outlined in Chapter \ref{ch:CSM}, the boundary integral operators in the
-\acs{IEF} equation:
+\acrshort{IEF} equation:
 \begin{equation}
   \left[ \bi{S}_\mathrm{e}\left(2\pi + \bi{D}^\dagger_\mathrm{i}\right)
   +
@@ -367,7 +367,7 @@ As outlined in Chapter \ref{ch:CSM}, the boundary integral operators in the
 can be set up once the Green's functions $\Gi$ and $\Ge$ are known.~\autocite{Cances1998-og}
 \citeauthor{Frediani2004-er} showed that a numerical representation of the
 Green's function is sufficient to obtain the boundary integral operators in the
-\acs{PCM} integral equation.
+\acrshort{PCM} integral equation.
 The authors introduced a numerical integration procedure to calculate the
 Green's function for an environment characterized by spatially varying, yet
 cilindrically symmetric, permittivity functions: a model for planar diffuse interfaces.
@@ -404,16 +404,16 @@ Solution}\label{sec:pcmepr}
 Paper IV is a step further in our exploration of the interplay between
 relativistic and solvent effects initiated with Paper I.
 Whereas Paper I presented the essential framework for the coupling of
-four-component \acs{SCF} wave functions with a classical polarizable continuum,
+four-component \acrshort{SCF} wave functions with a classical polarizable continuum,
 in this paper we explored the calculation of first-order magnetic properties:
-\ac{EPR} and \ac{pNMR} parameters.~\autocite{Repisky2010-ls, Malkin2011-nm,
+\gls{EPR} and \gls{pNMR} parameters.~\autocite{Repisky2010-ls, Malkin2011-nm,
 Komorovsky2013-xa, Cherry2016-ij}
 The two works are thus complementary since they explore two different classes
 of properties and present implementations in two algorithmically different
 relativistic quantum chemistry codes.
 In the relativistic framework, spin-orbit interactions are included from the
 outset in the variational optimization of the wave function.
-Hence, \acs{EPR} and \acs{pNMR} parameters are formulated as expectation
+Hence, \acrshort{EPR} and \acrshort{pNMR} parameters are formulated as expectation
 values, by virtue of the Hellmann--Feynman theorem.~\autocite{Konishi2009-zb,
 Helgaker2000-tz}
 Moreover, the \ReSpect code can exploit the \emph{Kramers unrestricted} formalism,
@@ -429,10 +429,10 @@ refined the implementation to achieve better computational performance.
 I tested the interface against one-component and four-component results obtained with
 the \LSDALTON and \DIRAC codes, respectively.
 I helped coauthors Michal Repisky, Stanislav Komorovsky and Peter Hrobarik
-with setting up the \acs{PCM} calculations described in the paper.
+with setting up the \acrshort{PCM} calculations described in the paper.
 Finally, I provided the first draft for Section 2 of the paper and took part in all editing stages.
 The interface to \ReSpect will be released in the next public version of the software
-package, providing \acs{PCM} and \acs{COSMO} capabilities.
+package, providing \acrshort{PCM} and \acrshort{COSMO} capabilities.
 
 \section{Open-ended self-consistent field response theory in
 solution}\label{sec:pcmopenrsp}
@@ -443,7 +443,7 @@ molecular materials can be routinely probed.
 The more intense the light source, the more complicated the interpretation of
 the measured signal.
 Our group has newly developed an open-ended methodology for the computation of
-\acs{SCF} response functions~\autocite{Thorvaldsen2008-sg, Ringholm2014-gx} and
+\acrshort{SCF} response functions~\autocite{Thorvaldsen2008-sg, Ringholm2014-gx} and
 their residues.~\autocite{Friese2015-kb}
 These developments offer a route towards a synergistic experimental and
 theoretical approach to high-order absorption spectroscopies.
@@ -453,14 +453,14 @@ Still nowadays, continuum models represent a cost-effective methodology for the
 approximate inclusion of solvent effects, albeit their known limitations with respect
 to specific solute-solvent interactions.
 
-I developed the theoretical framework for the open-ended \acs{SCF} formulation
+I developed the theoretical framework for the open-ended \acrshort{SCF} formulation
 of molecular response properties when a quantum/classical polarizable continuum
 Hamiltonian is used.~\autocite{Thorvaldsen2008-sg, Lipparini2010-be}
 I provided its implementation within the \DALTON code, by interfacing the
-\pcmsolver library and the open-ended \acs{SCF} response code of
+\pcmsolver library and the open-ended \acrshort{SCF} response code of
 \citeauthor{Ringholm2014-gx}~\autocite{Ringholm2014-gx, Friese2015-kb}
 I performed extensive testing of the code by comparing with previously
-published implementations of the \acs{PCM}-\acs{SCF} response functions within
+published implementations of the \acrshort{PCM}-\acrshort{SCF} response functions within
 \DALTON.~\autocite{Cammi2003-qy, Frediani2005-nc, Ferrighi2010-pm}
 Together with coauthors Maarten T.~P.~Beerepoot and Yann Cornaton, I carried out
 the multiphoton absorption calculations presented in the paper. I contributed

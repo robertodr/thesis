@@ -23,3 +23,11 @@ papers/pcmopenrsp.pdf
 *.nlo
 *.nls
 *.ilg
+*.acn
+*.glo
+*.glsdefs
+*.ist
+*.acr
+*.alg
+*.glg
+*.gls

@@ -7,13 +7,13 @@
 
 I will present results on the formulation of quantum/classical
 polarizable models when the quantum part of the system includes a
-many-body description of electron correlation either by a \ac{MBPT},
-\ac{CC} or hybrid approach.
+many-body description of electron correlation either by a \gls{MBPT},
+\gls{CC} or hybrid approach.
 These results leverage the variational formulation of quantum/classical
 polarizable Hamiltonians described in Section \ref{sec:variational}.
 This is an element of novelty with respect to the existing literature: I
 will show how a fully variational framework enables transparent
-derivations of \acs{MBPT} and \acs{CC} theory, encompassing previous
+derivations of \acrshort{MBPT} and \acrshort{CC} theory, encompassing previous
 work~\cite{Cammi, Olivares del Valle, Caricato, Sneskov}
 and solving some inconsistencies.~\cite{Angyan1992}
 
@@ -21,31 +21,31 @@ The contents of this Chapter are the result of an ongoing collaboration
 with prof.~T.~Daniel Crawford (Virginia Tech) and Dr.~Andrew
 C.~Simmonett (NIH)
 
-After introducing the notation, I will derive the form of the \acs{CC}
+After introducing the notation, I will derive the form of the \acrshort{CC}
 effective Lagrangian and proceed to show how the work of
 \citeauthor{Cammi2009-gu} and \citeauthor{Caricato2011-tx} on
-\acs{PCM}-\acs{CC} and \citeauthor{Sneskov} on \acs{PE}-\acs{CC}
+\acrshort{PCM}-\acrshort{CC} and \citeauthor{Sneskov} on \acrshort{PE}-\acrshort{CC}
 can easily be derived in the variational framework.
 
 The second part of this Chapter will be devoted to the derivation of
-\acs{MBPT} for quantum/classical polarizable Hamiltonians.
-I will exploit the \acs{CC} Ansatz for the wave function and formulate
-\acs{MBPT} in terms of the effective \acs{CC} Lagrangian, an approach
+\acrshort{MBPT} for quantum/classical polarizable Hamiltonians.
+I will exploit the \acrshort{CC} Ansatz for the wave function and formulate
+\acrshort{MBPT} in terms of the effective \acrshort{CC} Lagrangian, an approach
 guaranteeing term-by-term size extensivity.
 
-Iterative approximations to the \acs{CCSD} and \acs{CCSDT} models will
+Iterative approximations to the \acrshort{CCSD} and \acrshort{CCSDT} models will
 be the subject of Section \ref{sec:cc2-and-cc3} where the equations
-governing the \acs{CC2} and \acs{CC3} models will be derived.
+governing the \acrshort{CC2} and \acrshort{CC3} models will be derived.
 Eventually, I will describe schemes for the noniterative inclusion of
 the effect of connected triples excitations on top of
-the \acs{CCSD} wave function. The symmetric and asymmetric [T] and (T)
+the \acrshort{CCSD} wave function. The symmetric and asymmetric [T] and (T)
 corrections will be derived.
 
 \pagebreak
 
 \section{Effective Coupled Cluster Lagrangian}
 
-Our purpose in this Section is to derive an \emph{effective} \acs{CC}
+Our purpose in this Section is to derive an \emph{effective} \acrshort{CC}
 Lagrangian that takes into account the coupling of the correlated
 electronic state with the classical polarizable
 environment.
@@ -58,7 +58,7 @@ contributions from the reference state in the subsequent correlated
 treatment.
 
 Once again, let us assume that the reference state is a closed-shell
-\acs{HF} determinant. Further, we assume that the reference determinant
+\acrshort{HF} determinant. Further, we assume that the reference determinant
 was optimized in the presence of the classical polarizable environment.
 Then the variational degrees of freedom corresponding to the environment
 satisfy:
@@ -128,7 +128,7 @@ and similarly for the sources:
   \end{pmatrix}
 \end{aligned}
 \end{equation}
-The \acs{BCH} expansions of the source terms have been
+The \acrshort{BCH} expansions of the source terms have been
 rewritten as:
 \begin{subequations}
   \begin{align}
@@ -277,7 +277,7 @@ Eventually, the polarization functional can be rewritten as:
 
 The reference polarization energy $U_\mathrm{pol}^\mathrm{ref}$ still
 appears among the terms in the functional but will obviously not enter
-in the optimization of the \acs{CC} wave function.
+in the optimization of the \acrshort{CC} wave function.
 Recasting the polarization functional in the supermatrix formalism (see
 Section \ref{sec:variational}) will simplify subsequent algebraic
 manipulations:
@@ -315,15 +315,15 @@ One can then write the effective Lagrangian as:
 In accordance with previous work,\autocite{Cammi2009-gu,
 Caricato2011-tx} the Hamiltonian $H_0$ is augmented with the
 ${}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})$ term to yield the
-\acl{PTE} (\acs{PTE}) Hamiltonian -- $H$ -- and eventually the
-\acl{PTED} (\acs{PTED}) Lagrangian:~\autocite{Olivares del Valle,
+\acrlong*{PTE} (\acrshort{PTE}) Hamiltonian -- $H$ -- and eventually the
+\acrlong*{PTED} (\acrshort{PTED}) Lagrangian:~\autocite{Olivares del Valle,
 Lipparini}
 \begin{equation}\label{eq:pted-cc}
   \lag{M}(\tamp{}, \tbar{}, \p) =
   {}^\mathrm{PTE}\lag{M}
   + \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})
 \end{equation}
-where the \acs{PTE} Lagrangian has been introduced:
+where the \acrshort{PTE} Lagrangian has been introduced:
 \begin{equation}
 {}^\mathrm{PTE}\lag{M}
   =
@@ -332,15 +332,15 @@ where the \acs{PTE} Lagrangian has been introduced:
   + U_\mathrm{pol}^\mathrm{ref}
 \end{equation}
 
-As noted by \citeauthor{Cammi2009-gu} for the implicit \acs{PCM} model,
-the \acs{PTE} Hamiltonian is computed in \acs{MP}-partitioned form by
+As noted by \citeauthor{Cammi2009-gu} for the implicit \acrshort{PCM} model,
+the \acrshort{PTE} Hamiltonian is computed in \acrshort{MP}-partitioned form by
 employing the ``solvated'' orbitals and Fock matrix:
 \begin{equation}
   H = F + \Phi.
 \end{equation}
 $F$ is a diagonal one-electron operator and $\Phi$ is the
 fluctuation potential.
-The simple nature of the Fock operator lets us re-express the \acs{PTE}
+The simple nature of the Fock operator lets us re-express the \acrshort{PTE}
 Lagrangian as follows:
 \begin{equation}
 {}^\mathrm{PTE}\lag{M}
@@ -427,7 +427,7 @@ following relationships hold:
   &\quad\quad\text{nonzero contributions} \quad t + u = i + 1
 \end{align}
 \end{subequations}
-By virtue of Eq.~\eqref{eq:HF-double-commutator} the \acs{HF}
+By virtue of Eq.~\eqref{eq:HF-double-commutator} the \acrshort{HF}
 expectation value of the double commutator can be dropped. Thus, for a
 general truncation level we obtain:
 \begin{equation}\label{eq:source-term}
@@ -436,7 +436,7 @@ general truncation level we obtain:
   + \braket{\tbar{1} | \s | \mathrm{HF}}
   + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \BCHfirst{\s}{T} + \BCHsecond{\s}{T} | \mathrm{HF}}
 \end{equation}
-Note that the singles amplitudes assume a unique role in the \acs{CC}
+Note that the singles amplitudes assume a unique role in the \acrshort{CC}
 expression of the source term.
 In addition, double commutators involving the highest order cluster
 operators can only lead to nonzero terms when $T_1$ is also involved and
@@ -444,7 +444,7 @@ by projection onto the highest order multiplier state, \eg
 $\braket{\tbar{2} | \commutator{\commutator{\s}{T_1}}{T_2} |
 \mathrm{HF}} \neq 0$ and $\braket{\tbar{3} |
 \commutator{\commutator{\s}{T_1}}{T_3} | \mathrm{HF}} \neq 0$
-More explicitly, for the \ac{CCS} model ($\mathcal{M} = 1$) one has:
+More explicitly, for the \gls{CCS} model ($\mathcal{M} = 1$) one has:
 \begin{equation}
   \begin{aligned}
   \s_{\mathrm{N}}^1(\tamp{}, \tbar{}) &=
@@ -457,7 +457,7 @@ More explicitly, for the \ac{CCS} model ($\mathcal{M} = 1$) one has:
   + \frac{1}{2}\braket{\tbar{1} | \commutator{\commutator{\s}{T_1}}{T_1} | \mathrm{HF}}
   \end{aligned}
 \end{equation}
-while for the \ac{CCSD} model ($\mathcal{M} = 2$):
+while for the \gls{CCSD} model ($\mathcal{M} = 2$):
 \begin{equation}
   \s_{\mathrm{N}}^2(\tamp{}, \tbar{}) =
   \s_{\mathrm{N}}^1(\tamp{}, \tbar{})
@@ -465,7 +465,7 @@ while for the \ac{CCSD} model ($\mathcal{M} = 2$):
   + \braket{\tbar{2} | \BCHfirst{\s}{T_2} | \mathrm{HF}}
   + \braket{\tbar{2} | \commutator{\commutator{\s}{T_1}}{T_2} | \mathrm{HF}}
 \end{equation}
-Eventually, within the \ac{CCSDT} model ($\mathcal{M} = 3$) four more
+Eventually, within the \gls{CCSDT} model ($\mathcal{M} = 3$) four more
 terms are added:
 \begin{equation}
   \begin{aligned}
@@ -485,7 +485,7 @@ terms are added:
 
 Differentiation of the effective Lagrangian in Eq.~\eqref{eq:pted-cc}
 with respect to the variational parameters $\tamp{\mu_i}$,
-$\tbar{\mu_i}$ and $\p$ yields the \acs{PTED}-\acs{CC}
+$\tbar{\mu_i}$ and $\p$ yields the \acrshort{PTED}-\acrshort{CC}
 equations:
 \begin{subequations}
   \begin{align}
@@ -518,9 +518,9 @@ the presence of the $\s_{\mathrm{N}}(\tamp{}, \tbar{})$ expectation value
 in the polarization equation.
 This requires a proper macroiteration/microiteration self-consistency
 scheme for its implementation.~\autocite{Cammi2009-gu, Caricato2010-hx}
-As a consequence, a single-point \acs{PTED}-\acs{CC} will suffer from a
+As a consequence, a single-point \acrshort{PTED}-\acrshort{CC} will suffer from a
 $2\times$ prefactor in its computational cost with respect to an
-\emph{in vacuo} \acs{CC} calculation.
+\emph{in vacuo} \acrshort{CC} calculation.
 
 It is thus convenient to devise approximations that are able to simplify the
 Lagrangian and the governing equations by breaking or weakening the coupling.
@@ -531,15 +531,15 @@ amplitudes equation, where only the polarization enters.
 Moreover, the leading terms in the correlated source operator
 expectation value, Eq.~\eqref{eq:source-term}, prominently involve the
 singles cluster operator and the singles multiplier state.
-Three approximation have currently been proposed: \acs{PTES}, \acs{PTE(S)}
-and \acs{PTE}.
+Three approximation have currently been proposed: \acrshort{PTES}, \acrshort{PTE(S)}
+and \acrshort{PTE}.
 
 \subsection*{PTES Scheme}
 
 \todo[inline]{This is my claim. I am waiting on an answer from MC to
 clarify this section.}
 
-The first approximate scheme truncates the source term to its \acs{CCS}
+The first approximate scheme truncates the source term to its \acrshort{CCS}
 expectation value, yielding the effective Lagrangian:
 \begin{equation}\label{eq:ptes-cc}
   {}^{\mathrm{PTES}}\lag{M}(\tamp{}, \tbar{}, \p) =
@@ -574,7 +574,7 @@ and the corresponding governing equations:
   \end{align}
 \end{subequations}
 These equations are, however, still coupled due to the presence of the
-multipliers in the \acs{CCS} source term in the polarization equation.
+multipliers in the \acrshort{CCS} source term in the polarization equation.
 To break the coupling, we further approximate $\s_{\mathrm{N}}^1(\tamp{}, \tbar{})$
 with its multiplier-independent part:
 \begin{equation}
@@ -584,7 +584,7 @@ with its multiplier-independent part:
   =
   \braket{\mathrm{HF} | \check{\s}_{\mathrm{N}} | \mathrm{HF}}
 \end{equation}
-so that the governing equations for the \acs{PTES} scheme become:
+so that the governing equations for the \acrshort{PTES} scheme become:
 \begin{subequations}
   \begin{align}
    {}^{\mathrm{PTES}}\tampEq{\mu_i}(\tamp{}, \tbar{}, \p)  &=
@@ -619,8 +619,8 @@ solving for the amplitudes and one when solving for the multipliers?}
 
 \subsection*{PTE(S) Scheme}
 
-The \acs{PTES} approximation can be brought one step further, by
-truncating the \acs{CCS} expectation value to its multiplier-independent
+The \acrshort{PTES} approximation can be brought one step further, by
+truncating the \acrshort{CCS} expectation value to its multiplier-independent
 term:
 \begin{equation}
   \s_{\mathrm{N}}^1(\tamp{}, \tbar{})
@@ -660,29 +660,29 @@ which uncouples all equations:
   \end{align}
 \end{subequations}
 The amplitude equations are formally equivalent to those derived in the
-\acs{PTE} scheme, \emph{vide infra}. The equations for multipliers are also formally
-equivalent to the \acs{PTE} equations, apart from the equation
+\acrshort{PTE} scheme, \emph{vide infra}. The equations for multipliers are also formally
+equivalent to the \acrshort{PTE} equations, apart from the equation
 determining the singles multipliers which features an additional term.
 This term is not, however, coupled to the other equations given that
 $\p$ is fixed once the singles amplitudes have been determined.
 
-Practical implementation of the \acs{PTE(S)} scheme will solve the
-\acs{PTE}-like amplitude equation, form the source term
+Practical implementation of the \acrshort{PTE(S)} scheme will solve the
+\acrshort{PTE}-like amplitude equation, form the source term
 $\braket{\mathrm{HF} | \check{\s}_\mathrm{N} | \mathrm{HF}}$, solve for
 the polarization degrees of freedom and calculate the polarization
-energy as a correction to the \acs{CC} energy.
+energy as a correction to the \acrshort{CC} energy.
 Only when a first-order molecular property, such as the molecular
 gradient, is needed, will the multipliers equations need to be solved.
-In other words, only the $T_1$-dependent part of the \acs{CC} density is
+In other words, only the $T_1$-dependent part of the \acrshort{CC} density is
 used to define the classical sources.
 
 \subsection*{PTE Scheme}
 
 Complete neglect of the polarization functional leads to the most
 drastic approximation to the full quantum/classical polarizable
-effective Lagrangian, the \acs{PTE} scheme.
+effective Lagrangian, the \acrshort{PTE} scheme.
 This is equivalent to differentiating the polarization-independent
-\acs{PTE} effective Lagrangian:
+\acrshort{PTE} effective Lagrangian:
 \begin{subequations}
   \begin{align}
  {}^{\mathrm{PTE}}\tampEq{\mu_i}(\tamp{}, \tbar{}, \p)  &=
@@ -697,15 +697,15 @@ This is equivalent to differentiating the polarization-independent
     = 0
   \end{align}
 \end{subequations}
-The \acs{PTE} scheme naturally preserves the scaling of the underlying
-\acs{CC} method, since no coupling between the \acs{CC} amplitudes and
+The \acrshort{PTE} scheme naturally preserves the scaling of the underlying
+\acrshort{CC} method, since no coupling between the \acrshort{CC} amplitudes and
 multipliers equations is introduced.
 The scheme only requires access to a
 reference state optimized in the presence of the classical medium and is
 thus readily implemented.
-The \acs{PTE} model offers an efficient approximation to the full
-\acs{PTED} model with a computational cost comparable to that of
-\emph{in vacuo} \acs{CC} theory.
+The \acrshort{PTE} model offers an efficient approximation to the full
+\acrshort{PTED} model with a computational cost comparable to that of
+\emph{in vacuo} \acrshort{CC} theory.
 
 However, the polarization included in the correlation treatment is the
 same as for the reference determinant, an approximation which appears
@@ -717,13 +717,13 @@ correlated description of the electronic density.
 Coupled Cluster Many-Body Perturbation Theory}\label{sec:mbpt-polarizable}
 
 We will now develop a perturbative many-body expansion of the effective
-\acs{CC} Lagrangian when a quantum/classical polarizable Hamiltonian is
+\acrshort{CC} Lagrangian when a quantum/classical polarizable Hamiltonian is
 used.
-The use of a \acs{CC} Ansatz for the wave function ensures term-by-term
+The use of a \acrshort{CC} Ansatz for the wave function ensures term-by-term
 size extensivity of the energy at all orders.~\autocite{Helgaker2000-tz}
 The fluctuation potential $\Phi$ is assumed as the perturbation, hence
 it will be considered of order 1: $\Phi = O(1)$.
-We still assume a closed-shell \acs{HF} reference function and
+We still assume a closed-shell \acrshort{HF} reference function and
 perturbation orders will be counted accordingly.
 A superscript index in square brackets - $[i]$ -  will denote an $i$-th
 order contribution.
@@ -743,7 +743,7 @@ multipliers states:
   \bra{\tbar{p}^{[i]}} = \sum_{\mu_p}\tbar{\mu_p}^{[i]}\bra{\mu_p}
 \end{alignat}
 
-The \acs{PTED}-\acs{CC} equations are expanded in orders of the
+The \acrshort{PTED}-\acrshort{CC} equations are expanded in orders of the
 perturbation and terms are collected order by order. The use of an
 effective, variational Lagrangian implies the validity of the $2n+1$
 rule for the amplitudes $\tamp{\mu_i}$ and polarization $\p$ and of the
@@ -806,7 +806,7 @@ Explicitly considering the singles, doubles and triples excitation manifolds:
   \Omega_{\mu_3}^{[1]} &= \denom{\mu_3}\tamp{\mu_3}^{[1]} = 0
   \end{align}
 \end{subequations}
-Thus, despite the closed-shell \acs{HF} reference, the singles
+Thus, despite the closed-shell \acrshort{HF} reference, the singles
 amplitudes will already appear in first order, due to the
 quantum/classical coupling.
 
@@ -831,7 +831,7 @@ assumption of real wave functions we can also conclude that:
 \begin{equation}
   \tamp{\mu_i}^{[1]} = \tbar{\mu_i}^{[1]},\,\,\forall i
 \end{equation}
-Thus, as for the amplitudes, despite the closed-shell \acs{HF} reference, the singles
+Thus, as for the amplitudes, despite the closed-shell \acrshort{HF} reference, the singles
 multipliers will already appear in first order, due to the
 quantum/classical coupling.
 Moreover, as is the case \emph{in vacuo}, there are no triples contributions to
@@ -1012,7 +1012,7 @@ affected by the quantum/classical coupling.
   = 0
 \end{equation}
 There are no explicit contributions from triples. This means that the
-\acs{CCSD} polarization is correct through fourth order in the
+\acrshort{CCSD} polarization is correct through fourth order in the
 fluctuation potential.
 Moreover, since the second order amplitudes and multipliers are
 identical up to the triples one has $\braket{\mathrm{HF} | \commutator{\s}{T_1^{[2]}}| \mathrm{HF}} = \braket{\tbar{1}^{[2]} | \s | \mathrm{HF} }$
@@ -1309,7 +1309,7 @@ amplitudes, multipliers and polarization:
 \section[Noniterative Triples Corrections to PCM-CCSD]{
 Noniterative Perturbative Triples Corrections to PCM-CCSD}\label{sec:ccsd-t-noniterative}
 
-The \acs{PTED}-\acs{CCSD} scheme for the quantum/classical coupling is
+The \acrshort{PTED}-\acrshort{CCSD} scheme for the quantum/classical coupling is
 only includes singles and doubles in its excitation manifold and is thus
 correct up to third order in perturbation theory:
 \begin{subequations}
@@ -1322,7 +1322,7 @@ correct up to third order in perturbation theory:
     \label{eq:p-star}
   \end{align}
 \end{subequations}
-We will denote the \acs{CCSD} converged parameters with a $*$ superscript.
+We will denote the \acrshort{CCSD} converged parameters with a $*$ superscript.
 \todo[inline]{Check the statement above about $\p^{*}$.}
 
 Already in fourth order connected triples make their appearance and any
@@ -1381,11 +1381,11 @@ second order!}
 \todo[inline]{References for the a-CCSD[T] and CCSD[T] models!!!}
 
 The [T] noniterative triples corrections are formed by adding the fourth
-order \acs{CC}\acs{PT} terms arising from connected triples on top of
-the \acs{CCSD} energy. The \emph{converged} \acs{CCSD} amplitudes,
+order \acrshort{CC}\acrshort{PT} terms arising from connected triples on top of
+the \acrshort{CCSD} energy. The \emph{converged} \acrshort{CCSD} amplitudes,
 multipliers and polarization are however used instead of the
 perturbative quantities in Eq.~\eqref{eq:triples-fourth-order}.
-The correction term is thus improved, since the \acs{CCSD} quantities
+The correction term is thus improved, since the \acrshort{CCSD} quantities
 are determined to infinite order, within the singles and doubles space.
 The asymmetric $\Lambda\text{CCSD}[\text{T}]$ correction is then
 obtained as:
@@ -1396,7 +1396,7 @@ obtained as:
   + \braket{\tbar{2}^{*}| \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}
   + {}^t\p^{*}\braket{\tbar{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}}
 \end{equation}
-Replacing the perturbation multipliers by converged \acs{CCSD}
+Replacing the perturbation multipliers by converged \acrshort{CCSD}
 amplitudes leads to the symmetric CCSD[T] model:
 \begin{equation}\label{eq:4-bracket-t}
   G_{[\text{T}]} =
@@ -1413,13 +1413,13 @@ amplitudes leads to the symmetric CCSD[T] model:
 
 The (T) noniterative triples corrections are formed by adding some fifth
 order terms to the fourth order [T] correction given above.
-Also for the (T) corrections, the \emph{converged} \acs{CCSD} amplitudes, multipliers and polarization
+Also for the (T) corrections, the \emph{converged} \acrshort{CCSD} amplitudes, multipliers and polarization
 are used instead of the perturbative quantities.
 The fifth order terms involving projection of
 $\commutator{\Phi}{T_3^{*}}$ on the singles and doubles manifold are
 chosen to form the additional perturbative correction.
 
-The correction term is thus improved, since the \acs{CCSD} quantities
+The correction term is thus improved, since the \acrshort{CCSD} quantities
 are determined to infinite order, within the singles and doubles space.
 The asymmetric $\Lambda\text{CCSD}(\text{T})$ correction is then
 obtained as:
@@ -1433,7 +1433,7 @@ obtained as:
   + {}^t\p^{*}\braket{\tbar{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}}
  \end{aligned}
 \end{equation}
-Replacing the perturbation multipliers by converged \acs{CCSD}
+Replacing the perturbation multipliers by converged \acrshort{CCSD}
 amplitudes leads to the symmetric CCSD(T) model:
 \begin{equation}\label{eq:5-parens-t}
  \begin{aligned}
@@ -1449,8 +1449,8 @@ amplitudes leads to the symmetric CCSD(T) model:
 \subsection{MBPT Terms in the
 \texorpdfstring{$\Lambda\text{CCSD}(\text{T})$}{CCSD(aT)} and CCSD(T) models}
 
-Triples excitations enter the \acs{MBPT} equations for the singles and
-doubles amplitudes and multipliers at third order. Thus the \acs{CCSD}
+Triples excitations enter the \acrshort{MBPT} equations for the singles and
+doubles amplitudes and multipliers at third order. Thus the \acrshort{CCSD}
 amplitudes and multipliers are correct through second order in the
 fluctuation potential, while the polarization is correct through third
 order. Moreover, amplitudes and multipliers are equal to one another.

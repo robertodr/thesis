@@ -18,9 +18,9 @@ ma torna al lito più pura.
 }{
     --- \textsc{E. Montale}, \textit{Falsetto}}
 
-Developments of the \ac{PCM}, a continuum solvation model, are at the
+Developments of the \gls{PCM}, a continuum solvation model, are at the
 heart of this thesis.
-This Chapter is a brief exposition of the major points of the \acs{PCM}
+This Chapter is a brief exposition of the major points of the \acrshort{PCM}
 we have worked upon in the thesis.
 Appendix \ref{app:mathematical-results} contains much of the
 mathematical details omitted from the exposition in this Chapter.
@@ -29,18 +29,18 @@ I will show how a variational approach can facilitate the formulation of
 quantum/classical polarizable Hamiltonians in Section
 \ref{sec:variational}.
 Section \ref{sec:BEM} will be devoted to the numerical strategies used
-in solving the \acs{PCM} equation.
+in solving the \acrshort{PCM} equation.
 
 Continuum models have a venerable history in quantum chemistry:
 \citeauthor{Onsager1936-wf}'s model\autocite{Onsager1936-wf} appeared in
-1936 and the first form of the \acs{PCM} entered the stage in
+1936 and the first form of the \acrshort{PCM} entered the stage in
 1981.~\autocite{Miertus1981-mm}
 Section \ref{sec:CSM-why-how} will offer a heuristic "derivation" of
 continuum models.
 While it cannot be thought as formally rigorous, it highlights the major
 physical insights that have informed the creation of continuum models.
 Still nowadays much research activity is expended on the
-\acs{PCM}.~\autocite{Tomasi2011-un, Mennucci2012-dv, Lipparini2016-mo}
+\acrshort{PCM}.~\autocite{Tomasi2011-un, Mennucci2012-dv, Lipparini2016-mo}
 I will point out throughout the Chapter to developments outside our
 group that are particularly interesting.
 
@@ -49,19 +49,19 @@ group that are particularly interesting.
 \section{Continuum Solvation Models: Why and How}\label{sec:CSM-why-how}
 
 The basic idea of implicit models is that the environment can
-be replaced by structureless continuum. The continuum will interact
-\emph{classically} with the explicit part of the multiscale model, an
-interaction mediated by some macroscopic property of the bulk material
-the continuum represents in the model.
+be replaced by a structureless continuum.
+The continuum will interact \emph{classically} with the explicit part of
+the multiscale model, an interaction mediated by some macroscopic
+property of the bulk material the continuum represents.
 Thus, continuum models bypass both problems plaguing explicit models we
 mentioned in the Introduction, namely:
 \begin{enumerate*}[label={\alph*)},font={\color{PMS1797}}]
 \item the statistical averaging of environment configurations and
-\item the \acs{MM} region electrostatics cutoff choice.
+\item the \acrshort{MM} region electrostatics cutoff choice.
 \end{enumerate*}
 
 Following \citeauthor{Tomasi2007-es}, we introduce the complete system
-Hamiltonian in the \acs{BO} approximation:~\autocite{Tomasi2004-dc,
+Hamiltonian in the \acrshort{BO} approximation:~\autocite{Tomasi2004-dc,
 Tomasi2007-es}
 \begin{equation}\label{eq:solution-ham}
  H(\vect{r}_\mathrm{S}, \vect{r}_\mathrm{E}) =
@@ -81,7 +81,7 @@ only include polarization, but in a mutual manner.}
 
 One can replace the pure environment and interaction terms with their
 classical counterparts and obtain the quantum/classical, possibly
-\emph{polarizable}, Hamiltonian for an explicit \acs{QM}/\acs{MM} model.
+\emph{polarizable}, Hamiltonian for an explicit \acrshort{QM}/\acrshort{MM} model.
 This brings about the first important point: the need for statistical
 averaging.
 Whenever a large number of degrees of freedom is involved, one can
@@ -119,7 +119,7 @@ electrostatics}
 
 \section{Continuum Electrostatics as a Boundary Integral Problem}\label{sec:IEF}
 
-The physical setting of the \ac{PCM} is depicted in Figure \ref{fig:IEF}.
+The physical setting of the \gls{PCM} is depicted in Figure \ref{fig:IEF}.
 The molecular solute, represented by its charge density
 $\rhoi$ is enclosed in a \emph{cavity} $\Omegai$.
 The boundary of the cavity $\Gamma\equiv\partial\Omegai$ is a
@@ -171,13 +171,13 @@ Moreover, the solution is a function supported over $\mathbb{R}^3$ which
 poses challenges to the numerical solution of the problem.
 We will take a different approach and reformulate it in terms of
 \emph{boundary integral operators}, \ie transform the \acsp{PDE} into a
-\ac{BIE}.
+\gls{BIE}.
 
 \begin{figure}[tb]
   \centering
   \includegraphics[width=.5\textwidth]{IEF}
   \caption[The physical setting of the polarizable continuum model.]{
-  The physical setting of the \ac{PCM}. The molecular solute,
+  The physical setting of the \gls{PCM}. The molecular solute,
   represented by its, possibly quantum mechanical, charge density
   $\rho_\mathrm{i}$ is enclosed in a \emph{cavity} $\Omegai$.
   The boundary of the cavity $\Gamma\equiv\partial\Omegai$ is a
@@ -225,8 +225,8 @@ potential:
 \begin{equation}
   \xi_\mathrm{i} = \bi{S}_\mathrm{i}\sigma
 \end{equation}
-where $\sigma$ is the \ac{ASC}, the key quantity in the \acs{PCM}.
-As shown by \citeauthor{Cances1998-og}, the \acs{ASC} can be computed
+where $\sigma$ is the \gls{ASC}, the key quantity in the \acrshort{PCM}.
+As shown by \citeauthor{Cances1998-og}, the \acrshort{ASC} can be computed
 as the \emph{unique} solution to the following integral equation:
 \begin{equation}\label{eq:full-IEF}
   \left[ \bi{S}_\mathrm{e}\left(2\pi + \bi{D}^\dagger_\mathrm{i}\right)
@@ -238,10 +238,10 @@ as the \emph{unique} solution to the following integral equation:
   \left(2\pi-\bi{D}_\mathrm{i}\right)
   \right]\esp
 \end{equation}
-commonly called the \ac{IEF} equation.
+commonly called the \gls{IEF} equation.
 The Green's functions for the elliptic differential operators
 assume a central role in the boundary integral formulation and make the
-\acs{IEF} equation valid for a wide range of external
+\acrshort{IEF} equation valid for a wide range of external
 environments: homogeneous isotropic, ionic and anisotropic
 liquids,~\autocite{Cances1998-og}
 and systems with interfaces.~\autocite{Corni2002-dr, Frediani2004-er,
@@ -255,7 +255,7 @@ permittivity $\diel$, the Green's functions are:
   \quad&
   \Gi = \frac{1}{|\vect{r}-\vect{r}^\prime|}
 \end{alignat}
-yielding the isotropic \acs{IEF} equation:
+yielding the isotropic \acrshort{IEF} equation:
 \begin{equation}\label{eq:isotropic-IEF}
   \bi{R}_\diel\bi{S}\sigma = - \bi{R}_\infty\esp
 \end{equation}
@@ -271,7 +271,7 @@ where the auxiliary operators:
 have been introduced.
 By letting the $\diel\rightarrow\infty$, one recovers the limiting case
 where conductor boundary conditions are imposed. This leads to the
-well-known \ac{COSMO} equation:~\autocite{Klamt1993-mj, Cossi2003-xe}
+well-known \gls{COSMO} equation:~\autocite{Klamt1993-mj, Cossi2003-xe}
 \begin{equation}
   \bi{S}\sigma = - f(\diel)\esp
 \end{equation}
@@ -281,11 +281,11 @@ dielectric as a perfect conductor.
 
 \section{Numerical Approaches to Boundary Integral Equations}\label{sec:BEM}
 
-The solution of the \acs{IEF}-\acs{PCM} boundary integral equation can
+The solution of the \acrshort{IEF}-\acrshort{PCM} boundary integral equation can
 only be achieved analytically for simple cavity geometries, such as
 single spheres and ellipsoids.
 When more general molecular cavities are employed one has to resort to a
-numerical technique: the \ac{BEM}. This is implemented in four steps:
+numerical technique: the \gls{BEM}. This is implemented in four steps:
 \begin{enumerate*}[label={\alph*)},font={\color{PMS1797}}]
     \item define the molecular cavity
     \item mesh the molecular surface \label{item:mesh}
@@ -293,7 +293,7 @@ numerical technique: the \ac{BEM}. This is implemented in four steps:
     \item solve the linear systems by a suitable numerical technique.
 \end{enumerate*}
 Many different approaches to these four steps have been presented, both
-in the field of the \acs{BEM} and in the context of the \acs{PCM}.
+in the field of the \acrshort{BEM} and in the context of the \acrshort{PCM}.
 
 The molecular cavity is usually defined as a set of atom-centered
 interlocking spheres. The radii are chosen from a suitable set, usually
@@ -302,34 +302,34 @@ If one imagines to model a solvent molecule as a rigid sphere,
 three types of molecular surfaces can be defined:
 \begin{enumerate*}[label={\alph*)},font={\color{PMS1797}}]
   \item
-    the union of the interlocking spheres surfaces is the \ac{vdWS},
+    the union of the interlocking spheres surfaces is the \gls{vdWS},
     Figure \ref{fig:vdWS}
   \item the locus of points defined by the center of the solvent
-    spherical probe while rolling over the \acs{vdWS} is the
-    \ac{SAS}, Figure \ref{fig:SAS}
+    spherical probe while rolling over the \acrshort{vdWS} is the
+    \gls{SAS}, Figure \ref{fig:SAS}
   \item the locus of points defined by the contact point of the solvent
-    spherical probe while rolling over the \acs{vdWS} is the \ac{SES}, Figure \ref{fig:SES}.
+    spherical probe while rolling over the \acrshort{vdWS} is the \gls{SES}, Figure \ref{fig:SES}.
 \end{enumerate*}
 \begin{figure}[tb]
  \centering
  \begin{subfigure}{.45\textwidth}
    \centering
    \includegraphics[width=.85\textwidth]{vdWS.png}
-   \caption{\acl{vdWS} (\acs{vdWS})}
+   \caption{\acrlong*{vdWS} (\acrshort{vdWS})}
    \label{fig:vdWS}
  \end{subfigure}
  ~
  \begin{subfigure}{.45\textwidth}
    \centering
    \includegraphics[width=.85\textwidth]{SAS.png}
-   \caption{\acl{SAS} (\acs{SAS})}
+   \caption{\acrlong*{SAS} (\acrshort{SAS})}
    \label{fig:SAS}
  \end{subfigure}
 
  \begin{subfigure}{.45\textwidth}
    \centering
    \includegraphics[width=.85\textwidth]{SES.png}
-   \caption{\acl{SES} (\acs{SES})}
+   \caption{\acrlong*{SES} (\acrshort{SES})}
    \label{fig:SES}
  \end{subfigure}
  \caption{Molecular surfaces from interlocking sets of atom-centered spheres.
@@ -339,7 +339,7 @@ Alternative definitions based on the isodensity surface of the molecular solute
 have been put forth.~\autocite{Foresman1996-wv}
 
 Steps \ref{item:mesh} and \ref{item:discretize} are closely intertwined,
-in the technical \acs{BEM} literature they go under the name of
+in the technical \acrshort{BEM} literature they go under the name of
 \emph{finite element discretization}.
 Let us define a mesh of the domain $\Gamma$ as an indexed collection of
 intervals with non-zero measure $\lbrace I_i\rbrace_{i=1}^{N_\mathrm{mesh}}$, where
@@ -356,7 +356,7 @@ achieved by modified triangulation procedures. In this thesis we used
 the GePol algorithm~\autocite{Pascual-Ahuir1987-uo, Pascual-Ahuir1990-lp,
 Pomelli1998-qp, Pomelli2001-sj, Frediani2004-ua, Pomelli2007-wq}
 and the mesh generators of Harbrecht and Randrianarivony especially
-tailored for the wavelet \acs{BEM}.~\autocite{Harbrecht2009-no,
+tailored for the wavelet \acrshort{BEM}.~\autocite{Harbrecht2009-no,
 Harbrecht2011-dk}
 
 The finite element discretization is usually carried out either by the
@@ -375,7 +375,7 @@ In addition, finite element discretization might destroy intrinsic
 symmetries of the original integral
 operators. These can be recovered by appropriate \emph{a posteriori}
 symmetrization procedures introducing, however, a degree of
-arbitrariness in the \acs{BEM} procedure.~\autocite{Lange2011-eu}
+arbitrariness in the \acrshort{BEM} procedure.~\autocite{Lange2011-eu}
 
 In the GePol procedure, the molecular surface is meshed by means of
 $N_\mathrm{ts}$ spherical polygons $\Pi_i$ whose centroids define the
@@ -387,7 +387,7 @@ centroid to obtain the matrix equation:
   \vect{v}.
 \end{equation}
 $\vect{q}$ and $\vect{v}$ are vectors of dimension $N_\mathrm{ts}$
-collecting the values of the \acs{ASC} and \ac{MEP}
+collecting the values of the \acrshort{ASC} and \gls{MEP}
 at the collocation points. $\mat{R}^{-1}\mat{T}$ is the stiffness
 matrix.
 The matrices representing the boundary integral operators are:
@@ -422,7 +422,7 @@ $\mat{D}^\dagger_\mathrm{e}$ depend on the specific outer environment
 and can be found in the literature.~\autocite{Corni2002-dr, Frediani2004-er,
 Tomasi2005-vm, Delgado2013-kd, DiRemigio2016-nn}
 
-The wavelet Galerkin \acs{BEM} was also used in this thesis. This method
+The wavelet Galerkin \acrshort{BEM} was also used in this thesis. This method
 preserves the fundamental symmetries of the boundary integral operators
 and achieves sparsity in the stiffness matrix.
 This sparsity can be leveraged to implement efficient algorithms with
@@ -437,10 +437,10 @@ orthogonal, complement to $V_{l-1}$.
 Recursively applying this splitting to the trial spaces hierarchy
 generates the wavelet decomposition, where all complementary spaces are
 spanned by the wavelet basis.
-The fundamental insight in the wavelet \acs{BEM} is to use the wavelet
+The fundamental insight in the wavelet \acrshort{BEM} is to use the wavelet
 basis for the discretization step and employ the compression technique
 described by \citeauthor{Dahmen2006-pj} to build up the sparse system
-matrix.~\autocite{Harbrecht2004-uo, Harbrecht2004-ug, Dahmen2006-pj}
+matrix.~\autocite{Harbrecht2004-uo, Harbrecht2006-ug, Dahmen2006-pj}
 Matrix compression is carried out in two rounds, \emph{a priori} and \emph{a
 posteriori}, resulting in a finger-like sparsity pattern for the
 stiffness matrix, Figure \ref{fig:finger-structure}.
@@ -450,8 +450,8 @@ geometry up to level $J$.
 
 \begin{figure}[tb]
    \includegraphics[width=\textwidth]{a_2_l_0_5_fs.png}
-   \caption[Sparsity pattern achieved by the wavelet Galerkin \acs{BEM}.]{
-   Sparsity pattern achieved by the wavelet Galerkin \acs{BEM} when
+   \caption[Sparsity pattern achieved by the wavelet Galerkin \acrshort{BEM}.]{
+   Sparsity pattern achieved by the wavelet Galerkin \acrshort{BEM} when
    solving the Laplace equation on 6 patches.
    Reproduced from \noparcite[ref.][]{Bugeanu2015-tp}.
    }
@@ -467,24 +467,24 @@ DefPol~\autocite{Pomelli1998-ob, Pomelli1999-dc} approaches of
 \citeauthor{Pomelli1998-ob} and the FIXPVA
 modification~\autocite{Su2009-em} to the GePol algorithm put forth by
 \citeauthor{Su2009-em}.
-\citeauthor{Scalmani2010-tw} have recently proposed the \ac{CSC} scheme
-which uses a smooth \acs{vdWS} and 3D spherical Gaussian basis
+\citeauthor{Scalmani2010-tw} have recently proposed the \gls{CSC} scheme
+which uses a smooth \acrshort{vdWS} and 3D spherical Gaussian basis
 functions.~\autocite{Scalmani2010-tw, York1999-xy}
 Gaussian blurring was also advocated by \citeauthor{Lange2010-jp} in
-their \ac{SWIG} method.~\autocite{Lange2010-jp, Lange2010-qo}
-Both \acs{CSC} and \acs{SWIG} achieve continuous \acsp{PES} and smooth
+their \gls{SWIG} method.~\autocite{Lange2010-jp, Lange2010-qo}
+Both \acrshort{CSC} and \acrshort{SWIG} achieve continuous \acsp{PES} and smooth
 molecular gradients. However, their convergence to the exact solution of
 the underlying integral equation has yet to be proved.
 A completely different approach to the problem has been taken by
 \citeauthor{Cances2013-jg} by employing a domain decomposition
 method, guaranteed to converge to the exact solution.~\autocite{Quarteroni1999-jt}
-Moreover, for \acs{COSMO}, the formulation is embarrassingly
+Moreover, for \acrshort{COSMO}, the formulation is embarrassingly
 parallel and has been implemented in a linearly scaling fashion.~\autocite{Cances2013-jg, Lipparini2013-cy, Lipparini2014-to,
 Lipparini2014-fq}
 Very recently the method has also been extended to general dielectric
 environments.~\autocite{Stamm2016-fv}
 
-In the following, the \acs{PCM} equations will be written in the
+In the following, the \acrshort{PCM} equations will be written in the
 "complete basis" meaning that we will be working with the exact integral
 equation and not with its discretized counterpart.
 As a consequence, the apparent surface charge $\sigma$ and
@@ -500,16 +500,16 @@ The following shorthand notations will be adopted:
   \sigma\PCM\sigma &=
   \int_\Gamma\diff\vect{s}\sigma(\vect{s})\PCM\sigma(\vect{s})
   =
-  \scalprod{\sigma(\vect{s})}{\PCM\sigma(\vect{s})} \\
+  \scalprod{\sigma}{\PCM\sigma} \\
   \sigma\esp &=
   \int_\Gamma\diff\vect{s}\sigma(\vect{s})\esp(\vect{s})
   =
-  \scalprod{\sigma(\vect{s})}{\esp(\vect{s})}
+  \scalprod{\sigma}{\esp}
   \end{aligned}
 \end{equation}
 
 \section[Variational Formulation of Classical Polarizable Models]{
-Above and Beyond: Classical Polarizable Models within a Variational Formulation}
+Variational Formulation of Classical Polarizable Models}
 \label{sec:variational}
 
 The attentive reader will have noticed that, despite the focus of this
@@ -519,8 +519,8 @@ quantum aspect.
 The strategy usually adopted is to tailor a specific Hamiltonian, which
 includes classical contributions form the continuum and use it in the
 development of the quantum chemical model.
-Since the \acs{MEP} is a linear functional of the solute charge density,
-the \acs{ASC} itself incurs in a dependency on the solute charge
+Since the \acrshort{MEP} is a linear functional of the solute charge density,
+the \acrshort{ASC} itself incurs in a dependency on the solute charge
 density.
 Properly accounting for the mutual solute-solvent polarization induces a
 \emph{nonlinearity} in an otherwise linear problem.
@@ -530,7 +530,7 @@ but has been successfully exploited in the past.\autocite{Tomasi2005-vm}
 
 In this thesis we advocate a different theoretical approach: the
 variational formulation of classical polarizable models.
-Why so? In such a framework the \acs{ASC} becomes an additional,
+Why so? In such a framework the \acrshort{ASC} becomes an additional,
 independent, variationally optimizable degree of freedom.
 This makes the coupling to, \eg, extended Lagrangian dynamics
 trivial.\autocite{Car1985-jw}
@@ -538,7 +538,7 @@ It is well known that electrodynamics can be derived as the minimization
 of an action functional.\autocite{Jackson1999}
 The principle of least action is however formulated in terms of
 \emph{fields} and not more easily manageable quantities, such as the
-\acs{MEP} or the \acs{ASC}.
+\acrshort{MEP} or the \acrshort{ASC}.
 A true energy functional has to fulfill the following
 properties:\autocite{Solis2013-ef}
 \begin{enumerate*}[label={\alph*)},font={\color{PMS1797}}]
@@ -552,8 +552,8 @@ Property \ref{item:equil-prop} and could not thus be used in extended Lagrangian
 dynamics.\autocite{Allen2001-fp, Attard2003-vr, Attard2007-lk}
 
 In a seminal paper, \citeauthor{Lipparini2010-be} showed how the
-\acs{PCM} can be recast in a variational fashion yielding a true energy
-functional of the \acs{ASC}:\autocite{Lipparini2010-be, Lipparini2011-aj, Lipparini2016-mo}
+\acrshort{PCM} can be recast in a variational fashion yielding a true energy
+functional of the \acrshort{ASC}:\autocite{Lipparini2010-be, Lipparini2011-aj, Lipparini2016-mo}
 \begin{equation}\label{eq:pcm-functional}
  U_\mathrm{PCM} = \frac{1}{2}\sigma\PCM\sigma + \esp\sigma,
  \quad
@@ -581,8 +581,8 @@ field, \emph{vide infra}. The reader is referred to the works of
 We have made no specific reference to the particular explicit
 model used. The variational framework is flexible enough to encompass
 either the MMpol,\autocite{Mennucci2013-go}
-the \ac{PE},\autocite{Olsen2010-wa, Olsen2011-io} or
-the \ac{FQ} model.\autocite{Rick1994-mn, Rick1995-wu, Rick1996-om,
+the \gls{PE},\autocite{Olsen2010-wa, Olsen2011-io} or
+the \gls{FQ} model.\autocite{Rick1994-mn, Rick1995-wu, Rick1996-om,
 Lipparini2011-rd}
 
 Coupling the implicit and explicit polarizable models is straightforward
@@ -622,9 +622,9 @@ with respect to the variational degrees of freedom:
    \zeta
   \end{pmatrix}
 \end{equation}
-While $\esp$ is quite clearly the \acs{MEP}, $\zeta$ can either be the
-molecular electric field (MMpol and \acs{PE} models) or again the
-\acs{MEP} (\acs{FQ} model).
+While $\esp$ is quite clearly the \acrshort{MEP}, $\zeta$ can either be the
+molecular electric field (MMpol and \acrshort{PE} models) or again the
+\acrshort{MEP} (\acrshort{FQ} model).
 In any case, both will be determined by the quantum mechanical molecular
 charge density and can thus be formulated as expectation values of
 one-electron operators.
@@ -639,7 +639,7 @@ They describe charge distributions interacting (unfavorably) with
 themselves and (favorably) with their respective inducing external
 fields and constitutes the polarization energy of the medium.
 The topic of variational formulations is particularly important in the
-field of \acs{MD} simulations.\autocite{Jadhao2012-gf, Jadhao2013-ry, Jadhao2013-hs,
+field of \acrshort{MD} simulations.\autocite{Jadhao2012-gf, Jadhao2013-ry, Jadhao2013-hs,
 Solis2013-ef}
 Our focus however is on the quantum mechanical calculations of molecular
 properties and the variational formulation is advantageous since it
@@ -658,7 +658,7 @@ Chapter \ref{ch:molprop}.
 The variational formulation also lends itself to an implementation
 in terms of simultaneous optimization.\autocite{Lipparini2011-aj}
 
-Finally, let us re-express the equations above in a "supermatrix"
+Finally, let us re-express the equations above in a supermatrix
 formalism:
 \begin{equation}
   U_\mathrm{pol} =
@@ -685,5 +685,64 @@ where:
   \end{pmatrix}
 \end{alignat}
 and the ${}^t\p$ symbol denotes the transposed supervector $\p$.
-The supermatrix form will prove particularly useful in the following
-derivations.
+The scalar products are understood to be in the relevant function
+spaces.
+The supermatrix formalism will be adopted throughout the thesis.
+
+How are quantum/classical polarizable Hamiltonians implemented in this
+framework?
+As shown in Chapter \ref{ch:QM} for the \acrshort{CC} method, one can
+formulate methods in quantum chemistry as the unconstrained minimization
+of a Lagrangian.\autocite{Helgaker1982-xl, Arponen1983-qt,
+Helgaker1988-to, Helgaker1989-wl, Koch1990-vr, Kvaal2013-jr}
+Let us call $\mathcal{E}(\vect{\eta})$ the definition of the energy
+for the given quantum chemical method.
+The \emph{amplitudes} $\vect{\eta}$ are determined by a set of
+stationarity conditions $\mat{\Omega}(\vect{\eta}) = 0$.
+Direct minimization of $\mathcal{E}(\vect{\eta})$ is thus a
+\emph{constrained} optimization.
+Introducing a set of Lagrange \emph{multipliers} $\bar{\vect{\eta}}$
+lets us recast the problem as an unconstrained minimization of the
+Lagrangian:
+\begin{equation}
+  \mathcal{L}(\vect{\eta}, \bar{\vect{\eta}}) =
+  \mathcal{E}(\vect{\eta}) +
+  \scalprod[W]{\bar{\vect{\eta}}}{\mat{\Omega}(\vect{\eta})}
+\end{equation}
+where the governing equations are obtained by differentiation with
+respect to both sets of parameters:
+\begin{subequations}
+  \begin{align}
+    \pderiv{\mathcal{L}(\vect{\eta}, \bar{\vect{\eta}})}{\bar{\vect{\eta}}}
+    &= \mat{\Omega}(\vect{\eta}) = 0 \\
+    \pderiv{\mathcal{L}(\vect{\eta}, \bar{\vect{\eta}})}{\vect{\eta}}
+    &= \pderiv{\mathcal{E}(\vect{\eta})}{\vect{\eta}} +
+    \scalprod[W]{\bar{\vect{\eta}}}{\pderiv{\mat{\Omega(\vect{\eta})}}{\vect{\eta}}}
+    = 0
+  \end{align}
+\end{subequations}
+Due to the  variational property of the classical polarizable functional
+one can devise an \emph{effective} quantum/classical polarizable
+Lagrangian:\autocite{Lipparini2016-mo}
+\begin{equation}
+  \mathcal{L}_\mathrm{eff}(\vect{\eta}, \bar{\vect{\eta}}, \p) =
+  \mathcal{L}(\vect{\eta}, \bar{\vect{\eta}}) +
+  \frac{1}{2}{}^t\p\V\p + {}^t\p\s(\vect{\eta}, \bar{\vect{\eta}})
+\end{equation}
+and derive the governing equations in the usual manner:
+\begin{subequations}
+  \begin{align}
+    \pderiv{\mathcal{L}_\mathrm{eff}(\vect{\eta}, \bar{\vect{\eta}}, \p)}{\bar{\vect{\eta}}}
+    &= \mat{\Omega}(\vect{\eta}) + {}^t\p\pderiv{\s(\vect{\eta}, \bar{\vect{\eta}})}{\bar{\vect{\eta}}} = 0 \\
+    \pderiv{\mathcal{L}_\mathrm{eff}(\vect{\eta}, \bar{\vect{\eta}}, \p)}{\vect{\eta}}
+    &= \pderiv{\mathcal{E}(\vect{\eta})}{\vect{\eta}} +
+    \scalprod[W]{\bar{\vect{\eta}}}{\pderiv{\mat{\Omega(\vect{\eta})}}{\vect{\eta}}}
+    + {}^t\p\pderiv{\s(\vect{\eta}, \bar{\vect{\eta}})}{\vect{\eta}}
+    = 0 \\
+    \pderiv{\mathcal{L}_\mathrm{eff}(\vect{\eta}, \bar{\vect{\eta}}, \p)}{\p} &=
+    \V\p + \s(\vect{\eta}, \bar{\vect{\eta}}) = 0
+  \end{align}
+\end{subequations}
+The quantum mechanical and the classical model are thus fully coupled,
+due to the dependence of the source term $\s$ on the amplitudes and
+multipliers.
