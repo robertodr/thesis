@@ -2,28 +2,540 @@
 
 \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
 
-\chapter{A Quick Tour of Quantum Chemistry}\label{ch:QM}
+\chapter{A Quick Tour of Molecular Electronic Structure Theory}\label{ch:QM}
 
-\begin{itemize}
-  \item nonrelativistic and relativistic Hamiltonians used in molecular
-    quantum mechanics
-  \item \gls{BO} approximation and the concept of \gls{PES}
-  \item Fock space
-  \item single-reference methods: \gls{HF} and \gls{KS} \gls{DFT}
-  \item the \gls{CC}  model
-\end{itemize}
+The purpose of quantum chemistry is to provide models based on first
+principles that can help understand and predict molecular properties.
+In quantum chemistry, we apply physical models based on
+quantum many-body methods to molecular systems, employ their
+mathematical realizations and devise computable approximations.
+The central idea is, in fact, to be able to obtain an algorithmic
+implementation of the methods that can be applied to interesting
+chemical systems.
 
-\pagebreak
+This Chapter presents a brief overview of molecular electronic structure
+theory with particular emphasis on the methods used in this thesis.
+Section \ref{sec:mqm} is a general introduction to the methods of
+molecular quantum mechanics, relativistic or nonrelativistic.
+I will provide a brief introduction to the language of second
+quantization, used throughout the thesis.
+Section \ref{sec:mean-field} presents the mean-field approximation to
+the molecular electronic structure problem, the workhorse of quantum
+chemistry.
+Sections \ref{sec:coupled-cluster}--\ref{sec:cc-approximate} are
+concerned with the \gls{CC} and \gls{MBPT} methods for the inclusion of
+electron correlation.
 
-\section{Molecular Quantum Mechanical Hamiltonians}\label{sec:hamiltonians}
+\section{Molecular Quantum Mechanics}\label{sec:mqm}
 
-Konishi and Paffuti\autocite{Konishi2009-zb}
-Dyall's book\autocite{Dyall2007-tu}
-Reiher's book\autocite{Reiher2014-cp}
-The Pink Book\autocite{Helgaker2000-tz}
-Shavitt's book\autocite{Shavitt2009-mr}
+Quantum mechanics is the theory describing the motion and interactions
+of microscopic particles. In quantum theory every observable of the
+system is represented mathematically by an operator $O$ in the
+appropriate Hilbert space of \emph{wave functions}.
+A wave function $\psi$ is the mathematical object describing the state of the
+system. In the usual Copenhagen interpretation of quantum mechanics, the
+modulus square of the wave function $|\psi|^2$ provides the key to
+predicting experimentally measurable quantities.\autocite{Konishi2009-zb}
+The wave function $\psi$ is the solution to the Schr\"{o}dinger equation:
+\begin{equation}\label{eq:schrodinger}
+  H\psi = E\psi
+\end{equation}
+where $H$ is the \emph{Hamiltonian} operator and $E$ is the energy of
+the system. The Schr\"{o}dinger equation is an eigenvalue equation for
+the Hamiltonian operator and $\psi$ is thus an
+eigenfunction.\autocite{Arfken2013-pt}
 
-\section{Single-Reference Methods}
+Molecular quantum mechanics is concerned with the microscopic motion of
+nuclei and electrons in molecules and is thus an intrinsically many-body
+theory. The problem is clearly very complicated to solve, as the number of
+interactions to be considered is large.
+Since the nuclei are much heavier than the electrons, the \gls{BO} or
+clamped-nuclei approximation is typically assumed. The nuclei are fixed
+in a specific configuration (called a \emph{molecular geometry}) and
+treated as static electric sources.\autocite{Born1927-ce}
+This separation of motions results in an electron-only Hamiltonian and
+an electronic wave function that depends \emph{parametrically} on the
+nuclear positions. The eigenvalue of this Hamiltonian, also dependent on
+the nuclear positions, is the \gls{PES} of the system, that is the
+potential function in which the nuclei move.\autocite{Szabo1989-vl,
+McWeeny1992-oj}
+In first quantization, the general expression for the clamped-nuclei,
+$N$-electron, molecular electronic Hamiltonian is:
+\begin{alignat}{2}\label{eq:fq-hamiltonian}
+  H = \sum_{i=1}^N h(\vect{r}_i)
+  + \frac{1}{2}\sum_{i\neq j}^N g(\vect{r}_i, \vect{r}_j)
+  + V_\mathrm{NN},
+  \quad&
+  V_\mathrm{NN} =
+  \frac{1}{2}\sum_{A \neq B}^{N_\mathrm{nuclei}}\frac{Z_A Z_B}{|\vect{R}_A - \vect{R}_B|}
+\end{alignat}
+The last term is the nuclear repulsion energy, a constant shift of the
+energy scale in the \acrshort{BO} approximation.
+As noted by \citeauthor{Saue2011-qg}, the same general expression for
+the clamped-nuclei Hamiltonian Eq.~\eqref{eq:fq-hamiltonian} is valid in
+the nonrelativistic and relativistic no-pair
+regimes.\autocite{Sucher1980-vf, Saue2011-qg}
+In the nonrelativistic domain one defines the one- and two-electron
+operators as:\autocite{Szabo1989-vl, McWeeny1992-oj, Konishi2009-zb}
+\begin{subequations}
+ \begin{align}
+   h(\vect{r}_i) &=
+   -\frac{1}{2}\nabla^2_i + V_\mathrm{Ne}(\vect{r}_i)
+   = -\frac{1}{2}\nabla^2_i - \sum_{A=1}^{N_\mathrm{nuclei}}\frac{Z_A}{|\vect{R}_A -
+   \vect{r}_i|} \label{eq:h} \\
+   g(\vect{r}_i, \vect{r}_j) &= \frac{1}{|\vect{r}_i - \vect{r}_j|},
+   \label{eq:g-coulomb}
+ \end{align}
+\end{subequations}
+while in the relativistic regime with the \gls{DC}
+approximation:\autocite{Dyall2007-tu, Konishi2009-zb, Reiher2014-cp}
+\begin{subequations}
+ \begin{align}
+   h(\vect{r}_i) &=
+   \begin{pmatrix}
+     V_{\mathrm{Ne}}(\vect{r}_i)I_2 & c \vect{\sigma}\cdot\vect{p}_i \\
+     \vect{\sigma}\cdot\vect{p}_i & (V_{\mathrm{Ne}}(\vect{r}_i)-2\si{\electronmass}c^2)I_2
+   \end{pmatrix} \label{eq:h-dirac} \\
+   g(\vect{r}_i, \vect{r}_j) &= \frac{I_4\cdot I_4}{|\vect{r}_i - \vect{r}_j|}
+   \label{eq:g-r-coulomb}
+ \end{align}
+\end{subequations}
+and the operators are implicitly assumed to embed the proper no-pair,
+positive-energy manifold projectors.\autocite{Sucher1980-vf}
+Since these are fermionic Hamiltonians, the spin-statistics theorem
+dictates the corresponding eigenfunctions to be
+antisymmetric.
+Using the expansion theorem,\autocite{Gross1991-hi} we thus seek the wave
+function for the $N$-electron system as a linear combination of
+$N$-electron \emph{Slater determinants}.
+
+It the language of second quantization, we assume that a, not
+necessarily complete, set of orthonormal one-particle states is
+available. These are usually called \glspl{MO}.
+In general, we would like to embed as many of the symmetries of the
+system into the one-particle basis. This is accomplished by requiring
+the one-particle space to be the common eigenbasis for a complete set of
+suitable, commuting one-particle operators.\autocite{Gross1991-hi}
+Any $N$-particle state can be constructed by distributing particles
+into one-particle states and accordingly labelling them by the number of
+particles per one-particle states present.
+This is the so-called \gls{ON} vector representation:
+\begin{equation}
+  \ket{\vect{n}} = \ket{n1,n2,\ldots},
+\end{equation}
+and the span of all \acrshort{ON} vectors is called the \emph{Fock
+space} $F^N$, a space isomorphic to the Hilbert space $H^N$ of
+$N$-particle wave functions.
+To preserve consistency, the \emph{vacuum} state with no particles:
+\begin{equation}
+ \ket{\mathrm{vac}} = \ket{0,0,\ldots}
+\end{equation}
+is included in the construction of Fock space.
+Any $N$-particle state can be generated by application of
+\emph{creation} operators $\cons{i}$. Creation operators increase the
+occupation number in the one-particle state $i$ by $1$, up to a phase.
+Conversely, \emph{annihilation} operators $\anni{i}$, defined as the Hermitian
+conjugates of the creation operators, decrease occupation in state $i$
+by $1$, again up to a phase. Clearly, annihilation of any one-particle
+state in the vacuum results yields $0$.
+Pauli's exclusion principle is enforced by the \emph{canonical
+anticommutation relations}:
+\begin{subequations}
+  \begin{align}
+    \cons{r}\cons{s} + \cons{s}\cons{r} &= 0 \\
+    \anni{r}\anni{s} + \anni{s}\anni{r} &= 0 \\
+    \cons{r}\anni{s} + \anni{s}\cons{r} &= \delta_{rs},
+  \end{align}
+\end{subequations}
+showing how the construction of the Fock space representation
+embeds antisymmetry at the operator level and not in the wave functions.
+Finally, the second-quantized molecular electronic Hamiltonian in the \acrlong{BO}
+approximation is:\autocite{Helgaker2000-tz, Shavitt2009-mr}
+\begin{equation}\label{eq:sq-hamiltonian}
+  H = \sum_{rs}h_{rs}\cons{r}\anni{s}
+  + \frac{1}{2}\sum_{rstu}g_{rstu}\cons{r}\cons{t}\anni{u}\anni{s}
+  + V_\mathrm{NN}
+\end{equation}
+where the matrix elements are given as integrals over the chosen
+one-particle basis:
+\begin{subequations}
+ \begin{align}
+   h_{rs} &= \int \diff\vect{r} \varphi_r^\dagger(\vect{r}) h(\vect{r})\varphi_s(\vect{r}) \label{eq:one-el}\\
+   g_{rstu} &=
+   \int\diff\vect{r}\int\diff\vect{r}^\prime
+   \Omega_{rs}(\vect{r}) g(\vect{r},\vect{r}^\prime) \Omega_{tu}(\vect{r}^\prime) \label{eq:two-el} \\
+  \Omega_{rs}(\vect{r}) &= \varphi_r^\dagger(\vect{r})\varphi_s(\vect{r}). \label{eq:overlap}
+ \end{align}
+\end{subequations}
+The second-quantized Hamiltonian Eq.~\eqref{eq:sq-hamiltonian} is thus a
+\emph{projected} operator, exact only within the subspace determined by
+the chosen one-particle set.~\autocite{Gross1991-hi, Helgaker2000-tz}
+
+In second quantization, the exact molecular electronic wave function can
+be written as a linear combination of \acrshort{ON} vectors:
+\begin{equation}
+  \ket{\psi} = \sum_{\vect{k}}C_\vect{k}\ket{\vect{k}},
+\end{equation}
+also known at the \gls{FCI} expansion.
+\todo[inline]{Variational property and size-extensivity.}
+Coefficients in the expansion corresponding to the molecular ground
+state can be determined by seeking the lowest eigenvalue of the matrix
+representation of the Hamiltonian in the space of \acrshort{ON} vectors.
+The \acrshort{FCI} method is exact, within the chosen one-particle set,
+but scales exponentially with the number of electrons in the system and
+has thus very limited practical applications.
+Approximations can be tailored by appropriate truncations of the
+$N$-electron space.
+In \emph{single-reference} methods, one first determines an
+approximation to the solution by means of a single \acrshort{ON} vector.
+This \acrshort{ON} vector is treated as the \emph{physical} vacuum:
+vectors in Fock space can be classified according to how different their
+occupation is from the reference, \ie~\emph{by excitation
+level}.\autocite{Helgaker2000-tz, Shavitt2009-mr}
+A truncated expansion can then be constructed by including only those
+\acrshort{ON} vectors that differ from the reference up to a certain
+number of excitations.
+Further details on how the expansions are actually tailored and
+algorithmically implemented can be found elsewhere.\autocite{Helgaker2000-tz}
+In the rest of this Chapter we will describe how a single \acrshort{ON}
+vector approximation can be constructed and how we can improve on it by
+means of \acrlong{CC} and \acrlong{MBPT}.
+
+\section{Mean-Field Theory}\label{sec:mean-field}
+
+Basing ourselves on a variational principle, we seek the best
+description of the many-electron wave function as a single Slater
+determinant. This implies that there is no variational freedom in the
+$N$-electron space. Our variational degrees of freedom reside in
+the one-electron space, \ie in the space of \gslpl{MO}
+$\lbrace\varphi_r\rbrace$, used to build the determinant $\Ket{0}$.
+The one-electron space is developed by considering the behaviour of the
+single electron in the mean field of all the other electrons, and while
+this neglects a smaller part of the interaction energy, the electron
+correlation, it provides a suitable starting point for further
+variational or perturbational treatments to recover more of the
+electron--electron interaction.
+
+\todo[inline]{CURRENTLY VERBATIM FROM MASTER THESIS!!!!}
+
+The problem with introducing more electrons in the theory is that
+electron--electron interactions that were previously small now occur to
+the same order as the kinetic energy and the interaction with the
+nuclear potential. The technique for dealing with this problem is
+well-known from nonrelativistic theory of many-electron systems:
+mean-field theory.
+
+Basing ourselves on a variational principle, we seek the best
+description of the many-electron wave function as a single Slater
+determinant. This implies that there is no variational freedom in the
+$N$-electron space (\ie the subset of Fock space describing $N$ particle
+systems, $\mathcal{F}^N$). Our variational degrees of freedom reside in
+the one-electron space, \ie in the space of Molecular Orbitals,
+$\lbrace\varphi_r\rbrace$, used to build the determinant $\Ket{0}$.
+The one-electron space is developed by considering the behaviour of the
+single electron in the mean field of all the other electrons, and while
+this neglects a smaller part of the interaction energy, the electron
+correlation, it provides a suitable starting point for further
+variational or perturbational treatments to recover more of the
+electron--electron interaction.
+
+To derive a set of relativistic one-particle functions, \ie 4-spinors,
+from a mean-field approach we typically start by making a simple guess
+at these functions and then try to refine them iteratively by applying
+suitable rotations in the entire one-particle space available. This
+iterative procedure normally reaches a stage were further rotations do
+not change the spinors, \ie they are \emph{self-consistent}.
+
+As the molecular 4-spinors $\lbrace\varphi_r\rbrace$ are orthonormal,
+the resulting $N$-electron space is made of normalized determinants.
+Consequently, only norm-conserving transformations of the one-electron
+space underlying $\mathcal{F}^N$ must be considered.\footnote{In
+general, any suitable transformation of the one-electron space must
+enforce \emph{all} the symmetries presented by the system under
+consideration.}
+This restricts our attention to the group of unitary transformations:
+\begin{equation}
+ U^\dagger U = id = UU^\dagger.
+\end{equation}
+
+Any unitary transformation may be parametrized as the exponential of an
+anti-Hermitian operator:\autocite{Arfken2013-pt, Helgaker2000-tz}
+\begin{alignat}{2}
+ U = \exp(-\kappa) \quad&\quad \kappa^\dagger = -\kappa
+\end{alignat}
+the anti-Hermitian operator being given as a linear combination of
+single excitation operators:
+\begin{alignat}{2}\label{eq:orb-rot}
+  \kappa = \sum_{rs} \kappa_{rs} \cons{r}\anni{s} -\kappa^*_{rs}\cons{s}\anni{r}
+= \sum_{rs}\kappa_{rs}q^\dagger_{rs} - \kappa^*_{rs}q_{rs}
+\quad&\quad \kappa_{sr}^* = -\kappa_{rs}
+\end{alignat}
+and the \emph{orbital rotation} parameters $\kappa_{rs}$ were introduced.
+It may be easily verified that the matrix representation of $U$ in the
+$\lbrace\varphi_{r}\rbrace$ basis is given by:
+\begin{equation}
+ \mat{U} = \exp(-\vect{\kappa}).
+\end{equation}
+
+Before proceeding with the minimization procedure, let us rewrite the
+orbital rotation operator in a more convenient notation. As already
+pointed out, orbitals will in general be complex. The usual reduction in
+the parametrization of $\kappa$ in the nonrelativistic regime will not
+be observed. Instead of working with the real and imaginary parts of the
+orbital rotation parameters, we will treat the $\vect{\kappa}$ and
+$\vect{\kappa}^*$ matrices as \emph{independent} variables. Hence,
+defining the following vectors:
+\begin{alignat}{2}
+\vect{K} =
+ \begin{pmatrix}
+  \vect{\kappa} \\
+  \vect{\kappa}^*
+ \end{pmatrix}
+\quad&\quad
+\vect{Q} =
+ \begin{pmatrix}
+  -\vect{q} \\
+  \vect{q}^\dagger
+ \end{pmatrix}
+\end{alignat}
+Eq. \eqref{eq:orb-rot} may be rewritten as:
+\begin{equation}\label{eq:orb-rot-new}
+  \kappa = \frac{1}{2}\left[ \vect{K}^\dagger\vect{Q} - \vect{Q}^\dagger\vect{K}\right]
+\end{equation}
+
+Let us note that the parametrization of $\kappa$ is, in general
+\emph{redundant}, in the sense that it contains certain rotations which
+do not change the energy of the state. Redundant rotations are
+inessential in the optimization of the wave function and may lead to
+numerical instabilities in second order algorithms.\autocite{Helgaker2000-tz,
+Shepard1987-sn}
+It is then mandatory to identify and eliminate them. For a single
+determinant this is an easy task as all redundant rotations satisfy the
+condition:
+\begin{equation}
+ \cons{r}\anni{s}\Ket{0} = 0.
+\end{equation}
+
+For a closed shell only those rotations connecting occupied and virtual
+orbitals will be nonredundant. The redundancy-free orbital rotation
+generator is then:
+\begin{equation}\label{eq:orb-rot-nonred}
+  \kappa = \sum_{ai}\kappa_{ai}\cons{a}\anni{i} -\kappa_{ai}^* \cons{i}\anni{a}
+\end{equation}
+The advantage of this parametrization is that the orbital rotation
+operator $\exp(-\kappa)$ ensures orthonormality of the one-particle
+orbitals without the need to introduce Lagrange multipliers:
+unconstrained optimization approaches can be used.
+
+By means of $\exp(-\kappa)$ the energy is established as a function of
+the orbital rotation parameters:
+\begin{equation}\label{eq:param-energy}
+ E(\vect{K}) = \Braket{0(\vect{K})|H_0|0(\vect{K})} = \Braket{0|\exp(\kappa)H\exp(-\kappa)|0}.
+\end{equation}
+The optimal 4-spinors are then found by minimizing $E(\vect{K})$. The
+Hamiltonian in Eq.~\eqref{eq:param-energy} has the second-quantized
+expression of Eq.~\eqref{eq:sq-hamiltonian} and the integrals are given as
+in Eqs.~\eqref{eq:one-el}-\eqref{eq:overlap}.
+
+We perform a Taylor expansion up to second-order of the right-hand-side
+of Eq.~\eqref{eq:param-energy}, all derivatives are evaluated at the
+current expansion point arbitrarily set at
+$\vect{K}=0$:
+\begin{equation}\label{eq:taylor-exp}
+ E(\vect{K}) = E^{[0]} +\vect{K}^\dagger \mat{E}^{[1]} + \frac{1}{2}\vect{K}^\dagger \mat{E}^{[2]}\vect{K} + O(\vect{K}^3)
+\end{equation}
+where the electronic gradient and Hessian are given as:
+\begin{subequations}
+ \begin{align}
+ \mat{E}^{[1]}
+&=
+\begin{pmatrix}
+ \pderiv{E}{{\vect{\kappa}^*}} \\
+ \pderiv{E}{{\vect{\kappa}}}
+\end{pmatrix}
+\\
+\mat{E}^{[2]}
+&=
+\begin{pmatrix}
+ \frac{\partial^2 E}{\partial\boldsymbol{\kappa}^*\partial\boldsymbol{\kappa}} &
+ \frac{\partial^2 E}{\partial\boldsymbol{\kappa}^*\partial\boldsymbol{\kappa}^*} \\[0.3em]
+ \frac{\partial^2 E}{\partial\boldsymbol{\kappa}\partial\boldsymbol{\kappa}} &
+ \frac{\partial^2 E}{\partial\boldsymbol{\kappa}\partial\boldsymbol{\kappa}^*}
+\end{pmatrix}
+=
+\begin{pmatrix}
+                  \mat{A} & \mat{B} \\
+                  \mat{B}^* & \mat{A}^*
+\end{pmatrix}
+ \end{align}
+\end{subequations}
+
+Expansion of Eq. \eqref{eq:param-energy} in a \gls{BCH}
+commutator series yields:\autocite{Arfken2013-pt}
+\begin{equation}
+ E(\vect{K}) = E(0) + \braket{0|\commutator{\kappa}{H_0}|0} +\frac{1}{2}\braket{0|\commutator{\kappa}{\commutator{\kappa}{H_0}}|0}+O(\vect{\kappa}^3)
+\end{equation}
+
+We will now concentrate only on the expression of the electronic energy
+gradient, the Hessian will be analyzed in Chapter
+\ref{ch:molprop}.
+Differentiating the expression above with respect to $\vect{K}$ gives the gradient as:
+\begin{equation}\label{eq:brillouin}
+ E^{[1]}_{ai} = \Braket{0|\commutator{-\cons{i}\anni{a}}{H_0}|0}.
+\end{equation}
+The derivative has been evaluated at $\vect{K}=0$, \ie the current
+expansion point. The stationarity condition Eq.~\eqref{eq:brillouin} is
+also known as \emph{Brillouin's Theorem}.
+The explicit expression of the electronic energy gradient follows from a
+straightforward application of Wick's theorem:\autocite{Wick1950-iy,
+Shavitt2009-mr}
+\begin{equation}\label{eq:stationary}
+  E^{[1]}_{ai} = -h_{ai} - \sum_{j}[g_{aijj} - g_{ajji}]
+\end{equation}
+
+We define the \emph{Fock matrix} $\mat{F}$ with elements:
+\begin{equation}
+  F_{rs} = h_{rs} + \sum_{j} [g_{rsjj} - g_{rjjs}]
+\end{equation}
+apart from the one-electron term, whose expression was given in Eq.~\eqref{eq:one-el},
+the Fock matrix features two types of two-electron
+terms Eq.~\eqref{eq:two-el}.
+The former is due to the Coulomb interaction, while the second is the
+\emph{exchange} contribution arising because of antisymmetry in the
+many-electron wave function, in accordance with Pauli principle.
+
+In terms of the Fock matrix, the stationarity condition Eq.~\eqref{eq:stationary} reads:
+\begin{equation}
+  f_{ai} = h_{ai} + \sum_{j}[g_{aijj} - g_{ajji}] = 0
+\end{equation}
+meaning that the Fock matrix is block-diagonal in the basis of the
+optimal MO 4-spinors, \ie~the occupied-virtual and virtual-occupied
+blocks are zero. Nothing is said about the diagonal blocks (\ie~
+Occupied-Occupied and Virtual-Virtual) of this matrix, as the
+corresponding orbital rotations are redundant. This arbitrariness may be
+used to ease the wave function optimization, \eg~applying level-shifts,
+or to require that the eigenvalues of the Fock matrix have particular
+properties.\autocite{Szabo1989-vl, McWeeny1992-oj, Helgaker2000-tz}
+
+For example, we can fix the diagonal blocks in order to reinterpret the
+eigenvalues of the Fock matrix as ionization potentials and electron
+affinities (Koopmans' Theorem).
+The optimal 4-spinor rotation will bring the Fock matrix to diagonal
+form, what is called its \emph{canonical representation}. Thus the
+optimization of the one-particle space may be recast as a
+diagonalization problem:
+\begin{equation}\label{eq:fock-eq}
+ \mat{F}\vect{\varphi} = \vect{\varphi}\mat{\epsilon}
+\end{equation}
+where the eigenvalues of the Fock matrix are called \emph{orbital
+energies}. The theory exposed above goes under several names that we
+will use interchangeably in the remainder of this thesis. Apart from
+mean-field theory the names \gls{SCF} and
+\gls{HF} theory are also in common usage.
+
+%%%% Introduce DFT and KS-DFT
+An interesting approach to the quantum mechanical description of
+many-electron systems is based on the idea that it should be possible to
+find a quantum theory that solely refers to observable quantities.
+\gls{DFT}, instead of relying on a wave
+function, is based on the electron density.
+The Hohenberg--Kohn theorems\autocite{Hohenberg1964-wo, Eschrig2012-as}
+and their relativistic counterparts\autocite{Rajagopal1973-ns,
+Dreizler2012-ay} establish the energy as a \emph{functional} of the
+density:
+\begin{equation}
+ E = E[\rho]
+\end{equation}
+
+In the \gls{KS} approach to \acrshort{DFT}, the density of the system of interest
+is supposed to be equal to that of a fictitious noninteracting
+system.\autocite{Kohn1965-hg}
+The energy is then a sum of five terms:
+\begin{equation}\label{eq:ks-energy}
+ E[\rho] = T_s[\rho] + V_\mathrm{ext}[\rho] + J[\rho] + E_\mathrm{xc}[\rho] + V_\mathrm{NN}
+\end{equation}
+the first four of which  are functionals of the density. The first term
+$T_s[\rho]$ is the kinetic energy of the fictitious noninteracting
+system represented by a single Slater determinant $\ket{\widetilde{0}}$:
+\begin{equation}
+ T_s[\rho] = \sum_i \braket{\widetilde{0}|h_\mathrm{D}(i)|\widetilde{0}}.
+\end{equation}
+The second and third term in Eq.~\eqref{eq:ks-energy} represent,
+respectively, the classical interaction of the electrons with the
+external potential (including the nuclear attraction potential) and the
+classical Coulomb interaction of the density with itself:
+\begin{subequations}
+ \begin{align}
+   V_\mathrm{ext}[\rho] &= \int\diff\vect{r} V_\mathrm{ext}(\vect{r})\rho(\vect{r}) \\
+   J[\rho] &=
+   \frac{1}{2}\int\diff\vect{r}\int\diff\vect{r}^\prime
+   \rho(\vect{r})g(\vect{r}, \vect{r}^\prime)\rho(\vect{r}^\prime)
+ \end{align}
+\end{subequations}
+The fourth term in Eq.~\eqref{eq:ks-energy} is the
+\gls{XC} functional and is a great unknown. This term
+contains all two-electron interactions except for the classical
+$J[\rho]$ term, \ie~it contains the effects of electron exchange and
+electron correlation. It also corrects for the self-interaction present
+in the classical Coulomb term and for the error in the evaluation of the
+kinetic energy.
+A number of approximations exist for this functional.
+In the \gls{LDA}, the functional is expressed in terms of an
+\emph{energy density} $e_\mathrm{xc}$ which is a local function of the
+density:
+\begin{equation}
+ E^\mathrm{LDA}_\mathrm{xc}[\rho] = \int e_\mathrm{xc}(\rho(\vect{r}))\diff\vect{r}.
+\end{equation}
+In the \gls{GGA}, the energy
+density is a local function of both the density and the norm of its
+gradient $\zeta(\vect{r})=\vect{\nabla}\rho\cdot \vect{\nabla}\rho$:
+\begin{equation}
+ E^\mathrm{GGA}_\mathrm{xc}[\rho] = \int e_\mathrm{xc}(\rho(\vect{r}),\zeta(\vect{r}))\diff\vect{r}.
+\end{equation}
+Finally, in \emph{hybrid} functionals, some proportion of the
+\acrshort{HF} exchange is included:
+\begin{equation}
+ E^\mathrm{hybrid}_\mathrm{xc}[\rho] = E^\mathrm{GGA}_\mathrm{xc}[\rho] + \gamma E^\mathrm{HF}_\mathrm{x}[\rho]
+\end{equation}
+The last term of Eq.~\eqref{eq:ks-energy} is the nuclear--nuclear repulsion energy.
+
+In complete analogy with the mean-field theory exposed above,
+\citeauthor{Saue2002-cu} have proposed a unitary parametrization of the
+\acrshort{KS} state in terms of orbital rotations:\autocite{Saue2002-cu}
+\begin{equation}
+ \ket{\widetilde{0}} = \exp(-\kappa)\ket{0}.
+\end{equation}
+The density matrix is then a function of the orbital rotation parameters:
+\begin{equation}
+ \widetilde{D}_{rs}(\vect{\kappa}) = \braket{0|\exp(\kappa)\cons{r}\anni{s}\exp(-\kappa)|0}
+\end{equation}
+thus establishing the density $\rho$ and the norm of its gradient
+$\zeta$ as functions of the orbital rotation parameters.
+Using the overlap distributions defined in Eq.~\eqref{eq:overlap}:
+\begin{subequations}
+ \begin{align}
+   \rho(\vect{r},\vect{\kappa}) &= \sum_{rs}\widetilde{D}_{rs}(\vect{\kappa})\Omega_{rs}(\vect{r}) \\
+   \vect{\nabla} \rho(\vect{r},\vect{\kappa}) &= \sum_{rs}\widetilde{D}_{rs}(\vect{\kappa})\vect{\nabla}\Omega_{rs}(\vect{r}).
+ \end{align}
+\end{subequations}
+The electronic energy gradient leads to the definition of the Fock-like
+\emph{KS} matrix as:
+\begin{equation}\label{eq:ksmatrix}
+  f_{rs} = h_{rs} + \sum_{j}[g_{rsjj} - \gamma g_{rjjs}] + v_{\mathrm{xc};rs}
+\end{equation}
+the actual form of $v_{\mathrm{xc};rs}$ can be found in
+\noparcite[refs.][]{Saue2002-cu}
+and \noparcite[][]{Salek2005-at}
+
+In the \acrshort{KS} approach to \acrshort{DFT}, the one-particle space
+is then optimized in complete analogy with \acrshort{HF} theory, \ie~by
+diagonalization of the \acrshort{KS} matrix:
+\begin{equation}
+ \mat{F}\vect{\varphi} = \vect{\varphi}\mat{\epsilon}
+\end{equation}
+unlike \acrshort{HF} theory, the \acrshort{KS} approach enables us to
+recover some electron correlation, albeit through the use of \emph{ad
+hoc} \acrshort{XC} functionals.\autocite{Koch2015-wq}
 
 \section{The Coupled Cluster Ansatz}\label{sec:coupled-cluster}
 
@@ -44,7 +556,7 @@ that is, as a truncated sum of excitation operators, $\cluster{\mu_p}$,
 times the corresponding cluster amplitudes, $\tamp{\mu_p}$.
 Here $\mu_p$ is the $\mu$-th excitation at the $p$-th excitation level and
 $\mathcal{M}$ is the truncation level.
-One of the main strengths of the \acrshort{CC} model is its size extensivity
+One of the main strengths of the \acrshort{CC} model is its size-extensivity
 which stems directly from the exponential nature of the wave
 operator.~\autocite{Shavitt2009-mr, Helgaker2000-tz}
 
@@ -73,7 +585,7 @@ leading to the \emph{linked} form of the \acrshort{CC} equations:
   \end{align}
 \end{subequations}
 The linked and unlinked formulations are completely equivalent. However,
-the former is size extensive term-by-term.
+the former is size-extensive term-by-term.
 Use of similarity transformed operators is ubiquitous when dealing with
 \acrshort{CC} theory and we introduce the following notation for it:
 \begin{equation}
@@ -82,8 +594,7 @@ Use of similarity transformed operators is ubiquitous when dealing with
 The cluster operator is not Hermitian. Hence, the similarity transformation
 will not, in general, preserve any of the symmetries, such as
 hermiticity, that the bare operators might have possessed.
-Similarity-transformed operators can be expanded in a commutator series,
-also known as the \gls{BCH} expansion:
+Similarity-transformed operators can be expanded in a \acrshort{BCH} commutator series:
 \begin{equation}
   \overline{O} =
   \sum_{n=0}^{\infty}\frac{1}{n!}[A, B]^n
@@ -154,15 +665,5 @@ When required by the context, we will explicitly write at which
 truncation level in the cluster operator the expectation was evaluated:
 $O^\mathcal{M}(\tamp{}, \tbar{})$.
 
-Having summarized the essential points of \acrshort{CC} theory and having
-introduced the relevant notation, we can proceed to analyze its coupling
-with quantum/classical polarizable Hamiltonians.
-
-\todo[inline]{Provide a primer here so that the Chapter on
-solvation+correlation is not superlong}
-
-\section{Many-Body Perturbation Theory}\label{sec:MBPT}
-
-\section{Iterative Approximations: CC2 and CC3}\label{sec:ccn}
-
-\section{Noniterative Triples Corrections}\label{sec:ccsd-t}
+\section{Many-Body Perturbation Theory}\label{sec:mbpt}
+\section{Approximate Coupled Cluster Methods}\label{sec:cc-approximate}
