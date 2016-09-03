@@ -691,34 +691,7 @@ How are quantum/classical polarizable Hamiltonians implemented in this
 framework?
 As shown in Chapter \ref{ch:QM} for the \acrshort{CC} method, one can
 formulate methods in quantum chemistry as the unconstrained minimization
-of a Lagrangian.\autocite{Helgaker1982-xl, Arponen1983-qt,
-Helgaker1988-to, Helgaker1989-wl, Koch1990-vr, Kvaal2013-jr}
-Let us call $\mathcal{E}(\vect{\eta})$ the definition of the energy
-for the given quantum chemical method.
-The \emph{amplitudes} $\vect{\eta}$ are determined by a set of
-stationarity conditions $\mat{\Omega}(\vect{\eta}) = 0$.
-Direct minimization of $\mathcal{E}(\vect{\eta})$ is thus a
-\emph{constrained} optimization.
-Introducing a set of Lagrange \emph{multipliers} $\bar{\vect{\eta}}$
-lets us recast the problem as an unconstrained minimization of the
-Lagrangian:
-\begin{equation}
-  \mathcal{L}(\vect{\eta}, \bar{\vect{\eta}}) =
-  \mathcal{E}(\vect{\eta}) +
-  \scalprod[W]{\bar{\vect{\eta}}}{\mat{\Omega}(\vect{\eta})}
-\end{equation}
-where the governing equations are obtained by differentiation with
-respect to both sets of parameters:
-\begin{subequations}
-  \begin{align}
-    \pderiv{\mathcal{L}(\vect{\eta}, \bar{\vect{\eta}})}{\bar{\vect{\eta}}}
-    &= \mat{\Omega}(\vect{\eta}) = 0 \\
-    \pderiv{\mathcal{L}(\vect{\eta}, \bar{\vect{\eta}})}{\vect{\eta}}
-    &= \pderiv{\mathcal{E}(\vect{\eta})}{\vect{\eta}} +
-    \scalprod[W]{\bar{\vect{\eta}}}{\pderiv{\mat{\Omega(\vect{\eta})}}{\vect{\eta}}}
-    = 0
-  \end{align}
-\end{subequations}
+of a Lagrangian.
 Due to the  variational property of the classical polarizable functional
 one can devise an \emph{effective} quantum/classical polarizable
 Lagrangian:\autocite{Lipparini2016-mo}
