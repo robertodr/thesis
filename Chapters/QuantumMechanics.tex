@@ -91,15 +91,27 @@ while in the relativistic regime with the \gls{DC}
 approximation:\autocite{Dyall2007-tu, Konishi2009-zb, Reiher2014-cp}
 \begin{subequations}
  \begin{align}
-   h(\vect{r}_i) &=
-   \begin{pmatrix}
-     V_{\mathrm{Ne}}(\vect{r}_i)I_2 & c \vect{\sigma}\cdot\vect{p}_i \\
-     \vect{\sigma}\cdot\vect{p}_i & (V_{\mathrm{Ne}}(\vect{r}_i)-2\si{\electronmass}c^2)I_2
-   \end{pmatrix} \label{eq:h-dirac} \\
+   h(\vect{r}_i) &= (\mat{\beta} - I_4)\si{\electronmass}c^2 +
+   c(\mat{\alpha}_i\cdot\vect{p}_i) + V_{\mathrm{Ne}}(\vect{r}_i)I_4 \\
    g(\vect{r}_i, \vect{r}_j) &= \frac{I_4\cdot I_4}{|\vect{r}_i - \vect{r}_j|}
    \label{eq:g-r-coulomb}
  \end{align}
 \end{subequations}
+The Dirac matrices, expressed in terms of the vector $\mat{\sigma}$
+collecting the three Pauli spin matrices, were introduced:
+\begin{alignat}{2}
+  \mat{\alpha}_i =
+  \begin{pmatrix}
+    0_2 & \mat{\sigma}_i \\
+    \mat{\sigma}_i & 0_2
+  \end{pmatrix},
+  \quad&
+  \mat{\beta} =
+  \begin{pmatrix}
+    I_2 & 0_2 \\
+    0_2 & -I_2
+  \end{pmatrix},
+\end{alignat}
 and the operators are implicitly assumed to embed the proper no-pair,
 positive-energy manifold projectors.\autocite{Sucher1980-vf}
 Since these are fermionic Hamiltonians, the spin-statistics theorem
@@ -640,7 +652,8 @@ doubles:\autocite{Christiansen1995-vy, Helgaker2000-tz}
   &+ \sum_{\mu_2}\tbar{\mu_2}\braket{\mu_2 | \check{\Phi} | \mathrm{HF}}
   \end{aligned}
 \end{equation}
-\todo[inline]{How does CC2 scale in the iterative step?}
+The \acrshort*{CC2} methods brings the scaling of the \acrshort*{CCSD}
+method down to $N^5$ in the iterative step.
 
 The \gls{CC3} model is constructed analogously, the amplitudes
 equations:\autocite{Christiansen1995-pv, Koch1997-nm, Helgaker2000-tz,
@@ -689,18 +702,27 @@ triples:\autocite{Christiansen1995-pv, Koch1997-nm, Helgaker2000-tz, Smith2005-a
   &+ \sum_{\mu_3}\tbar{\mu_3}\braket{\mu_3 | \commutator{\check{\Phi}}{T_2} | \mathrm{HF}}
   \end{aligned}
 \end{equation}
-\todo[inline]{How does CC3 scale in the iterative step?}
+The \acrshort*{CC3} methods brings the scaling of the \acrshort*{CCSDT}
+method down to $N^7$ in the iterative step.
 
-\todo[inline]{REFERENCES MISSING HERE!!!!!}
-Finally, within noniterative methods the fourth and fifth order triples
-energy corrections are added on top of the \acrshort*{CCSD} energy.
-The \acrshort*{CCSD} converged singles and doubles amplitudes are used
-instead of their perturbational counterparts. A $*$ superscript will be
-used to denote the converged parameters.
+Finally, one can construct \emph{noniterative} methods, where the
+expensive $N^7$ step for the inclusion of connected triples is
+calculated as a one-off correction on top of the converged
+\acrshort*{CCSD} energy.
+The expression for the correction is based on the fourth and fifth order
+triples energy corrections Eqs.
+\eqref{eq:4th-order-triples}--\eqref{eq:5th-order-triples}, but is
+computed using the converged \acrshort*{CCSD} singles and doubles
+amplitudes,\autocite{Urban1985-xp, Raghavachari1989-bn, Bartlett1990-lk,
+Watts1993-ff, Kucharski1998-qq, Kucharski1998-oi, Crawford1998-vj,
+Taube2008-xv, Taube2008-oq} here and in the following denoted by a $*$
+superscript.
 Since the left and right \acrshort*{CC} states differ, symmetric and
 asymmetric variants of the noniterative corrections exist.
-The $\Lambda$\acrshort*{CCSD}[T] and \acrshort*{CCSD}[T] methods only
-include the fourth order correction Eq. \eqref{eq:4th-order-triples}.
+
+The $\Lambda\text{CCSD}[\text{T}]$\autocite{Eriksen2015-il} and
+$\text{CCSD}[\text{T}]$\autocite{Urban1985-xp} methods only include the
+fourth order correction Eq. \eqref{eq:4th-order-triples}.
 The former uses both the left and right state, while the latter uses
 only the right state and can be obtained from the former by replacing
 the multipliers with the amplitudes:\autocite{Koch1997-nm,
@@ -713,21 +735,9 @@ Eriksen2015-il}
     \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}.
   \end{align}
 \end{subequations}
-From Eqs. \eqref{eq:1st-order}--\eqref{eq:2nd-order}, one can derive
-which \acrshort*{MBPT} terms are included in the corrections:
-\begin{equation}
-  \begin{aligned}
-  {}^* E^{[4]}_{\Lambda\text{[T]}}
-  &=
-    \braket{\tbar{2}^{[1]}| \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}
-  + \braket{\tbar{2}^{[2]} | \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}} \\
-  &+ \braket{\tbar{3}^{[2]} | \commutator{\Phi}{T_2^{[2]}} | \mathrm{HF}}
-  + O(6)
-  \end{aligned}
-\end{equation}
-and similarly for ${}^* E^{[4]}_{\text{[T]}}$.
-
-The $\Lambda$\acrshort*{CCSD}(T) and \acrshort*{CCSD}(T) methods also
+The $\Lambda\text{CCSD}(\text{T})$\autocite{Kucharski1998-qq,
+Kucharski1998-oi, Crawford1998-vj} and
+$\text{CCSD}(\text{T})$\autocite{Raghavachari1989-bn} methods also
 include the first of the fifth order triples corrections in Eq.
 \eqref{eq:5th-order-triples}:
 \begin{subequations}
@@ -747,8 +757,25 @@ include the first of the fifth order triples corrections in Eq.
 \end{subequations}
 once again, the symmetric method can be obtained from the asymmetric
 variant by replacing multipliers with amplitudes in the left state.
-The \acrshort*{MBPT} terms included in
-${}^* E^{[5]}_{\Lambda\text{(T)}}$ can be seen to be:
+
+Results from noniterative methods can be rationalized within the
+framework of \acrshort*{MBPT}.\autocite{Koch1997-nm, Eriksen2014-gy,
+Eriksen2015-il, Kristensen2016-od}
+From Eqs. \eqref{eq:1st-order}--\eqref{eq:2nd-order}, one can derive
+which \acrshort*{MBPT} terms are included in the corrections:
+\begin{equation}
+  \begin{aligned}
+  {}^* E^{[4]}_{\Lambda\text{[T]}}
+  &=
+    \braket{\tbar{2}^{[1]}| \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}
+  + \braket{\tbar{2}^{[2]} | \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}} \\
+  &+ \braket{\tbar{3}^{[2]} | \commutator{\Phi}{T_2^{[2]}} | \mathrm{HF}}
+  + O(6)
+  \end{aligned}
+\end{equation}
+and similarly for ${}^* E^{[4]}_{\text{[T]}}$.
+The \acrshort*{MBPT} terms included in ${}^*
+E^{[5]}_{\Lambda\text{(T)}}$ can be seen to be:
 \begin{equation}
   {}^* E^{[5]}_{\Lambda\text{(T)}}
   =
@@ -756,5 +783,3 @@ ${}^* E^{[5]}_{\Lambda\text{(T)}}$ can be seen to be:
   + O(6)
 \end{equation}
 and similarly for ${}^* E^{[5]}_{\text{(T)}}$.
-
-\todo[inline]{COST IN THE NONITERATIVE STEP. CHECK REFERENCES!!!!!!!!}
