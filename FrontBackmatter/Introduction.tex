@@ -1,14 +1,23 @@
 \chapter*{Introduction}
-\addtocontents{toc}{\protect\vspace{\beforebibskip}} % to have the bib a bit from the rest in the toc
-\addcontentsline{toc}{chapter}{\tocEntry{Introduction}}
+\pdfbookmark[1]{Introduction}{introduction}
 
 \renewcommand{\thefigure}{\Alph{figure}}
 
 \begin{epigraphs}
+\setlength\epigraphwidth{7.5cm}
 \qitem{
-pity this busy monster, manunkind,
+plays with the bigness of his littleness
+
+--- electrons deify one razorblade
+
+into a mountainrange; lenses extend
+
+unwish through curving wherewhen till unwish
+
+returns on its unself.
     }{
     --- \textsc{E. E. Cummings}}
+\setlength\epigraphwidth{7cm}
 \qitem{
 [...] \textnorsk{og fordi jeg alltid har hatt en dragning mot det skjulte og hemmelige.}
 }{
@@ -18,14 +27,30 @@ pity this busy monster, manunkind,
 
 \section*{What Are the Electrons Really Doing in Molecules?}
 
-\todo[inline]{Quantum chemistry as they study of
-molecular properties by means of \emph{ab initio} physico-mathematical
-theories and computer programs.
-Introduce the concept of model chemistries, but then mention that we are
-interested in different aspects and will look at different "axes".}
-
-This question was posed by R.~S.~Mulliken over a half-century ago, as
-lecture title for the acceptance of the Gilbert N.~Lewis award in 1960.
+This question was posed by R.~S.~Mulliken over a half-century
+ago\footnote{This was the title Mulliken chose for his Gilbert N.~Lewis
+award acceptance speech in 1960.}
+and can be considered the fundamental research question behind the
+development of quantum chemistry.
+The purpose of quantum chemistry is to provide models based on first
+principles that can help \emph{understand} and \emph{predict} molecular properties.
+As stated by \citeauthor{Dirac1929-gn} in his \citetitle{Dirac1929-gn}
+paper:\autocite{Dirac1929-gn, Kutzelnigg2000-fl}
+\blockquote{The underlying physical laws necessary for the mathematical
+theory of a large part of physics and the whole of chemistry are thus
+completely known, and the difficulty is only that the exact application of
+these laws leads to equations much too complicated to be soluble. It
+therefore becomes desirable that approximate practical methods of
+applying quantum mechanics should be developed, which can lead to an
+explanation of the main features of complex atomic systems without too
+much computation.}
+Following Dirac's \emph{dictum}, in quantum chemistry we apply physical
+models based on quantum many-body methods to molecular systems, employ
+their mathematical realizations and devise computable approximations.
+The central idea is, in fact, to be able to obtain an algorithmic
+implementation of the methods that can be applied to interesting
+chemical systems: model building and software implementations are two
+closely intertwined aspects in the practice of quantum chemistry.
 
 \begin{figure}[tb]
 \centering
@@ -39,7 +64,34 @@ $S=\textcolor{PMS1797}{y}(\textcolor{PMS2229}{x})f(\textcolor{PMS2229}{x})\textc
 \label{fig:RQC-axis}
 \end{figure}
 
-This will be the subject of Chapter \ref{ch:QM}
+Quantum chemical methods have become invaluable tools in the modern
+development of chemistry,\autocite{Lee1995-pw, Helgaker2004-oz,
+Tajti2004-ye} as witnessed by the Nobel prizes awarded in 1998\autocite{Nobel1998}
+and 2013.\autocite{Nobel2013}
+The concept of \emph{model chemistries} is at the heart of these
+successes. Introduced by \citeauthor{Pople1999-gt}, theoretical model
+chemistries are specific combinations of approximations in the basis set
+and molecular electronic structure methodology.\autocite{Pople1999-gt}
+Model chemistries are \emph{systematically improvable} so that it is
+possible to achieve the heaven of chemical accuracy by relaxing
+approximations in the model, albeit at an increased computational cost.
+Figure \ref{fig:RQC-axis} presents the usual depiction of this concept
+as a set of orthogonal axes, where chemical accuracy can be achieved by
+moving away from the origin.
+Relativity can be considered as the third axis of quantum
+chemistry: accuracy can be reached improving on the Hamiltonian, method
+and basis axes.\autocite{Saue2011-qg}
+
+The description of the ideas and methods at the basis of quantum
+chemistry will be the subject of Chapter \ref{ch:QM}.
+I will put emphasis on the methods that have been relevant in the work
+presented in this thesis. Section \ref{sec:mqm} discusses some of the
+ideas of quantum many-body theory relevant to quantum chemistry. Section
+\ref{sec:mean-field} introduces the workhorses of quantum chemistry
+\acrlong*{HF} and \acrlong*{KS} \acrlong*{DFT}.
+The \acrlong*{MBPT} and \acrlong*{CC} rungs on the methodology axis will
+be discussed in Sections \ref{sec:mbpt} and \ref{sec:coupled-cluster},
+respectively.
 
 \section*{The Problem of Solvation or Taming Complexity with Models}
 
@@ -70,29 +122,29 @@ will be presented in this thesis.~\autocite{Onsager1936-wf}
 Before introducing our model of choice, let us consider how an
 environment might affect molecular observables of interest.
 Environment effects are usually classified as:
-\begin{itemize}
-\item \emph{direct}.
+\begin{description}[font=\normalfont\scshape]
+\item[Direct.]
   These effect stem straightforwardly from the modification underwent by
   the solute electronic density when interacting with the environment.
-\item \emph{Indirect}.
+\item[Indirect.]
   It is common for solutes to exhibit different minimum-energy
   conformations in different environments. These effects are commonly
   labelled as indirect.
-\item \emph{Local field}.
+\item[Local field.]
   Light-matter interactions are also affected by the environment. Local
   modifications of externally applied fields subtly influence molecular
   responses.~\autocite{Cammi1998-jp, Pipolo2014-sd}
-\item \emph{Dynamic}.
+\item[Dynamic.]
   Probing the nature of molecular excited states has enormous
   technological impact. The presence of the environment radically
   influences excited states, since relaxation processes in the medium
   become important.
-\item \emph{Specific}. This catch-all category includes all effects
+\item[Specific.] This catch-all category includes all effects
   stemming from the peculiar solute-solvent pair interactions that
   cannot be fully described under any of the previous labels.
   In general, modelling such effects demands an atomistic level of
   detail.
-\end{itemize}
+\end{description}
 
 Faced with the problem of describing such a diverse array of effects,
 two main models have emerged in the past decades, each with its

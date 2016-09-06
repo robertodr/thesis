@@ -29,15 +29,15 @@
 %--------------------
 % HAMILTONIAN AXIS
 \draw[thick,->] (0,0,0) -- (1.5,0,0) node[anchor=north east]{Hamiltonian $(\begingroup\color{PMS1797}{y}\endgroup)$};
-\draw (1/3, .01pt, 0pt) -- (1/3, -.04pt, 0pt) node[anchor=east] {\begingroup\color{PMS1797}{1-c}\endgroup};
-\draw (2/3, .01pt, 0pt) -- (2/3, -.05pt, 0pt) node[anchor=east] {\begingroup\color{PMS1797}{X2C/DKH}\endgroup};
-\draw (1, .01pt, 0pt) -- (1, -.05pt, 0pt) node[anchor=east] {\begingroup\color{PMS1797}{Dirac--Coulomb}\endgroup};
+\draw (1/3, .01pt, 0pt) -- (1/3, -.04pt, 0pt) node[anchor=east] {\begingroup\color{PMS1797}{one-component}\endgroup};
+\draw (2/3, .01pt, 0pt) -- (2/3, -.05pt, 0pt) node[anchor=east] {\begingroup\color{PMS1797}{two-component}\endgroup};
+\draw (1, .01pt, 0pt) -- (1, -.05pt, 0pt) node[anchor=east] {\begingroup\color{PMS1797}{four-component}\endgroup};
 
 % BASIS AXIS
 \draw[thick,->] (0,0,0) -- (0,1.5,0) node[anchor=north west]{Basis $(\begingroup\color{PMS130}{M}\endgroup)$};
-\draw (0pt, 1/3, .01pt) -- (0pt, 1/3, -.04pt) node[anchor=north] {\begingroup\color{PMS130}{2Z}\endgroup};
-\draw (0pt, 2/3, .01pt) -- (0pt, 2/3, -.05pt) node[anchor=north] {\begingroup\color{PMS130}{3Z}\endgroup};
-\draw (0pt, 1, .01pt) -- (0pt, 1, -.05pt) node[anchor=north] {\begingroup\color{PMS130}{4Z}\endgroup};
+\draw (0pt, 1/3, -.01pt) -- (0pt, 1/3, +.05pt) node[anchor=south] {\begingroup\color{PMS130}{double zeta}\endgroup};
+\draw (0pt, 2/3, .01pt) -- (0pt, 2/3, -.05pt) node[anchor=north] {\begingroup\color{PMS130}{triple zeta}\endgroup};
+\draw (0pt, 1, -.01pt) -- (0pt, 1, +.05pt) node[anchor=south] {\begingroup\color{PMS130}{quadruple zeta}\endgroup};
 
 % METHOD AXIS
 \draw[thick,->] (0,0,0) -- (0,0,1.5) node[anchor=south]{Method $(\begingroup\color{PMS2229}{x}\endgroup)$};
