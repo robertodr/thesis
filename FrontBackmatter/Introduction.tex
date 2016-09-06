@@ -43,9 +43,6 @@ This will be the subject of Chapter \ref{ch:QM}
 
 \section*{The Problem of Solvation or Taming Complexity with Models}
 
-\todo[inline]{Classification of solute-solvent interactions. The focus
-on electrostatics.}
-
 Chemistry can be largely considered a \emph{wet} science: almost always
 chemical phenomena happen in a liquid environment.~\autocite{Reichardt2010-le}
 We hereby define a "solution", or more generally an "environment", as
@@ -114,8 +111,11 @@ degrees of freedom of the environment differs:
    This is either achieved by a cheaper quantum mechanical
    method~\autocite{Vreven2006-gx} or by \gls{MM}.~\autocite{Senn2009-sk}
    In the latter approach, commonly dubbed \acrshort{QM}/\acrshort{MM}, the \acrshort{MM}
-   region can either be polarizable~\autocite{MMPol} or non
-   polarizable.~\autocite{MM}
+   region can either be polarizable~\autocite{Mennucci2013-go,
+   Olsen2010-wa, Lipparini2011-rd} or non
+   polarizable. While the former method allows for mutual polarization
+   between the \acrshort*{QM} and \acrshort*{MM} subsystems, the latter
+   treats the \acrshort*{MM} region as fixed.
  \item
    \emph{Continuum} (or \emph{implicit}) completely remove the degrees
    of freedom of the environment from the picture, replacing it with a
@@ -129,16 +129,18 @@ system.
 However, they demand a statistical average of environment configurations
 to yield results of any significance. Moreover, a large number
 \emph{cutoff} for the \acrshort{MM} region is usually required to converge
-long-range electrostatic interactions.~\autocite{Something here??}
+long-range electrostatic interactions.\autocite{Steindal2011-ki}
 Continuum models avoid both problems at once. Statistical averaging is
 built into the model \emph{via} their parametrization by
 means of the environment's bulk properties, such as the permittivity.
 In addition, long-range electrostatics is treated exactly.
 Unfortunately, atomistic detail is lost and it is then impossible to
 recover a satisfactory description of specific effects.
-To partly alleviate these sources of error, the \acrshort{QM}/\acrshort{MM} and
-\acrshort{QM}/Continuum methods can and have been successfully combined to
-yield the three-layer \acrshort{QM}/\acrshort{MM}/Continuum method.~\autocite{Curutchet, Steindal Lipparini}
+To partly alleviate these sources of error, the
+\acrshort{QM}/\acrshort{MM} and \acrshort{QM}/Continuum methods can and
+have been successfully combined to yield the three-layer
+\acrshort{QM}/\acrshort{MM}/Continuum method.\autocite{Steindal2011-ki,
+Lipparini2011-rd, Caprasecca2012-ir, Lipparini2013-ud}
 Figure \ref{fig:qm-to-multiscale} schematically portrays the transition
 from a full \acrshort{QM} model of the relevant system to its multiscale
 representations.
@@ -153,7 +155,7 @@ Caprasecca (MoLEcoLab, Università di Pisa).}
 \end{figure}
 
 Notice that we have deliberately ruled out so-called \emph{cluster}
-models from the above discussion.~\autocite{ClusterModels}
+models from the above discussion.
 These approaches replace the actual physical setting with a suitable
 truncation of the whole solute+solvent system, the \emph{model system}
 and treat it within a chosen quantum mechanical level of theory.

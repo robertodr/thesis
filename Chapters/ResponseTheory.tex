@@ -14,19 +14,53 @@ White light it's gonna drive me insane
           --- \textsc{R.E.M.}}
 \end{epigraphs}
 
-\begin{itemize}
-    \item Something about exact state response theory: quasienergy,
-      response functions, residues of response functions.
-    \item  Derivation of the linear response function with
-      quantum/classical polarizable Hamiltonian and then refer to the
-      OpenRSP paper for the open-ended treatment.~\autocite{pcm-openrsp}
-\end{itemize}
+The scope of quantum chemistry is to understand and predict molecular
+properties, but so far we have made no mention of properties other than
+the energy.
+The experimentalists' view of molecular systems is built mainly around the use
+of spectroscopic techniques that explore the interaction of light and matter.
+When a system is exposed to an external perturbing electromagnetic field, it will
+respond with a detectable change in its properties.\autocite{Pedersen2012-il, Jaszunski2012-wy}
+By "external" we mean an electromagnetic field which is "weak" when
+compared to the electron--electron and electron--nuclei interactions in
+the molecule.
+\emph{Response theory} is the missing link between theory and
+experiment. It allows to describe perturbation-induced changes in
+molecular properties in terms of \emph{response functions}, built solely
+by means of \emph{unperturbed} molecular states and energies.
+Moreover, excitation energies and transition moments can be inferred
+from response functions without recurring to an explicit modelling of
+excited states.
+Section \ref{sec:exact-response} will give a brief introduction to exact
+state response theory for isolated molecules. The concepts of
+quasienergy,\autocite{Christiansen1998-pe} variational perturbation
+theory\autocite{Helgaker1992-ph} and pole-and-residue
+analysis of response functions\autocite{Olsen1985-nr} will be introduced.
+I will explicitly derive the \acrshort{SCF} response function for a
+quantum/classical polarizable Hamiltonian in Section
+\ref{sec:csm-response}. The derivation will employ the
+density matrix-based, \acrshort{AO} formalism introduced by
+\citeauthor{Thorvaldsen2008-sg} in \noparcite[ref.][]{Thorvaldsen2008-sg}.
+This formalism is suitable for the derivation of arbitrary-order
+response functions and their residues, also when perturbation-dependent
+basis sets are considered.\autocite{Friese2015-kb, Friese2015-bu}
+Such a general derivation for the \acrshort{PCM} is presented in
+\paper{V}.
+
+The response treatment of molecular properties has its roots in
+time-dependent perturbation theory\autocite{Konishi2009-zb} and has been
+continually developed in quantum chemistry for the past 30 years:
+the exposition will be necessarily brief and incomplete, the reader is
+referred to the cited works in the literature for a more detailed
+presentation of the topic.\autocite{Olsen1985-nr, Helgaker1992-ph, Olsen1995-pf,
+Christiansen1998-pe, Norman2011-ad, Helgaker2012-cz, Pawlowski2015-sq}
 
 \section{Exact State Response Theory}\label{sec:exact-response}
 
-General theory~\autocite{Olsen1985-nr, Christiansen1998-pe,
-Norman2011-ad, Helgaker2012-cz, Pawlowski2015-sq}
-Solution strategy for response equations~\autocite{Kauczor2011-rd}
+General theory~\autocite{Olsen1985-nr, Helgaker1992-ph, Olsen1995-pf,
+Christiansen1998-pe, Norman2011-ad, Helgaker2012-cz, Pawlowski2015-sq}
+Solution strategy for response equations~\autocite{Saad2003-oa,
+Saad2011-gm, Kauczor2011-rd, Malmqvist2013-vw}
 Open-ended \acrshort{AO}-based \acrshort{SCF} response~\autocite{
 Larsen2000-hj, Kjaergaard2008-hy, Thorvaldsen2008-sg,
 Kristensen2008-hv, Ringholm2014-gx}
@@ -39,5 +73,5 @@ Open-ended \acrshort{SCF} residues~\autocite{Friese2015-kb}
 Cammi1999-rb, Cammi2003-qy, Frediani2005-nc, Ferrighi2010-pm}
 \acrshort{FQ} and \acrshort{FQ}/\acrshort{PCM}~\autocite{Lipparini2012-hx, Lipparini2012-tl, Lipparini2013-ud}
 \acrshort{PE}~\autocite{Olsen2010-wa}
-\acrshort{QM}/\acrshort{MM}/Continuum~\autocite{Stenidal2011-ki, Caprasecca2012-ir}
+\acrshort{QM}/\acrshort{MM}/Continuum~\autocite{Steindal2011-ki, Caprasecca2012-ir}
 Paper V~\autocite{pcm-openrsp}

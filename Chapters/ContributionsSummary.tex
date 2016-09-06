@@ -26,8 +26,6 @@ Sections \ref{sec:relapcm}--\ref{sec:pcmopenrsp} contain very short
 summaries of the papers and a list of my contributions.
 My coauthors have all read and approved the description of contributions.
 
-\pagebreak
-
 \section{Software}\label{sec:software}
 
 The growing complexity of quantum chemical program packages requires that an
@@ -57,18 +55,27 @@ Modules are to be thought as computational black boxes \emph{developed},
 \emph{tested}, \emph{packaged} and \emph{distributed} independently of
 the particular host program in which they will be used.
 A well-defined \gls{API} clearly delimits the boundaries of the functionality
-offered, thus forcing a programming style and standardisation of the
+offered, effectively enforcing a programming style and standardisation of the
 functionality, eventually.~\autocite{Reddy2011-sd}
 
-When coupled with \emph{open-source} licensing, modularity is a proper
-step towards ensuring reproducibility of results from scientific
-simulation software.~\autocite{Gezelter2015-gz, Krylov2015-fs,
+Recently, a debate over \emph{open-source}
+licensing\autocite{St_Laurent2004-fa} and \emph{open data} practices has
+sparked in the quantum chemistry community.\autocite{Gezelter2015-gz, Krylov2015-fs,
 Jacob2016-oq}
+Open-source licensing enables an open code review process that is, in
+our opinion, essential in guaranteeing scientific
+reproducibility.\autocite{Gezelter2015-gz}
+The points raised \emph{against} wholesale adoption of open-source
+licensing models,\autocite{Krylov2015-fs} especially the concerns about
+code quality and maintenance, do partially resonate with us.
+However, we still think that a modular approach to programming can only
+have significant impact, in terms of improved reproducibility and
+overall code quality, when an open-source licensing model is adopted.
 Open-source development can fully leverage the benefits of widespread,
 cloud-based, free, code development services, such as hosted
 \acp{DVCS},~\autocite{github, gitlab} continuous
-integration,~\autocite{travis-ci, appveyor-ci} code
-coverage,~\autocite{coveralls} static and dynamic code
+integration,~\autocite{travis-ci, magnum-ci, appveyor-ci} code
+coverage analysis,~\autocite{coveralls} static and dynamic code
 analyses,~\autocite{coverity-scan} nightly regression testing, public
 issue tracking, code review and so forth: adoption of a modern code
 development workflow is easily within reach.
@@ -119,7 +126,7 @@ shortcomings.~\autocite{boost}
 Linear algebra operations are managed through the Eigen C++ template
 library.~\autocite{eigen}
 The Python layer provides input reading and parsing facilities,
-as implemented by the GetKw library .~\autocite{libgetkw}
+as implemented by the GetKw library.~\autocite{libgetkw}
 Cavity construction and discretization is handled either by the Fortan
 or by the C layer, depending on which computational \emph{backend} is
 needed.
@@ -198,10 +205,10 @@ I/O operations.
 The \acrshort{API} is implemented in ISO C99 as a \emph{context-aware} set of
 functions.~\autocite{library-ronacher, context-api-example}
 Upon initialization of the library, a \emph{context} object containing
-the state of the \acrshort{PCM} \acrshort{API} is constructed and a handle to it
-(a pointer in C++ parlance) is returned to the host program. Further
-transactions between \pcmsolver and the host program proceed through
-manipulations of the context object.
+the state of the \acrshort{PCM} \acrshort{API} is constructed and an
+opaque handle to it (a pointer in C++ parlance) is returned to the host
+program. Further transactions between \pcmsolver and the host program
+proceed through manipulations of the context object.
 \pcmsolver introduces the concept of surface functions:
 labelled instances of any quantity defined on the cavity surface.
 Bookkeeping of a possibly arbitrary number of such quantities is managed
@@ -245,12 +252,12 @@ Programming effort in this thesis has not only been directed at the
 creation of the \pcmsolver library, but also at interfacing it with a
 number of quantum chemistry codes.
 The first interface was implemented and released within the \DIRAC code
-and is described in Paper I.~\autocite{DIRAC15, DiRemigio2015-ou}.
+and is described in \paper{I}.~\autocite{DIRAC15, DiRemigio2015-ou}.
 Interfaces to the \LSDALTON\autocite{LSDALTON16, Aidas2013-rp} and
 \DALTON\autocite{LSDALTON16, Aidas2013-rp} codes have followed, as
-described in Paper II and Paper V, respectively.~\autocite{Bugeanu2015-tp, pcm-openrsp}
+described in \paper{II} and \paper{V}, respectively.~\autocite{Bugeanu2015-tp, pcm-openrsp}
 Details about the interface to \ReSpect~\autocite{ReSpect-3.5.0} can be
-found in Paper IV.~\autocite{pcm-respect}
+found in \paper{IV}.~\autocite{pcm-respect}
 Coupling with \psicode~\autocite{Turney2012-de} has allowed us to implement the
 \acrshort{PCM}-\acrshort{CC} developments described in this thesis.
 Finally, development of an interface with the KOALA code is underway.~\autocite{Hofener2014-ex, Hofener2016-qz}
@@ -401,9 +408,9 @@ I wrote the first draft of the paper and coordinated all subsequent editing stag
 \section{Relativistic Calculation of EPR and pNMR Parameters in
 Solution}\label{sec:pcmepr}
 
-Paper IV is a step further in our exploration of the interplay between
-relativistic and solvent effects initiated with Paper I.
-Whereas Paper I presented the essential framework for the coupling of
+\paper{IV} is a step further in our exploration of the interplay between
+relativistic and solvent effects initiated with \paper{I}.
+Whereas \paper{I} presented the essential framework for the coupling of
 four-component \acrshort{SCF} wave functions with a classical polarizable continuum,
 in this paper we explored the calculation of first-order magnetic properties:
 \gls{EPR} and \gls{pNMR} parameters.~\autocite{Repisky2010-ls, Malkin2011-nm,
@@ -447,7 +454,7 @@ Our group has newly developed an open-ended methodology for the computation of
 their residues.~\autocite{Friese2015-kb}
 These developments offer a route towards a synergistic experimental and
 theoretical approach to high-order absorption spectroscopies.
-Paper V grafts a classical polarizable continuum approach to solvation on top
+\paper{V} grafts a classical polarizable continuum approach to solvation on top
 of the open-ended methodology of \citeauthor{Thorvaldsen2008-sg}.
 Still nowadays, continuum models represent a cost-effective methodology for the
 approximate inclusion of solvent effects, albeit their known limitations with respect

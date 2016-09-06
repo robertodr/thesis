@@ -16,7 +16,7 @@ che la salsedine non intacca
 ma torna al lito più pura.
 }
 }{
-    --- \textsc{E. Montale}, \textit{Falsetto}}
+    --- \textsc{Eugenio Montale}, \textit{Falsetto}}
 
 Developments of the \gls{PCM}, a continuum solvation model, are at the
 heart of this thesis.
@@ -72,10 +72,6 @@ The coordinates $(\vect{r}_\mathrm{S}, \vect{r}_\mathrm{E})$ refer to
 \emph{both} nuclei and electrons.
 The interaction term is given by the usual Coulomb electrostatic
 Hamiltonian.
-\todo[inline]{What is a nonpolarizable model? What's a polarizable
-model? HAS TO BE MENTIONED HERE!}
-\todo[inline]{What is the nature of the interaction? Mention that we
-only include polarization, but in a mutual manner.}
 
 One can replace the pure environment and interaction terms with their
 classical counterparts and obtain the quantum/classical, possibly
@@ -111,20 +107,69 @@ averaged.~\autocite{Angyan1992-vo, Tapia1992-pu}
 The solute-environment interaction term would then be replaced by
 a term only depending on the solute degrees of freedom, represented by
 the averaged, continuous response functions of the solvent.
+This is the physical setting of the \gls{PCM} and is schematically
+depicted in Figure \ref{fig:IEF}.
+The solute molecule is enclose in a \emph{cavity} inside the
+structureless continuum representing the solvent and the basic energetic
+quantity is a \emph{free energy}:\autocite{Tomasi1994-gv,
+Amovilli1998-pv, Tomasi2005-vm}
+\begin{equation}\label{eq:free-energy}
+ G = G_\mathrm{cav} + G_\mathrm{el} + G_\mathrm{dis} + G_\mathrm{rep} + G_\mathrm{Mm}(T).
+\end{equation}
+The decomposition of the solute free energy takes into account the
+different physical origins of the different solute-solvent interactions.
+$G_\mathrm{cav}$ is the cavity formation free energy, a constant as long
+as the solute geometry does not change.\autocite{Tomasi1994-gv,
+Floris1997-tu}
+The second term $G_\mathrm{el}$ is the most important one in the
+framework of continuum models. It accounts for the mutual electrostatic
+polarization of solute and solvent, see Section \ref{sec:IEF}.
+The third $G_\mathrm{dis}$ and fourth $G_\mathrm{rep}$ terms account for
+dispersion and repulsion interactions,
+respectively.\autocite{Amovilli1997-fo, Weijo2010-jy}
+Finally, $G_\mathrm{Mm}(T)$ accounts for the collective molecular
+motions of the solute-solvent system. It explicitly depends on the
+temperature $T$ and can be calculated from the solution partition
+function, see \noparcite[ref.][]{Amovilli1998-pv} for further details.
 
-\todo[inline]{Introduction of the cavity. PCM as a problem in classical
-electrostatics}
+In this thesis, we focused exclusively on the purely electrostatic
+component of the interaction energy, completely neglecting the other
+terms.
+While a balanced description of solvation chemistry certainly demands
+a proper treatment of all solute-solvent interactions, especially when
+non homogeneous environments are studied,\autocite{Mozgawa2014-ad,
+Mozgawa2016-wf} it is also true that the electrostatic component is the
+most numerically relevant and the most sensitive to changes in the
+system studied and in the level of quantum mechanical description.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=.5\textwidth]{IEF}
+  \caption[The physical setting of the polarizable continuum model.]{
+  The physical setting of the \gls{PCM}. The molecular solute,
+  represented by its, possibly quantum mechanical, charge density
+  $\rho_\mathrm{i}$ is enclosed in a \emph{cavity} $\Omegai$.
+  The boundary of the cavity $\Gamma\equiv\partial\Omegai$ is a
+  continuously differentiable 2-manifold.
+  We assume the material properties of the cavity to be those of vacuum,
+  hence characterized by the Green's function
+  $\Gi=\frac{1}{|\vect{r}-\vect{r}^\prime|}$.
+  The cavity is carved out of an infinite, structureless, continuum
+  characterized by its Green's function $\Ge$ and fully covering the
+  external subdomain $\Omegae$.
+  }
+  \label{fig:IEF}
+\end{figure}
 
 \section{Continuum Electrostatics as a Boundary Integral Problem}\label{sec:IEF}
 
-The physical setting of the \gls{PCM} is depicted in Figure \ref{fig:IEF}.
 The molecular solute, represented by its charge density
 $\rhoi$ is enclosed in a \emph{cavity} $\Omegai$.
 The boundary of the cavity $\Gamma\equiv\partial\Omegai$ is a
 2-manifold and is assumed to be continuously differentiable, \ie $\mathcal{C}^1$.
 The cavity is carved out of an infinite, structureless, continuum
 characterized by the bulk properties of the solvent.
-The continuum fully spans the external subdomain $\Omegae$.
+The continuum fully spans the external subdomain $\Omegae$, see Fig. \ref{fig:IEF}.
 The source charge density is not assumed to be continuous: both
 classical point multipoles and quantum mechanical charge densities can
 be treated within the model.
@@ -134,9 +179,13 @@ for quantum mechanical charge densities. It can however be proven that
 the errors induced by this \emph{charge penetration} are not so
 severe.~\autocite{Chipman2000-us, Cances2001-qs, Cances2001-qn}
 
-This is a well-known problem in electrostatics~\autocite{Jackson1999, Vanderlinde2005-gf}
-and is called a \emph{transmission} problem in the mathematical
-literature on \acp{PDE}.~\autocite{Hackbusch1995-uq, Sauter2011-an}
+Formulated as such, the \gls*{PCM} is a well-known problem in classical
+electrostatics: find the electrostatic potential in space generated by
+a charge distribution confined in a cavity in a \emph{polarizable}
+continuous medium.\autocite{Jackson1999, Vanderlinde2005-gf}
+In the mathematical literature on \acp{PDE}, it is usually referred to as a
+\emph{transmission} problem.\autocite{Hackbusch1995-uq, Sauter2011-an}
+
 Given the partition of Euclidean space $\mathbb{R}^3$ outlined above,
 find the solution $u(\vect{r})$ to the following set:
 \begin{subequations}\label{eq:transmission}
@@ -170,25 +219,6 @@ poses challenges to the numerical solution of the problem.
 We will take a different approach and reformulate it in terms of
 \emph{boundary integral operators}, \ie transform the \acsp{PDE} into a
 \gls{BIE}.
-
-\begin{figure}[tb]
-  \centering
-  \includegraphics[width=.5\textwidth]{IEF}
-  \caption[The physical setting of the polarizable continuum model.]{
-  The physical setting of the \gls{PCM}. The molecular solute,
-  represented by its, possibly quantum mechanical, charge density
-  $\rho_\mathrm{i}$ is enclosed in a \emph{cavity} $\Omegai$.
-  The boundary of the cavity $\Gamma\equiv\partial\Omegai$ is a
-  continuously differentiable 2-manifold.
-  We assume the material properties of the cavity to be those of vacuum,
-  hence characterized by the Green's function
-  $\Gi=\frac{1}{|\vect{r}-\vect{r}^\prime|}$.
-  The cavity is carved out of an infinite, structureless, continuum
-  characterized by its Green's function $\Ge$ and fully covering the
-  external subdomain $\Omegae$.
-  }
-  \label{fig:IEF}
-\end{figure}
 
 The first step is to introduce the relevant boundary integral operators for the
 above mentioned transmission problem.
@@ -358,11 +388,11 @@ tailored for the wavelet \acrshort{BEM}.~\autocite{Harbrecht2009-no,
 Harbrecht2011-dk}
 
 The finite element discretization is usually carried out either by the
-\emph{collocation} or by the \emph{Galerkin} approach.\footnote{
+\emph{collocation} or by the \emph{Galerkin} approach.
 Indeed, it is possible to show that discretization by collocation
 corresponds to a Galerkin method with a very specific (and asymmetric)
 choice of \emph{trial} and \emph{test}
-spaces.~\autocite{Hackbusch1995-uq, Ern2004-oo}}
+spaces.~\autocite{Hackbusch1995-uq, Ern2004-oo}
 This step transforms the original integral equation into a system of
 linear equations whose dimension relates to the underlying mesh size.
 For general integral equations and finite element discretizations,
@@ -718,7 +748,74 @@ The quantum mechanical and the classical model are thus fully coupled,
 due to the dependence of the source term $\s$ on the amplitudes and
 multipliers.
 
-\todo[inline]{Provide an example with single-reference theories.}
 As an example, let us consider the single-reference \acrshort{HF} and
-\acrshort{KS}-\acrshort{DFT} methods.
-
+\acrshort{KS}-\acrshort{DFT} methods introduced in Section
+\ref{sec:mean-field}.
+First of all, we need the appropriate \acrshort{SCF} energy functional
+\emph{in vacuo}.
+The \acrshort{AO} basis set expansion of the \glspl{MO} lets us define
+the one-electron \acrshort{AO} density matrix as:
+\begin{equation}
+  D_{\mu\nu} = \sum_{i=1}^{N_O}C_{\mu i}C^\dagger_{\nu i}
+\end{equation}
+where $C_{\alpha r}$ are the \acrshort*{MO} expansion coefficients and
+$N_O$ is the total number of occupied orbitals.
+The \acrshort*{SCF} energy functional \emph{in vacuo} can now be
+expressed as:
+\begin{equation}\label{eq:scf-functional}
+  \mathcal{E}(\mat{C}) = \Tr \mat{h}\mat{D} + \frac{1}{2}\Tr
+  \mat{G}^\gamma(\mat{D})\mat{D} + E_\mathrm{xc}[\rho(\vect{r})] +
+  V_\mathrm{NN},
+\end{equation}
+and has to be optimized under the \acrshort*{MO} orthonormality
+constraint, easily introduced by means of Lagrangian multipliers:
+\begin{equation}\label{eq:scf-lagrangian}
+  \mathcal{L}(\mat{C}, \mat{\epsilon}) = \mathcal{E}(\mat{D}) -
+  \sum_{ij}\epsilon_{ji}(\braket{\phi_i|\phi_j} - \delta_{ij})
+\end{equation}
+The various contributions are expressed in terms of \acrshort*{AO} basis
+integral and density matrices:
+\begin{subequations}
+  \begin{align}
+  h_{\mu\nu} = &= \int \diff\vect{r}
+  \chi_\mu^\dagger(\vect{r})h(\vect{r})\chi_\nu(\vect{r}) \label{eq:ao-one-el} \\
+  G_{\mu\nu}^\gamma &=
+  \sum_{\kappa\lambda}D_{\kappa\lambda}(g_{\mu\nu\kappa\lambda} -
+  \gamma g_{\mu\lambda\kappa\nu}) \label{eq:two-el-matrix} \\
+  g_{\mu\nu\kappa\lambda} &=
+  \int\diff\vect{r}\int\diff\vect{r}^\prime
+  \Omega_{\mu\nu}(\vect{r}) g(\vect{r},\vect{r}^\prime)
+  \Omega_{\kappa\lambda}(\vect{r}^\prime) \label{eq:ao-two-el} \\
+  E_\mathrm{xc}[\rho(\vect{r})] &=
+  \int\diff\vect{r}
+  v_\mathrm{xc}(\vect{r})\Tr\mat{\Omega}(\vect{r})\mat{D} \label{eq:ao-xc} \\
+  \Omega_{\mu\nu}(\vect{r}) &= \chi_\mu^\dagger(\vect{r})\chi_\nu(\vect{r}).
+  \label{eq:ao-overlap}
+  \end{align}
+\end{subequations}
+The quantum/classical polarizable \acrshort*{SCF} functional is obtained by adding the
+polarization functional to Eq. \eqref{eq:scf-functional}:
+\begin{equation}\label{eq:polarizable-scf-functional}
+  \mathcal{L}_\mathrm{eff}(\mat{C}, \mat{\epsilon}, \s) =
+  \mathcal{L}(\mat{C}, \mat{\epsilon}) +
+  \frac{1}{2}{}^t\p\V\p + {}^t\p\Tr\mathbfup{s}\mat{D}.
+\end{equation}
+Differentiation with respect to the variational degrees of freedom
+yields the \acrshort*{KS} and polarization equations:
+\begin{subequations}
+  \begin{align}
+    \mat{F}\mat{C} &= \mat{S}\mat{C}\mat{\epsilon} \\
+    \V\p &+ \Tr\mathbfup{s}\mat{D} = 0
+  \end{align}
+\end{subequations}
+The \acrshort*{KS} matrix now includes environment contributions:
+\begin{equation}
+  f_{\mu\nu} = h_{\mu\nu}  + G^\gamma_{\mu\nu}(\mat{D}) + f_{\mathrm{xc};\mu\nu}
+  + {}^t\p\s_{\mu\nu}.
+\end{equation}
+With respect to the coupling described in abstract terms above, the
+\acrshort*{SCF} case is formally simpler. In fact, whereas in the
+general case the source term depends on \emph{both} primal (amplitudes)
+and dual (multipliers) variational degrees of freedom, here only the
+dependence on the primal parameters (\acrshort*{MO} coefficients) needs
+to be considered.\autocite{Lipparini2011-aj}
