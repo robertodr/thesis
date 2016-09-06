@@ -1,5 +1,3 @@
-\pdfbookmark[1]{Notations, conventions and units}{nomenclature}
-
 \renewcommand\nomgroup[1]{%
   \item[\bfseries
   \ifstrequal{#1}{A}{Basic Notation}{%
@@ -9,9 +7,7 @@
   \ifstrequal{#1}{E}{Molecular Quantum Mechanics}{}}}%
 ]}
 
-\renewcommand{\nomname}{
-Notations, Conventions and Units
-}
+\renewcommand{\nomname}{Notations, Conventions and Units}
 
 \renewcommand{\nompreamble}{
 A number of notations and typographic conventions has been adopted in
@@ -28,6 +24,10 @@ The speed of light is then:
 Complex conjugation will always be shown using a dagger ($\dagger$)
 instead of a star ($*$).
 }
+
+\refstepcounter{dummy}
+\phantomsection
+\addcontentsline{toc}{chapter}{\tocEntry{\nomname}}
 
 % Basic Notation
 \nomenclature[A, 01]{$u_E$}{Restriction (trace) of the function $u$ to the set $E$}

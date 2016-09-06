@@ -1,5 +1,7 @@
 \chapter*{Introduction}
-\pdfbookmark[1]{Introduction}{introduction}
+\refstepcounter{dummy}
+\phantomsection
+\addcontentsline{toc}{chapter}{\tocEntry{Introduction}}
 
 \renewcommand{\thefigure}{\Alph{figure}}
 
@@ -98,7 +100,7 @@ respectively.
 Chemistry can be largely considered a \emph{wet} science: almost always
 chemical phenomena happen in a liquid environment.~\autocite{Reichardt2010-le}
 We hereby define a "solution", or more generally an "environment", as
-a system were the number of solvent molecules exceeds by far the number
+a system where the number of solvent molecules exceeds by far the number
 of solute molecules.~\autocite{Tomasi2004-dc, Tomasi2007-es}
 It is then clear that theoretical and computational approaches to such a
 problem will necessarily suffer from a \emph{dimensionality disease}.
@@ -113,7 +115,7 @@ Hansen2013-io}
 To tame this complexity and cure the disease, one must devise
 \emph{models} that simplify physical reality, while offering tools for
 understanding reality and predicting new and exciting
-phenomena.~\autocite{Anderson1972-ai, Winsberg2010-sy, Kovac2011-ew}
+phenomena and properties.~\autocite{Anderson1972-ai, Winsberg2010-sy, Kovac2011-ew}
 One of the earlier attempts at tackling the problem of solvation is due
 to \citeauthor{Onsager1936-wf}. His was a rather crude model, but one
 that has had a lasting impact and informs much of the developments that
@@ -124,7 +126,7 @@ environment might affect molecular observables of interest.
 Environment effects are usually classified as:
 \begin{description}[font=\normalfont\scshape]
 \item[Direct.]
-  These effect stem straightforwardly from the modification underwent by
+  These effects stem straightforwardly from the modification underwent by
   the solute electronic density when interacting with the environment.
 \item[Indirect.]
   It is common for solutes to exhibit different minimum-energy
@@ -152,7 +154,20 @@ strengths and weaknesses.
 Both can be classified as \emph{multiscale} (or \emph{focused})
 models~\autocite{Nobel2013} and hinge on the same idea: treat different
 parts of the system with different methods and couple these methods by
-bridging "scales" at the boundary, \emph{vide infra}.
+bridging "scales" at the boundary.
+Figure \ref{fig:qm-to-multiscale} schematically portrays the transition
+from a full \acrshort{QM} model of the relevant system to its multiscale
+representations.
+
+\begin{figure}[tb]
+\missingfigure{Add picture with multiscale models}
+\caption[From quantum mechanical to multiscale models]{
+From quantum mechanical to multiscale models.
+The images used in the scheme are reproduced courtesy of Dr.~Stefano
+Caprasecca (MoLEcoLab, Università di Pisa).}
+\label{fig:qm-to-multiscale}
+\end{figure}
+
 While both models treat the molecular degrees of freedom at the quantum
 mechanical level, their approach to the microscopic description of the
 degrees of freedom of the environment differs:
@@ -170,17 +185,18 @@ degrees of freedom of the environment differs:
    treats the \acrshort*{MM} region as fixed.
  \item
    \emph{Continuum} (or \emph{implicit}) completely remove the degrees
-   of freedom of the environment from the picture, replacing it with a
+   of freedom of the environment from the model, replacing them with a
    structureless continuum.
    The effect of this continuum is described, classically, \emph{via}
    its bulk properties.~\autocite{Onsager1936-wf, Miertus1981-mm}
 \end{itemize}
+
 \acrshort{QM}/\acrshort{MM} models can capture, albeit approximately, the effect
 of the atomistic nature of the environment on the active part of the
 system.
 However, they demand a statistical average of environment configurations
-to yield results of any significance. Moreover, a large number
-\emph{cutoff} for the \acrshort{MM} region is usually required to converge
+to yield results of any significance. Moreover, a rather large
+\emph{cutoff radius} for the \acrshort{MM} region is usually required to converge
 long-range electrostatic interactions.\autocite{Steindal2011-ki}
 Continuum models avoid both problems at once. Statistical averaging is
 built into the model \emph{via} their parametrization by
@@ -193,18 +209,6 @@ To partly alleviate these sources of error, the
 have been successfully combined to yield the three-layer
 \acrshort{QM}/\acrshort{MM}/Continuum method.\autocite{Steindal2011-ki,
 Lipparini2011-rd, Caprasecca2012-ir, Lipparini2013-ud}
-Figure \ref{fig:qm-to-multiscale} schematically portrays the transition
-from a full \acrshort{QM} model of the relevant system to its multiscale
-representations.
-
-\begin{figure}[tb]
-\missingfigure{Add picture with multiscale models}
-\caption[From quantum mechanical to multiscale models]{
-From quantum mechanical to multiscale models.
-The images used in the scheme are reproduced courtesy of Dr.~Stefano
-Caprasecca (MoLEcoLab, Università di Pisa).}
-\label{fig:qm-to-multiscale}
-\end{figure}
 
 Notice that we have deliberately ruled out so-called \emph{cluster}
 models from the above discussion.

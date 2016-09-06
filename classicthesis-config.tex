@@ -106,6 +106,9 @@ urldate=long
 \DeclareFieldFormat{prefixnumber}{\mkbibbold{#1}}
 \DeclareFieldFormat{labelnumber}{\mkbibbold{#1}}
 }
+\AtEveryBibitem{%
+  \clearlist{language}%
+}
 \DeclareCiteCommand{\noparcite}%[\mkbibbrackets] CITATION LIKE in ref. 6 WITHOUT SQUARE BRACKETS
   {\usebibmacro{cite:init}%
    \usebibmacro{prenote}}
@@ -387,5 +390,9 @@ BoldFont       = *bold,
   tabsize=2,	                   % sets default tabsize to 2 spaces
   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
+
+% Change font for sections in TOC
+\renewcommand\cftsecfont{\footnotesize}
+\renewcommand\cftsecpagefont{\footnotesize}
 
 \input{newcommands}

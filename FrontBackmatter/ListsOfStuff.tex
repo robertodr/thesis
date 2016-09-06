@@ -12,8 +12,7 @@
     %*******************************************************
     \phantomsection
     \refstepcounter{dummy}
-    %\addcontentsline{toc}{chapter}{\listfigurename}
-    \pdfbookmark[1]{List of TODOs}{lotodo}
+    \addcontentsline{toc}{chapter}{TODOs}
     \listoftodos
 
     \vspace{8ex}
@@ -23,41 +22,16 @@
     %*******************************************************
     \phantomsection
     \refstepcounter{dummy}
-    %\addcontentsline{toc}{chapter}{\listfigurename}
-    \pdfbookmark[1]{\listfigurename}{lof}
+    \addcontentsline{toc}{chapter}{\tocEntry{\listfigurename}}
     \listoffigures
 
     \vspace{8ex}
-
-    %*******************************************************
-    % List of Tables
-    %*******************************************************
-    %\phantomsection
-    %\refstepcounter{dummy}
-    %\addcontentsline{toc}{chapter}{\listtablename}
-    %\pdfbookmark[1]{\listtablename}{lot}
-    %\listoftables
-
-    %\vspace{8ex}
-%   \newpage
-
-    %*******************************************************
-    % List of Listings
-    %*******************************************************
-      %\phantomsection
-    %\refstepcounter{dummy}
-    %\addcontentsline{toc}{chapter}{\lstlistlistingname}
-    %\pdfbookmark[1]{\lstlistlistingname}{lol}
-    %\lstlistoflistings
-
-    %\vspace{8ex}
 
     %*******************************************************
     % Acronyms
     %*******************************************************
     \phantomsection
     \refstepcounter{dummy}
-    \pdfbookmark[1]{Acronyms}{acronyms}
-    %\markboth{\spacedlowsmallcaps{Acronyms}}{\spacedlowsmallcaps{Acronyms}}
+    \addcontentsline{toc}{chapter}{\tocEntry{Acronyms}}
     \printglossary[type=\acronymtype, style=long]
 \endgroup
