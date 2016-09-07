@@ -66,10 +66,12 @@ $S=\textcolor{PMS1797}{y}(\textcolor{PMS2229}{x})f(\textcolor{PMS2229}{x})\textc
 \label{fig:RQC-axis}
 \end{figure}
 
-Quantum chemical methods have become invaluable tools in the modern
-development of chemistry,\autocite{Lee1995-pw, Helgaker2004-oz,
-Tajti2004-ye} as witnessed by the Nobel prizes awarded in 1998\autocite{Nobel1998}
-and 2013.\autocite{Nobel2013}
+It is easy to manipulate chemicals in a virtual laboratory. Nowadays
+quantum chemical methods often complement traditional experimental
+approaches. They have become invaluable tools in the modern development
+of chemistry,\autocite{Lee1995-pw, Helgaker2004-oz, Tajti2004-ye} as
+witnessed by the Nobel prizes awarded in 1998\autocite{Nobel1998} and
+2013.\autocite{Nobel2013}
 The concept of \emph{model chemistries} is at the heart of these
 successes. Introduced by \citeauthor{Pople1999-gt}, theoretical model
 chemistries are specific combinations of approximations in the basis set
@@ -230,12 +232,55 @@ be extensively used throughout the thesis.
 
 \section*{The Road to Reality or Molecular Response Properties}
 
-Characterizing, explaining and predicting the effect of the chemical
-environment on a large number of measurable properties requires,
-however, a synergistic experimental and theoretical approach.
+The scope of quantum chemistry is to understand and predict molecular
+properties, but so far we have made no mention of properties other than
+the energy.
+The experimentalists' view of molecular systems is built mainly around
+the use of spectroscopic techniques that explore the interaction of
+light and matter. When a system is exposed to an external perturbing
+electromagnetic field, it will respond with a detectable change in its
+properties.\autocite{Pedersen2012-il, Jaszunski2012-wy}
+Characterizing, explaining and predicting a large number of measurable
+properties requires a synergistic experimental and theoretical approach.
+\emph{Response theory} is the missing link between theory and
+experiment, making quantum chemistry a full-fledged virtual laboratory.
+Response theory allows the description and computation of
+perturbation-induced changes in observable molecular properties.
+Electric and magnetic properties, excitation energies and transition
+moments can easily be calculated in the framework of response theory.
+\emph{Response functions} are the central concept in response theory.
+These are built solely by means of \emph{unperturbed} molecular states and
+energies: no explicit modelling of excited states is needed.
 
-This will be the subject of Chapter \ref{ch:molprop}
+Response theory will be the subject of Chapter \ref{ch:molprop},
+where the basic ideas in the computation of response functions will be
+presented. We will discuss the formulation of the linear response
+function for quantum/classical polarizable Hamiltonians and show how the
+variational framework is a powerful theoretical tool.
 
 \section*{Accurate Methods for Accurate Properties}
 
-This will be the subject of Chapter \ref{ch:solvation-correlation}
+The concepts of systematic improvability and theoretical model
+chemistries are the foundations for the successful practice of quantum
+chemistry.
+A balanced description of electron correlation is often necessary
+to achieve accurate enough results in the computation of molecular
+properties.\autocite{Lee1995-pw, Helgaker2004-oz, Tajti2004-ye}
+The cost-effective treatment of electron correlation is a challenging
+problem and a very active line of research in the field.
+\Acrlong*{DFT} approaches are cheap and widespread, but their general
+accuracy is hard to assess. \Acrlong*{MBPT} and \acrlong*{CC} approaches
+are more robust in this respect, albeit at an increased computational
+cost.
+
+In this thesis, we are interested in the inclusion of
+environment effects in \emph{ab initio} models of interesting chemical
+systems. As already noted, this is a challenging problem, the more so
+when including electron correlation is necessary to obtain better
+accuracy.
+We will describe our approach to this problem in Chapter
+\ref{ch:solvation-correlation}. Treating solvation and electron
+correlation has been a recurring subject of research in the literature
+since the inception of continuum models. Once again, we will leverage
+the variational formulation of classical polarizable models presented
+in Chapter \ref{ch:CSM}.
