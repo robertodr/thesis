@@ -676,10 +676,10 @@ the Hamiltonian.
 Moreover, the stationarity condition Eq.~\ref{eq:pcm-mm-stationarity}
 entails the existence of a classical Hellmann--Feynman theorem:
 \begin{equation}\label{eq:classical-HF}
-  \deriv{U_\mathrm{pol}}{\lambda} = \pderiv{U_\mathrm{pol}}{\lambda}
-  + \pderiv{U_\mathrm{pol}}{\sigma}\pderiv{\sigma}{\lambda}
-  + \pderiv{U_\mathrm{pol}}{\kappa}\pderiv{\kappa}{\lambda}
-  = \pderiv{U_\mathrm{pol}}{\lambda},
+  \deriv{U_\mathrm{pol}}{F} = \pderiv{U_\mathrm{pol}}{F}
+  + \pderiv{U_\mathrm{pol}}{\sigma}\pderiv{\sigma}{F}
+  + \pderiv{U_\mathrm{pol}}{\kappa}\pderiv{\kappa}{F}
+  = \pderiv{U_\mathrm{pol}}{F},
 \end{equation}
 which is paramount in the formulation of molecular properties, see
 Chapter \ref{ch:molprop}.
@@ -688,7 +688,7 @@ in terms of simultaneous optimization.\autocite{Lipparini2011-aj}
 
 Finally, let us re-express the equations above in a supermatrix
 formalism:
-\begin{equation}
+\begin{equation}\label{eq:supermatrix-functional}
   U_\mathrm{pol} =
   \frac{1}{2}{}^t\p\V\p + {}^t\p\s
 \end{equation}
@@ -805,7 +805,7 @@ yields the \acrshort*{KS} and polarization equations:
 \begin{subequations}
   \begin{align}
     \mat{F}\mat{C} &= \mat{S}\mat{C}\mat{\epsilon} \\
-    \V\p &+ \Tr\mathbfup{s}\mat{D} = 0
+    \V\p &+ \Tr\mathbfup{s}\mat{D} = 0 \label{eq:polarization-stat}
   \end{align}
 \end{subequations}
 The \acrshort*{KS} matrix now includes environment contributions:

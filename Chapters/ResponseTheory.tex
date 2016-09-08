@@ -24,8 +24,8 @@ continually developed in quantum chemistry for the past 30
 years.\autocite{Olsen1985-nr, Helgaker1992-ph, Olsen1995-pf,
 Christiansen1998-pe, Norman2011-ad, Helgaker2012-cz, Pawlowski2015-sq}
 
-Section \ref{sec:exact-response} will give a brief introduction to exact
-state response theory for isolated molecules. The concepts of
+Section \ref{sec:exact-response} will give a brief introduction to
+response theory for isolated molecules. The concepts of
 quasienergy,\autocite{Christiansen1998-pe} variational perturbation
 theory\autocite{Helgaker1992-ph} and pole-and-residue
 analysis of response functions\autocite{Olsen1985-nr} will be introduced.
@@ -41,10 +41,11 @@ response functions and their residues, also when perturbation-dependent
 basis sets are considered.\autocite{Friese2015-kb, Friese2015-bu}
 \paper{V} presents the arbitrary-order derivation of the \acrshort{PCM}.
 
-\section{Exact State Response Theory}\label{sec:exact-response}
+\section{Response Theory in a Nutshell}\label{sec:exact-response}
 
 Let us consider the experimentally relevant situation where a molecular
-system is subject to an external source of electromagnetic radiation.
+system is subject to an external source of electromagnetic radiation,
+Figure \ref{fig:OR}.
 Here and in the following, "external" will be used to mean an
 electromagnetic field which is "weak" when compared to the
 electron--electron and electron--nuclei interactions in the molecule.
@@ -195,18 +196,6 @@ the expansion:
 \begin{equation}\label{eq:sum-rule}
  \sum_{i=1}^{n} \omega_{k_i} = 0
 \end{equation}
-%\begin{subequations}
-%  \begin{align}
-%  \left.\deriv{\aveQ}{\epsilon_a}\right|_{\vect{\epsilon}=0} &= \Braket{0|V_A|0}\delta_{\omega_a} \\
-%  \left.\frac{\diff^2 \aveQ}{\diff\epsilon_a\diff\epsilon_b}\right|_{\vect{\epsilon}=0}
-%         &=
-%         \response{V_A}{V_B}{\omega_b}\delta_{\omega_a+\omega_b} \\
-%  \left.\frac{\diff^3\aveQ}{\diff\epsilon_a\diff\epsilon_b\diff\epsilon_c}\right|_{\vect{\epsilon}=0}
-%  &=
-%  \response{V_A}{V_B, V_C}{\omega_b,
-%  \omega_c}\delta_{\omega_a+\omega_b+\omega_c}.
-%  \end{align}
-%\end{subequations}
 Response functions quantify how, to a certain order in the perturbing
 field tuples, the expectation value of a given observable is modified.
 The semicolon appearing in the response functions separates the operator
@@ -255,15 +244,6 @@ of the time-averaged quasi energy is:
 Notice that this is just an alternative and more verbose notation for
 Eq. \eqref{eq:nth-order-derivative}, which allows to express response
 functions in terms of wave function perturbed parameters.
-%for first and second-order properties one has:
-%\begin{subequations}
-% \begin{align}
-%   Q^{[1]}_{a} &= \left[Q^{[1]}_{0; a} + E_{a}\right]\delta_{\omega_a} =
-%   \braket{0| V_A | 0}\delta_{\omega_a} \\
-%  Q^{[2]}_{ab} &= \left[Q^{[2]}_{0; ab} + E^{[1]}_{a;b} + E^{[1]}_{b;a}\right]\delta_{\omega_a+\omega_b}
-%  = \response{V_A}{V_B}{\omega_b}\delta_{\omega_a+\omega_b}
-% \end{align}
-%\end{subequations}
 Application of the chain rule to the total derivatives in fact yields:
 \begin{subequations}
  \begin{align}
@@ -353,18 +333,313 @@ pole structure of the higher order quantities also conveys information
 about the excited states \emph{via} single and double
 residues.\autocite{Olsen1985-nr, Christiansen1998-pe, Helgaker2012-cz}
 
+The derivation above holds for an exact state, a situation that is never
+realized in common practice. The power of response theory, however, is
+in its applicability to exact and approximate state theories alike.
+As noted by \citeauthor{Norman2011-ad}, a response theory treatment of
+molecular properties can be summarized into the following four
+steps:\autocite{Norman2011-ad}
+\begin{enumerate}
+    \item Single out a quantity of interest that can be connected to
+      molecular properties. In our case, the time-averaged
+      quasienergy;
+    \item Introduce a suitable parametrization of the time-dependent,
+      phase-separated wave function;
+    \item Devise the appropriate equation of motion, based on the
+      time-dependent Schr\"{o}dinger equation, for the time-dependent
+      wave function parameters;
+    \item Identify response functions and response equations.
+\end{enumerate}
+Thus, one can formulate and compute molecular properties based on
+the approximate state ans\"{a}tze of quantum chemistry.
+An interesting formulation of \acrshort{SCF} response theory is the
+open-ended \acrshort{AO} density matrix-based approach presented by
+\citeauthor{Thorvaldsen2008-sg}.\autocite{Thorvaldsen2008-sg}
+By formulating the perturbation-strenght derivative of the time-averaged
+quasienergy Lagrangian in terms of the \acrshort*{AO} density matrix,
+the authors were able to formulate arbitrary order response functions
+in the \acrshort*{AO} basis.
+The density matrix is the variational degree of freedom and response
+equations can be obtained by differentiation of the \gls{TDSCF}
+equation, the stationarity condition on the density matrix.
+The approach lends itself to an efficient \acrshort*{AO}-based
+implementation,\autocite{Larsen2000-hj, Kjaergaard2008-hy} can fully
+leverage different response parameters elimination
+schemes,\autocite{Thorvaldsen2008-sg, Kristensen2008-hv} and is amenable
+to an open-ended, recursive implementation.\autocite{Ringholm2014-gx,
+Friese2015-kb, Friese2015-bu}
+We will base our derivation of \acrshort*{SCF} response theory for
+quantum/classical polarizable Hamiltonians of this framework.
+
 \section{SCF Response Theory for Quantum/Classical Polarizable Hamiltonians}\label{sec:csm-response}
 
-\acrshort{PCM}~\autocite{Cammi1994-qj, Cammi1996-wf, Cammi1996-vx,
+The development of response theory for quantum/classical polarizable
+Hamiltonians has moved almost at the same pace as the polarizable
+models themselves.
+An ample literature exists in the context of the
+\acrshort{PCM},\autocite{Cammi1994-qj, Cammi1996-wf, Cammi1996-vx,
 Cammi1999-rb, Cammi2003-qy, Frediani2005-nc, Ferrighi2010-pm}
-\acrshort{FQ} and \acrshort{FQ}/\acrshort{PCM}~\autocite{Lipparini2012-hx, Lipparini2012-tl, Lipparini2013-ud}
-\acrshort{PE}~\autocite{Olsen2010-wa}
-\acrshort{QM}/\acrshort{MM}/Continuum~\autocite{Steindal2011-ki, Caprasecca2012-ir}
-Open-ended \acrshort{AO}-based \acrshort{SCF} response~\autocite{
-Larsen2000-hj, Kjaergaard2008-hy, Thorvaldsen2008-sg,
-Kristensen2008-hv, Ringholm2014-gx}
-Open-ended \acrshort{SCF} residues~\autocite{Friese2015-kb}
-\paper{V}\autocite{pcm-openrsp}
+polarizable \acrshort{MM} models,\autocite{Curutchet2009-bt, Olsen2010-wa,
+Lipparini2012-hx, Lipparini2012-tl}
+and general \acrshort*{QM}/\acrshort*{MM}/Continuum models.\autocite{Steindal2011-ki, Caprasecca2012-ir, Lipparini2013-ud}
+
+Solvent relaxation is an important point when formulating response
+properties. Solvation dynamics occurs on timescales and through
+relaxation modes that are typical of the solvent molecular structure and of the
+peculiar solute-solvent interactions.
+This is clearly difficult to model with continuum models, since the
+entire frequency spectrum of the permittivity $\diel(\omega)$ would be
+required.\autocite{Ingrosso2003-ev, Caricato2005-lo,
+Mennucci2005-vi, Caricato2006-ba, Corni2015-pe}
+However, if one consider the initial steps of an electronic excitation
+process, a Franck--Condon-like response of the solvent can be assumed.
+Nuclear motions inside and among solvent molecules will not be able to
+follow the fast rearrangement of the solute electronic density, the
+corresponding part of the response will remain frozen in the state
+immediately previous the change.
+The polarization vector will then be (approximately) a sum of two
+components:
+\begin{equation}
+ \vect{P} \simeq \vect{P}_\mathrm{fast} + \vect{P}_\mathrm{slow},
+\end{equation}
+this is equivalent to consider only the asymptotic limits of the solvent
+dielectric spectrum, \ie the static $\diels$ and optical
+dielectric constants $\dield$.
+
+The variational setting introduced in Section \ref{sec:variational},
+offers a series of advantages also in the formulation of response
+theory. As already noted, a classical counterpart to the
+Hellmann--Feynman theorem holds:
+\begin{equation}\label{eq:classical-HF}
+  \deriv{U_\mathrm{pol}}{F} = \pderiv{U_\mathrm{pol}}{F}
+  + \pderiv{U_\mathrm{pol}}{\s}\pderiv{\s}{F}
+  = \pderiv{U_\mathrm{pol}}{F},
+\end{equation}
+which forms the basis for our formal development in
+\paper{V}.\autocite{pcm-openrsp}
+There we show how the variational polarization functional can
+successfully achieve a transparent derivation of arbitrary order
+response functions, when the fixed-cavity approximation for the
+\acrshort*{PCM} is assumed.
+Here we report a summary of our findings in \paper{V} employing the
+classical functional in supermatrix form in Eq. \eqref{eq:supermatrix-functional}.
+In the notation of \citeauthor{Thorvaldsen2008-sg}, we introduce the
+generalized free energy:
+\begin{equation}\label{eq:generalized-KS-energy}
+  \begin{aligned}
+ \tilde{\mathcal{G}}
+ &=
+ \tilde{\mathcal{E}}
+ + \frac{1}{2}{}^t\tilde{\p}\V\tilde{\p} +
+ {}^t\tilde{\p}\Tr(\tilde{\mathbfup{s}}\pertmat{D}) \\
+ &\eqtr
+ \left[\pertmat{h} + \pertmat{V}^{t} +
+ \frac{1}{2}\pertmat{G}^{\gamma}(\pertmat{D}) -
+ \frac{\mathrm{i}}{2}\pertmat{T}\right]\pertmat{D}
+ + \tilde{E}_\mathrm{xc}[\tilde{\rho}(\pertmat{D})] + h_\mathrm{nuc}
+ + \frac{1}{2}{}^t\tilde{\p}\V\tilde{\p}
+ + {}^t\tilde{\p}\tilde{\mathbfup{s}}\pertmat{D},
+ \end{aligned}
+\end{equation}
+whose perturbation-strength derivatives at zero perturbation strength
+will yield the desired response functions.
+
+Due to the implicit time-dependence of $\pertmat{D}$ and
+$\tilde{\sigma}$, higher-order
+derivatives of the KS generalized energy will require application of the
+chain rule. The ${mn, abc\ldots}$ superscript describes how and to which
+extent the chain rule was applied for a given term, \ie the number of explicit
+differentiations with respect to the variational densities, so that
+\begin{equation}\label{eq:differential}
+  \mathcal{G}^{mn, abc}
+  =
+  \frac{\partial^{m+n+3}\mathcal{G}}{\partial(\mat{D}^T)^m\partial\p^n\partial\epsilon_a\partial\epsilon_b\partial\epsilon_c}
+  =
+    \mathcal{E}^{m, abc} +
+  \frac{\partial^{m+n+3}U_\mathrm{pol}}{\partial(\mat{D}^T)^m\partial\p^n\partial\epsilon_a\partial\epsilon_b\partial\epsilon_c} \text{.}
+\end{equation}
+In this notation, the index $m$ denotes the order of differentiation
+with respect to the density matrix $\mat{D}$, while the index $n$ symbolizes
+the order of differentiation with respect to the \acs{ASC} density $\sigma$.
+Differentiation with respect to the density matrix will result in a
+$2m$-rank tensor, while differentiation with respect to the
+\acs{ASC} density will result in a function of the continuous cavity
+index $\vect{s}$. For higher-order properties, mixed terms involving both density
+matrix and \acs{ASC} density differentiation may generally occur.
+In the \emph{fixed-cavity approximation}, the cavity is kept frozen at a
+given molecular geometry.\autocite{Cammi1994-qj}
+Under this simplifying assumption, only the linear interaction term in
+the polarization functional eq.~\ref{eq:PCM-functional} will be affected
+by the movements of the nuclei \emph{via} the dependence of basis functions on
+the molecular geometry.
+Its perturbation-strength derivative will then be
+\begin{equation}\label{eq:PCM-derivative}
+ \deriv{}{\epsilon_a}\left\lbrace
+ U_\mathrm{pol}
+ \right\rbrace_T
+ \eqavetr
+ {}^t\tilde{\p}\tilde{\mathbfup{s}}^a\pertmat{D} \text{,}
+\end{equation}
+where the second term only involves derivatives of the electrostatic potential integrals.
+We remark that, under the fixed-cavity approximation, both the density
+matrix -- $m$ -- and \acs{ASC} density -- $n$ -- differentiation indices
+in eq.~\ref{eq:differential} can only assume the values 0 or 1 for the
+$\frac{\partial^{m+n+3}U_\mathrm{pol}}{\partial(\mat{D}^T)^m\partial\p^n\partial\epsilon_a\partial\epsilon_b\partial\epsilon_c}$
+term.
+By construction, the density matrix dependence in the
+polarization functional is at most linear, while,
+by virtue of the classical Hellmann--Feynman theorem,
+eq.~\ref{eq:classical-HF}, the \acs{ASC} variational density will also appear
+at most \emph{linearly} in $\tilde{\mathcal{G}}^{00,a}$.
+The free energy term perturbation strength derivative is given as
+\begin{equation}\label{eq:tilde-G00-a}
+  \begin{aligned}
+    \tilde{\mathcal{G}}^{00,a}(\tilde{\mat{D}}, \tilde{\sigma}, t)
+    &= \tilde{\mathcal{E}}^{0,a} +
+    {}^t\tilde{\p}\Tr({\tilde{\mathbfup{s}}^a\pertmat{D}}) \\
+  &\eqtr
+  (\pertmat{h}^a + \pertmat{V}^{t,a} + \frac{1}{2}\pertmat{G}^{\gamma, a}(\pertmat{D}) + \pertmat{F}^{\Omega_a}_\mathrm{xc}
+  -\frac{\mathrm{i}}{2}\pertmat{T}^a)\pertmat{D}
+  + h_\mathrm{nuc}^a + {}^t\tilde{\p}\tilde{\mathbfup{s}}^a\pertmat{D}
+  \end{aligned}
+\end{equation}
+where the matrix $\pertmat{F}^{\Omega_a}_\mathrm{xc}$ denotes the
+the functional derivative matrix defined in terms of the perturbed
+overlap distributions $\tilde{\Omega}^a$.
+
+Response functions can then be obtained by straightforward
+differentiation with respect to further perturbations and subsequent
+evaluation at zero perturbation strength, so that
+\begin{subequations}
+  \begin{align}
+    L^a &\eqavetr
+    \mathcal{G}^{00,a} - \mat{S}^a\mat{W} \label{eq:first-order} \\
+    L^{ab} &\eqavetr \mathcal{G}^{00,ab}
+    + \mathcal{G}^{10,a}\mat{D}^{b}
+    + \mathcal{G}^{01,a}\p^{b}
+    - \mat{S}^{ab}\mat{W}
+    - \mat{S}^{a}\mat{W}^{b} \label{eq:second-order} \\
+    L^{abc} &\eqavetr
+      \mathcal{G}^{00,abc}
+    + \mathcal{G}^{10,ac}\mat{D}^{b}
+    + \mathcal{G}^{10,ab}\mat{D}^{c}
+    + \mathcal{G}^{20,a}\mat{D}^{b}\mat{D}^{c} \nonumber \\
+    &+ \mathcal{G}^{10,a}\mat{D}^{bc}
+    + \mathcal{G}^{11,a}\mat{D}^{b}\p^c \label{eq:third-order} \\
+    &+ \mathcal{G}^{01,ac}\p^{b}
+    + \mathcal{G}^{01,ab}\p^{c}
+    + \mathcal{G}^{01,a}\p^{bc}
+    + \mathcal{G}^{11,a}\p^{b}\mat{D}^c \nonumber \\
+    &- \mat{S}^{abc}\mat{W}
+    - \mat{S}^{ab}\mat{W}^{c}
+    - \mat{S}^{ac}\mat{W}^{b}
+    - \mat{S}^{a}\mat{W}^{bc} \nonumber
+  \end{align}
+\end{subequations}
+and similarly for higher-order response functions.
+
+The governing equations for the perturbed \acs{ASC} densities are
+obtained in complete analogy with the handling of pertubed density
+matrices outlined above.
+We introduce a decomposition of the \acs{ASC} density into frequency
+components into the perturbation-strength derivative of
+Eq. \eqref{eq:polarization-stat}, so that
+\begin{equation}\label{eq:PCM-differentiated}
+  \V\p_\omega^{b_N} + \Tr \mathbfup{s}\mat{D}_\omega^{b_N} =
+  \mathbb{S}^{(n-1)}_\omega
+  \eqtr - \left(\mat{\varphi}\mat{D}\right)_{\omega, n-1}^{b_N} \text{.}
+\end{equation}
+$\mathbb{S}^{(n-1)}_\omega$ contains all terms that depend on lower order density matrices and
+differentiated source integrals.
+The term $\mathbb{S}^{(n-1)}_\omega$ always contains at least a first derivative of the
+electrostatic potential integrals and is thus zero if the basis set is
+independent of the perturbation tuple under consideration.
+We now introduce a partition of the frequency components of the
+polarization $\p_\omega^{b_N}$ into homogeneous (H) and particular (P)
+terms:
+\begin{equation}\label{eq:polarization-partition}
+  \p_\omega^{b_N} = \p_\mathrm{P}^{b_N} + \p_\mathrm{H}^{b_N} \text{,}
+\end{equation}
+a similar partition exists for the density matrix and we thus get
+the following system of equations:
+\begin{subequations}
+  \begin{align}
+    \V\p_\mathrm{H}^{b_N} &+ \Tr \mathbfup{s}\Dh{b_N} = 0
+    \label{eq:homo-polarization-eq}\\
+    \V\p_\mathrm{P}^{b_N} &+ \Tr \mathbfup{s}\Dp{b_N}
+    = \mathbb{S}^{(n-1)}_\omega \text{.}
+ \label{eq:part-polarization-eq}
+  \end{align}
+\end{subequations}
+We note that the particular term of the polarization is nonzero if and
+only if the basis set depends on the external perturbation.
+
+We finally turn our attention to the \acs{TDSCF} equation.
+The perturbation-strength differentiated generalized \acs{KS} matrix is
+first separated into its frequency components $\mathbfcal{F}^{b_N}_\omega$.
+The H/P partition introduced for the variational densities will induce a
+similar partition into these frequency components:
+\begin{equation}\label{eq:generalized-Fock-partition}
+  \mathbfcal{F}_\omega^{b_N} =
+  \mat{G}^{\mathrm{KS}}(\Dh{b_N}) + \ASCh{b_N}\mat{\esp}
+  + \breve{\mathbfcal{F}}_\omega^{b_N} \text{.}
+\end{equation}
+The two-electron and \acs{XC} contributions depending on the homogeneous
+perturbed density matrix have been collected into the
+$\mat{G}^\mathrm{KS}(\Dh{b_N})$ matrix, while all other contributions
+are collected into $\breve{\mathbfcal{F}}_\omega^{b_N}$, and we
+refer to \noparcite[refs.][]{Thorvaldsen2008-sg} and
+\noparcite[][]{Ringholm2014-gx} for a more detailed treatment of this.
+The parametrization of the homogeneous part of the perturbed density
+matrix can be exploited to conveniently reformulate the perturbed
+\acs{TDSCF} equation, so that
+\begin{equation}\label{eq:response-equation}
+ \left[\genHessian - \omega_{b_N}\genMetric \right]\rspParam{b_N} = \RHS{b_N}
+\end{equation}
+where the generalized Hessian $\genHessian$ and metric $\genMetric$
+matrices were introduced and are defined by their transformations on the
+response parameters $\rspParam{b_N}$:\autocite{Larsen2000-hj,
+Kjaergaard2008-hy}
+\begin{align}
+  \genHessian\rspParam{b_N} &=
+  \mat{G}^\mathrm{KS}([\rspParam{b_N}, \mat{D}]_{\mat{S}})\mat{D}\mat{S}
+  -\mat{S}\mat{D}\mat{G}^\mathrm{KS}([\rspParam{b_N}, \mat{D}]_{\mat{S}})
++\mat{F} [\rspParam{b_N}, \mat{D}]_{\mat{S}} \mat{S}
+-\mat{S} [\rspParam{b_N}, \mat{D}]_{\mat{S}} \mat{F}
++ \ASCh{b_N}\mat{\esp}\mat{D}\mat{S}
+-\mat{S}\mat{D}\mat{\esp}\ASCh{b_N}
+\label{eq:E2-lintra}
+\\
+  \genMetric\rspParam{b_N} &= \mat{S} [\rspParam{b_N}, \mat{D}]_{\mat{S}} \mat{S} \text{.}
+  \label{eq:S2-lintra}
+\end{align}
+The generalized Hessian matrix $\genHessian$ includes two types of
+solvent term. \emph{Implicit} terms are those included in the
+zeroth-order Fock matrix, $\mat{F}$.
+The last two terms in Eq. \ref{eq:E2-lintra} are \emph{explicit} terms,
+as they explicitly involve the $N$-th order homogenous \acs{ASC}
+variational density.
+The theoretical treatment of frequency-dependent properties in solution
+within the \acs{PCM} requires adoption of a nonequilibrium response
+framework.\autocite{Cammi1999-rb, Tomasi2005-vm}
+The explicit \acs{PCM} terms in Eq. \ref{eq:E2-lintra} are then
+evaluated using the optical permittivity $\dield$ of the solvent
+instead of the static permittivity $\diels$ used to compute the
+implicit contributions.
+In contrast to $\genHessian$, the generalized metric matrix --
+$\genMetric$ -- is unchanged.
+The \ac{RHS} in the response equation only includes terms that
+depend on particular contributions up to the desired order or lower-order perturbed density
+matrices:
+\begin{equation}\label{eq:RHS}
+  \RHS{b_N} =
+  \left[\left( \tilde{mathbfcal{F}}
+-
+\frac{\mathrm{i}}{2}\pertmat{S}\deriv{}{t}\right)\pertmat{D}\pertmat{S}\right]^{\ominus,
+b_N}_\mathrm{P}
+\end{equation}
+
+
 Solution strategy for response equations~\autocite{Saad2003-oa,
 Saad2011-gm, Kauczor2011-rd, Malmqvist2013-vw}
 
