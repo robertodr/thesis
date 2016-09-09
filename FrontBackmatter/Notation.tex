@@ -41,7 +41,10 @@ instead of a star ($*$).
 \nomenclature[B, 02]{$\mat{K}, \mat{F}$}{Matrices}
 \nomenclature[B, 03]{$\mathbb{R}^{m, n}$}{Vector space of real-valued $m\times n$ matrices}
 \nomenclature[B, 04]{$\Tr\mat{A}$}{Trace of $\mat{A}$. For $\mat{A}\in\mathbb{R}^{n, n}$, $\Tr\mat{A}=\sum_{i=1}^n A_{ii}$}
-\nomenclature[B, 05]{$0_N, I_N$}{The zero and the identity in an $N$-dimensional vector space}
+\nomenclature[B, 05]{$\eqtr$}{The expression following is to be interpreted as a trace. $\mathcal{E} \eqtr \mat{h}\mat{D} = \Tr\mat{h}\mat{D}$}
+\nomenclature[B, 06]{$\eqavetr$}{The expression following is to be interpreted as a trace followed by time-averaging over a period $T$.
+$\mathcal{E} \eqavetr \mat{h}\mat{D} = \frac{1}{T}\int_{0}^{T}\diff t\Tr\mat{h}\mat{D}$}
+\nomenclature[B, 07]{$0_N, I_N$}{The zero and the identity in an $N$-dimensional vector space}
 % Operators
 \nomenclature[C, 01]{$\bi{A}, \bi{D}$}{Integral operators}
 \nomenclature[C, 02]{$H, \varPhi$}{First or second quantized $N$-electron operators}
@@ -53,8 +56,8 @@ instead of a star ($*$).
 \nomenclature[D, 06]{$\norm{u}{\Omega}$}{Norm in $L^2(\Omega)$: $\norm{u}{\Omega} = \norm{u}{0, 2,\Omega} = \sqrt{\int_\Omega\diff\vect{r} |u(\vect{r})|^2}$}
 \nomenclature[D, 07]{$H^s(\Omega)$}{Sobolev space of order $s$ of functions whose derivative up to order $s$ are in $L^2(\Omega)$}
 \nomenclature[D, 08]{$H_0^s(\Omega)$}{Space of functions in $H^2(\Omega)$ with null trace on the boundary of $\Omega$}
-\nomenclature[D, 09]{$|u|_{s, \Omega}$}{Seminorm in $H^s(\Omega)$: $|u|_{s, \Omega} \coloneq \sum_{|\alpha|=s}\norm{\partial^\alpha u}{\Omega}$}
-\nomenclature[D, 10]{$\norm{u}{s, \Omega}$}{Norm in $H^s(\Omega)$: $\norm{u}{s, \Omega} \coloneq \sum_{l \leq s} |u|_{l, \Omega}$}
+\nomenclature[D, 09]{$|u|_{s, \Omega}$}{Seminorm in $H^s(\Omega)$: $|u|_{s, \Omega} = \sum_{|\alpha|=s}\norm{\partial^\alpha u}{\Omega}$}
+\nomenclature[D, 10]{$\norm{u}{s, \Omega}$}{Norm in $H^s(\Omega)$: $\norm{u}{s, \Omega} = \sum_{l \leq s} |u|_{l, \Omega}$}
 % Molecular Quantum Mechanics
 \nomenclature[E, 01]{$r, s, t$}{General \acrlong*{MO} indices}
 \nomenclature[E, 02]{$i, j, k$}{Occupied \acrlong*{MO} indices}

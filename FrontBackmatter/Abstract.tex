@@ -10,38 +10,48 @@
 
 \chapter*{Abstract}
 
-The vast majority of chemical phenomena happens in complex environments
+Synergistic theoretical and experimental approaches to challenging
+chemical problems have become more and more widespread, due to the
+availability of efficient and accurate \emph{ab initio} quantum chemical
+models.
+Limitations to such an approach do, however, still exist.
+The vast majority of chemical phenomena happens in complex environments,
 where the molecule of interest can interact with a large number of other
-moieties, be they solvent molecules or a structured environment, such as
-a protein.
-Spectroscopic experiments measure the response of a chemical system to
-an applied perturbing electromagnetic field and can probe the
-microscopic motions of electrons and nuclei in molecules.
-This achieves unique insight into the structural and physical behaviour
-of complex systems.
-Characterizing, explaining and predicting the effect of the chemical
-environment on a large number of measurable properties requires,
-however, a synergistic experimental and theoretical approach.
+moieties, solvent molecules or residues in a protein.
+These systems represent an ongoing challenge to our modelling
+capabilities, especially when high accuracy is required for the
+prediction of exotic and novel molecular properties.
+How to achieve the insight needed to understand and predict the physics
+and chemistry of such complex systems is still an open question.
 
-In this thesis, I will present our efforts in the development of the
-polarizable continuum model for solvation.
-
-
-\vfill
-
-% Anything in Norwegian?
-%\pdfbookmark[1]{Zusammenfassung}{Zusammenfassung}
-%\chapter*{Zusammenfassung}
-%Kurze Zusammenfassung des Inhaltes in deutscher Sprache\dots
+I will present our efforts in answering this question based on the
+development of the polarizable continuum model for solvation.
+While the solute is described by a quantum mechanical method, the
+surrounding environment is replaced by a structureless continuum
+dielectric.
+The mutual polarization of the solute-environment system is described by
+classical electrostatics.
+Despite its inherent simplifications, the model contains the basic
+mathematical features of more refined explicit quantum/classical
+polarizable models.
+Leveraging this fundamental similarity, we show how the
+inclusion of environment effects for relativistic and nonrelativistic
+quantum mechanical Hamiltonians, arbitrary order response properties and
+high-level electron correlation methods can be transparently derived and
+implemented.
+We implemented an application programming interface that can provide the
+continuum solvation functionality to any quantum chemistry software.
+As examples of the flexibility of our implementation approach, we
+present results for the continuum modelling of non homogeneous environments and
+how wavelet-based numerical methods greatly outperform the accuracy of
+traditional methods usually employed in continuum solvation models.
 
 \endgroup
-
-\vfill
 
 \begin{flushright}
     \begin{tabular}{m{5cm}}
       \textit{\myLocation, \myTime} \\
-      \includegraphics[width=0.40\textwidth]{gfx/signature.png} \\
+      \includegraphics[width=0.4\textwidth]{gfx/signature.png} \\
         \hline
         \centering\myName \\
     \end{tabular}
