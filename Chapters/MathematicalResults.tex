@@ -349,3 +349,226 @@ Approximability, conformity, consistency and asymptotic consistency
 of the approximation setting, $\inf$-$\sup$ condition, Céa's Lemma
 and generalized $\inf$-$\sup$ condition.~\autocite{Ern2004-oo}
 
+\begin{comment}
+\section{Mixed Blabbering}
+
+\begin{equation}
+  \begin{pmatrix}
+   \sigma^\mathrm{tot} \\
+   \kappa^\mathrm{tot}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+   \sigma_\mathrm{HF} \\
+   \kappa_\mathrm{HF}
+  \end{pmatrix}
+  +
+  \begin{pmatrix}
+   \sigma \\
+   \kappa
+  \end{pmatrix}
+\end{equation}
+and similarly for the sources:
+\begin{equation}
+\begin{aligned}
+  \begin{pmatrix}
+   \esp(\tamp{}, \tbar{}) \\
+   \zeta(\tamp{}, \tbar{})
+  \end{pmatrix}
+  &=
+  \begin{pmatrix}
+   \esp_\mathrm{HF} \\
+   \zeta_\mathrm{HF}
+  \end{pmatrix}
+  +
+  \begin{pmatrix}
+    \esp_{\mathrm{N}}(\tamp{}, \tbar{}) \\
+    \zeta_{\mathrm{N}}(\tamp{}, \tbar{})
+  \end{pmatrix} \\
+  &=
+  \begin{pmatrix}
+  \braket{\mathrm{HF} | \esp  | \mathrm{HF}} \\
+  \braket{\mathrm{HF} | \zeta | \mathrm{HF}}
+  \end{pmatrix}
+  +
+  \begin{pmatrix}
+   \braket{\mathrm{HF} | \tilde{\esp} | \mathrm{HF}}
+  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\esp} | \mathrm{HF}} \\
+   \braket{\mathrm{HF} | \tilde{\zeta} | \mathrm{HF}}
+  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\zeta} | \mathrm{HF}}
+  \end{pmatrix}
+\end{aligned}
+\end{equation}
+The \acrshort{BCH} expansions of the source terms have been
+rewritten as:
+\begin{subequations}
+  \begin{align}
+  \overline{\esp} &= \esp + \tilde{\esp} = \esp + \commutator{\esp}{T}
+  + \frac{1}{2}\commutator{\commutator{\esp}{T}}{T} \\
+  \overline{\kappa} &= \kappa + \tilde{\kappa} = \kappa + \commutator{\kappa}{T}
+  + \frac{1}{2}\commutator{\commutator{\kappa}{T}}{T}
+  \end{align}
+\end{subequations}
+taking advantage of the fact that both $\esp$ and $\kappa$ are
+nondiagonal, one-electron operators and hence their commutator
+expansions truncate at the third term. Moreover, normal-ordering of the
+operators has been introduced.~\autocite{Crawford2000-ey, Shavitt2009-mr}
+This is equivalent to applying a shift to the correlation part of the
+source term one-electron operators to remove the reference source terms:
+\begin{equation}
+  \begin{aligned}
+  \begin{pmatrix}
+    \esp_{\mathrm{N}}(\tamp{}, \tbar{}) \\
+    \zeta_{\mathrm{N}}(\tamp{}, \tbar{})
+  \end{pmatrix}
+  &=
+  \begin{pmatrix}
+   \braket{\mathrm{HF} | \tilde{\esp} | \mathrm{HF}}
+  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\esp} | \mathrm{HF}} \\
+   \braket{\mathrm{HF} | \tilde{\zeta} | \mathrm{HF}}
+  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\zeta} | \mathrm{HF}}
+  \end{pmatrix}
+  \\
+  &=
+  \begin{pmatrix}
+    \braket{\mathrm{HF} | \overline{\esp} - \esp_\mathrm{HF} | \mathrm{HF}}
+  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\esp} - \esp_\mathrm{HF} | \mathrm{HF}} \\
+  \braket{\mathrm{HF} | \overline{\zeta} - \zeta_\mathrm{HF} | \mathrm{HF}}
+  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\zeta} -
+  \zeta_\mathrm{HF}| \mathrm{HF}}
+  \end{pmatrix}
+\end{aligned}
+\end{equation}
+
+Eventually, the polarization functional can be rewritten as:
+\begin{equation}
+  \begin{aligned}
+  U_\mathrm{pol} &=
+  \frac{1}{2}(\sigma_\mathrm{HF}+\sigma)\PCM(\sigma_\mathrm{HF}+\sigma)
++ (\sigma_\mathrm{HF}+\sigma)(\esp_\mathrm{HF}+\esp_{\mathrm{N}}(\tamp{},\tbar{})) \\
+&+ \frac{1}{2}(\kappa_\mathrm{HF}+\kappa)\MM(\kappa_\mathrm{HF}+\kappa)
++ (\kappa_\mathrm{HF}+\kappa)(\zeta_\mathrm{HF}+\zeta_{\mathrm{N}}(\tamp{},\tbar{}))
++ (\sigma_\mathrm{HF}+\sigma)\bi{X}(\kappa_\mathrm{HF}+\kappa) \\
+  %%%% Steps
+&= \left/ \text{Expand and collect} \right/ \\
+&=
+    \frac{1}{2}\sigma_\mathrm{HF}\PCM\sigma_\mathrm{HF}
+  + \sigma_\mathrm{HF}\esp_\mathrm{HF}
+  + \frac{1}{2}\kappa_\mathrm{HF}\MM\kappa_\mathrm{HF}
+  + \kappa_\mathrm{HF}\zeta_\mathrm{HF}
+  + \sigma_\mathrm{HF}\bi{X}\kappa_\mathrm{HF} \\
+&+  \frac{1}{2}\sigma\PCM\sigma
+  + \sigma\esp_{\mathrm{N}}(\tamp{},\tbar{})
+  + \frac{1}{2}\kappa\MM\kappa
+  + \kappa\zeta_{\mathrm{N}}(\tamp{},\tbar{})
+  + \sigma\bi{X}\kappa \\
+&+  \frac{1}{2}\sigma_\mathrm{HF}\PCM\sigma
+  + \sigma_\mathrm{HF}\esp_{\mathrm{N}}(\tamp{},\tbar{})
+  + \frac{1}{2}\kappa_\mathrm{HF}\MM\kappa
+  + \kappa_\mathrm{HF}\zeta_{\mathrm{N}}(\tamp{},\tbar{})
+  + \sigma_\mathrm{HF}\bi{X}\kappa \\
+&+  \frac{1}{2}\sigma\PCM\sigma_\mathrm{HF}
+  + \sigma\esp_\mathrm{HF}
+  + \frac{1}{2}\kappa\MM\kappa_\mathrm{HF}
+  + \kappa\zeta_\mathrm{HF}
+  + \sigma\bi{X}\kappa_\mathrm{HF} \\
+  %%%% Steps
+&= \left/
+  \frac{1}{2}\sigma_\mathrm{HF}\PCM\sigma_\mathrm{HF}
+  +
+  \frac{1}{2}\kappa_\mathrm{HF}\MM\kappa_\mathrm{HF}
+  +
+  \sigma_\mathrm{HF}\esp_\mathrm{HF}
+  +
+  \kappa_\mathrm{HF}\zeta_\mathrm{HF}
+  +
+  \sigma_\mathrm{HF}\bi{X}\kappa_\mathrm{HF}
+  =
+  \frac{1}{2}\sigma_\mathrm{HF}\esp_\mathrm{HF}
+  +
+  \frac{1}{2}\kappa_\mathrm{HF}\zeta_\mathrm{HF}
+  \right/ \\
+&=
+    \frac{1}{2}\sigma_\mathrm{HF}\esp_\mathrm{HF}
+  + \frac{1}{2}\kappa_\mathrm{HF}\zeta_\mathrm{HF} \\
+&+  \frac{1}{2}\sigma\PCM\sigma
+  + \sigma\esp_{\mathrm{N}}(\tamp{},\tbar{})
+  + \frac{1}{2}\kappa\MM\kappa
+  + \kappa\zeta_{\mathrm{N}}(\tamp{},\tbar{})
+  + \sigma\bi{X}\kappa \\
+&+  \frac{1}{2}\sigma_\mathrm{HF}\PCM\sigma
+  + \sigma_\mathrm{HF}\esp_{\mathrm{N}}(\tamp{},\tbar{})
+  + \frac{1}{2}\kappa_\mathrm{HF}\MM\kappa
+  + \kappa_\mathrm{HF}\zeta_{\mathrm{N}}(\tamp{},\tbar{})
+  + \sigma_\mathrm{HF}\bi{X}\kappa \\
+&+  \frac{1}{2}\sigma\PCM\sigma_\mathrm{HF}
+  + \sigma\esp_\mathrm{HF}
+  + \frac{1}{2}\kappa\MM\kappa_\mathrm{HF}
+  + \kappa\zeta_\mathrm{HF}
+  + \sigma\bi{X}\kappa_\mathrm{HF} \\
+  %%%% Steps
+&= \left/
+  \frac{1}{2}\sigma\PCM\sigma_\mathrm{HF}
+  =
+  \frac{1}{2}\sigma_\mathrm{HF}\PCM\sigma;\quad
+  \frac{1}{2}\kappa\MM\kappa_\mathrm{HF}
+  =
+  \frac{1}{2}\kappa_\mathrm{HF}\MM\kappa; \quad
+  \sigma_\mathrm{HF}\bi{X}\kappa
+  =
+  \kappa\bi{X}^\dagger\sigma_\mathrm{HF}
+  \right/ \\
+&=
+    \frac{1}{2}\sigma_\mathrm{HF}\esp_\mathrm{HF}
+  + \frac{1}{2}\kappa_\mathrm{HF}\zeta_\mathrm{HF} \\
+&+  \frac{1}{2}\sigma\PCM\sigma
+  + \sigma\esp_{\mathrm{N}}(\tamp{},\tbar{})
+  + \frac{1}{2}\kappa\MM\kappa
+  + \kappa\zeta_{\mathrm{N}}(\tamp{},\tbar{})
+  + \sigma\bi{X}\kappa \\
+  &+ \sigma(\cancelto{0}{\bi{Y}\sigma_\mathrm{HF} + \bi{X}\kappa_\mathrm{HF} + \esp_\mathrm{HF}})
+  + \kappa(\cancelto{0}{\bi{W}\kappa_\mathrm{HF} + \bi{X}^\dagger\sigma_\mathrm{HF} + \zeta_\mathrm{HF}}) \\
+&+ \sigma_\mathrm{HF}\esp_{\mathrm{N}}(\tamp{},\tbar{}) + \kappa_\mathrm{HF}\zeta_{\mathrm{N}}(\tamp{},\tbar{}) \\
+  %%%% Steps
+&= \left/
+    \frac{1}{2}\sigma_\mathrm{HF}\esp_\mathrm{HF}
+  + \frac{1}{2}\kappa_\mathrm{HF}\zeta_\mathrm{HF}
+  = U_\mathrm{pol}^\mathrm{ref}
+  \right/ \\
+&=
+  U_\mathrm{pol}^\mathrm{ref}
+  +  \frac{1}{2}\sigma\PCM\sigma
+  + \sigma\esp_{\mathrm{N}}(\tamp{},\tbar{})
+  + \frac{1}{2}\kappa\MM\kappa
+  + \kappa\zeta_{\mathrm{N}}(\tamp{},\tbar{})
+  + \sigma\bi{X}\kappa \\
+&+ \sigma_\mathrm{HF}\esp_{\mathrm{N}}(\tamp{},\tbar{}) + \kappa_\mathrm{HF}\zeta_{\mathrm{N}}(\tamp{},\tbar{})
+  \end{aligned}
+\end{equation}
+
+The reference polarization energy $U_\mathrm{pol}^\mathrm{ref}$ still
+appears among the terms in the functional but will obviously not enter
+in the optimization of the \acrshort{CC} wave function.
+Recasting the polarization functional in the supermatrix formalism (see
+Section \ref{sec:variational}) will simplify subsequent algebraic
+manipulations:
+\begin{equation}
+  \begin{aligned}
+  U_\mathrm{pol} &=
+    \frac{1}{2}\sigma\PCM\sigma
+    + \sigma\esp_{\mathrm{N}}(\tamp{},\tbar{})
+  + \frac{1}{2}\kappa\MM\kappa
+  + \kappa\zeta_{\mathrm{N}}(\tamp{},\tbar{})
+  + \sigma\bi{X}\kappa
+  + \sigma_\mathrm{HF}\esp_{\mathrm{N}}(\tamp{},\tbar{}) +
+  \kappa_\mathrm{HF}\zeta_{\mathrm{N}}(\tamp{},\tbar{})
+  + U_\mathrm{pol}^\mathrm{ref}
+  \\
+  &=
+  \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})
+  + {}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})
+  + U_\mathrm{pol}^\mathrm{ref}
+\end{aligned}
+\end{equation}
+
+\end{comment}
