@@ -422,7 +422,8 @@ successfully achieve a transparent derivation of arbitrary order
 response functions, when the fixed-cavity approximation for the
 \acrshort*{PCM} is assumed.
 Here we report a summary of our findings in \paper{V} employing the
-classical functional in supermatrix form in Eq. \eqref{eq:supermatrix-functional}.
+supermatrix form of the classical functional as given in Eq.
+\eqref{eq:supermatrix-functional}.
 In the notation of \citeauthor{Thorvaldsen2008-sg}, we introduce the
 generalized free energy:
 \begin{equation}\label{eq:generalized-KS-energy}
@@ -444,12 +445,10 @@ generalized free energy:
 whose perturbation-strength derivatives at zero perturbation strength
 will yield the desired response functions.
 
-Due to the implicit time-dependence of $\pertmat{D}$ and
-$\tilde{\sigma}$, higher-order
-derivatives of the KS generalized energy will require application of the
-chain rule. The ${mn, abc\ldots}$ superscript describes how and to which
-extent the chain rule was applied for a given term, \ie the number of explicit
-differentiations with respect to the variational densities, so that
+To keep track of the number of chain rule applications,
+we will denote higher-order derivatives of the \acrshort*{KS}
+generalized free energy with the composite ${mn, abc\ldots}$
+superscript:
 \begin{equation}\label{eq:differential}
   \mathcal{G}^{mn, abc}
   =
@@ -458,40 +457,35 @@ differentiations with respect to the variational densities, so that
     \mathcal{E}^{m, abc} +
   \frac{\partial^{m+n+3}U_\mathrm{pol}}{\partial(\mat{D}^T)^m\partial\p^n\partial\epsilon_a\partial\epsilon_b\partial\epsilon_c} \text{.}
 \end{equation}
-In this notation, the index $m$ denotes the order of differentiation
-with respect to the density matrix $\mat{D}$, while the index $n$ symbolizes
-the order of differentiation with respect to the \acs{ASC} density $\sigma$.
-Differentiation with respect to the density matrix will result in a
-$2m$-rank tensor, while differentiation with respect to the
-\acs{ASC} density will result in a function of the continuous cavity
-index $\vect{s}$. For higher-order properties, mixed terms involving both density
-matrix and \acs{ASC} density differentiation may generally occur.
-In the \emph{fixed-cavity approximation}, the cavity is kept frozen at a
-given molecular geometry.\autocite{Cammi1994-qj}
-Under this simplifying assumption, only the linear interaction term in
-the polarization functional eq.~\ref{eq:PCM-functional} will be affected
-by the movements of the nuclei \emph{via} the dependence of basis functions on
-the molecular geometry.
-Its perturbation-strength derivative will then be
-\begin{equation}\label{eq:PCM-derivative}
+In this notation, the $abc\ldots$ indices denote the perturbations with
+respect to which differentiation occurs. The index $m$ denotes the order
+of differentiation with respect to the density matrix. Eventually, $n$
+eventually denotes the order of differentiation with respect to the
+polarization.
+The classical interaction kernel $\V$ might, in the most general
+scenario, depend on the molecular geometry.
+In \paper{V} and in the following we ignore this possibility and work
+under the simplifying assumption that $\V$ is independent of the nuclear
+positions.
+This goes under the name of \emph{fixed-cavity approximation} in the
+context of the \acrshort*{PCM}.\autocite{Cammi1994-qj}
+Under this simplifying assumption, the perturbation-strength derivative
+of the classical functional will only include terms stemming from the
+linear interaction term:
+\begin{equation}\label{eq:polarization-derivative}
  \deriv{}{\epsilon_a}\left\lbrace
  U_\mathrm{pol}
  \right\rbrace_T
  \eqavetr
  {}^t\tilde{\p}\tilde{\mathbfup{s}}^a\pertmat{D} \text{,}
 \end{equation}
-where the second term only involves derivatives of the electrostatic potential integrals.
-We remark that, under the fixed-cavity approximation, both the density
-matrix -- $m$ -- and \acs{ASC} density -- $n$ -- differentiation indices
-in eq.~\ref{eq:differential} can only assume the values 0 or 1 for the
-$\frac{\partial^{m+n+3}U_\mathrm{pol}}{\partial(\mat{D}^T)^m\partial\p^n\partial\epsilon_a\partial\epsilon_b\partial\epsilon_c}$
-term.
-By construction, the density matrix dependence in the
-polarization functional is at most linear, while,
-by virtue of the classical Hellmann--Feynman theorem,
-eq.~\ref{eq:classical-HF}, the \acs{ASC} variational density will also appear
-at most \emph{linearly} in $\tilde{\mathcal{G}}^{00,a}$.
-The free energy term perturbation strength derivative is given as
+where the second term only involves derivatives of the source integrals.
+Moreover, in the general expression for the perturbation-strength
+derivative of the polarization functional in Eq. \eqref{eq:differential},
+the $m$ and $n$ indices can only assume the values 0 or 1.
+In fact, the density matrix dependence is at most linear in the
+polarization functional, while the classical Hellmann--Feynman theorem
+ensures that the polarization appears at most linearly in $\tilde{\mathcal{G}}^{00,a}$:
 \begin{equation}\label{eq:tilde-G00-a}
   \begin{aligned}
     \tilde{\mathcal{G}}^{00,a}(\tilde{\mat{D}}, \tilde{\sigma}, t)
@@ -500,16 +494,14 @@ The free energy term perturbation strength derivative is given as
   &\eqtr
   (\pertmat{h}^a + \pertmat{V}^{t,a} + \frac{1}{2}\pertmat{G}^{\gamma, a}(\pertmat{D}) + \pertmat{F}^{\Omega_a}_\mathrm{xc}
   -\frac{\mathrm{i}}{2}\pertmat{T}^a)\pertmat{D}
-  + h_\mathrm{nuc}^a + {}^t\tilde{\p}\tilde{\mathbfup{s}}^a\pertmat{D}
+  + h_\mathrm{nuc}^a + {}^t\tilde{\p}\tilde{\mathbfup{s}}^a\pertmat{D}.
   \end{aligned}
 \end{equation}
-where the matrix $\pertmat{F}^{\Omega_a}_\mathrm{xc}$ denotes the
-the functional derivative matrix defined in terms of the perturbed
-overlap distributions $\tilde{\Omega}^a$.
-
-Response functions can then be obtained by straightforward
-differentiation with respect to further perturbations and subsequent
-evaluation at zero perturbation strength, so that
+$\pertmat{F}^{\Omega_a}_\mathrm{xc}$ is the functional derivative matrix
+defined in terms of the perturbed overlap distributions
+$\tilde{\Omega}^a$.
+Further perturbation-strength differentiations and evaluation at zero
+perturbation strength will yield the desired response functions:
 \begin{subequations}
   \begin{align}
     L^a &\eqavetr
@@ -536,63 +528,41 @@ evaluation at zero perturbation strength, so that
     - \mat{S}^{a}\mat{W}^{bc} \nonumber
   \end{align}
 \end{subequations}
-and similarly for higher-order response functions.
+and similarly for higher orders.
 
-The governing equations for the perturbed \acs{ASC} densities are
+The governing equations for the perturbed polarization densities are
 obtained in complete analogy with the handling of pertubed density
-matrices outlined above.
-We introduce a decomposition of the \acs{ASC} density into frequency
-components into the perturbation-strength derivative of
-Eq. \eqref{eq:polarization-stat}, so that
-\begin{equation}\label{eq:PCM-differentiated}
-  \V\p_\omega^{b_N} + \Tr \mathbfup{s}\mat{D}_\omega^{b_N} =
-  \mathbb{S}^{(n-1)}_\omega
-  \eqtr - \left(\mat{\varphi}\mat{D}\right)_{\omega, n-1}^{b_N} \text{.}
-\end{equation}
-$\mathbb{S}^{(n-1)}_\omega$ contains all terms that depend on lower order density matrices and
-differentiated source integrals.
-The term $\mathbb{S}^{(n-1)}_\omega$ always contains at least a first derivative of the
-electrostatic potential integrals and is thus zero if the basis set is
-independent of the perturbation tuple under consideration.
-We now introduce a partition of the frequency components of the
+matrices described in \noparcite[ref.][]{Thorvaldsen2008-sg}
+Denoting by the superscript $b_N$ a tuple of simulatenous perturbations,
+the polarization can be decomposed into frequency components.
+Similarly to the treatment of the perturbed density matrices,
+we introduce a partition of the frequency components of the
 polarization $\p_\omega^{b_N}$ into homogeneous (H) and particular (P)
 terms:
 \begin{equation}\label{eq:polarization-partition}
   \p_\omega^{b_N} = \p_\mathrm{P}^{b_N} + \p_\mathrm{H}^{b_N} \text{,}
 \end{equation}
-a similar partition exists for the density matrix and we thus get
-the following system of equations:
+and we thus get the following system of equations:
 \begin{subequations}
-  \begin{align}
+\begin{empheq}[left={\empheqlbrace}]{align}
     \V\p_\mathrm{H}^{b_N} &+ \Tr \mathbfup{s}\Dh{b_N} = 0
     \label{eq:homo-polarization-eq}\\
     \V\p_\mathrm{P}^{b_N} &+ \Tr \mathbfup{s}\Dp{b_N}
     = \mathbb{S}^{(n-1)}_\omega \text{.}
  \label{eq:part-polarization-eq}
-  \end{align}
+\end{empheq}
 \end{subequations}
-We note that the particular term of the polarization is nonzero if and
+$\mathbb{S}^{(n-1)}_\omega$ contains all terms that depend on lower
+order density matrices and differentiated source integrals.
+The term $\mathbb{S}^{(n-1)}_\omega$ always contains at least a first
+derivative of the source integrals and is thus zero if the basis set is
+independent of the perturbation tuple under consideration.
+Consequently, the particular term of the polarization is nonzero if and
 only if the basis set depends on the external perturbation.
 
-We finally turn our attention to the \acs{TDSCF} equation.
-The perturbation-strength differentiated generalized \acs{KS} matrix is
-first separated into its frequency components $\mathbfcal{F}^{b_N}_\omega$.
-The H/P partition introduced for the variational densities will induce a
-similar partition into these frequency components:
-\begin{equation}\label{eq:generalized-Fock-partition}
-  \mathbfcal{F}_\omega^{b_N} =
-  \mat{G}^{\mathrm{KS}}(\Dh{b_N}) + \ASCh{b_N}\mat{\esp}
-  + \breve{\mathbfcal{F}}_\omega^{b_N} \text{.}
-\end{equation}
-The two-electron and \acs{XC} contributions depending on the homogeneous
-perturbed density matrix have been collected into the
-$\mat{G}^\mathrm{KS}(\Dh{b_N})$ matrix, while all other contributions
-are collected into $\breve{\mathbfcal{F}}_\omega^{b_N}$, and we
-refer to \noparcite[refs.][]{Thorvaldsen2008-sg} and
-\noparcite[][]{Ringholm2014-gx} for a more detailed treatment of this.
-The parametrization of the homogeneous part of the perturbed density
-matrix can be exploited to conveniently reformulate the perturbed
-\acs{TDSCF} equation, so that
+Response equations can be obtained by differentiating the
+\acrshort{TDSCF} equation with respect to the perturbation tuple
+$b_N$:\autocite{Thorvaldsen2008-sg, Ringholm2014-gx}
 \begin{equation}\label{eq:response-equation}
  \left[\genHessian - \omega_{b_N}\genMetric \right]\rspParam{b_N} = \RHS{b_N}
 \end{equation}
@@ -600,46 +570,56 @@ where the generalized Hessian $\genHessian$ and metric $\genMetric$
 matrices were introduced and are defined by their transformations on the
 response parameters $\rspParam{b_N}$:\autocite{Larsen2000-hj,
 Kjaergaard2008-hy}
+\begin{subequations}
 \begin{align}
   \genHessian\rspParam{b_N} &=
   \mat{G}^\mathrm{KS}([\rspParam{b_N}, \mat{D}]_{\mat{S}})\mat{D}\mat{S}
-  -\mat{S}\mat{D}\mat{G}^\mathrm{KS}([\rspParam{b_N}, \mat{D}]_{\mat{S}})
-+\mat{F} [\rspParam{b_N}, \mat{D}]_{\mat{S}} \mat{S}
+  -\mat{S}\mat{D}\mat{G}^\mathrm{KS}([\rspParam{b_N},
+  \mat{D}]_{\mat{S}}) \nonumber \\
+&+\mat{F} [\rspParam{b_N}, \mat{D}]_{\mat{S}} \mat{S}
 -\mat{S} [\rspParam{b_N}, \mat{D}]_{\mat{S}} \mat{F}
-+ \ASCh{b_N}\mat{\esp}\mat{D}\mat{S}
--\mat{S}\mat{D}\mat{\esp}\ASCh{b_N}
-\label{eq:E2-lintra}
+\label{eq:E2-lintra} \\
+&+ \ASCh{b_N}\mat{\esp}\mat{D}\mat{S}
+-\mat{S}\mat{D}\mat{\esp}\ASCh{b_N} \nonumber
 \\
   \genMetric\rspParam{b_N} &= \mat{S} [\rspParam{b_N}, \mat{D}]_{\mat{S}} \mat{S} \text{.}
   \label{eq:S2-lintra}
 \end{align}
+\end{subequations}
 The generalized Hessian matrix $\genHessian$ includes two types of
-solvent term. \emph{Implicit} terms are those included in the
+classical terms. \emph{Implicit} terms are those included in the
 zeroth-order Fock matrix, $\mat{F}$.
 The last two terms in Eq. \ref{eq:E2-lintra} are \emph{explicit} terms,
-as they explicitly involve the $N$-th order homogenous \acs{ASC}
+as they explicitly involve the $N$-th order homogenous polarization
 variational density.
-The theoretical treatment of frequency-dependent properties in solution
-within the \acs{PCM} requires adoption of a nonequilibrium response
-framework.\autocite{Cammi1999-rb, Tomasi2005-vm}
-The explicit \acs{PCM} terms in Eq. \ref{eq:E2-lintra} are then
-evaluated using the optical permittivity $\dield$ of the solvent
-instead of the static permittivity $\diels$ used to compute the
-implicit contributions.
-In contrast to $\genHessian$, the generalized metric matrix --
-$\genMetric$ -- is unchanged.
-The \ac{RHS} in the response equation only includes terms that
-depend on particular contributions up to the desired order or lower-order perturbed density
-matrices:
+The nonequilibrium response framework needed in continuum models when
+dealing with frequency-dependent properties,\autocite{Cammi1999-rb, Tomasi2005-vm}
+will affect the explicit terms in Eq. \ref{eq:E2-lintra} which are
+evaluated by means of the optical permittivity $\dield$.
+The \acrlong*{RHS} in the response equation only includes terms that
+depend on particular contributions up to the desired order or
+lower-order perturbed variational densities:\autocite{Ringholm2014-gx}
 \begin{equation}\label{eq:RHS}
   \RHS{b_N} =
-  \left[\left( \tilde{mathbfcal{F}}
+  \left[\left( \tilde{\mathbfcal{F}}
 -
 \frac{\mathrm{i}}{2}\pertmat{S}\deriv{}{t}\right)\pertmat{D}\pertmat{S}\right]^{\ominus,
-b_N}_\mathrm{P}
+b_N}_\mathrm{P},
 \end{equation}
+where $\mathbfcal{F}$ is the generalized \acrshort*{KS} matrix, see
+\noparcite[ref.][]{Thorvaldsen2008-sg} for details.
 
-
-Solution strategy for response equations~\autocite{Saad2003-oa,
+A direct solution of the response equation \eqref{eq:response-equation} by inversion
+is not feasible due to the size of the $\left[\genHessian -
+\omega_{b_N}\genMetric \right]$ matrix. \emph{Subspace iteration}
+methods are usually employed, the solution is achieved iteratively
+by enlarging a projection subspace of trial vectors.\autocite{Saad2003-oa,
 Saad2011-gm, Kauczor2011-rd, Malmqvist2013-vw}
+These methods can be implemented efficiently and in matrix-free form
+since the linear transformations $\genHessian\rspParam{b_N}$ and
+$\genMetric\rspParam{b_N}$ have known forms only involving integral and
+(perturbed) density matrices.
+Moreover, Jacobi precondinioting of the iterations is usually sufficiently
+robust and efficient, due to the diagonal dominance of the generalized
+Hessian.
 

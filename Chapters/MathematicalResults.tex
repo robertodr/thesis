@@ -196,15 +196,19 @@ u = -\bi{S}_\mathrm{e}(\partiale u)
 \end{lemma}
 
 We introduce the following auxiliary potential:
+\begin{subequations}
 \begin{empheq}[left={h(\vect{r}) = \empheqlbrace}]{align}
     &\int_{\mathbb{R}^3}\Gi\rhoi(\vect{r}^\prime)\diff \vect{r}^\prime  \quad \vect{r} \in \Omegai \\
     &\int_{\mathbb{R}^3}\Ge\rhoi(\vect{r}^\prime)\diff \vect{r}^\prime  \quad \vect{r} \in \Omegae
 \end{empheq}
+\end{subequations}
 for which we have:
+\begin{subequations}
 \begin{empheq}[left={\empheqlbrace}]{align}
     \nabla^2 h &= \rhoi \,\, \text{in}\,\, \Omegai \\
     \Le h &= 0 \,\, \text{in}\,\, \Omegae
 \end{empheq}
+\end{subequations}
 We then define the \emph{reaction potential} as:
 \begin{equation}
   \xi = u - h
@@ -227,6 +231,7 @@ where the function $\sigma$ is the, yet unknown, \acrlong*{ASC}.
 
 To derive an equation for $\sigma$, we set up a system of equations containing
 the jump conditions and the integral representations of the reaction and auxiliary potentials:
+\begin{subequations}
 \begin{empheq}[left={\empheqlbrace}]{align}
     &\bi{S}_\mathrm{i}(\partiali \xi) - \bi{D}_\mathrm{i}(\xi_\mathrm{i})
     = \frac{1}{2}\xi_\mathrm{i} \label{eq:first} \\
@@ -239,6 +244,7 @@ the jump conditions and the integral representations of the reaction and auxilia
   &\partiali \xi - \partiale \xi = \partiale h - \partiali h
   \label{eq:fifth}
 \end{empheq}
+\end{subequations}
 The final ingredient is the \gls{DtN} map, which can be derived by employing Eq.~\eqref{eq:stat3}
 to the Newton potential:
 \begin{equation}
@@ -267,16 +273,18 @@ equation:
 
 \section{Weak Formulation of Partial Differential Equations}\label{sec:weak}
 
-Let us now take a step back and formulate a different strategy for the
-solution of the transmission problem.
+In this Section, I will show how one can reformulate the transmission problem
+into a variational formulation.
+Such a formulation allows for a larger vector space, with weaker regularity
+conditions, to be explored as solution space for the problem.
 We will follow the exposition of \citeauthor{Ern2004-oo} quite closely
-in introducing the \emph{weak} formulation of \acp{PDE}.
+in introducing the \emph{weak} formulation of \glspl{PDE}.
 For simplicity, we assume Dirichlet boundary conditions for a conductor,
 \ie the basic assumption behind \acrshort{COSMO}.
 The \emph{strong} formulation of the electrostatic problem then reads:
 \begin{equation}\label{eq:poisson-cosmo}
   \nabla^2\esp = -4\pi\rho,
-  \quad \esp \in \mathcolor{ForestGreen}{\mathcal{C}^2_0(\Omegai)},
+  \quad \esp \in \mathcal{C}^2_0(\Omegai),
 \end{equation}
 where $\mathcal{C}^2_0(\Omegai)$ is the vector space of twice
 continuously differentiable functions in $\Omegai$ with null trace on
@@ -295,10 +303,10 @@ one obtains the \emph{weak} formulation of the differential problem:
 \begin{equation}\label{eq:poisson-weak}
   \left\{
   \begin{aligned}
-    &\text{Seek $\Psi \in \mathcolor{ForestGreen}{H_0^1(\Omegai)}$ such that:}\\
-    &\mathcolor{PMS1797}{(\nabla\zeta, \nabla\Psi)} =
-    \mathcolor{PMS2229}{-4\pi(\zeta, \rho)} \quad
-    \forall \zeta\in \mathcolor{PMS130}{H_0^1(\Omegai)}
+    &\text{Seek $\Psi \in H_0^1(\Omegai)$ such that:}\\
+    &(\nabla\zeta, \nabla\Psi) =
+    -4\pi(\zeta, \rho) \quad
+    \forall \zeta\in H_0^1(\Omegai)
   \end{aligned}
   \right.
 \end{equation}
@@ -331,13 +339,13 @@ and state the following fundamental results:
   \]
 \end{corollary}
 
-\todo[inline]{To write or not to write these????}
-
-Weak formulation of \acrshort{BIE}s.\autocite{Hsiao2008-xb}
+It is important to note how \glspl{BIE} can also be reformulated in a
+variational framework, as shown in \noparcite[ref.][]{Hsiao2008-xb}
 
 \section{The Galerkin Method}
+
+\todo[inline]{Write this section}
 Approximability, conformity, consistency and asymptotic consistency
 of the approximation setting, $\inf$-$\sup$ condition, Céa's Lemma
-and generalized $\inf$-$\sup$ condition.~\autocite{Ern2004-oo,
-TesiFilippo}
+and generalized $\inf$-$\sup$ condition.~\autocite{Ern2004-oo}
 
