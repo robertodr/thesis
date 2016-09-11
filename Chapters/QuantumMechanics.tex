@@ -4,6 +4,23 @@
 
 \chapter{A Quick Tour of Molecular Electronic Structure Theory}\label{ch:QM}
 
+\begin{epigraphs}
+\setlength\epigraphwidth{7.5cm}
+\qitem{
+plays with the bigness of his littleness
+
+--- electrons deify one razorblade
+
+into a mountainrange; lenses extend
+
+unwish through curving wherewhen till unwish
+
+returns on its unself.
+    }{
+    --- \textsc{E. E. Cummings}}
+\setlength\epigraphwidth{7cm}
+\end{epigraphs}
+
 This Chapter presents a brief overview of molecular electronic structure
 theory with particular emphasis on the methods used in this thesis.
 Section \ref{sec:mqm} is a general introduction to the methods of
@@ -751,7 +768,7 @@ The former uses both the left and right state, while the latter uses
 only the right state and can be obtained from the former by replacing
 the multipliers with the amplitudes:\autocite{Koch1997-nm,
 Eriksen2015-il}
-\begin{subequations}
+\begin{subequations}\label{eq:brackets-t}
   \begin{align}
     E_{\Lambda\text{[T]}} &= {}^* E^{[4]}_{\Lambda\text{[T]}} =
     \braket{\tbar{2}^{*}| \commutator{\Phi}{T_3^{*}} | \mathrm{HF}} \\
@@ -764,7 +781,7 @@ Kucharski1998-oi, Crawford1998-vj} and
 $\text{CCSD}(\text{T})$\autocite{Raghavachari1989-bn} methods also
 include the first of the fifth order triples corrections in Eq.
 \eqref{eq:5th-order-triples}:
-\begin{subequations}
+\begin{subequations}\label{eq:parentheses-t}
  \begin{align}
   E_{\Lambda(\text{T})} = {}^* E^{[4]}_{\Lambda\text{[T]}} + {}^* E^{[5]}_{\Lambda\text{(T)}}
   &=

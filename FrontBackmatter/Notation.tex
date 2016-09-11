@@ -1,3 +1,7 @@
+\phantomsection
+\refstepcounter{dummy}
+\addcontentsline{toc}{chapter}{\tocEntry{\nomname}}
+
 \renewcommand\nomgroup[1]{%
   \item[\bfseries
   \ifstrequal{#1}{A}{Basic Notation}{%
@@ -24,10 +28,6 @@ The speed of light is then:
 Complex conjugation will always be shown using a dagger ($\dagger$)
 instead of a star ($*$).
 }
-
-\refstepcounter{dummy}
-\phantomsection
-\addcontentsline{toc}{chapter}{\tocEntry{\nomname}}
 
 % Basic Notation
 \nomenclature[A, 01]{$u_E$}{Restriction (trace) of the function $u$ to the set $E$}
