@@ -455,10 +455,10 @@ number operators.
 Its similarity transformation truncates after the second term and has a
 relatively compact form:
 \begin{equation}
-  \overline{F} = F + \sum_{i}^4\sum_{\mu_i}\tamp{\mu_i}\cluster{\mu_i}\denom{\mu_i}
+  \overline{F} = F + \sum_{u=1}^\mathcal{M}\sum_{\mu_u}\denom{\mu_u}\tamp{\mu_u}\cluster{\mu_u}
 \end{equation}
-where $\denom{\mu_i}$ is the difference in orbital energies between the
-virtual and occupied spin-orbitals of excitation $i$.
+where $\denom{\mu_u}$ is the difference in orbital energies between the
+virtual and occupied spin-orbitals of excitation $u$.
 For the fluctuation potential the similarity transformation truncates
 after the fifth term, including up to four-fold nested commutators.
 
@@ -495,23 +495,23 @@ respect to both sets of parameters:
 The \acrshort*{CC} Lagrangian can thus be expressed as:
 \begin{equation}\label{eq:cc-lagrangian}
   \begin{aligned}
-    \mathcal{L}^\mathcal{M}(\tamp{}, \tbar{})
+    \mathcal{L}(\tamp{}, \tbar{})_\mathcal{M}
     &=
     \braket{\mathrm{HF} | \overline{H} | \mathrm{HF}}
-    + \sum_{i=1}^{\mathcal{M}}\sum_{\mu_i}
-    \tbar{\mu_i}\braket{\mu_i | \overline{H} | \mathrm{HF}} \\
+    + \sum_{u=1}^{\mathcal{M}}\sum_{\mu_u}
+    \tbar{\mu_u}\braket{\mu_u | \overline{H} | \mathrm{HF}} \\
     &=
   E_0
-  + \sum_{i=1}^{\mathcal{M}}\tbar{\mu_i}\denom{\mu_i}\tamp{\mu_i}
+  + \sum_{u=1}^{\mathcal{M}}\tbar{\mu_u}\denom{\mu_u}\tamp{\mu_u}
   + \braket{\mathrm{HF} | \overline{\Phi} | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\Phi} | \mathrm{HF}}
+  + \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{\Phi} | \mathrm{HF}}
   \end{aligned}
 \end{equation}
 where $E_0 = \sum_{i}\epsilon_i$ is the sum of the one-electron orbital
 energies and the shorthand notation for the Lagrangian multiplier state (left
 \acrshort*{CC} state) was introduced:
 \begin{equation}
-  \bra{\tbar{j}} = \sum_{\mu_j}\tbar{\mu_j}\bra{\mu_j}.
+  \bra{\tbar{u}} = \sum_{\mu_u}\tbar{\mu_u}\bra{\mu_u}.
 \end{equation}
 Differentiation of the Lagrangian with respect to the multipliers
 correctly yields the amplitudes equations, while differentiation with
@@ -519,15 +519,15 @@ respect to the amplitudes leads to the governing equations for the
 multipliers:
 \begin{subequations}
   \begin{align}
-   \tampEq{\mu_i}(\tamp{}, \tbar{}, \p)  &=
-   \denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
+   \tampEq{\mu_q}(\tamp{}, \tbar{}, \p)  &=
+   \denom{\mu_q}\tamp{\mu_q} + \braket{\mu_q | \overline{\Phi} | \mathrm{HF}}
              = 0 \label{eq:cc-amplitudes}\\
-   \tbarEq{\mu_i}(\tamp{}, \tbar{}, \p)
+   \tbarEq{\mu_q}(\tamp{}, \tbar{}, \p)
     &=
-    \denom{\mu_i}\tbar{\mu_i} +
-    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}} +
-    \sum_{j}^{\mathcal{M}}\braket{\tbar{j} |
-    \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}}
+    \denom{\mu_q}\tbar{\mu_q} +
+    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_q}} | \mathrm{HF}} +
+    \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} |
+    \commutator{\overline{\Phi}}{\cluster{\mu_q}} | \mathrm{HF}}
              = 0 \label{eq:cc-multipliers}
   \end{align}
 \end{subequations}
@@ -537,12 +537,9 @@ and molecular properties in general are sought.
 The \acrshort{CC} expectation values are formed using the left and
 right \acrshort{CC} states and we introduce the following notation:
 \begin{equation}
-  O(\tamp{}, \tbar{}) = \braket{\mathrm{HF} | \overline{O} | \mathrm{HF} }
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{O} | \mathrm{HF} }
+  O(\tamp{}, \tbar{})_\mathcal{M} = \braket{\mathrm{HF} | \overline{O} | \mathrm{HF} }
+  + \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{O} | \mathrm{HF} }
 \end{equation}
-When required by the context, we will explicitly write at which
-truncation level in the cluster operator the expectation was evaluated:
-$O(\tamp{}, \tbar{})_{\mathrm{CC}\mathcal{M}}$.
 
 \section{Many-Body Perturbation Theory}\label{sec:mbpt}
 
@@ -569,38 +566,34 @@ and retaining only terms complying to the $2n+1$ and $2n+2$ rules.
 A superscript index in square brackets - $[i]$ -  will denote an $i$-th
 order contribution.
 
-It is clear from the stationarity conditions that $\tamp{\mu_i}^{[0]} = 0, \,\forall i$ and
-$\tbar{\mu_i}^{[0]} = 0, \, \forall i$.
+It is clear from the stationarity conditions that $\tamp{\mu_u}^{[0]} = 0, \,\forall u$ and
+$\tbar{\mu_u}^{[0]} = 0, \, \forall u$.
 Thus cluster operators can be of order 1 and higher. We introduce the
 following notation for the $i$-th order cluster operators and
 multipliers states:
 \begin{alignat}{2}
-  T_p^{[i]} = \sum_{\mu_p}\tamp{\mu_p}^{[i]}\cluster{\mu_p},
+  T_u^{[i]} = \sum_{\mu_u}\tamp{\mu_u}^{[i]}\cluster{\mu_u},
   \quad&
-  \bra{\tbar{p}^{[i]}} = \sum_{\mu_p}\tbar{\mu_p}^{[i]}\bra{\mu_p}
+  \bra{\tbar{u}^{[i]}} = \sum_{\mu_u}\tbar{\mu_u}^{[i]}\bra{\mu_u}
 \end{alignat}
 
 To first order, one has:
 \begin{equation}\label{eq:1st-order}
-  \begin{aligned}
   \denom{\mu_2}\tamp{\mu_2}^{[1]}
-  &= - \braket{\mu_2 | \Phi | \mathrm{HF}}
+  = - \braket{\mu_2 | \Phi | \mathrm{HF}}
   = - \braket{\mathrm{HF} | \commutator{\Phi}{\cluster{\mu_2}} |
-  \mathrm{HF}} \\
-  &= \denom{\mu_2}\tbar{\mu_2}^{[1]}
-  \end{aligned}
+  \mathrm{HF}}
+  = \denom{\mu_2}\tbar{\mu_2}^{[1]}
 \end{equation}
 which shows that singles, due to Brillouin's condition, and triples
 amplitudes are of second and higher order.
-To second order, one obtains:
+For second order singles, doubles and triples one obtains:
 \begin{equation}\label{eq:2nd-order}
-  \begin{aligned}
-  \denom{\mu_i}\tamp{\mu_i}^{[2]}
-  &= - \braket{\mu_i | \commutator{\Phi}{T_2^{[1]}} | \mathrm{HF}}
-  = - \braket{\tbar{2}^{[1]} | \commutator{\Phi}{\cluster{\mu_i}} |
-  \mathrm{HF}} \\
-  &= \denom{\mu_i}\tbar{\mu_i}^{[2]},\quad i = 1, 2, 3.
-  \end{aligned}
+  \denom{\mu_q}\tamp{\mu_q}^{[2]}
+  = - \braket{\mu_q | \commutator{\Phi}{T_2^{[1]}} | \mathrm{HF}}
+  = - \braket{\tbar{2}^{[1]} | \commutator{\Phi}{\cluster{\mu_q}} |
+  \mathrm{HF}}
+  = \denom{\mu_q}\tbar{\mu_q}^{[2]}
 \end{equation}
 According to the $2n+1$ and $2n+2$ rules, energy corrections up to fifth
 order can be obtained from amplitudes and multipliers up to second
@@ -662,7 +655,7 @@ The assumption that $T_1$ is of zeroth order is contrary to the usual
 \acrshort*{MP} approach but highlights the role of the singles
 amplitudes as orbital optimization parameters.
 In the \gls{CC2} method, the amplitudes equations are:\autocite{Christiansen1995-vy, Helgaker2000-tz}
-\begin{subequations}
+\begin{subequations}\label{eq:cc2-amplitudes}
   \begin{align}
     \denom{\mu_1}\tamp{\mu_1} &+ \braket{\mu_1 | \check{\Phi} +
     \commutator{\check{\Phi}}{Q_2} | \mathrm{HF}} = 0 \\
@@ -682,24 +675,46 @@ equations obtained for the singles and
 doubles:\autocite{Christiansen1995-vy, Helgaker2000-tz}
 \begin{equation}\label{eq:cc2-lagrangian}
   \begin{aligned}
-  \mathcal{L}_\mathrm{CC2}(\tamp{}, \tbar{})
+  \mathcal{L}(\tamp{}, \tbar{})_\mathrm{CC2}
   &=
   E_0
-  + \sum_{i=1}^{\mathcal{2}}\tbar{\mu_i}\denom{\mu_i}\tamp{\mu_i}
+  + \sum_{u=1}^{\mathcal{2}}\tbar{\mu_u}\denom{\mu_u}\tamp{\mu_u}
   + \braket{\mathrm{HF} | \check{\Phi} + \commutator{\check{\Phi}}{Q_2} | \mathrm{HF}} \\
-  &+ \sum_{\mu_1}\tbar{\mu_1}\braket{\mu_1 |
+  &+ \braket{\tbar{1} |
   \check{\Phi} + \commutator{\check{\Phi}}{Q_2}
-  | \mathrm{HF}} \\
-  &+ \sum_{\mu_2}\tbar{\mu_2}\braket{\mu_2 | \check{\Phi} | \mathrm{HF}}
+  | \mathrm{HF}}
+  + \braket{\tbar{2} | \check{\Phi} | \mathrm{HF}}
   \end{aligned}
 \end{equation}
 The \acrshort*{CC2} methods brings the scaling of the \acrshort*{CCSD}
 method down to $N^5$ in the iterative step.
+From the approximate \acrshort*{CC2} Lagrangian we can derive the
+multipliers equations:
+\begin{subequations}\label{eq:cc2-multipliers}
+  \begin{align}
+    \denom{\mu_1}\tbar{\mu_1} &+
+     \braket{\mathrm{HF} | \commutator{\check{\Phi}}{\cluster{\mu_1}} | \mathrm{HF}}
+   + \braket{\tbar{1} |
+       \commutator{\check{\Phi}}{\cluster{\mu_1}}
+     + \commutator{\commutator{\check{\Phi}}{\cluster{\mu_1}}}{Q_2}
+     | \mathrm{HF}} \nonumber \\
+   &+ \braket{\tbar{2} | \commutator{\check{\Phi}}{\cluster{\mu_1}} |
+   \mathrm{HF}} = 0 \\
+    \denom{\mu_2}\tbar{\mu_2} &+
+    \braket{\mathrm{HF} | \commutator{\check{\Phi}}{\cluster{\mu_2}} | \mathrm{HF}}
+   + \braket{\tbar{1} |
+       \commutator{\check{\Phi}}{\cluster{\mu_2}}
+     | \mathrm{HF}}
+    = 0
+  \end{align}
+\end{subequations}
 
-The \gls{CC3} model is constructed analogously, the amplitudes
-equations:\autocite{Christiansen1995-pv, Koch1997-nm, Helgaker2000-tz,
+The \gls{CC3} model is constructed analogously. Starting from the
+\acrshort*{CCSDT} amplitudes equations in the $T_1$-transformed
+representation, we retain only second order terms in the triples
+equation:\autocite{Christiansen1995-pv, Koch1997-nm, Helgaker2000-tz,
 Smith2005-an}
-\begin{subequations}
+\begin{subequations}\label{eq:cc3-amplitudes}
   \begin{align}
     \denom{\mu_1}\tamp{\mu_1} &+ \braket{\mu_1 |
     \check{\Phi} + \commutator{\check{\Phi}}{T_2}
@@ -715,36 +730,74 @@ Smith2005-an}
     | \mathrm{HF}} = 0
   \end{align}
 \end{subequations}
-are obtained from the \acrshort*{CCSDT} equations by retaining only
-second order terms in the triples equation.
-The approximate triples cluster operator was introduced:
+In complete analogy with \acrshort*{CC2}, the quasi-$T_3$ operator was introduced:
 \begin{equation}
   Q_3 = - \sum_{\mu_3}
-  \denom{\mu_3}^{-1}\braket{\mu_3 | \commutator{\check{\Phi}}{T_2} | \mathrm{HF}}\cluster{\mu_3}
+  \denom{\mu_3}^{-1}\braket{\mu_3 | \commutator{\check{\Phi}}{T_2} | \mathrm{HF}}\cluster{\mu_3}.
 \end{equation}
-and we shall refer to it as quasi-$T_3$.
 The \acrshort*{CC3} Lagrangian is constructed based on the approximate
-equations obtained for the singles, doubles and
-triples:\autocite{Christiansen1995-pv, Koch1997-nm, Helgaker2000-tz, Smith2005-an}
+amplitude equations
+\eqref{eq:cc3-amplitudes}:\autocite{Christiansen1995-pv, Koch1997-nm,
+Helgaker2000-tz, Smith2005-an}
 \begin{equation}\label{eq:cc3-lagrangian}
   \begin{aligned}
-  \mathcal{L}_\mathrm{CC3}(\tamp{}, \tbar{})
+  \mathcal{L}(\tamp{}, \tbar{})_\mathrm{CC3}
   &=
   E_0
-  + \sum_{i=1}^{\mathcal{3}}\tbar{\mu_i}\denom{\mu_i}\tamp{\mu_i}
+  + \sum_{u=1}^{\mathcal{3}}\tbar{\mu_u}\denom{\mu_u}\tamp{\mu_u}
   + \braket{\mathrm{HF} | \check{\Phi} + \commutator{\check{\Phi}}{T_2} | \mathrm{HF}} \\
-  &+ \sum_{\mu_1}\tbar{\mu_1}\braket{\mu_1 |
+  &+ \braket{\tbar{1} |
   \check{\Phi} + \commutator{\check{\Phi}}{T_2} + \commutator{\check{\Phi}}{Q_3}
   | \mathrm{HF}} \\
-  &+ \sum_{\mu_2}\tbar{\mu_2}\braket{\mu_2 |
+  &+ \braket{\tbar{2} |
   \check{\Phi} + \commutator{\check{\Phi}}{T_2}
   + \frac{1}{2}\commutator{\commutator{\check{\Phi}}{T_2}}{T_2} + \commutator{\check{\Phi}}{Q_3}
   | \mathrm{HF}} \\
-  &+ \sum_{\mu_3}\tbar{\mu_3}\braket{\mu_3 | \commutator{\check{\Phi}}{T_2} | \mathrm{HF}}
+  &+ \braket{\tbar{3} | \commutator{\check{\Phi}}{T_2} | \mathrm{HF}}
   \end{aligned}
 \end{equation}
 The \acrshort*{CC3} methods brings the scaling of the \acrshort*{CCSDT}
 method down to $N^7$ in the iterative step.
+We can now derive the \acrshort*{CC3} multipliers equations:
+\begin{subequations}\label{eq:cc3-multipliers}
+  \begin{align}
+    \denom{\mu_1}\tbar{\mu_1} &+
+     \braket{\mathrm{HF} | \commutator{\check{\Phi}}{\cluster{\mu_1}} | \mathrm{HF}}
+   + \braket{\tbar{1} |
+       \commutator{\check{\Phi}}{\cluster{\mu_1}}
+     + \commutator{\commutator{\check{\Phi}}{\cluster{\mu_1}}}{T_2}
+     | \mathrm{HF}} \nonumber \\
+   &+ \braket{\tbar{2} |
+       \commutator{\check{\Phi}}{\cluster{\mu_1}}
+     + \commutator{\commutator{\check{\Phi}}{\cluster{\mu_1}}}{T_2}
+     + \commutator{\commutator{\check{\Phi}}{\cluster{\mu_1}}}{Q_3}
+   | \mathrm{HF}} \nonumber \\
+   &+ \braket{\tbar{3} |
+      \commutator{\commutator{\check{\Phi}}{\cluster{\mu_1}}}{T_2}
+     | \mathrm{HF}} = 0 \\
+    \denom{\mu_2}\tbar{\mu_2} &+
+    \braket{\mathrm{HF} | \commutator{\check{\Phi}}{\cluster{\mu_2}} | \mathrm{HF}}
+   + \braket{\tbar{1} |
+       \commutator{\check{\Phi}}{\cluster{\mu_2}}
+     | \mathrm{HF}} \nonumber \\
+  &+ \braket{\tbar{2} |
+       \commutator{\check{\Phi}}{\cluster{\mu_2}}
+     + \commutator{\commutator{\check{\Phi}}{\cluster{\mu_2}}}{T_2}
+     | \mathrm{HF}} \nonumber \\
+  &+ \braket{\tbar{3} |
+       \commutator{\check{\Phi}}{\cluster{\mu_2}}
+     | \mathrm{HF}}
+    = 0 \\
+    \denom{\mu_3}\tbar{\mu_3} &+
+    \braket{\tbar{1} |
+       \commutator{\check{\Phi}}{\cluster{\mu_3}}
+     | \mathrm{HF}}
+  + \braket{\tbar{2} |
+       \commutator{\check{\Phi}}{\cluster{\mu_3}}
+     | \mathrm{HF}}
+    = 0
+  \end{align}
+\end{subequations}
 
 Finally, one can construct \emph{noniterative} methods, where the
 expensive $N^7$ step for the inclusion of connected triples is
