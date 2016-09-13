@@ -1,6 +1,6 @@
 SHELL=/bin/bash
 
-DOCUMENT=RobertoDiRemigioPhDThesis
+DOCUMENT=thesis
 
 document:
 	xelatex ${DOCUMENT}.tex
@@ -8,6 +8,9 @@ document:
 	makeglossaries ${DOCUMENT}
 	biber ${DOCUMENT}
 	xelatex ${DOCUMENT}.tex
+
+cover:
+	pdftk gfx/PhDengelskMonster.pdf ${DOCUMENT}.pdf cat output RobertoDiRemigioPhDThesis.pdf
 
 clean:
 	rm -f *~ *.aux *.idx *.log *.bbl *.lol *.lof *.lot *.blg *-blx.bib *.out
