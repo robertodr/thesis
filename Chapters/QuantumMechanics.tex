@@ -519,10 +519,10 @@ respect to the amplitudes leads to the governing equations for the
 multipliers:
 \begin{subequations}
   \begin{align}
-   \tampEq{\mu_q}(\tamp{}, \tbar{}, \p)  &=
+   \tampEq{\mu_q}(\tamp{}, \tbar{})  &=
    \denom{\mu_q}\tamp{\mu_q} + \braket{\mu_q | \overline{\Phi} | \mathrm{HF}}
              = 0 \label{eq:cc-amplitudes}\\
-   \tbarEq{\mu_q}(\tamp{}, \tbar{}, \p)
+   \tbarEq{\mu_q}(\tamp{}, \tbar{})
     &=
     \denom{\mu_q}\tbar{\mu_q} +
     \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_q}} | \mathrm{HF}} +
@@ -536,7 +536,7 @@ While the multipliers are not needed for the evaluation of the
 and molecular properties in general are sought.
 The \acrshort{CC} expectation values are formed using the left and
 right \acrshort{CC} states and we introduce the following notation:
-\begin{equation}
+\begin{equation}\label{eq:cc-expectation-value}
   O(\tamp{}, \tbar{})_\mathcal{M} = \braket{\mathrm{HF} | \overline{O} | \mathrm{HF} }
   + \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{O} | \mathrm{HF} }
 \end{equation}
@@ -650,7 +650,8 @@ and use $T_1$-transformed operators:
 \end{equation}
 Since $T_1$ is a one-electron operator, the $T_1$-transformation does
 not affect the particle rank of the electronic
-Hamiltonian.\autocite{Koch1994-vr, Helgaker2000-tz}
+Hamiltonian,\autocite{Koch1994-vr, Helgaker2000-tz}
+see Appendix \ref{app:mathematical-results} for details.
 The assumption that $T_1$ is of zeroth order is contrary to the usual
 \acrshort*{MP} approach but highlights the role of the singles
 amplitudes as orbital optimization parameters.
@@ -658,8 +659,10 @@ In the \gls{CC2} method, the amplitudes equations are:\autocite{Christiansen1995
 \begin{subequations}\label{eq:cc2-amplitudes}
   \begin{align}
     \denom{\mu_1}\tamp{\mu_1} &+ \braket{\mu_1 | \check{\Phi} +
-    \commutator{\check{\Phi}}{Q_2} | \mathrm{HF}} = 0 \\
+    \commutator{\check{\Phi}}{Q_2} | \mathrm{HF}} = 0
+    \label{eq:cc2-singles-amplitudes} \\
     \denom{\mu_2}\tamp{\mu_2} &+ \braket{\mu_2 | \check{\Phi} | \mathrm{HF}} = 0
+    \label{eq:cc2-doubles-amplitudes}
   \end{align}
 \end{subequations}
 and are obtained from the \acrshort{CCSD} equations by retaining only
@@ -699,15 +702,31 @@ multipliers equations:
      + \commutator{\commutator{\check{\Phi}}{\cluster{\mu_1}}}{Q_2}
      | \mathrm{HF}} \nonumber \\
    &+ \braket{\tbar{2} | \commutator{\check{\Phi}}{\cluster{\mu_1}} |
-   \mathrm{HF}} = 0 \\
+   \mathrm{HF}} = 0 \label{eq:cc2-singles-multipliers} \\
     \denom{\mu_2}\tbar{\mu_2} &+
     \braket{\mathrm{HF} | \commutator{\check{\Phi}}{\cluster{\mu_2}} | \mathrm{HF}}
    + \braket{\tbar{1} |
        \commutator{\check{\Phi}}{\cluster{\mu_2}}
      | \mathrm{HF}}
-    = 0
+     = 0 \label{eq:cc2-doubles-multipliers}
   \end{align}
 \end{subequations}
+Formally, \acrshort*{CC2} expectation values can be computed using the expression for
+the \acrshort*{CCSD} and the approximate amplitudes and multipliers:
+\begin{equation}\label{eq:cc2-expectation-value}
+  \begin{aligned}
+  O(\tamp{}, \tbar{})_\mathrm{CC2}
+  &=
+  \braket{\mathrm{HF} | \check{O} | \mathrm{HF} }
+  + \braket{\tbar{1} | \check{O} | \mathrm{HF} }
+  + \braket{\tbar{1} | \commutator{\check{O}}{Q_2} | \mathrm{HF} }
+  + \braket{\tbar{2} | \commutator{\check{O}}{Q_2} | \mathrm{HF} } \\
+  &=
+  O(\tamp{}, \tbar{})_\mathrm{CCS}
+  + \braket{\tbar{1} | \commutator{\check{O}}{Q_2} | \mathrm{HF} }
+  + \braket{\tbar{2} | \commutator{\check{O}}{Q_2} | \mathrm{HF} }
+  \end{aligned}
+\end{equation}
 
 The \gls{CC3} model is constructed analogously. Starting from the
 \acrshort*{CCSDT} amplitudes equations in the $T_1$-transformed
@@ -719,15 +738,15 @@ Smith2005-an}
     \denom{\mu_1}\tamp{\mu_1} &+ \braket{\mu_1 |
     \check{\Phi} + \commutator{\check{\Phi}}{T_2}
     + \commutator{\check{\Phi}}{Q_3}
-    | \mathrm{HF}} = 0 \\
+    | \mathrm{HF}} = 0 \label{eq:cc3-singles-amplitudes} \\
     \denom{\mu_2}\tamp{\mu_2} &+ \braket{\mu_2 |
     \check{\Phi} + \commutator{\check{\Phi}}{T_2}
     + \frac{1}{2}\commutator{\commutator{\check{\Phi}}{T_2}}{T_2}
     + \commutator{\check{\Phi}}{Q_3}
-    | \mathrm{HF}} = 0 \\
+    | \mathrm{HF}} = 0 \label{eq:cc3-doubles-amplitudes} \\
     \denom{\mu_3}\tamp{\mu_3} &+ \braket{\mu_3 |
     \commutator{\check{\Phi}}{T_2}
-    | \mathrm{HF}} = 0
+    | \mathrm{HF}} = 0 \label{eq:cc3-triples-amplitudes}
   \end{align}
 \end{subequations}
 In complete analogy with \acrshort*{CC2}, the quasi-$T_3$ operator was introduced:
@@ -774,7 +793,7 @@ We can now derive the \acrshort*{CC3} multipliers equations:
    | \mathrm{HF}} \nonumber \\
    &+ \braket{\tbar{3} |
       \commutator{\commutator{\check{\Phi}}{\cluster{\mu_1}}}{T_2}
-     | \mathrm{HF}} = 0 \\
+     | \mathrm{HF}} = 0 \label{eq:cc3-singles-multipliers} \\
     \denom{\mu_2}\tbar{\mu_2} &+
     \braket{\mathrm{HF} | \commutator{\check{\Phi}}{\cluster{\mu_2}} | \mathrm{HF}}
    + \braket{\tbar{1} |
@@ -787,7 +806,7 @@ We can now derive the \acrshort*{CC3} multipliers equations:
   &+ \braket{\tbar{3} |
        \commutator{\check{\Phi}}{\cluster{\mu_2}}
      | \mathrm{HF}}
-    = 0 \\
+    = 0 \label{eq:cc3-doubles-multipliers} \\
     \denom{\mu_3}\tbar{\mu_3} &+
     \braket{\tbar{1} |
        \commutator{\check{\Phi}}{\cluster{\mu_3}}
@@ -795,9 +814,35 @@ We can now derive the \acrshort*{CC3} multipliers equations:
   + \braket{\tbar{2} |
        \commutator{\check{\Phi}}{\cluster{\mu_3}}
      | \mathrm{HF}}
-    = 0
+    = 0 \label{eq:cc3-triples-multipliers}
   \end{align}
 \end{subequations}
+\acrshort*{CC3} expectation values can be computed as follows:
+\begin{equation}\label{eq:cc3-expectation-value}
+  \begin{aligned}
+  O(\tamp{}, \tbar{})_\mathrm{CC3}
+  &=
+  O(\tamp{}, \tbar{})_\mathrm{CCS}
+  + \braket{\tbar{1} | \commutator{\check{O}}{T_2} | \mathrm{HF} }
+  + \braket{\tbar{2} | \commutator{\check{O}}{T_2} | \mathrm{HF} } \\
+  &+
+  \braket{\tbar{2} | \commutator{\check{O}}{Q_3} | \mathrm{HF} }
+  + \braket{\tbar{3} |
+     \commutator{\check{O}}{Q_3}
+   + \frac{1}{2}\commutator{\commutator{\check{O}}{T_2}}{T_2}
+                     | \mathrm{HF} } \\
+  &=
+  O(\tamp{}, \tbar{})_\mathrm{CCSD}
+  +
+  \braket{\tbar{2} | \commutator{\check{O}}{Q_3} | \mathrm{HF} }
+  + \braket{\tbar{3} |
+     \commutator{\check{O}}{Q_3}
+                     | \mathrm{HF} } \\
+  &+ \braket{\tbar{3} |
+     \frac{1}{2}\commutator{\commutator{\check{O}}{T_2}}{T_2}
+                     | \mathrm{HF} }
+  \end{aligned}
+\end{equation}
 
 Finally, one can construct \emph{noniterative} methods, where the
 expensive $N^7$ step for the inclusion of connected triples is

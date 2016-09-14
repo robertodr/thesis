@@ -86,11 +86,11 @@ field into reference and correlated components:
 and similarly for the source term:
 \begin{equation}
   \begin{aligned}
-\s(\tamp{}, \tbar{}) &= \s_\mathrm{HF} + \s_{\mathrm{N}}(\tamp{}, \tbar{}) \\
+    \s(\tamp{}, \tbar{})_\mathcal{M} &= \s_\mathrm{HF} + \s_{\mathrm{N}}(\tamp{}, \tbar{})_\mathcal{M} \\
                      &=
     \braket{\mathrm{HF} | \s | \mathrm{HF}}
   + \braket{\mathrm{HF} | \tilde{\s} | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\s} | \mathrm{HF}}
+  + \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{\s} | \mathrm{HF}}
   \end{aligned}
 \end{equation}
 The \acrshort{BCH} expansions of the source term has been rewritten as:
@@ -106,13 +106,13 @@ This is equivalent to applying a shift to the correlation part of the
 source term one-electron operators to remove the reference source terms:
 \begin{equation}
   \begin{aligned}
-    \s_{\mathrm{N}}(\tamp{}, \tbar{})
+    \s_{\mathrm{N}}(\tamp{}, \tbar{})_\mathcal{M}
   &=
    \braket{\mathrm{HF} | \tilde{\s} | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\s} | \mathrm{HF}} \\
+  + \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{\s} | \mathrm{HF}} \\
   &=
     \braket{\mathrm{HF} | \overline{\s} - \s_\mathrm{HF} | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\s} - \s_\mathrm{HF} | \mathrm{HF}}
+  + \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{\s} - \s_\mathrm{HF} | \mathrm{HF}}
   \end{aligned}
 \end{equation}
 
@@ -122,17 +122,17 @@ Eventually, the polarization functional can be rewritten as:
   U_\mathrm{pol}
   &=
   \frac{1}{2}({}^t\p_\mathrm{HF}+{}^t\p)\V(\p_\mathrm{HF}+\p)
-  + ({}^t\p_\mathrm{HF}+{}^t\p)(\s_\mathrm{HF}+\s_{\mathrm{N}}(\tamp{},\tbar{})) \\
+  + ({}^t\p_\mathrm{HF}+{}^t\p)(\s_\mathrm{HF}+\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}) \\
   &=
     \frac{1}{2}{}^t\p_\mathrm{HF}\V\p_\mathrm{HF} + {}^t\p_\mathrm{HF}\s_\mathrm{HF}
   + \frac{1}{2}{}^t\p_\mathrm{HF}\V\p + \frac{1}{2}{}^t\p\V\p_\mathrm{HF} \\
-  &+ {}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})
+  &+ {}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}
   + {}^t\p\s_\mathrm{HF}
-  + \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{}) \\
+  + \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M} \\
   &=
     U_\mathrm{pol}^\mathrm{ref}
-  + \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})
-  + {}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})
+  + \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}
+  + {}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}
   \end{aligned}
 \end{equation}
 The reference polarization energy $U_\mathrm{pol}^\mathrm{ref}$ still
@@ -141,12 +141,12 @@ in the optimization of the \acrshort{CC} wave function.
 One can then write the effective Lagrangian as:
 \begin{equation}
   \begin{aligned}
-  \lag{M}(\tamp{}, \tbar{}, \p) &=
+    \lag(\tamp{}, \tbar{}, \p)_\mathcal{M} &=
   \braket{\mathrm{HF} | \overline{H_0} | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tamp{i} | \overline{H_0} | \mathrm{HF}} \\
+  + \sum_{u=1}^{\mathcal{M}}\braket{\tamp{u} | \overline{H_0} | \mathrm{HF}} \\
   &+
-  \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})
-  + {}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})
+  \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}
+  + {}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}
   + U_\mathrm{pol}^\mathrm{ref}
   \end{aligned}
 \end{equation}
@@ -158,16 +158,16 @@ ${}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})$ term to yield the
 Aguilar1991-vq, Olivares_del_Valle1991-tq, Olivares_del_Valle1993-xq,
 Olivares_del_Valle1993-ra, Lipparini2009-io}
 \begin{equation}\label{eq:pted-cc}
-  \lag{M}(\tamp{}, \tbar{}, \p) =
-  {}^\mathrm{PTE}\lag{M}
-  + \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})
+  \lag(\tamp{}, \tbar{}, \p)_\mathcal{M} =
+  {}^\mathrm{PTE}\lag(\tamp{}, \tbar{})_\mathcal{M}
+  + \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}
 \end{equation}
 where the \acrshort{PTE} Lagrangian has been introduced:
 \begin{equation}
-{}^\mathrm{PTE}\lag{M}
+  {}^\mathrm{PTE}\lag(\tamp{}, \tbar{})_\mathcal{M}
   =
   \braket{\mathrm{HF} | \overline{H} | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{H} | \mathrm{HF}}
+  + \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{H} | \mathrm{HF}}
   + U_\mathrm{pol}^\mathrm{ref}
 \end{equation}
 
@@ -182,12 +182,12 @@ fluctuation potential.
 The simple nature of the Fock operator lets us re-express the \acrshort{PTE}
 Lagrangian as follows:
 \begin{equation}
-{}^\mathrm{PTE}\lag{M}
+  {}^\mathrm{PTE}\lag(\tamp{}, \tbar{})_\mathcal{M}
   =
   G_0
-  + \sum_{i=1}^{\mathcal{M}}\tbar{\mu_i}\denom{\mu_i}\tamp{\mu_i}
+  + \sum_{u=1}^{\mathcal{M}}\tbar{\mu_u}\denom{\mu_u}\tamp{\mu_u}
   + \braket{\mathrm{HF} | \overline{\Phi} | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{\Phi} | \mathrm{HF}}
+  + \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{\Phi} | \mathrm{HF}}
 \end{equation}
 where $G_0 = E_0 + U_\mathrm{pol}^\mathrm{ref}$ is the reference free
 energy.
@@ -210,77 +210,11 @@ written as:
 It is important to single out which terms contribute in the various
 expectation values where the similarity-transformed sources will be
 involved.
-We develop this analysis in terms of excitation ranks of the operators
-involved, based on the following:
-\begin{equation}
-  \braket{\mu_n |
-  \commutator{\commutator{\commutator{O}{T_{n_1}}}{\ldots}}{T_{n_k}} | \mathrm{HF}} \neq 0
-  \Longleftrightarrow
-  n - m_O + k \leq \sum_{i=1}^k n_i \leq n + m_O
-\end{equation}
-where $n$ is the excitation rank of the $\ket{\mu_n}$ determinant, $k$
-is the total number of cluster operators appearing in the nested
-commutator, $n_i$ are their respective excitations ranks and $m_O$
-is the \emph{particle rank} of the operator $O$.\autocite{Helgaker2000-tz}
-This follows from the realization that:
-\begin{equation}
-  \commutator{\commutator{\commutator{O}{T_{n_1}}}{\ldots}}{T_{n_k}} \ket{\mathrm{HF}}
-\end{equation}
-is a linear combination of determinants with excitation ranks $v$ in the
-range:
-\begin{equation}
-  \sum_{i=1}^k n_i - m_O \leq v \leq \sum_{i=1}^k n_i + m_O -k
-\end{equation}
+This analysis is carried out in detail in Appendix \ref{sec:CC-expval}
+and we report here the final results for the \gls{CCS}, \gls{CCSD} and
+\gls{CCSDT} models.
 
-We first expand the source terms entering the Lagrangian as follows:
-\begin{equation}
-  \begin{aligned}
-  \s_{\mathrm{N}}(\tamp{}, \tbar{}) &=
-  \braket{\mathrm{HF} | \BCHfirst{\s}{T} + \BCHsecond{\s}{T} | \mathrm{HF}} \\
-  &+ \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \s + \BCHfirst{\s}{T} +
-  \BCHsecond{\s}{T} | \mathrm{HF}},
-  \end{aligned}
-\end{equation}
-and since $\s$ has particle rank $m_\s = 1$ we can conclude that the
-following relationships hold:
-\begin{subequations}
-\begin{align}
-  \braket{\mathrm{HF} |
-  \BCHfirst{\s}{T_t}
-  | \mathrm{HF}} &\neq 0 \quad \text{iff} \quad 0 \leq t \leq 1 \Longleftrightarrow t = 1 \\
-  \braket{\mathrm{HF} |
-  \commutator{\commutator{\s}{T_t}}{T_u}
-  | \mathrm{HF}} &\neq 0 \quad \text{iff} \quad t + u = 1
-  \label{eq:HF-double-commutator} \\
-  \braket{\tbar{i} |
-  \s
-  | \mathrm{HF} } &\neq 0 \quad \text{iff} \quad i = 1 \\
-  \braket{\tbar{i} |
-  \BCHfirst{\s}{T_t}
-  | \mathrm{HF} } &\neq 0 \quad \text{iff} \quad i \leq t \leq i + 1 \\
-  \braket{\tbar{i} |
-  \commutator{\commutator{\s}{T_t}}{T_u}
-  | \mathrm{HF} } &\neq 0 \quad \text{iff} \quad t + u = i + 1
-\end{align}
-\end{subequations}
-By virtue of Eq.~\eqref{eq:HF-double-commutator} the \acrshort{HF}
-expectation value of the double commutator can be dropped. Thus, for a
-general truncation level we obtain:
-\begin{equation}\label{eq:source-term}
-  \s_{\mathrm{N}}(\tamp{}, \tbar{}) =
-  \braket{\mathrm{HF} | \BCHfirst{\s}{T_1} | \mathrm{HF}}
-  + \braket{\tbar{1} | \s | \mathrm{HF}}
-  + \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \BCHfirst{\s}{T} + \BCHsecond{\s}{T} | \mathrm{HF}}
-\end{equation}
-Note that the singles amplitudes assume a unique role in the \acrshort{CC}
-expression of the source term.
-In addition, double commutators involving the highest order cluster
-operators can only lead to nonzero terms when $T_1$ is also involved and
-by projection onto the highest order multiplier state, \eg~
-$\braket{\tbar{2} | \commutator{\commutator{\s}{T_1}}{T_2} |
-\mathrm{HF}} \neq 0$ and $\braket{\tbar{3} |
-\commutator{\commutator{\s}{T_1}}{T_3} | \mathrm{HF}} \neq 0$
-More explicitly, for the \gls{CCS} model ($\mathcal{M} = 1$) one has:
+For the \gls{CCS} model ($\mathcal{M} = 1$) one has:
 \begin{equation}\label{eq:source-ccs}
   \begin{aligned}
     \s_{\mathrm{N}}(\tamp{}, \tbar{})_\mathrm{CCS} &=
@@ -327,32 +261,32 @@ $\tbar{\mu_i}$ and $\p$ yields the \acrshort{PTED}-\acrshort{CC}
 equations:
 \begin{subequations}\label{eq:pted}
   \begin{align}
-   \tampEq{\mu_i}(\tamp{}, \tbar{}, \p)  &=
-   \denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
-   + {}^t\p\braket{\mu_i | \overline{\s} | \mathrm{HF}}
+   \tampEq{\mu_q}(\tamp{}, \tbar{}, \p)  &=
+   \denom{\mu_q}\tamp{\mu_q} + \braket{\mu_q | \overline{\Phi} | \mathrm{HF}}
+   + {}^t\p\braket{\mu_q | \overline{\s} | \mathrm{HF}}
              = 0 \label{eq:pted-cc-amplitudes}\\
-   \tbarEq{\mu_i}(\tamp{}, \tbar{}, \p)
+   \tbarEq{\mu_q}(\tamp{}, \tbar{}, \p)
     &=
-    \denom{\mu_i}\tbar{\mu_i} +
-    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}} +
-    \sum_{j}^{\mathcal{M}}\braket{\tbar{j} |
-    \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}}
+    \denom{\mu_q}\tbar{\mu_q} +
+    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_q}} | \mathrm{HF}} +
+    \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} |
+    \commutator{\overline{\Phi}}{\cluster{\mu_q}} | \mathrm{HF}}
     \nonumber \\
     &+
-    {}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}\delta_{\mu_i\mu_1} \nonumber \\
+    {}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_q}} | \mathrm{HF}}\delta_{\mu_q\mu_1} \nonumber \\
     &+
-    {}^t\p\sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}
+    {}^t\p\sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \commutator{\s}{\cluster{\mu_q}} | \mathrm{HF}}
     +
-    {}^t\p\sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\commutator{\s}{T}}{\cluster{\mu_i}} | \mathrm{HF}}
+    {}^t\p\sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \commutator{\commutator{\s}{T}}{\cluster{\mu_q}} | \mathrm{HF}}
              = 0 \label{eq:pted-cc-multipliers}\\
     \Omega_\p(\tamp{}, \tbar{}, \p)
     &=
-    \V\p + \s_{\mathrm{N}}(\tamp{}, \tbar{}) = 0
+    \V\p + \s_{\mathrm{N}}(\tamp{}, \tbar{})_\mathcal{M} = 0
     \label{eq:pted-cc-polarization}
   \end{align}
 \end{subequations}
 A coupling of the amplitudes and multipliers equations is introduced by
-the presence of the $\s_{\mathrm{N}}(\tamp{}, \tbar{})$ expectation value
+the presence of the $\s_{\mathrm{N}}(\tamp{}, \tbar{})_\mathcal{M}$ expectation value
 in the polarization equation.
 This requires a proper macroiteration/microiteration self-consistency
 scheme for its implementation.~\autocite{Cammi2009-gu, Caricato2010-hx}
@@ -367,7 +301,7 @@ the multipliers equation, since the source terms directly depends on
 amplitudes and multipliers, it is only \emph{indirectly} coupled to the
 amplitudes equation, where only the polarization enters.
 Moreover, the leading terms in the correlated source operator
-expectation value, Eq.~\eqref{eq:source-term}, prominently involve the
+expectation value prominently involve the
 singles cluster operator and the singles multiplier state.
 Three approximation have currently been proposed: \gls{PTES}, \gls{PTE(S)}
 and \gls{PTE}.
@@ -378,34 +312,33 @@ The first approximate scheme truncates the source term to its
 \acrshort{CCS} expectation value, yielding the effective
 Lagrangian:\autocite{Caricato2011-tx, Krause2016-ee}
 \begin{equation}\label{eq:ptes-cc}
-  \begin{aligned}
-  {}^{\mathrm{PTES}}\lag{M}(\tamp{}, \tbar{}, \p) =
-  \braket{\mathrm{HF} | \overline{H} | \mathrm{HF}}
-  &+ \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{H} | \mathrm{HF}} \\
-  &+ \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},
+  {}^{\mathrm{PTES}}\lag(\tamp{}, \tbar{}, \p)_\mathcal{M} =
+  {}^\mathrm{PTE}\lag(\tamp{}, \tbar{})_\mathcal{M}
+  + \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},
   \tbar{})_\mathrm{CCS}
-  \end{aligned}
 \end{equation}
 and the corresponding governing equations:
 \begin{subequations}\label{eq:ptes}
   \begin{align}
-   \tampEq{\mu_i}(\tamp{}, \tbar{}, \p)  &=
-   \denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
-   + {}^t\p\braket{\mu_i | \check{\s} | \mathrm{HF}}
+   \tampEq{\mu_q}(\tamp{}, \tbar{}, \p)  &=
+   \denom{\mu_q}\tamp{\mu_q} + \braket{\mu_q | \overline{\Phi} | \mathrm{HF}}
+   + {}^t\p\braket{\mu_q | \check{\s} | \mathrm{HF}}
              = 0 \\
-   \tbarEq{\mu_i}(\tamp{}, \tbar{}, \p)
+   \tbarEq{\mu_q}(\tamp{}, \tbar{}, \p)
     &=
-    \denom{\mu_i}\tbar{\mu_i} +
-    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}} +
-    \sum_{j}^{\mathcal{M}}\braket{\tbar{j} |
-    \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}}
+    \denom{\mu_q}\tbar{\mu_q} +
+    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_q}} | \mathrm{HF}} +
+    \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} |
+    \commutator{\overline{\Phi}}{\cluster{\mu_q}} | \mathrm{HF}}
     \nonumber \\
     &+
-    {}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}\delta_{\mu_i\mu_1} \nonumber \\
+    {}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_q}} | \mathrm{HF}}\delta_{\mu_q\mu_1} \nonumber \\
     &+
-    {}^t\p\sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}
+    {}^t\p\sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} |
+    \commutator{\s}{\cluster{\mu_q}} | \mathrm{HF}}
     +
-    {}^t\p\sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\commutator{\s}{T}}{\cluster{\mu_i}} | \mathrm{HF}}
+    {}^t\p\sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} |
+    \commutator{\commutator{\s}{T}}{\cluster{\mu_q}} | \mathrm{HF}}
              = 0 \\
     \Omega_\p(\tamp{}, \tbar{}, \p)
     &=
@@ -420,9 +353,9 @@ To break the coupling, we reformulate the split the system of equations
 amplitudes:
 \begin{subequations}\label{eq:ptes-amp}
   \begin{align}
-   {}^{\mathrm{PTES}}\tampEq{\mu_i}(\tamp{}, \tbar{}, \p)  &=
-   \denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
-   + {}^t\p\braket{\mu_i | \check{\s} | \mathrm{HF}}
+   {}^{\mathrm{PTES}}\tampEq{\mu_q}(\tamp{}, \tbar{}, \p)  &=
+   \denom{\mu_i}\tamp{\mu_q} + \braket{\mu_q | \overline{\Phi} | \mathrm{HF}}
+   + {}^t\p\braket{\mu_q | \check{\s} | \mathrm{HF}}
              = 0 \label{eq:ptes-cc-amplitudes} \\
     {}^{\mathrm{PTES}}\Omega_\p(\tamp{}, \p)
     &=
@@ -443,19 +376,22 @@ multiplier-independent part:
 and one for the multipliers:
 \begin{subequations}\label{eq:ptes-mult}
   \begin{align}
-   {}^{\mathrm{PTES}}\tbarEq{\mu_i}(\tamp{}, \tbar{}, \p)
+   {}^{\mathrm{PTES}}\tbarEq{\mu_q}(\tamp{}, \tbar{}, \p)
     &=
-    \denom{\mu_i}\tbar{\mu_i} +
-    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}} +
-    \sum_{j}^{\mathcal{M}}\braket{\tbar{j} |
-    \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}}
+    \denom{\mu_q}\tbar{\mu_q} +
+    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_q}} | \mathrm{HF}} +
+    \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} |
+    \commutator{\overline{\Phi}}{\cluster{\mu_q}} | \mathrm{HF}}
     \nonumber \\
     &+
-    {}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}\delta_{\mu_i\mu_1} \nonumber \\
+    {}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_q}} |
+    \mathrm{HF}}\delta_{\mu_q\mu_1} \nonumber \\
     &+
-    {}^t\p\sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}
+    {}^t\p\sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} |
+    \commutator{\s}{\cluster{\mu_q}} | \mathrm{HF}}
     +
-    {}^t\p\sum_{j}^{\mathcal{M}}\braket{\tbar{j} | \commutator{\commutator{\s}{T}}{\cluster{\mu_i}} | \mathrm{HF}}
+    {}^t\p\sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} |
+    \commutator{\commutator{\s}{T}}{\cluster{\mu_q}} | \mathrm{HF}}
              = 0 \label{eq:ptes-cc-multipliers}\\
     {}^{\mathrm{PTES}}\Omega_\p(\tamp{}, \tbar{}, \p)
     &=
@@ -489,27 +425,24 @@ still improving upon the reference reaction field with correlated
 contributions.\autocite{Caricato2011-tx}
 The effective Lagrangian would then read as:
 \begin{equation}\label{eq:pte-s-cc}
-  \begin{aligned}
-  {}^{\mathrm{PTE(S)}}\lag{M}(\tamp{}, \tbar{}, \p) =
-  \braket{\mathrm{HF} | \overline{H} | \mathrm{HF}}
-  &+ \sum_{i=1}^{\mathcal{M}}\braket{\tbar{i} | \overline{H} | \mathrm{HF}} \\
-  &+ \frac{1}{2}{}^t\p\V\p + {}^t\p\braket{\mathrm{HF} | \check{\s}_{\mathrm{N}} | \mathrm{HF}}
-  \end{aligned}
+    {}^{\mathrm{PTE(S)}}\lag(\tamp{}, \tbar{}, \p)_\mathcal{M} =
+  {}^\mathrm{PTE}\lag(\tamp{}, \tbar{})_\mathcal{M}
+  + \frac{1}{2}{}^t\p\V\p + {}^t\p\braket{\mathrm{HF} | \check{\s}_{\mathrm{N}} | \mathrm{HF}}
 \end{equation}
 which uncouples all equations:
 \begin{subequations}
   \begin{align}
-  {}^{\mathrm{PTE(S)}}\tampEq{\mu_i}(\tamp{}, \tbar{})  &=
-   \denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
+  {}^{\mathrm{PTE(S)}}\tampEq{\mu_q}(\tamp{}, \tbar{})  &=
+   \denom{\mu_q}\tamp{\mu_q} + \braket{\mu_q | \overline{\Phi} | \mathrm{HF}}
    = 0 \\
-   {}^{\mathrm{PTE(S)}}\tbarEq{\mu_i}(\tamp{}, \tbar{}, \p) &=
-    \denom{\mu_i}\tbar{\mu_i} +
-    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}} +
-    \sum_{j}^{\mathcal{M}}\braket{\tbar{j} |
-    \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}}
+   {}^{\mathrm{PTE(S)}}\tbarEq{\mu_q}(\tamp{}, \tbar{}, \p) &=
+    \denom{\mu_q}\tbar{\mu_q} +
+    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_q}} | \mathrm{HF}} +
+    \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} |
+    \commutator{\overline{\Phi}}{\cluster{\mu_q}} | \mathrm{HF}}
     \nonumber \\
     &+
-    {}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}\delta_{\mu_i\mu_1}
+    {}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_q}} | \mathrm{HF}}\delta_{\mu_q\mu_1}
     = 0 \\
     {}^{\mathrm{PTE(S)}}\Omega_\p(\tamp{}, \tbar{}, \p)
     &=
@@ -542,15 +475,15 @@ This is equivalent to differentiating the polarization-independent
 \acrshort{PTE} effective Lagrangian:
 \begin{subequations}
   \begin{align}
- {}^{\mathrm{PTE}}\tampEq{\mu_i}(\tamp{}, \tbar{}, \p)  &=
-   \denom{\mu_i}\tamp{\mu_i} + \braket{\mu_i | \overline{\Phi} | \mathrm{HF}}
+ {}^{\mathrm{PTE}}\tampEq{\mu_q}(\tamp{}, \tbar{}, \p)  &=
+   \denom{\mu_q}\tamp{\mu_q} + \braket{\mu_q | \overline{\Phi} | \mathrm{HF}}
     = 0 \\
-   {}^{\mathrm{PTE}}\tbarEq{\mu_i}(\tamp{}, \tbar{}, \p)
+   {}^{\mathrm{PTE}}\tbarEq{\mu_q}(\tamp{}, \tbar{}, \p)
     &=
-    \denom{\mu_i}\tbar{\mu_i} +
-    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}} +
-    \sum_{j}^{\mathcal{M}}\braket{\tbar{j} |
-    \commutator{\overline{\Phi}}{\cluster{\mu_i}} | \mathrm{HF}}
+    \denom{\mu_q}\tbar{\mu_q} +
+    \braket{\mathrm{HF} | \commutator{\overline{\Phi}}{\cluster{\mu_q}} | \mathrm{HF}} +
+    \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} |
+    \commutator{\overline{\Phi}}{\cluster{\mu_q}} | \mathrm{HF}}
     = 0
   \end{align}
 \end{subequations}
@@ -588,31 +521,31 @@ We further assume that real wave functions are used.
 
 The structure of the stationarity conditions,
 Eqs.~\eqref{eq:pted-cc-amplitudes} and \eqref{eq:pted-cc-multipliers},
-already shows that $\tamp{\mu_i}^{[0]} = 0, \,\forall i$ and
-$\tbar{\mu_i}^{[0]} = 0, \, \forall i$.
+already shows that $\tamp{\mu_u}^{[0]} = 0, \,\forall u$ and
+$\tbar{\mu_u}^{[0]} = 0, \, \forall u$.
 Thus cluster operators can be of order 1 and higher. We introduce the
 following notation for the $i$-th order cluster operators and
 multipliers states:
 \begin{alignat}{2}
-  T_p^{[i]} = \sum_{\mu_p}\tamp{\mu_p}^{[i]}\cluster{\mu_p},
+  T_u^{[i]} = \sum_{\mu_u}\tamp{\mu_u}^{[i]}\cluster{\mu_u},
   \quad&
-  \bra{\tbar{p}^{[i]}} = \sum_{\mu_p}\tbar{\mu_p}^{[i]}\bra{\mu_p}
+  \bra{\tbar{u}^{[i]}} = \sum_{\mu_u}\tbar{\mu_u}^{[i]}\bra{\mu_u}
 \end{alignat}
 
 The \acrshort{PTED}-\acrshort{CC} equations are expanded in orders of the
 perturbation and terms are collected order by order. The use of an
 effective, variational Lagrangian implies the validity of the $2n+1$
-rule for the amplitudes $\tamp{\mu_i}$ and polarization $\p$ and of the
-$2n+2$ rule for the multipliers $\tbar{\mu_i}$.
+rule for the amplitudes $\tamp{\mu_u}$ and polarization $\p$ and of the
+$2n+2$ rule for the multipliers $\tbar{\mu_u}$.
 We can thus derive energy corrections up to fifth order by means of the
 amplitudes and polarization up to and including second order terms and
 the multipliers up to and including second order.
 
 The polarization equation couples to the multipliers and amplitudes
-equations \emph{via} the source term, see Eq.~\eqref{eq:source-term}.
+equations \emph{via} the source term.
 Its perturbative expansion will be given as:
 \begin{equation}\label{eq:source-term-pt}
-  \s_{\mathrm{N}}(\tamp{},\tbar{}) =
+  \s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M} =
   \s_{\mathrm{N}}^{[0]}
   + \s_{\mathrm{N}}^{[1]}
   + \s_{\mathrm{N}}^{[2]}
@@ -625,13 +558,14 @@ and correspondingly for the polarization:
 
 The source operator $\s$ will be considered as \emph{zeroth-order} in
 the perturbation.
-The order of the contributions to $\s_{\mathrm{N}}(\tamp{},\tbar{})$ will be
-solely determined by the amplitudes and multipliers.
-From the structure of \eqref{eq:pted-cc-polarization}, it is already
-clear that $\s_{\mathrm{N}}(\tamp{},\tbar{})$ is at least first order in the
-fluctuation potential:
+The order of the contributions to
+$\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}$ will be solely determined
+by the amplitudes and multipliers. From the structure of
+\eqref{eq:pted-cc-polarization}, it is already clear that
+$\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}$ is at least first order
+in the fluctuation potential:
 \begin{equation}
-  \s_{\mathrm{N}}(\tamp{},\tbar{}) =
+  \s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M} =
   \s_{\mathrm{N}}^{[1]}
   + \s_{\mathrm{N}}^{[2]}
   + \ldots
@@ -645,9 +579,9 @@ which also implies:
 
 \paragraph*{Amplitudes}
 \begin{equation}\label{eq:1st-order-amp}
-  \Omega_{\mu_i}^{[1]} = \denom{\mu_i}\tamp{\mu_i}^{[1]}
-  + \braket{\mu_i | \Phi | \mathrm{HF}}
-  + {}^t\p^{[1]}\braket{\mu_i | \s | \mathrm{HF}}\delta_{\mu_i\mu_1}
+  \Omega_{\mu_q}^{[1]} = \denom{\mu_q}\tamp{\mu_q}^{[1]}
+  + \braket{\mu_q | \Phi | \mathrm{HF}}
+  + {}^t\p^{[1]}\braket{\mu_q | \s | \mathrm{HF}}\delta_{\mu_q\mu_1}
   = 0
 \end{equation}
 Explicitly considering the singles, doubles and triples excitation manifolds:
@@ -669,24 +603,24 @@ coupling, there will still be nonzero first-order singles amplitudes.
 
 \paragraph*{Multipliers}
 \begin{equation}%\label{eq:1st-order-mult}
-  \bar{\Omega}_{\mu_i}^{[1]} =
-    \denom{\mu_i}\tbar{\mu_i}^{[1]}
-    + \braket{\mathrm{HF} | \commutator{\Phi}{\cluster{\mu_i}} | \mathrm{HF}}
+  \bar{\Omega}_{\mu_q}^{[1]} =
+    \denom{\mu_q}\tbar{\mu_q}^{[1]}
+    + \braket{\mathrm{HF} | \commutator{\Phi}{\cluster{\mu_q}} | \mathrm{HF}}
     + {}^t\p^{[1]}\braket{\mathrm{HF} |
-    \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}\delta_{\mu_i\mu_1} =0
+    \commutator{\s}{\cluster{\mu_q}} | \mathrm{HF}}\delta_{\mu_q\mu_1} =0
 \end{equation}
 and expanding the commutators:
 \begin{equation}\label{eq:1st-order-mult}
-  \bar{\Omega}_{\mu_i}^{[1]} =
-    \denom{\mu_i}\tbar{\mu_i}^{[1]}
-    + \braket{\mathrm{HF} | \Phi | \mu_i}
-    + {}^t\p^{[1]}\braket{\mathrm{HF} | \s | \mu_i}\delta_{\mu_i\mu_1} =0
+  \bar{\Omega}_{\mu_q}^{[1]} =
+    \denom{\mu_q}\tbar{\mu_q}^{[1]}
+    + \braket{\mathrm{HF} | \Phi | \mu_q}
+    + {}^t\p^{[1]}\braket{\mathrm{HF} | \s | \mu_q}\delta_{\mu_q\mu_1} =0
 \end{equation}
 This clearly shows that Eq.~\eqref{eq:1st-order-amp}
 and Eq.~\eqref{eq:1st-order-mult} are complex conjugates. Under the
 assumption of real wave functions we can also conclude that:
 \begin{equation}
-  \tamp{\mu_i}^{[1]} = \tbar{\mu_i}^{[1]},\,\,\forall i
+  \tamp{\mu_u}^{[1]} = \tbar{\mu_u}^{[1]},\,\,\forall u
 \end{equation}
 Thus, as for the amplitudes, despite the closed-shell \acrshort{HF} reference, the singles
 multipliers will already appear in first order, due to the
@@ -734,10 +668,10 @@ so that the first order polarization equation becomes:
 \paragraph*{Amplitudes}
 \begin{equation}\label{eq:2nd-order-amp}
   \begin{aligned}
-  \Omega_{\mu_i}^{[2]} &= \denom{\mu_i}\tamp{\mu_i}^{[2]}
-  + \braket{\mu_i | \commutator{\Phi}{T^{[1]}} | \mathrm{HF}}
-  + {}^t\p^{[2]}\braket{\mu_i | \s | \mathrm{HF}}\delta_{\mu_i\mu_1} \\
-  &+ {}^t\p^{[1]}\braket{\mu_i | \commutator{\s}{T^{[1]}} |
+  \Omega_{\mu_q}^{[2]} &= \denom{\mu_q}\tamp{\mu_q}^{[2]}
+  + \braket{\mu_q | \commutator{\Phi}{T^{[1]}} | \mathrm{HF}}
+  + {}^t\p^{[2]}\braket{\mu_q | \s | \mathrm{HF}}\delta_{\mu_q\mu_1} \\
+  &+ {}^t\p^{[1]}\braket{\mu_q | \commutator{\s}{T^{[1]}} |
   \mathrm{HF}}
   = 0
   \end{aligned}
@@ -771,16 +705,16 @@ excitation manifolds:
 \paragraph*{Multipliers}
 \begin{equation}\label{eq:2nd-order-mult}
   \begin{aligned}
-  \bar{\Omega}_{\mu_i}^{[2]} &=
-    \denom{\mu_i}\tbar{\mu_i}^{[2]}
-    + \braket{\mathrm{HF} | \commutator{\commutator{\Phi}{T^{[1]}}}{\cluster{\mu_i}} | \mathrm{HF}}
-    + \sum_j\braket{\tbar{j}^{[1]} |
-    \commutator{\Phi}{\cluster{\mu_i}} | \mathrm{HF}} \\
+  \bar{\Omega}_{\mu_q}^{[2]} &=
+    \denom{\mu_q}\tbar{\mu_q}^{[2]}
+    + \braket{\mathrm{HF} | \commutator{\commutator{\Phi}{T^{[1]}}}{\cluster{\mu_q}} | \mathrm{HF}}
+    + \sum_{u=1}^\mathcal{M}\braket{\tbar{u}^{[1]} |
+    \commutator{\Phi}{\cluster{\mu_q}} | \mathrm{HF}} \\
     &+ {}^t\p^{[2]}\braket{\mathrm{HF} |
-    \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}\delta_{\mu_i\mu_1}
+    \commutator{\s}{\cluster{\mu_q}} | \mathrm{HF}}\delta_{\mu_q\mu_1}
     + {}^t\p^{[1]}
-    \sum_j\braket{\tbar{j}^{[1]} |
-    \commutator{\s}{\cluster{\mu_i}} | \mathrm{HF}}
+    \sum_{u=1}^\mathcal{M}\braket{\tbar{u}^{[1]} |
+    \commutator{\s}{\cluster{\mu_q}} | \mathrm{HF}}
     =0
   \end{aligned}
 \end{equation}
@@ -796,7 +730,7 @@ to second order are given as:
       \denom{\mu_1}\tbar{\mu_1}^{[2]}
       + \braket{\mathrm{HF} |
       \commutator{\commutator{\Phi}{T_1^{[1]}}}{\cluster{\mu_1}} | \mathrm{HF}}
-      + \sum_j\braket{\tbar{j}^{[1]} |
+      + \sum_{u=1}^\mathcal{M}\braket{\tbar{u}^{[1]} |
       \commutator{\Phi}{\cluster{\mu_1}} | \mathrm{HF}} \nonumber \\
       &+ {}^t\p^{[2]}\braket{\mathrm{HF} |
       \commutator{\s}{\cluster{\mu_1}} | \mathrm{HF}}
@@ -806,15 +740,15 @@ to second order are given as:
       =0 \\
     \bar{\Omega}_{\mu_2}^{[2]} &=
       \denom{\mu_2}\tbar{\mu_2}^{[2]}
-      + \sum_j\braket{\tbar{j}^{[1]} |
+      + \sum_{u=1}^\mathcal{M}\braket{\tbar{u}^{[1]} |
       \commutator{\Phi}{\cluster{\mu_2}} | \mathrm{HF}}
       + {}^t\p^{[1]}
-      \sum_j\braket{\tbar{j}^{[1]} |
+      \sum_{u=1}^\mathcal{M}\braket{\tbar{u}^{[1]} |
       \commutator{\s}{\cluster{\mu_2}} | \mathrm{HF}}
       =0 \\
     \bar{\Omega}_{\mu_3}^{[2]} &=
       \denom{\mu_3}\tbar{\mu_3}^{[2]}
-      + \sum_j\braket{\tbar{j}^{[1]} |
+      + \sum_{u=1}^\mathcal{M}\braket{\tbar{u}^{[1]} |
       \commutator{\Phi}{\cluster{\mu_3}} | \mathrm{HF}}
       =0
   \end{align}
@@ -906,7 +840,7 @@ amplitudes, multipliers and polarization:
 \begin{equation}\label{eq:third-order-G}
   \begin{aligned}
     G^{[3]} &=
-    \sum_j\braket{\tbar{j}^{[1]} | \commutator{\Phi}{T^{[1]}} | \mathrm{HF}}
+    \sum_{u=1}^2\braket{\tbar{u}^{[1]} | \commutator{\Phi}{T^{[1]}} | \mathrm{HF}}
     + {}^t\p^{[1]}\s_{\mathrm{N}}^{[2]}(\tamp{}^{[1]}, \tbar{}^{[1]}) \\
     &=
     E^{[3]}
@@ -923,9 +857,9 @@ order amplitudes and polarization, while using first order multipliers:
 \begin{equation}\label{eq:fourth-order-G}
   \begin{aligned}
     G^{[4]} &=
-    \sum_j\braket{\tbar{j}^{[1]} | \commutator{\Phi}{T^{[2]}} | \mathrm{HF}}
+    \sum_{u=1}^2\braket{\tbar{u}^{[1]} | \commutator{\Phi}{T^{[2]}} | \mathrm{HF}}
     +
-    \sum_j\braket{\tbar{j}^{[1]} |
+    \sum_{u=1}^2\braket{\tbar{u}^{[1]} |
     \frac{1}{2}\commutator{\commutator{\Phi}{T^{[1]}}}{T^{[1]}} | \mathrm{HF}}
     \\
     &+\frac{1}{2}{}^t\p^{[2]}\V\p^{[2]}
@@ -936,13 +870,17 @@ order amplitudes and polarization, while using first order multipliers:
     &+{}^t\p^{[2]}
     \left\lbrace
     \braket{\mathrm{HF} | \commutator{\s}{T_1^{[2]}} | \mathrm{HF}}
-    + \sum_i\braket{\tbar{i}^{[1]}| \commutator{\s}{T^{[1]}} | \mathrm{HF} }
+    +
+    \sum_{u=1}^2\braket{\tbar{u}^{[1]}|
+    \commutator{\s}{T^{[1]}} | \mathrm{HF} }
     \right\rbrace \\
     &+{}^t\p^{[1]}
     \left\lbrace
-    \sum_i\braket{\tbar{i}^{[1]} | \commutator{\s}{T^{[2]}} | \mathrm{HF}}
+    \sum_{u=1}^2\braket{\tbar{u}^{[1]}|
+    \commutator{\s}{T^{[2]}} | \mathrm{HF}}
     +
-    \sum_i\braket{\tbar{i}^{[1]} |\frac{1}{2}
+    \sum_{u=1}^2\braket{\tbar{u}^{[1]}|
+    \frac{1}{2}
     \commutator{\commutator{\s}{T^{[1]}}}{T^{[1]}}
     |
     \mathrm{HF}}
@@ -1026,41 +964,46 @@ amplitudes, multipliers and polarization:
 \begin{equation}\label{eq:fifth-order-G}
   \begin{aligned}
     G^{[5]} &=
-    \frac{1}{2}\braket{\mathrm{HF} |
+    \braket{\mathrm{HF} | \frac{1}{2}
     \commutator{\commutator{\Phi}{T^{[2]}}}{T^{[2]}}
     | \mathrm{HF}}
     +
-    \sum_j \braket{\tbar{j}^{[1]} |
+    \sum_{u=1}^2\braket{\tbar{u}^{[1]}|
     \commutator{\commutator{\Phi}{T^{[2]}}}{T^{[1]}}
     | \mathrm{HF}}
     \\
-    &+ \sum_j \braket{\tbar{j}^{[2]} |
+    &+
+    \sum_{u=1}^3\braket{\tbar{u}^{[2]}|
       \commutator{\Phi}{T^{[2]}}
     | \mathrm{HF}}
     +
-    \frac{1}{2}\sum_j\braket{\tbar{j}^{[2]} |
+    \sum_{u=1}^3\braket{\tbar{u}^{[2]}|
+    \frac{1}{2}
     \commutator{\commutator{\Phi}{T^{[1]}}}{T^{[1]}}
     | \mathrm{HF}} \\
     &+ {}^t\p^{[2]}\s_{\mathrm{N}}^{[3]}(\tamp{}^{[2]}, \tbar{}^{[2]})
     + {}^t\p^{[1]}\s_{\mathrm{N}}^{[4]}(\tamp{}^{[2]}, \tbar{}^{[2]}) \\
     &= E^{[5]}
     + {}^t\p^{[2]}
-    \sum_i\braket{\tbar{i}^{[1]} | \commutator{\s}{T^{[2]}} | \mathrm{HF}} \\
+    \sum_{u=1}^2\braket{\tbar{u}^{[1]} |
+    \commutator{\s}{T^{[2]}} | \mathrm{HF}} \\
     &+ {}^t\p^{[2]}
-    \sum_i\braket{\tbar{i}^{[1]} |
+    \sum_{u=1}^2\braket{\tbar{u}^{[1]} |
     \frac{1}{2}\commutator{\commutator{\s}{T^{[1]}}}{T^{[1]}}
     | \mathrm{HF}}
     + {}^t\p^{[2]}
-    \sum_i\braket{\tbar{i}^{[2]} | \commutator{\s}{T^{[1]}} | \mathrm{HF}}
+    \sum_{u=1}^3\braket{ \tbar{u}^{[2]}
+                                 | \commutator{\s}{T^{[1]}} | \mathrm{HF}}
     \\
     &+ {}^t\p^{[1]}
-    \sum_i\braket{\tbar{i}^{[2]} | \commutator{\s}{T^{[2]}} | \mathrm{HF}}
+    \sum_{u=1}^3\braket{ \tbar{u}^{[2]}
+    \commutator{\s}{T^{[2]}} | \mathrm{HF}}
     + {}^t\p^{[1]}
-    \sum_i\braket{\tbar{i}^{[2]} |
+    \sum_{u=1}^3\braket{ \tbar{u}^{[2]}
     \frac{1}{2}\commutator{\commutator{\s}{T^{[1]}}}{T^{[1]}}
     | \mathrm{HF}} \\
     &+ {}^t\p^{[1]}
-    \sum_i\braket{\tbar{i}^{[1]} |
+    \sum_{u=1}^2\braket{\tbar{u}^{[1]} |
     \commutator{\commutator{\s}{T^{[1]}}}{T^{[2]}}
     | \mathrm{HF}}
     \\
@@ -1245,11 +1188,11 @@ expressions:
  \begin{align}
   G_{\Lambda(\text{T})}
   &=
-    \sum_{j}\braket{\tbar{j}^{*}| \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}
+    \sum_{u=1}^2\braket{\tbar{u}^{*}| \commutator{\Phi}{T_3^{*}} | \mathrm{HF}}
     + {}^t\p^{*}\braket{\tbar{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}} \\
   G_{(\text{T})}
  &=
-    \sum_{j}\braket{\tamp{j}^{*}|\commutator{\Phi}{T_3^{*}} | \mathrm{HF}}
+    \sum_{u=1}^2\braket{\tamp{u}^{*}|\commutator{\Phi}{T_3^{*}} | \mathrm{HF}}
     + {}^t\p^{*}\braket{\tamp{2}^{*} | \commutator{\s}{T_3^{*}} | \mathrm{HF}}
  \end{align}
 \end{subequations}
@@ -1286,11 +1229,11 @@ energy correction as follows:
 \begin{equation}
   \begin{aligned}
   G_{\Lambda(\text{T})} &=
-  \sum_{j=1}^2 \braket{\tbar{j}^{[1]} | \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}
+  \sum_{u=1}^2 \braket{\tbar{u}^{[1]} | \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}
   +
   \braket{\tbar{3}^{[2]} | \commutator{\Phi}{T_2^{[2]}} | \mathrm{HF}}
   +
-  \sum_{j=1}^2 \braket{\tbar{j}^{[2]} | \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}
+  \sum_{u=1}^2 \braket{\tbar{u}^{[2]} | \commutator{\Phi}{T_3^{[2]}} | \mathrm{HF}}
   \\
   &+
   {}^t\p^{[1]} \braket{\tbar{2}^{[1]} | \commutator{\s}{T_3^{[2]}} | \mathrm{HF}}
