@@ -507,8 +507,7 @@ correlated description of the electronic density.
 MBPT for Quantum/Classical Polarizable Hamiltonians}\label{sec:mbpt-polarizable}
 
 We will now develop a perturbative many-body expansion of the effective
-\acrshort{CC} Lagrangian when a quantum/classical polarizable Hamiltonian is
-used.
+\acrshort{PTED}-\acrshort{CC} Lagrangian \eqref{eq:pted-cc}
 The use of a \acrshort{CC} ansatz for the wave function ensures term-by-term
 size-extensivity of the energy at all orders.~\autocite{Helgaker2000-tz}
 The fluctuation potential $\Phi$ is assumed as the perturbation, hence
@@ -520,7 +519,7 @@ order contribution.
 We further assume that real wave functions are used.
 
 The structure of the stationarity conditions,
-Eqs.~\eqref{eq:pted-cc-amplitudes} and \eqref{eq:pted-cc-multipliers},
+Eqs. \eqref{eq:pted-cc-amplitudes} and \eqref{eq:pted-cc-multipliers},
 already shows that $\tamp{\mu_u}^{[0]} = 0, \,\forall u$ and
 $\tbar{\mu_u}^{[0]} = 0, \, \forall u$.
 Thus cluster operators can be of order 1 and higher. We introduce the
@@ -1142,31 +1141,216 @@ while the fifth order contributions are:
 We have highlighted the vacuum-like terms that appear due to the nonzero
 first order singles amplitudes and multipliers in yellow.
 
+\subsection{Approximations to PTED}
+
+Perturbative expansions can also be developed starting from the
+approximations to \acrshort{PTED} presented in Section
+\ref{sec:pcm-cc-models}.
+For the \acrshort{PTE} scheme, the only change with respect to the
+\emph{in vacuo} theory as presented in Section \ref{sec:mbpt} is the use
+of the solvated Fock matrix.\autocite{Olivares_del_Valle1991-of,
+Angyan1995-co, Lipparini2009-io}
+
+In the \acrshort{PTE(S)} scheme
+
+
 \section[Approximate Coupled Cluster Methods]{
 Approximate Coupled Cluster Methods with Quantum/Classical Polarizable Hamiltonians
 }\label{sec:cc-approximate-quantum-classical}
 
-\todo[inline]{Finish up on CC2 and CC3.}
 In complete analogy to the discussion in Section
 \ref{sec:cc-approximate}, we can derive iterative and noniterative
 schemes for the approximate inclusion of higher order excitations in the
 \acrshort*{CC} hierarchy.
-Starting from the \acrshort{CC2} and \acrshort{CC3} Lagrangians, Eqs.
-\eqref{eq:cc2-lagrangian} and \eqref{eq:cc3-lagrangian} respectively,
-we can write down the corresponding effective Lagrangians. The correct
-source term $\s_\mathrm{N}(\tamp{},\tbar{})$ must however be identified.
-For the \acrshort*{CC2} model, we start from its \acrshort*{CCSD}
-expression, Eq. \eqref{eq:source-ccsd}, and retain only terms up to first order:
-\begin{equation}
+Starting from the \acrshort{CC2} Lagrangian, Eq.
+\eqref{eq:cc2-lagrangian}, we can write down the corresponding
+\acrshort{PTED} effective Lagrangian:\autocite{Sneskov2011-jm,
+Schwabe2012-cf}
+\begin{equation}\label{eq:pted-cc2-lagrangian}
   \begin{aligned}
-  \s_{\mathrm{N}}(\tamp{}, \tbar{})_\mathrm{CCSD} &=
-  \s_{\mathrm{N}}(\tamp{}, \tbar{})_\mathrm{CCS}
-  + \braket{\tbar{1} | \BCHfirst{\s}{T_2} | \mathrm{HF}} \\
-  &+ \braket{\tbar{2} | \BCHfirst{\s}{T_2} | \mathrm{HF}}
-  + \braket{\tbar{2} | \commutator{\commutator{\s}{T_1}}{T_2} | \mathrm{HF}}
+  \lag(\tamp{}, \tbar{}, \p)_\mathrm{CC2}
+  &=
+  E_0
+  + \sum_{u=1}^{2}\tbar{\mu_u}\denom{\mu_u}\tamp{\mu_u}
+  + \braket{\mathrm{HF} | \check{\Phi} + \commutator{\check{\Phi}}{Q_2} | \mathrm{HF}} \\
+  &+ \braket{\tbar{1} |
+  \check{\Phi} + \commutator{\check{\Phi}}{Q_2}
+  | \mathrm{HF}}
+  + \braket{\tbar{2} | \check{\Phi} | \mathrm{HF}}
+  + \frac{1}{2}{}^t\p\V\p +
+  {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathrm{CC2}
   \end{aligned}
 \end{equation}
-where the $T_1$-transformed operator was used.
+where the source term is formed according to Eq.
+\eqref{eq:cc2-expectation-value}
+The multipliers equations now become:
+\begin{subequations}\label{eq:pted-cc2-amplitudes}
+  \begin{align}
+    \denom{\mu_1}\tamp{\mu_1} &+
+    \braket{\mu_1 | \check{\Phi} +
+    \commutator{\check{\Phi}}{Q_2} | \mathrm{HF}}
+    + {}^t\p\braket{\mu_1 | \check{\s} +
+    \commutator{\check{\s}}{Q_2} | \mathrm{HF}}
+    = 0
+    \label{eq:pted-cc2-singles-amplitudes} \\
+    \denom{\mu_2}\tamp{\mu_2} &+ \braket{\mu_2 | \check{\Phi} | \mathrm{HF}}
+    + {}^t\p\braket{\mu_2 | \commutator{\check{\s}}{Q_2} | \mathrm{HF}}
+    = 0
+    \label{eq:pted-cc2-doubles-amplitudes}
+  \end{align}
+\end{subequations}
+while for the multipliers one has:
+\begin{subequations}\label{eq:pted-cc2-multipliers}
+  \begin{align}
+    \denom{\mu_1}\tbar{\mu_1} &+
+     \braket{\mathrm{HF} | \commutator{\check{\Phi}}{\cluster{\mu_1}} | \mathrm{HF}}
+   + \braket{\tbar{1} |
+       \commutator{\check{\Phi}}{\cluster{\mu_1}}
+     + \commutator{\commutator{\check{\Phi}}{\cluster{\mu_1}}}{Q_2}
+     | \mathrm{HF}} \nonumber \\
+   &+ \braket{\tbar{2} | \commutator{\check{\Phi}}{\cluster{\mu_1}} |
+   \mathrm{HF}}
+   + {}^t\p\braket{\mathrm{HF} |
+   \commutator{\check{\s}_\mathrm{N}}{\cluster{\mu_1}} | \mathrm{HF}}  \nonumber \\
+   &+ {}^t\p\braket{\tbar{1} | \commutator{\check{\s}}{\cluster{\mu_1}} | \mathrm{HF}}
+   + {}^t\p\braket{\tbar{2} | \commutator{\commutator{\check{\s}}{\cluster{\mu_1}}}{Q_2} | \mathrm{HF}}
+   = 0 \label{eq:pted-cc2-singles-multipliers} \\
+    \denom{\mu_2}\tbar{\mu_2} &+
+    \braket{\mathrm{HF} | \commutator{\check{\Phi}}{\cluster{\mu_2}} | \mathrm{HF}}
+   + \braket{\tbar{1} |
+       \commutator{\check{\Phi}}{\cluster{\mu_2}}
+     | \mathrm{HF}} \nonumber \\
+   &+ {}^t\p\braket{\tbar{1} | \commutator{\check{\s}}{\cluster{\mu_2}} | \mathrm{HF}}
+   + {}^t\p\braket{\tbar{2} | \commutator{\check{\s}}{\cluster{\mu_2}} | \mathrm{HF}}
+     = 0 \label{eq:pted-cc2-doubles-multipliers}
+  \end{align}
+\end{subequations}
+Finally, the polarization is obtained by solving:
+\begin{equation}\label{eq:pted-cc2-polarization}
+  \V\p + \s_{\mathrm{N}}(\tamp{},\tbar{})_\mathrm{CC2} = 0
+\end{equation}
+
+The \acrshort{PTED}-\acrshort{CC3} model is obtained similarly. The
+source term is formed according to Eq. \eqref{eq:cc3-expectation-value}.
+Thus, adding the polarization functional to the Lagrangian
+\eqref{eq:cc3-lagrangian}, we obtain the effective Lagrangian:
+\begin{equation}\label{eq:pted-cc3-lagrangian}
+  \begin{aligned}
+  \lag(\tamp{}, \tbar{}, \p)_\mathrm{CC3}
+  &=
+  E_0
+  + \sum_{u=1}^{3}\tbar{\mu_u}\denom{\mu_u}\tamp{\mu_u}
+  + \braket{\mathrm{HF} | \check{\Phi} + \commutator{\check{\Phi}}{T_2} | \mathrm{HF}} \\
+  &+ \braket{\tbar{1} |
+  \check{\Phi} + \commutator{\check{\Phi}}{T_2} + \commutator{\check{\Phi}}{Q_3}
+  | \mathrm{HF}} \\
+  &+ \braket{\tbar{2} |
+  \check{\Phi} + \commutator{\check{\Phi}}{T_2}
+  + \frac{1}{2}\commutator{\commutator{\check{\Phi}}{T_2}}{T_2} + \commutator{\check{\Phi}}{Q_3}
+  | \mathrm{HF}} \\
+  &+ \braket{\tbar{3} | \commutator{\check{\Phi}}{T_2} | \mathrm{HF}}
+  + \frac{1}{2}{}^t\p\V\p +
+  {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathrm{CC3}
+  \end{aligned}
+\end{equation}
+The polarization equation is straightforwardly:
+\begin{equation}\label{eq:pted-cc3-polarization}
+  \V\p + \s_{\mathrm{N}}(\tamp{},\tbar{})_\mathrm{CC3} = 0
+\end{equation}
+The amplitudes are determined by:
+\begin{subequations}\label{eq:pted-cc3-amplitudes}
+  \begin{align}
+    \denom{\mu_1}\tamp{\mu_1} &+ \braket{\mu_1 |
+    \check{\Phi} + \commutator{\check{\Phi}}{T_2}
+    + \commutator{\check{\Phi}}{Q_3}
+    | \mathrm{HF}} \nonumber \\
+    &+ {}^t\p\braket{\mu_1 | \check{\s} +
+    \commutator{\check{\s}}{T_2} | \mathrm{HF}}
+    = 0 \label{eq:pted-cc3-singles-amplitudes} \\
+    \denom{\mu_2}\tamp{\mu_2} &+ \braket{\mu_2 |
+    \check{\Phi} + \commutator{\check{\Phi}}{T_2}
+    + \frac{1}{2}\commutator{\commutator{\check{\Phi}}{T_2}}{T_2}
+    + \commutator{\check{\Phi}}{Q_3}
+    | \mathrm{HF}} \nonumber  \\
+    &+
+    {}^t\p\braket{\mu_2 | \commutator{\check{\s}}{T_2} +
+    \commutator{\check{\s}}{Q_3} | \mathrm{HF}}
+    = 0 \label{eq:pted-cc3-doubles-amplitudes} \\
+    \denom{\mu_3}\tamp{\mu_3} &+ \braket{\mu_3 |
+    \commutator{\check{\Phi}}{T_2}
+    | \mathrm{HF}}
+    + {}^t\p\braket{\mu_3 | \commutator{\check{\s}}{Q_3}
+     + \frac{1}{2}\commutator{\commutator{\check{\s}}{T_2}}{T_2}
+    | \mathrm{HF}}
+    = 0 \label{eq:pted-cc3-triples-amplitudes}
+    \end{align}
+\end{subequations}
+and finally the multipliers obey:
+\begin{subequations}\label{eq:pted-cc3-multipliers}
+  \begin{align}
+    \denom{\mu_1}\tbar{\mu_1} &+
+     \braket{\mathrm{HF} | \commutator{\check{\Phi}}{\cluster{\mu_1}} | \mathrm{HF}}
+   + \braket{\tbar{1} |
+       \commutator{\check{\Phi}}{\cluster{\mu_1}}
+     + \commutator{\commutator{\check{\Phi}}{\cluster{\mu_1}}}{T_2}
+     | \mathrm{HF}} \nonumber \\
+   &+ \braket{\tbar{2} |
+       \commutator{\check{\Phi}}{\cluster{\mu_1}}
+     + \commutator{\commutator{\check{\Phi}}{\cluster{\mu_1}}}{T_2}
+     + \commutator{\commutator{\check{\Phi}}{\cluster{\mu_1}}}{Q_3}
+   | \mathrm{HF}} \nonumber \\
+   &+ \braket{\tbar{3} |
+      \commutator{\commutator{\check{\Phi}}{\cluster{\mu_1}}}{T_2}
+     | \mathrm{HF}}
+   + {}^t\p\braket{\mathrm{HF} |
+   \commutator{\check{\s}_\mathrm{N}}{\cluster{\mu_1}} | \mathrm{HF}}  \nonumber \\
+   &+ {}^t\p\braket{\tbar{1} | \commutator{\check{\s}}{\cluster{\mu_1}} | \mathrm{HF}}
+   + {}^t\p\braket{\tbar{2} |
+   \commutator{\commutator{\check{\s}}{\cluster{\mu_1}}}{Q_2} |
+   \mathrm{HF}} \nonumber \\
+   &+ {}^t\p\braket{\tbar{3} | \commutator{\commutator{\check{\s}}{\cluster{\mu_1}}}{Q_3} | \mathrm{HF}}
+     = 0 \label{eq:pted-cc3-singles-multipliers} \\
+    \denom{\mu_2}\tbar{\mu_2} &+
+    \braket{\mathrm{HF} | \commutator{\check{\Phi}}{\cluster{\mu_2}} | \mathrm{HF}}
+   + \braket{\tbar{1} |
+       \commutator{\check{\Phi}}{\cluster{\mu_2}}
+     | \mathrm{HF}} \nonumber \\
+  &+ \braket{\tbar{2} |
+       \commutator{\check{\Phi}}{\cluster{\mu_2}}
+     + \commutator{\commutator{\check{\Phi}}{\cluster{\mu_2}}}{T_2}
+     | \mathrm{HF}}
+  + \braket{\tbar{3} |
+       \commutator{\check{\Phi}}{\cluster{\mu_2}}
+     | \mathrm{HF}} \nonumber \\
+   &+ {}^t\p\braket{\tbar{1} | \commutator{\check{\s}}{\cluster{\mu_2}} | \mathrm{HF}}
+   + {}^t\p\braket{\tbar{2} | \commutator{\check{\s}}{\cluster{\mu_2}} | \mathrm{HF}}
+   \nonumber \\
+   &+ {}^t\p\braket{\tbar{3} |
+   \commutator{\commutator{\check{\s}}{\cluster{\mu_2}}}{T_2} | \mathrm{HF}}
+    = 0 \label{eq:pted-cc3-doubles-multipliers} \\
+    \denom{\mu_3}\tbar{\mu_3} &+
+    \braket{\tbar{1} |
+       \commutator{\check{\Phi}}{\cluster{\mu_3}}
+     | \mathrm{HF}}
+  + \braket{\tbar{2} |
+       \commutator{\check{\Phi}}{\cluster{\mu_3}}
+     | \mathrm{HF}} \nonumber \\
+   &+ {}^t\p\braket{\tbar{2} | \commutator{\check{\s}}{\cluster{\mu_3}} | \mathrm{HF}}
+   + {}^t\p\braket{\tbar{3} | \commutator{\check{\s}}{\cluster{\mu_3}} | \mathrm{HF}}
+    = 0 \label{eq:pted-cc3-triples-multipliers}
+  \end{align}
+\end{subequations}
+The \acrshort{PTES}, \acrshort{PTE(S)} and \acrshort{PTE} approximate
+schemes can be applied, \emph{mutatis mutandis}, also within the
+\acrshort{CC2} and \acrshort{CC3} models.\autocite{Caricato2011-tx, Schwabe2012-cf, Krause2016-ee}
+In particular, we note that the \acrshort{PTES} approximation is crucial
+in the implementation of \acrshort{PE}-\acrshort{CC2} presented by
+\citeauthor{Schwabe2012-cf} in \noparcite[ref.][]{Schwabe2012-cf}
+The resolution of the identity can in fact still be applied when
+assuming the \acrshort{PTES} approximation.
+Moreover, the approximate \acrshort{PE}-\acrshort{CC} Lagrangian of
+\citeauthor{Krause2016-ee} is essentially the \acrshort{PTE(S)}
+approximation for \acrshort{PE}-\acrshort{CC}.\autocite{Krause2016-ee}
 
 We can construct the \emph{noniterative}
 $\Lambda\text{CCSD}(\text{T})$\autocite{Kucharski1998-qq,

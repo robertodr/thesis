@@ -540,6 +540,8 @@ right \acrshort{CC} states and we introduce the following notation:
   O(\tamp{}, \tbar{})_\mathcal{M} = \braket{\mathrm{HF} | \overline{O} | \mathrm{HF} }
   + \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{O} | \mathrm{HF} }
 \end{equation}
+Explicit expressions for truncated \acrshort{CC} models can be found in
+Appendix \ref{sec:CC-expval}
 
 \section{Many-Body Perturbation Theory}\label{sec:mbpt}
 
@@ -681,7 +683,7 @@ doubles:\autocite{Christiansen1995-vy, Helgaker2000-tz}
   \mathcal{L}(\tamp{}, \tbar{})_\mathrm{CC2}
   &=
   E_0
-  + \sum_{u=1}^{\mathcal{2}}\tbar{\mu_u}\denom{\mu_u}\tamp{\mu_u}
+  + \sum_{u=1}^{2}\tbar{\mu_u}\denom{\mu_u}\tamp{\mu_u}
   + \braket{\mathrm{HF} | \check{\Phi} + \commutator{\check{\Phi}}{Q_2} | \mathrm{HF}} \\
   &+ \braket{\tbar{1} |
   \check{\Phi} + \commutator{\check{\Phi}}{Q_2}
@@ -711,8 +713,9 @@ multipliers equations:
      = 0 \label{eq:cc2-doubles-multipliers}
   \end{align}
 \end{subequations}
-Formally, \acrshort*{CC2} expectation values can be computed using the expression for
-the \acrshort*{CCSD} and the approximate amplitudes and multipliers:
+Formally, \acrshort*{CC2} expectation values can be computed using the
+expression for the \acrshort*{CCSD} (see Appendix \ref{sec:CC-expval})
+and the approximate amplitudes and multipliers:
 \begin{equation}\label{eq:cc2-expectation-value}
   \begin{aligned}
   O(\tamp{}, \tbar{})_\mathrm{CC2}
@@ -763,7 +766,7 @@ Helgaker2000-tz, Smith2005-an}
   \mathcal{L}(\tamp{}, \tbar{})_\mathrm{CC3}
   &=
   E_0
-  + \sum_{u=1}^{\mathcal{3}}\tbar{\mu_u}\denom{\mu_u}\tamp{\mu_u}
+  + \sum_{u=1}^{3}\tbar{\mu_u}\denom{\mu_u}\tamp{\mu_u}
   + \braket{\mathrm{HF} | \check{\Phi} + \commutator{\check{\Phi}}{T_2} | \mathrm{HF}} \\
   &+ \braket{\tbar{1} |
   \check{\Phi} + \commutator{\check{\Phi}}{T_2} + \commutator{\check{\Phi}}{Q_3}
