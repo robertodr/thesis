@@ -45,13 +45,14 @@ I will exploit the \acrshort{CC} ansatz for the wave function and formulate
 \acrshort{MBPT} in terms of the effective \acrshort{CC} Lagrangian, an approach
 guaranteeing term-by-term size-extensivity.
 
-Iterative and noniterative approximations to the \acrshort{CCSD} and \acrshort{CCSDT} models will
-be the subject of Section \ref{sec:cc-approximate-quantum-classical} where the equations
-governing the \acrshort{CC2} and \acrshort{CC3} models will be derived.
+Iterative and noniterative approximations to the \acrshort{CCSD} and
+\acrshort{CCSDT} models will be the subject of Section
+\ref{sec:cc-approximate-quantum-classical} where the equations governing
+the \acrshort{CC2} and \acrshort{CC3} models will be derived.
 Eventually, I will describe schemes for the noniterative inclusion of
-the effect of connected triples excitations on top of
-the \acrshort{CCSD} wave function. The symmetric and asymmetric [T] and (T)
-corrections will be derived.
+the effect of connected triples excitations on top of the
+\acrshort{CCSD} wave function.
+The symmetric and asymmetric (T) corrections will be derived.
 
 \section{Effective Coupled Cluster Lagrangian}
 \label{sec:effective-cc-lagrangian}
@@ -60,9 +61,9 @@ Our purpose in this Section is to derive an \emph{effective} \acrshort{CC}
 Lagrangian that takes into account the coupling of the correlated
 electronic state with the classical polarizable
 environment.
-This can be readily obtained~\autocite{Lipparini2016-mo} by coupling the
-usual Lagrangian in Eq.~\eqref{eq:cc-lagrangian} with the classical
-polarization functional in Eq.~\eqref{eq:pcm-mm-functional}.
+This can be readily obtained\autocite{Lipparini2016-mo} by coupling the
+usual Lagrangian in Eq. \eqref{eq:cc-lagrangian} with the classical
+polarization functional in Eq. \eqref{eq:pcm-mm-functional}.
 Care must however be taken in the definition of the classical
 variational degrees of freedom as to not erroneously include
 contributions from the reference state in the subsequent correlated
@@ -100,7 +101,7 @@ The \acrshort{BCH} expansions of the source term has been rewritten as:
 taking advantage of the fact that $\s$ is a
 nondiagonal, one-electron operators and hence its commutator
 expansion truncates at the third term. Moreover, normal-ordering of the
-operators has been introduced.~\autocite{Crawford2000-ey, Shavitt2009-mr}
+operators has been introduced.\autocite{Crawford2000-ey, Shavitt2009-mr}
 This is equivalent to applying a shift to the correlation part of the
 source term one-electron operators to remove the reference source terms:
 \begin{equation}
@@ -254,7 +255,7 @@ terms are added:
 
 \section{Governing Equations and Their Approximations}\label{sec:pcm-cc-models}
 
-Differentiation of the effective Lagrangian in Eq.~\eqref{eq:pted-cc}
+Differentiation of the effective Lagrangian in Eq. \eqref{eq:pted-cc}
 with respect to the variational parameters $\tamp{\mu_i}$,
 $\tbar{\mu_i}$ and $\p$ yields the \acrshort{PTED}-\acrshort{CC}
 equations:
@@ -288,14 +289,14 @@ A coupling of the amplitudes and multipliers equations is introduced by
 the presence of the $\s_{\mathrm{N}}(\tamp{}, \tbar{})_\mathcal{M}$ expectation value
 in the polarization equation.
 This requires a proper macroiteration/microiteration self-consistency
-scheme for its implementation.~\autocite{Cammi2009-gu, Caricato2010-hx}
+scheme for its implementation.\autocite{Cammi2009-gu, Caricato2010-hx}
 As a consequence, a single-point \acrshort{PTED}-\acrshort{CC} will suffer from a
 $2\times$ prefactor in its computational cost with respect to an
 \emph{in vacuo} \acrshort{CC} calculation.
 
 It is thus convenient to devise approximations that are able to simplify the
 Lagrangian and the governing equations by breaking or weakening the coupling.
-While Eq.~\eqref{eq:pted-cc-polarization} is \emph{directly} coupled to
+While Eq. \eqref{eq:pted-cc-polarization} is \emph{directly} coupled to
 the multipliers equation, since the source terms directly depends on
 amplitudes and multipliers, it is only \emph{indirectly} coupled to the
 amplitudes equation, where only the polarization enters.
@@ -508,7 +509,7 @@ MBPT for Quantum/Classical Polarizable Hamiltonians}\label{sec:mbpt-polarizable}
 We will now develop a perturbative many-body expansion of the effective
 \acrshort{PTED}-\acrshort{CC} Lagrangian \eqref{eq:pted-cc}
 The use of a \acrshort{CC} ansatz for the wave function ensures term-by-term
-size-extensivity of the energy at all orders.~\autocite{Helgaker2000-tz}
+size-extensivity of the energy at all orders.\autocite{Helgaker2000-tz}
 The fluctuation potential $\Phi$ is assumed as the perturbation, hence
 it will be considered of order 1: $\Phi = O(1)$.
 We still assume a closed-shell \acrshort{HF} reference function and
@@ -614,8 +615,8 @@ and expanding the commutators:
     + \braket{\mathrm{HF} | \Phi | \mu_q}
     + {}^t\p^{[1]}\braket{\mathrm{HF} | \s | \mu_q}\delta_{\mu_q\mu_1} =0
 \end{equation}
-This clearly shows that Eq.~\eqref{eq:1st-order-amp}
-and Eq.~\eqref{eq:1st-order-mult} are complex conjugates. Under the
+This clearly shows that Eq. \eqref{eq:1st-order-amp}
+and Eq. \eqref{eq:1st-order-mult} are complex conjugates. Under the
 assumption of real wave functions we can also conclude that:
 \begin{equation}
   \tamp{\mu_u}^{[1]} = \tbar{\mu_u}^{[1]},\,\,\forall u
@@ -1066,25 +1067,12 @@ amplitudes, multipliers and polarization:
   \end{aligned}
 \end{equation}
 Similarly to the exposition in Chapter \ref{ch:QM}, these expressions
-will form the basis to the development of methods for the approximate
+will form the basis for the development of methods for the approximate
 beyond \acrshort*{CCSD} including connected triples.
 
 The \acrshort{PTED}-\acrshort{CCSD} scheme for the quantum/classical coupling
 only includes singles and doubles in its excitation manifold and is thus
-correct up to third order in perturbation theory:
-\begin{subequations}
-  \begin{align}
-    \tamp{\mu_i}^{*} &= \tamp{\mu_i}^{[1]} + \tamp{\mu_i}^{[2]} + O(3)
-    \label{eq:tamp-star} \\
-    \tbar{\mu_i}^{*} &= \tbar{\mu_i}^{[1]} + \tbar{\mu_i}^{[2]} + O(3)
-    \label{eq:tbar-star} \\
-    \p^{*} &= \p^{[1]} + \p^{[2]} + O(3)
-    \label{eq:p-star}
-  \end{align}
-\end{subequations}
-Here and in the following, the \acrshort{CCSD} converged parameters will
-be denoted with a $*$ superscript.
-
+correct up to third order in perturbation theory.
 Already in fourth order connected triples make their appearance and any
 model going beyond third order must then take their effect into account.
 The fourth and fifth order contributions to the energy due to connected
@@ -1339,17 +1327,6 @@ and finally the multipliers obey:
     = 0 \label{eq:pted-cc3-triples-multipliers}
   \end{align}
 \end{subequations}
-The \acrshort{PTES}, \acrshort{PTE(S)} and \acrshort{PTE} approximate
-schemes can be applied, \emph{mutatis mutandis}, also within the
-\acrshort{CC2} and \acrshort{CC3} models.\autocite{Caricato2011-tx, Schwabe2012-cf, Krause2016-ee}
-In particular, we note that the \acrshort{PTES} approximation is crucial
-in the implementation of \acrshort{PE}-\acrshort{CC2} presented by
-\citeauthor{Schwabe2012-cf} in \noparcite[ref.][]{Schwabe2012-cf}
-The resolution of the identity can in fact still be applied when
-assuming the \acrshort{PTES} approximation.
-Moreover, the approximate \acrshort{PE}-\acrshort{CC} Lagrangian of
-\citeauthor{Krause2016-ee} is essentially the \acrshort{PTE(S)}
-approximation for \acrshort{PE}-\acrshort{CC}.\autocite{Krause2016-ee}
 
 We can construct the \emph{noniterative}
 $\Lambda\text{CCSD}(\text{T})$\autocite{Kucharski1998-qq,
@@ -1365,8 +1342,8 @@ fifth order connected triples corrections in Eq.
     \quad&
  {}^t\p^{[1]}\braket{\tbar{2}^{[2]} | \commutator{\s}{T_3^{[2]}} | \mathrm{HF}}
 \end{alignat}
-Inserting the converged \acrshort{CCSD} parameters yields the following
-expressions:
+Inserting the converged \acrshort{CCSD} parameters, denoted with a $*$
+superscript, yields the following expressions:
 \begin{subequations}\label{eq:g-parentheses-t}
  \begin{align}
   G_{\Lambda(\text{T})}
@@ -1407,8 +1384,20 @@ such that the third order $\tilde{T}_3$ can re rewritten as:
   \cluster{\mu_3}
 \end{equation}
 
-Using Eqs. \eqref{eq:tamp-star}--\eqref{eq:p-star} one can expand the
-energy correction as follows:
+The converged \acrshort{PTED}-\acrshort{PTED} parameters are correct up
+to second order in the fluctuation potential:
+\begin{subequations}
+  \begin{align}
+    \tamp{\mu_i}^{*} &= \tamp{\mu_i}^{[1]} + \tamp{\mu_i}^{[2]} + O(3)
+    \label{eq:tamp-star} \\
+    \tbar{\mu_i}^{*} &= \tbar{\mu_i}^{[1]} + \tbar{\mu_i}^{[2]} + O(3)
+    \label{eq:tbar-star} \\
+    \p^{*} &= \p^{[1]} + \p^{[2]} + O(3)
+    \label{eq:p-star}
+  \end{align}
+\end{subequations}
+Using the equations above one can expand the energy correction as
+follows:
 \begin{equation}
   \begin{aligned}
   G_{\Lambda(\text{T})} &=
@@ -1430,3 +1419,18 @@ energy correction as follows:
   + O(6)
   \end{aligned}
 \end{equation}
+
+\subsection{Approximate Coupled Cluster Methods with Approximate
+Quantum/Classical Coupling}\label{sec:approximate-everything}
+
+The \acrshort{PTES}, \acrshort{PTE(S)} and \acrshort{PTE} approximate
+schemes can be applied, \emph{mutatis mutandis}, also within the
+\acrshort{CC2} and \acrshort{CC3} models.\autocite{Caricato2011-tx, Schwabe2012-cf, Krause2016-ee}
+In particular, we note that the \acrshort{PTES} approximation is crucial
+in the implementation of \acrshort{PE}-\acrshort{CC2} presented by
+\citeauthor{Schwabe2012-cf} in \noparcite[ref.][]{Schwabe2012-cf}
+The resolution of the identity can in fact still be applied when
+assuming the \acrshort{PTES} approximation.
+Moreover, the approximate \acrshort{PE}-\acrshort{CC} Lagrangian of
+\citeauthor{Krause2016-ee} is essentially the \acrshort{PTE(S)}
+approximation for \acrshort{PE}-\acrshort{CC}.\autocite{Krause2016-ee}

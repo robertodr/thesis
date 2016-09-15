@@ -21,7 +21,7 @@ quantum chemistry codes.
 A shorter version of the material in Section \ref{sec:software} has been
 accepted for publication in the proceedings of the \emph{Producing High
 Performance and Sustainable Software for Molecular Simulation} workshop
-held at the 2015 Supercomputing Conference.~\autocite{SC15}
+held at the 2015 Supercomputing Conference.\autocite{SC15}
 Sections \ref{sec:relapcm}--\ref{sec:pcmopenrsp} contain very short
 summaries of the papers and a list of my contributions.
 My coauthors have all read and approved the description of contributions.
@@ -34,15 +34,15 @@ Scalability is of paramount importance, but it has become clear that
 maintainability and extensibility of the code play an equally important role in
 managing software complexity\autocite{Wilson2014-vh, ssi, nsf-s2i2,
 netherlands-escience, coderefinery, molssi} and ensuring
-scientific reproducibility.~\autocite{Hatton1994-us, Hatton1997-ml,
+scientific reproducibility.\autocite{Hatton1994-us, Hatton1997-ml,
 Hatton1997-bb, Ioannidis2005-aj, Merali2010-uy, Prinz2011-kz}
 
 The idea of a \emph{modular programming paradigm} can be traced back to
 the dawn of computer science. \citeauthor{Dijkstra1968-zp}
 successfully used it in the development of the THE operating
-system in 1968,~\autocite{Dijkstra1968-zp} while
+system in 1968,\autocite{Dijkstra1968-zp} while
 \citeauthor{Parnas1972-im} advocated it as a best practice already in
-1972.~\autocite{Parnas1972-im}
+1972.\autocite{Parnas1972-im}
 Modularity is nothing more than a \emph{divide et impera} strategy
 applied to programming and it has been recognized as beneficial in many
 other scientific computing contexts.
@@ -56,7 +56,7 @@ Modules are to be thought as computational black boxes \emph{developed},
 the particular host program in which they will be used.
 A well-defined \gls{API} clearly delimits the boundaries of the functionality
 offered, effectively enforcing a programming style and standardisation of the
-functionality, eventually.~\autocite{Reddy2011-sd}
+functionality, eventually.\autocite{Reddy2011-sd}
 
 Recently, a debate over \emph{open-source}
 licensing\autocite{St_Laurent2004-fa} and \emph{open data} practices has
@@ -73,10 +73,10 @@ have significant impact, in terms of improved reproducibility and
 overall code quality, when an open-source licensing model is adopted.
 Open-source development can fully leverage the benefits of widespread,
 cloud-based, free, code development services, such as hosted
-\acp{DVCS},~\autocite{github, gitlab} continuous
-integration,~\autocite{travis-ci, magnum-ci, appveyor-ci} code
-coverage analysis,~\autocite{coveralls} static and dynamic code
-analyses,~\autocite{coverity-scan} nightly regression testing, public
+\acp{DVCS},\autocite{github, gitlab} continuous
+integration,\autocite{travis-ci, magnum-ci, appveyor-ci} code
+coverage analysis,\autocite{coveralls} static and dynamic code
+analyses,\autocite{coverity-scan} nightly regression testing, public
 issue tracking, code review and so forth: adoption of a modern code
 development workflow is easily within reach.
 
@@ -123,17 +123,17 @@ compliant, with external dependencies kept to a minimum.
 Tuples, container algorithms and functional programming tools are not
 part of the standard we chose to comply to.
 Parts of the Boost C++ libraries are used to alleviate these
-shortcomings.~\autocite{boost}
+shortcomings.\autocite{boost}
 Linear algebra operations are managed through the Eigen C++ template
-library.~\autocite{eigen}
+library.\autocite{eigen}
 The Python layer provides input reading and parsing facilities,
-as implemented by the GetKw library.~\autocite{libgetkw}
+as implemented by the GetKw library.\autocite{libgetkw}
 Cavity construction and discretization is handled either by the Fortan
 or by the C layer, depending on which computational \emph{backend} is
 needed.
 Evaluation of the Green's functions, needed to set up the representation
 of the boundary integral operators, leverages \gls{AD}. We use the Taylor library, a template C++
-implementation of \acrshort{AD}.~\autocite{Bartholomew-Biggs2000-db, libtaylor}
+implementation of \acrshort{AD}.\autocite{Bartholomew-Biggs2000-db, libtaylor}
 The adoption of \git as \acrshort{DVCS}, \cmake for cross-platform builds and
 automatic documentation deployment on \readthedocs simplify
 extensibility of the module and promote third-party contributions to the
@@ -148,15 +148,15 @@ This is an indispensable feature to achieve frictionless language
 mixing.
 Library internal classes balance the dynamic polymorphism offered by
 inheritance and the static polymorphism offered by template programming.
-~\autocite{Alexandrescu2001-bp, Sutter2004-nt, Langr2012-js}
+\autocite{Alexandrescu2001-bp, Sutter2004-nt, Langr2012-js}
 Preeminent use of composition over inheritance keeps the coupling
-between different modules as low as possible.~\autocite{Gamma1995-fd}
+between different modules as low as possible.\autocite{Gamma1995-fd}
 
 The library is released under the terms of the
-version 3 \gls{LGPL}, a standard open-source license.~\autocite{LGPLv3}
+version 3 \gls{LGPL}, a standard open-source license.\autocite{LGPLv3}
 We strongly believe that open-source software is the key to a larger
 impact for scientific software and a standard license means lower
-thresholds to adoption and third-party contributions.~\autocite{LGPLv3}
+thresholds to adoption and third-party contributions.\autocite{LGPLv3}
 The library serves as our development platform for the \acrshort{PCM}.
 The interfaces to different quantum chemistry codes allow us to explore
 new methodologies, significantly cutting down development times.
@@ -204,7 +204,7 @@ I/O operations.
 \end{figure}
 
 The \acrshort{API} is implemented in ISO C99 as a \emph{context-aware} set of
-functions.~\autocite{library-ronacher, context-api-example}
+functions.\autocite{library-ronacher, context-api-example}
 Upon initialization of the library, a \emph{context} object containing
 the state of the \acrshort{PCM} \acrshort{API} is constructed and an
 opaque handle to it (a pointer in C++ parlance) is returned to the host
@@ -242,26 +242,26 @@ Race conditions are trivially avoided in such a scenario.
                  ]{snippets/Fortran_host.F90}
 
 \pcmsolver currently offers an implementation of the traditional collocation
-solvers for isotropic media,~\autocite{Tomasi2005-vm}
+solvers for isotropic media,\autocite{Tomasi2005-vm}
 together with some unique functionalities: the wavelet Galerkin solvers on smooth
-molecular surfaces,~\autocite{Weijo2010-hy, Bugeanu2015-tp} the Green’s
-functions for spherical diffuse interfaces~\autocite{DiRemigio2016-nn} and
+molecular surfaces,\autocite{Weijo2010-hy, Bugeanu2015-tp} the Green’s
+functions for spherical diffuse interfaces\autocite{DiRemigio2016-nn} and
 the delayed solvers for real-time \acrlong*{TDSCF}
-simulations.~\autocite{Corni2015-pe}
+simulations.\autocite{Corni2015-pe}
 
 Programming effort in this thesis has not only been directed at the
 creation of the \pcmsolver library, but also at interfacing it with a
 number of quantum chemistry codes.
 The first interface was implemented and released within the \DIRAC code
-and is described in \paper{I}.~\autocite{DIRAC15, DiRemigio2015-ou}.
+and is described in \paper{I}.\autocite{DIRAC15, DiRemigio2015-ou}.
 Interfaces to the \LSDALTON\autocite{LSDALTON16, Aidas2013-rp} and
 \DALTON\autocite{LSDALTON16, Aidas2013-rp} codes have followed, as
-described in \paper{II} and \paper{V}, respectively.~\autocite{Bugeanu2015-tp, pcm-openrsp}
-Details about the interface to \ReSpect~\autocite{ReSpect-3.5.0} can be
-found in \paper{IV}.~\autocite{pcm-respect}
-Coupling with \psicode~\autocite{Turney2012-de} has allowed us to implement the
+described in \paper{II} and \paper{V}, respectively.\autocite{Bugeanu2015-tp, pcm-openrsp}
+Details about the interface to \ReSpect\autocite{ReSpect-3.5.0} can be
+found in \paper{IV}.\autocite{pcm-respect}
+Coupling with \psicode\autocite{Turney2012-de} has allowed us to implement the
 \acrshort{PCM}-\acrshort{CC} developments described in this thesis.
-Finally, development of an interface with the KOALA code is underway.~\autocite{Hofener2014-ex, Hofener2016-qz}
+Finally, development of an interface with the KOALA code is underway.\autocite{Hofener2014-ex, Hofener2016-qz}
 
 \section{Continuum Solvation in the Relativistic Regime}\label{sec:relapcm}
 
@@ -372,7 +372,7 @@ As outlined in Chapter \ref{ch:CSM}, the boundary integral operators in the
   \right]\esp,
   \tag{\ref{eq:full-IEF} from Chapter \ref{ch:CSM}}
 \end{equation}
-can be set up once the Green's functions $\Gi$ and $\Ge$ are known.~\autocite{Cances1998-og}
+can be set up once the Green's functions $\Gi$ and $\Ge$ are known.\autocite{Cances1998-og}
 \citeauthor{Frediani2004-er} showed that a numerical representation of the
 Green's function is sufficient to obtain the boundary integral operators in the
 \acrshort{PCM} integral equation.
@@ -394,7 +394,7 @@ In this work, we analyzed both effect on the water-vapor and oil-water transfer
 of \ce{Li+}, \ce{Br-}, acetone, \emph{para}-nitroaniline and the L0 dye.
 Nonelectrostatic interactions were not included in our implementation, although
 they have been proved to be crucial for non homogeneous
-environments.~\autocite{Mozgawa2014-ad}
+environments.\autocite{Mozgawa2014-ad}
 Nevertheless our implementation represents a first significant step in the continuum treatment
 of such nontrivial environments.
 
@@ -414,7 +414,7 @@ relativistic and solvent effects initiated with \paper{I}.
 Whereas \paper{I} presented the essential framework for the coupling of
 four-component \acrshort{SCF} wave functions with a classical polarizable continuum,
 in this paper we explored the calculation of first-order magnetic properties:
-\gls{EPR} and \gls{pNMR} parameters.~\autocite{Repisky2010-ls, Malkin2011-nm,
+\gls{EPR} and \gls{pNMR} parameters.\autocite{Repisky2010-ls, Malkin2011-nm,
 Komorovsky2013-xa, Cherry2016-ij}
 The two works are thus complementary since they explore two different classes
 of properties and present implementations in two algorithmically different
@@ -422,11 +422,11 @@ relativistic quantum chemistry codes.
 In the relativistic framework, spin-orbit interactions are included from the
 outset in the variational optimization of the wave function.
 Hence, \acrshort{EPR} and \acrshort{pNMR} parameters are formulated as expectation
-values, by virtue of the Hellmann--Feynman theorem.~\autocite{Konishi2009-zb,
+values, by virtue of the Hellmann--Feynman theorem.\autocite{Konishi2009-zb,
 Helgaker2000-tz}
 Moreover, the \ReSpect code can exploit the \emph{Kramers unrestricted} formalism,
 allowing for spin polarization and thus granting facile access to the computation
-of spin-dependent properties.~\autocite{Dyall2007-tu}
+of spin-dependent properties.\autocite{Dyall2007-tu}
 The same modular programming strategy was adopted in crafting an interface between the
 relativistic four-component code \ReSpect\autocite{ReSpect-3.5.0} and \pcmsolver.
 
@@ -451,8 +451,8 @@ molecular materials can be routinely probed.
 The more intense the light source, the more complicated the interpretation of
 the measured signal.
 Our group has newly developed an open-ended methodology for the computation of
-\acrshort{SCF} response functions~\autocite{Thorvaldsen2008-sg, Ringholm2014-gx} and
-their residues.~\autocite{Friese2015-kb}
+\acrshort{SCF} response functions\autocite{Thorvaldsen2008-sg, Ringholm2014-gx} and
+their residues.\autocite{Friese2015-kb}
 These developments offer a route towards a synergistic experimental and
 theoretical approach to high-order absorption spectroscopies.
 \paper{V} grafts a classical polarizable continuum approach to solvation on top
@@ -463,13 +463,13 @@ to specific solute-solvent interactions.
 
 I developed the theoretical framework for the open-ended \acrshort{SCF} formulation
 of molecular response properties when a quantum/classical polarizable continuum
-Hamiltonian is used.~\autocite{Thorvaldsen2008-sg, Lipparini2010-be}
+Hamiltonian is used.\autocite{Thorvaldsen2008-sg, Lipparini2010-be}
 I provided its implementation within the \DALTON code, by interfacing the
 \pcmsolver library and the open-ended \acrshort{SCF} response code of
-\citeauthor{Ringholm2014-gx}~\autocite{Ringholm2014-gx, Friese2015-kb}
+\citeauthor{Ringholm2014-gx}\autocite{Ringholm2014-gx, Friese2015-kb}
 I performed extensive testing of the code by comparing with previously
 published implementations of the \acrshort{PCM}-\acrshort{SCF} response functions within
-\DALTON.~\autocite{Cammi2003-qy, Frediani2005-nc, Ferrighi2010-pm}
+\DALTON.\autocite{Cammi2003-qy, Frediani2005-nc, Ferrighi2010-pm}
 Together with coauthors Maarten T.~P.~Beerepoot and Yann Cornaton, I carried out
 the multiphoton absorption calculations presented in the paper. I contributed
 to data collection and data analysis.
