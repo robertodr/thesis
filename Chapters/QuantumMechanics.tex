@@ -599,7 +599,36 @@ For second order singles, doubles and triples one obtains:
 \end{equation}
 According to the $2n+1$ and $2n+2$ rules, energy corrections up to fifth
 order can be obtained from amplitudes and multipliers up to second
-order. Since the triples first appear to second order, the \gls{CCSD}
+order:
+\begin{subequations}\label{eq:mbpt-energies}
+  \begin{align}
+    E^{[1]}
+    &= \braket{\mathrm{HF} | \Phi | \mathrm{HF}} \label{eq:mbpt-1st} \\
+    E^{[2]}
+    &= \braket{\mathrm{HF} | \commutator{\Phi}{T_2^{[1]}} | \mathrm{HF}} \label{eq:mbpt-2nd} \\
+    E^{[3]}
+    &= \braket{\tbar{2}^{[1]} | \commutator{\Phi}{T_2^{[1]}} | \mathrm{HF}} \label{eq:mbpt-3rd} \\
+    E^{[4]} &= \braket{\tbar{2}^{[1]} | \commutator{\Phi}{T^{[2]}} |
+    \mathrm{HF} }
+    +
+    \braket{\tbar{2}^{[1]} | \BCHsecond{\Phi}{T_2^{[1]}}|
+    \mathrm{HF} } \label{eq:mbpt-4th} \\
+    E^{[5]} &=
+    \braket{\mathrm{HF} | \BCHsecond{\Phi}{T^{[2]}}|\mathrm{HF} }
+    + \braket{\tbar{2}^{[1]} |
+    \commutator{\commutator{\Phi}{T^{[2]}}}{T_2^{[1]}}
+    | \mathrm{HF} } \nonumber \\
+    &+ \sum_{u=1}^\mathcal{M}
+    \braket{\tbar{u}^{[2]} | \BCHfirst{\Phi}{T^{[2]}}|
+    \mathrm{HF} }
+    +\sum_{u=1}^\mathcal{M}
+    \braket{\tbar{u}^{[2]} | \BCHsecond{\Phi}{T_2^{[1]}}|
+    \mathrm{HF} } \label{eq:mbpt-5th}
+  \end{align}
+\end{subequations}
+
+
+Since the triples first appear to second order, the \gls{CCSD}
 energy is correct to third order in the fluctuation potential.
 The triples contributions to the fourth and fifth order corrections to
 the energy are given as:
