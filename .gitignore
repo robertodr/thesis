@@ -17,8 +17,7 @@
 *.out
 thesis.pdf
 RobertoDiRemigioPhDThesis.pdf
-RobertoDiRemigioPhDThesis-v1.pdf
-RobertoDiRemigioPhDThesis-v2.pdf
+RobertoDiRemigioPhDThesis-v*.pdf
 papers/SC15.pdf
 papers/pcmopenrsp.pdf
 *.tdo
