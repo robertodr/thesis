@@ -114,7 +114,7 @@ host quantum chemistry code.
 \label{fig:algorithm}
 \end{figure}
 
-The \pcmsolver library was developed to fulfill these requirements and
+The \pcmsolver library has been developed to fulfill these requirements and
 offer the community an easy-to-use implementation of the
 \acrshort{PCM}.\autocite{PCMSolver}
 \pcmsolver is written in C++ with Fortran, C and Python components.
@@ -123,17 +123,17 @@ C++ layer. To ensure the largest possible impact, the code is C++03 ISO standard
 compliant, with external dependencies kept to a minimum.
 Tuples, container algorithms and functional programming tools are not
 part of the standard we chose to comply to.
-Parts of the Boost C++ libraries are used to alleviate these
+Parts of the \Boost C++ libraries are used to alleviate these
 shortcomings.\autocite{boost}
-Linear algebra operations are managed through the Eigen C++ template
+Linear algebra operations are managed through the \Eigen C++ template
 library.\autocite{eigen}
 The Python layer provides input reading and parsing facilities,
-as implemented by the GetKw library.\autocite{libgetkw}
+as implemented by the \GetKw library.\autocite{libgetkw}
 Cavity construction and discretization is handled either by the Fortan
 or by the C layer, depending on which computational \emph{backend} is
 needed.
 Evaluation of the Green's functions, needed to set up the representation
-of the boundary integral operators, leverages \gls{AD}. We use the Taylor library, a template C++
+of the boundary integral operators, leverages \gls{AD}. We use the \Taylor library, a template C++
 implementation of \acrshort{AD}.\autocite{Bartholomew-Biggs2000-db, libtaylor}
 The adoption of \git as \acrshort{DVCS}, \cmake for cross-platform builds and
 automatic documentation deployment on \readthedocs simplify
@@ -151,7 +151,7 @@ Library internal classes balance the dynamic polymorphism offered by
 inheritance and the static polymorphism offered by template programming.
 \autocite{Alexandrescu2001-bp, Sutter2004-nt, Langr2012-js}
 Preeminent use of composition over inheritance keeps the coupling
-between different modules as low as possible.\autocite{Gamma1995-fd}
+between different submodules as low as possible.\autocite{Gamma1995-fd}
 
 The library is released under the terms of the
 version 3 \gls{LGPL}, a standard open-source license.\autocite{LGPLv3}
@@ -222,7 +222,7 @@ program, respectively.
 
 \lstinputlisting[language=C,
                  caption={Relevant calls to \pcmsolver in a C host program.
-                 Ellipsis in the functions arguments list stand for omitted parameters.
+                 Ellipses in the functions' argument list stand for omitted parameters.
                  For the full, functional example visit
                  \url{http://pcmsolver.readthedocs.io/en/v1.1.5/users/C-example.html}},
                  label={lst:C-host}
@@ -236,7 +236,7 @@ Race conditions are trivially avoided in such a scenario.
 \lstinputlisting[language=Fortran,
                  caption={Relevant calls to \pcmsolver in a Fortran host program.
                  Notice the use of the standard Fortan ISO C bindings.
-                 Ellipsis in the functions arguments list stand for omitted parameters.
+                 Ellipses in the functions' argument list stand for omitted parameters.
                  For the full, functional example visit
                  \url{http://pcmsolver.readthedocs.io/en/v1.1.5/users/fortran-example.html}},
                  label={lst:Fortran-host}
@@ -266,21 +266,41 @@ Finally, development of an interface with the KOALA code is underway.\autocite{H
 
 \section{Continuum Solvation in the Relativistic Regime}\label{sec:relapcm}
 
+\begin{tcolorbox}
+\begin{flushright}
+  {\small
+  \textbf{R. Di Remigio}, R. Bast, L. Frediani, and T. Saue
+  \\
+  \textsc{
+  Four-Component Relativistic Calculations in Solution with the
+  Polarizable Continuum Model of Solvation: Theory,
+  Implementation, and Application to the Group 16 Dihydrides
+  \ce{H2X} (\ce{X} = \ce{O}, \ce{S}, \ce{Se}, \ce{Te},
+  \ce{Po})
+  }
+  \\
+  \textit{J. Phys. Chem. A}, \textrm{2015}, \textbf{119}, 5061--5077
+  \\
+  DOI: \url{10.1063/1.4943782}
+  }
+\end{flushright}
+\end{tcolorbox}
+
 Systems containing heavy elements are notoriously challenging for quantum chemistry.
-In addition to their significantly large sizes, one has to properly include the
-effect of special relativity in the quantum chemical description in order to
-achieve at least qualitative agreement with experiment.
+One has to properly include the effect of special relativity in the
+quantum chemical description in order to achieve at least qualitative
+agreement with experiment.
 Additional complications arise if one needs to also include environment effects.
 Continuum models arguably represent a cost-effective strategy to achieve a first
 approximation of these effects.
-In this paper, we presented the first derivation and implementation of the \acrshort{PCM}
+In \paper{I} we presented the first derivation and implementation of the \acrshort{PCM}
 coupled to a \acrshort{SCF} description of the solute in the fully relativistic, four-component
 regime.
 Our preliminary calculations on the group 16 dihydrides \ce{H2X} (\ce{X} =
 \ce{O}, \ce{S}, \ce{Se}, \ce{Te}, \ce{Po}) have shown that the method predicts
 a noticeable interplay of relativistic and solvent effects when heavier
 elements are involved.
-The main point of the paper was, however, the adoption of a fully modular
+The main point of \paper{I} was, however, the adoption of a fully modular
 programming strategy. We showed that it is entirely possible to adopt the same
 \acrshort{PCM} code and implementation "checkpoints" across altogether different
 problem domains, Fig.~\ref{fig:algorithm}.
@@ -288,24 +308,43 @@ problem domains, Fig.~\ref{fig:algorithm}.
 As a by-product of the four-component implementation, we were able to obtain and visualize \acrshort{MEP} maps
 from four-component \acrshort{SCF} wave functions. These add yet another interpretive tool to the toolbox available
 in the four-component relativistic regime.
-The interface to \DIRAC was later released in the 2014 and later versions,
+The interface to \DIRAC was first released in the 2014 version,
 providing \acrshort{PCM} capabilities to the software package.
 
 I contributed the theoretical derivation of the quantum/classical polarizable
 terms in a four-component \acrshort{SCF} framework, for energies and linear response
 properties. I devised the coupling of the four-component program \DIRAC with
 \pcmsolver by providing the implementation and testing of:
-\begin{enumerate*}[label={\alph*)},font={\color{PMS1797}}]
+\begin{enumerate}%[label={\alph*)},font={\color{PMS1797}}]
   \item \acrshort{MEP} integrals for four-component wave functions,
   \item the additional Fock matrix contributions and
   \item the additional terms in the response equations.
-\end{enumerate*}
+\end{enumerate}
 I performed all the calculations and large part of the data analysis
 for the results reported in the paper.
 Finally, I wrote the first draft of the paper and coordinated editing of
 all subsequent versions.
 
 \section{The Wavelet Galerkin Boundary Element Method for PCM}\label{sec:wemlin}
+
+\begin{tcolorbox}
+\begin{flushright}
+  {\small
+  M. Bugeanu, \textbf{R. Di Remigio}, K. Mozgawa, S. S. Reine, H.
+  Harbrecht,  and L. Frediani
+  \\
+  \textsc{
+  Wavelet Formulation of the Polarizable Continuum Model. II. Use of
+  Piecewise Bilinear Boundary Elements
+  }
+  \\
+  \textit{Phys. Chem. Chem. Phys.}, \textrm{2015}, \textbf{17},
+  31566--31581
+  \\
+  DOI: \url{10.1039/C5CP03410H}
+  }
+\end{flushright}
+\end{tcolorbox}
 
 Continuum solvation models are inherently parametrized. Apart from solvent permittivities,
 the atomic radii and molecular surface definition play a crucial role
@@ -316,7 +355,7 @@ Traditionally, collocation methods have been used, but these require parametriza
 Galerkin methods do not suffer from such a limitation and additionally preserve symmetry of the underlying
 boundary integral operators.
 The use of biorthogonal wavelet bases as finite elements achieves sparsity in
-the \acrshort{BEM} procedure, due to their intrinsically hierarchical structure and
+the \acrshort{BEM} procedure, due to the intrinsical hierarchy and
 the existence of \emph{a priori} and \emph{a posteriori} matrix compression
 estimates.
 Thus, wavelet Galerkin \acrshort{BEM} represents a valid alternative to traditional
@@ -335,7 +374,7 @@ even for very large finite element bases. This suggests that, in some cases,
 \acrshort{BEM} collocation methodologies might slow down or even prevent the
 convergence of the quantum mechanical response equations solvers.
 
-For this paper, I provided template interface and test sets for the cavity
+For \paper{II}, I provided template interface and test sets for the cavity
 generator\autocite{Harbrecht2009-no, Harbrecht2011-dk} and wavelet Galerkin
 \acrshort{BEM} solver\autocite{Harbrecht2004-uo, Harbrecht2006-ug} with \pcmsolver.
 These were used to interface with the new C++ implementation of the wavelet
@@ -354,6 +393,24 @@ Finally, the interface to \LSDALTON was later released in the 2016 version,
 providing \acrshort{PCM} capabilities to the software package.
 
 \section{Non Homogeneous Environments}\label{sec:spherical}
+
+\begin{tcolorbox}
+\begin{flushright}
+  {\small
+  \textbf{R. Di Remigio}, K. Mozgawa, H. Cao, V. Weijo, and L.
+  Frediani
+  \\
+  \textsc{
+  A Polarizable Continuum Model for Molecules at Spherical
+  Diffuse Interfaces
+  }
+  \\
+  \textit{J. Chem. Phys.}, \textrm{2016}, \textbf{144}, 124103
+  \\
+  DOI: \url{10.1063/1.4943782}
+  }
+\end{flushright}
+\end{tcolorbox}
 
 Continuum solvation models offer a simple route to the treatment of non
 homogeneous environments.
@@ -399,16 +456,36 @@ environments.\autocite{Mozgawa2014-ad}
 Nevertheless our implementation represents a first significant step in the continuum treatment
 of such nontrivial environments.
 
-I contributed the theoretical work for this paper, based on earlier drafts from coauthors
+I contributed the theoretical work for \paper{III}, based on earlier drafts from coauthors
 Ville Weijo and Hui Cao. In particular, I derived the separation of
 the Coulomb singularity in its final form.
 Moreover, I contributed the implementation and testing of the Green's function code.
-The interface to the \LSDALTON program package, developed within paper II, was
+The interface to the \LSDALTON program package, developed within
+\paper{II}, was
 also used for this paper.
 I wrote the first draft of the paper and coordinated all subsequent editing stages.
 
 \section{Relativistic Calculation of EPR and pNMR Parameters in
 Solution}\label{sec:pcmepr}
+
+\begin{tcolorbox}
+\begin{flushright}
+  {\small
+  \textbf{R. Di Remigio}, M. Repisky, S. Komorovsky, P. Hrobarik, L.
+  Frediani, and K. Ruud
+  \\
+  \textsc{
+  Four-Component Relativistic Density Functional Theory with the
+  Polarizable Continuum Model: Application to EPR Parameters
+  and Paramagnetic NMR Shifts
+  }
+  \\
+  Accepted for publication in \textit{Mol. Phys.}
+  \\
+  DOI: \url{10.1080/00268976.2016.1239846}
+  }
+\end{flushright}
+\end{tcolorbox}
 
 \paper{IV} is a step further in our exploration of the interplay between
 relativistic and solvent effects initiated with \paper{I}.
@@ -445,6 +522,22 @@ package, providing \acrshort{PCM} and \acrshort{COSMO} capabilities.
 
 \section{Open-Ended Self-Consistent Field Response Theory in
 Solution}\label{sec:pcmopenrsp}
+
+\begin{tcolorbox}
+\begin{flushright}
+  {\small
+  \textbf{R. Di Remigio}, M. T. P. Beerepoot, Y. Cornaton, M. Ringholm,
+  A. H. S. Steindal, K. Ruud, and L. Frediani
+  \\
+  \textsc{
+  Open-Ended Formulation of Self-Consistent Field Response Theory with
+  the Polarizable Continuum Model for Solvation
+  }
+  \\
+  In preparation for submission to \textit{Phys. Chem. Chem. Phys.}
+  }
+\end{flushright}
+\end{tcolorbox}
 
 In recent years, the availability of strong lasers has allowed to
 design and carry out experiments where the high-order response of

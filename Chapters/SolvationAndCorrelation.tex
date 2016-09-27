@@ -54,6 +54,57 @@ the effect of connected triples excitations on top of the
 \acrshort{CCSD} wave function.
 The symmetric and asymmetric (T) corrections will be derived.
 
+\subsection*{Notation}
+
+For ease of reference, I will repeat some of the notational conventions
+introduced in Chapter \ref{ch:QM} here.
+The cluster operator at truncation level $\mathcal{M}$ is:
+\begin{equation}
+  T = \sum_{u=1}^\mathcal{M} T_u =
+  \sum_{u=1}^\mathcal{M}\sum_{\mu_u}\tamp{\mu_u}\cluster{\mu_u},
+  \tag{\ref{eq:cluster} from Chapter \ref{ch:QM}}
+\end{equation}
+where $\tamp{\mu_u}$ and $\cluster{\mu_u}$ are the cluster amplitudes
+and cluster operators for the $\mu_u$-th excited determinant at the
+$u$-th excitation level, respectively.
+The similarity transformed counterpart of the operator $O$ is denoted
+by $\overline{O}$:
+\begin{equation}
+  \overline{O} =\expo{-T}O\expo{T}.
+  \tag{\ref{eq:similarity-transformation} from Chapter \ref{ch:QM}}
+\end{equation}
+We recall that hermiticity of $O$ is not preserved by the similarity
+transformation.
+Manipulation of similarity transformed operators involves the use of
+their \acrlong*{BCH} expansions:
+\begin{equation}
+  \overline{O}
+  =
+  O + \BCHfirst{O}{T} + \BCHsecond{O}{T} + \ldots
+  =
+  O + \tilde{O},
+  \tag{\ref{eq:bch} from Chapter \ref{ch:QM}}
+\end{equation}
+since we are concerned with one- and two-electron operators only,
+such expansions will truncate after the third and fifth terms,
+respectively.\autocite{Helgaker2000-tz}
+The similarity transformation by means of the singles cluster operator
+only, \ie the $T_1$-transformation, will be denoted by a "check" on top
+of the operator:
+\begin{equation}
+  \check{O} = \expo{-T_1}O\expo{T_1}.
+  \tag{\ref{eq:t1-transformation} from Chapter \ref{ch:QM}}
+\end{equation}
+The $T_1$-transformation preserves the particle rank of the operator
+$O$, see Appendix \ref{app:mathematical-results} for details.
+Finally, the $u$-th excited component of the \acrlong*{CC} left state
+will be denoted as:
+\begin{equation}
+  \bra{\tbar{u}} = \sum_{\mu_u}\tbar{\mu_u}\bra{\mu_u},
+  \tag{\ref{eq:left-state} from Chapter \ref{ch:QM}}
+\end{equation}
+where $\tbar{\mu_u}$ are Lagrange multipliers.
+
 \section{Effective Coupled Cluster Lagrangian}
 \label{sec:effective-cc-lagrangian}
 
@@ -303,7 +354,7 @@ amplitudes equation, where only the polarization enters.
 Moreover, the leading terms in the correlated source operator
 expectation value prominently involve the
 singles cluster operator and the singles multiplier state.
-Three approximation have currently been proposed: \gls{PTES}, \gls{PTE(S)}
+Three approximations have currently been proposed: \gls{PTES}, \gls{PTE(S)}
 and \gls{PTE}.
 
 \subsection*{PTES Scheme}
@@ -349,7 +400,7 @@ and the corresponding governing equations:
 \end{subequations}
 These equations are, however, still coupled due to the presence of the
 multipliers in the \acrshort{CCS} source term in the polarization equation.
-To break the coupling, we reformulate the split the system of equations
+To break the coupling, we split the system of equations
 \eqref{eq:ptes} into \emph{two} systems of equations, one for the
 amplitudes:
 \begin{subequations}\label{eq:ptes-amp}
@@ -410,7 +461,7 @@ the source term. This adds a negligible $O(N^5)$ term to the iterative
 solution of the equations.
 The amplitudes equations are instead coupled to the polarization
 obtained using the full \acrshort*{CCS} expectation value of the source
-term. However, this adds another $O(N^5)$ step to the iterative
+term. This adds another $O(N^5)$ step to the iterative
 procedure, which is, overall, negligible.
 Let us notice that this scheme is not consistent with electrostatics, as
 the amplitudes and multipliers are optimized in the presence of two
@@ -452,9 +503,12 @@ which uncouples all equations:
   \end{align}
 \end{subequations}
 The amplitude equations are formally equivalent to those derived in the
-\acrshort{PTE} scheme, \emph{vide infra}. The equations for multipliers are also formally
-equivalent to the \acrshort{PTE} equations, apart from the equation
-determining the singles multipliers which features an additional term.
+\acrshort{PTE} scheme, \emph{vide infra}.
+The equations for the multipliers are also formally equivalent to the
+\acrshort{PTE} equations, apart from the equation determining the
+singles multipliers which features an additional term involving the
+polarization:
+${}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_q}} | \mathrm{HF}}\delta_{\mu_q\mu_1}$.
 This term is not, however, coupled to the other equations given that
 $\p$ is fixed once the singles amplitudes have been determined.
 
@@ -1074,7 +1128,7 @@ amplitudes, multipliers and polarization:
   \end{aligned}
 \end{equation}
 Similarly to the exposition in Chapter \ref{ch:QM}, these expressions
-will form the basis for the development of methods for the approximate
+will form the basis for the development of approximations
 beyond \acrshort*{CCSD} including connected triples.
 
 The \acrshort{PTED}-\acrshort{CCSD} scheme for the quantum/classical coupling
@@ -1661,7 +1715,7 @@ equation is modified.
 In the \acrshort{PTES} scheme, we replace the expectation value of the
 source with its \acrshort{CCS} counterpart. The singles amplitudes equation
 thus contains a quantum/classical coupling term. However, to avoid
-introducing a coupling with the multipliers equations, an additional
+the coupling with the multipliers equations, an additional
 approximation is introduced in the polarization equation, where the
 source term is truncated to its multiplier-independent part.
 As already noted, this leads to the use of \emph{two} different

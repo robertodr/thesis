@@ -25,12 +25,13 @@ years.\autocite{Olsen1985-nr, Helgaker1992-ph, Olsen1995-pf,
 Christiansen1998-pe, Norman2011-ad, Helgaker2012-cz, Pawlowski2015-sq}
 
 Section \ref{sec:exact-response} will give a brief introduction to
-response theory for isolated molecules. The concepts of
-quasienergy,\autocite{Christiansen1998-pe} variational perturbation
-theory\autocite{Helgaker1992-ph} and pole-and-residue
-analysis of response functions\autocite{Olsen1985-nr} will be introduced.
-The exposition closely follows the one by \citeauthor{Saue2002-ns}
-in \noparcite[ref.][]{Saue2002-ns}.
+response theory for isolated molecules.
+
+\noindent The concepts of quasienergy,\autocite{Christiansen1998-pe} variational
+perturbation theory\autocite{Helgaker1992-ph} and pole-and-residue
+analysis of response functions\autocite{Olsen1985-nr} will be
+introduced. The exposition closely follows the one by
+\citeauthor{Saue2002-ns} in \noparcite[ref.][]{Saue2002-ns}.
 I will explicitly derive the \acrshort{SCF} response function for a
 quantum/classical polarizable Hamiltonian in Section
 \ref{sec:csm-response}. The derivation will employ the
@@ -124,7 +125,7 @@ phase-separated ansatz for the time-dependent wave function:
   \psi(t) = \expo{-\mathrm{i}F(t)}\bar{\psi}(t),
 \end{equation}
 where the time-derivative of the phase factor defines the time-dependent
-\emph{quasienergy}:\autocite{Christiansen1998-pe, Pawlowski2015-sq}
+\emph{quasienergy}:
 \begin{equation}
   Q(t) = \dot{F}(t) = \Braket{\bar{\psi}(t) |
   H_0 + V(t) - \mathrm{i}\pderiv{}{t}
@@ -132,9 +133,9 @@ where the time-derivative of the phase factor defines the time-dependent
 \end{equation}
 The time-dependent quasienergy is variational, but the corresponding
 time-dependent Hellmann--Feynman theorem cannot straightforwardly be
-applied to the calculation of molecular properties. Fortunately, we can exploit the
-periodicity of the perturbation operator to introduce the time-averaged
-quasienergy:
+applied to the calculation of molecular properties.\autocite{Christiansen1998-pe, Pawlowski2015-sq}
+Fortunately, we can exploit the periodicity of the perturbation operator
+to introduce the time-averaged quasienergy:
 \begin{equation}
   \aveQ =
  \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} \diff t Q(t) =
@@ -207,11 +208,11 @@ that the corresponding frequencies are permuted concomitantly.
 
 Having introduced response functions as a useful tool to quantify the
 effect of external perturbations on molecular properties, it is now time
-to consider how to actually compute them.
+to consider how to compute them.
 In this Section, we are concerned with exact wave functions that can
-thus be parametrized in a variational fashion by a set of parameters
+be variationally parametrized by a set of parameters
 $\vect{\lambda}$: $\ket{0}=\ket{0(\vect{\lambda})}$.
-We recall that the Lagrangian method outlines in Section
+We recall that the Lagrangian method outlined in Section
 \ref{sec:coupled-cluster} can be employed also in this
 case.\autocite{Christiansen1998-pe, Helgaker2012-cz, Pawlowski2015-sq}
 The optimal parameter set is determined upon minimization of the
@@ -272,8 +273,8 @@ where the following tensors were introduced:
  \end{align}
 \end{subequations}
 
-The response equations, determining the $\vect{\lambda}^{[n]}$ tensor of
-perturbed wave function parameters, are obtained by differentiating the
+The response equations, determining the tensor of
+perturbed wave function parameters $\vect{\lambda}^{[n]}$, are obtained by differentiating the
 variational condition on the time-averaged quasienergy Eq.
 \eqref{eq:var-cond}:\autocite{Olsen1985-nr, Helgaker1992-ph, Christiansen1998-pe}
 \begin{equation}
@@ -322,7 +323,7 @@ The excitation energies of the system appear in the denominators
 $\omega_{n0} = E_n - E_0$ and can thus be identified as the \emph{poles}
 of the response function. Moreover, the \emph{residues} at
 the poles are the transition moments determining the intensity of
-spectroscopic transitions:
+the spectroscopic transitions:
 \begin{equation}
   \lim_{\omega_b\rightarrow\omega_{n0}}
   \response{V_A}{V_B}{\omega_b}
@@ -334,8 +335,8 @@ about the excited states \emph{via} single and double
 residues.\autocite{Olsen1985-nr, Christiansen1998-pe, Helgaker2012-cz}
 
 The derivation above holds for an exact state, a situation that is never
-realized in common practice. The power of response theory, however, is
-in its applicability to exact and approximate state theories alike.
+realized in common practice. However, response theory is
+also applicable to approximate states.
 As noted by \citeauthor{Norman2011-ad}, a response theory treatment of
 molecular properties can be summarized into the following four
 steps:\autocite{Norman2011-ad}
@@ -359,7 +360,7 @@ By formulating the perturbation-strenght derivative of the time-averaged
 quasienergy Lagrangian in terms of the \acrshort*{AO} density matrix,
 the authors were able to formulate arbitrary order response functions
 in the \acrshort*{AO} basis.
-The density matrix is the variational degree of freedom and response
+The density matrix is the variational degree of freedom and the response
 equations can be obtained by differentiation of the \gls{TDSCF}
 equation, the stationarity condition on the density matrix.
 The approach lends itself to an efficient \acrshort*{AO}-based
@@ -391,18 +392,20 @@ This is clearly difficult to model with continuum models, since the
 entire frequency spectrum of the permittivity $\diel(\omega)$ would be
 required.\autocite{Ingrosso2003-ev, Caricato2005-lo,
 Mennucci2005-vi, Caricato2006-ba, Corni2015-pe}
-However, if one consider the initial steps of an electronic excitation
+However, if one considers the initial steps of an electronic excitation
 process, a Franck--Condon-like response of the solvent can be assumed.
-Nuclear motions inside and among solvent molecules will not be able to
-follow the fast rearrangement of the solute electronic density, the
+Nuclear motions of the solute and solvent molecules alike will not be able to
+follow the fast rearrangement of the electronic density, therefore the
 corresponding part of the response will remain frozen in the state
-immediately previous the change.
+immediately preceding the change.
+Such an assumption, albeit approximate, leads to the following partition
+of the polarization vector:
 The polarization vector will then be (approximately) a sum of two
 components:
 \begin{equation}
- \vect{P} \simeq \vect{P}_\mathrm{fast} + \vect{P}_\mathrm{slow},
+ \vect{P} \simeq \vect{P}_\mathrm{fast} + \vect{P}_\mathrm{slow}.
 \end{equation}
-this is equivalent to consider only the asymptotic limits of the solvent
+This is equivalent to considering only the asymptotic limits of the solvent
 dielectric spectrum, \ie the static $\diels$ and optical
 dielectric constants $\dield$.
 
@@ -459,8 +462,8 @@ superscript:
 \end{equation}
 In this notation, the $abc\ldots$ indices denote the perturbations with
 respect to which differentiation occurs. The index $m$ denotes the order
-of differentiation with respect to the density matrix. Eventually, $n$
-eventually denotes the order of differentiation with respect to the
+of differentiation with respect to the density matrix. $n$
+denotes the order of differentiation with respect to the
 polarization.
 The classical interaction kernel $\V$ might, in the most general
 scenario, depend on the molecular geometry.
@@ -587,15 +590,16 @@ Kjaergaard2008-hy}
 \end{align}
 \end{subequations}
 The generalized Hessian matrix $\genHessian$ includes two types of
-classical terms. \emph{Implicit} terms are those included in the
-zeroth-order Fock matrix, $\mat{F}$.
+classical terms: implicit and explicit. \emph{Implicit} terms are those
+included in the zeroth-order Fock matrix, $\mat{F}$.
 The last two terms in Eq. \ref{eq:E2-lintra} are \emph{explicit} terms,
 as they explicitly involve the $N$-th order homogenous polarization
 variational density.
 The nonequilibrium response framework needed in continuum models when
 dealing with frequency-dependent properties,\autocite{Cammi1999-rb, Tomasi2005-vm}
 will affect the explicit terms in Eq. \ref{eq:E2-lintra} which are
-evaluated by means of the optical permittivity $\dield$.
+evaluated by making use of the optical permittivity $\dield$ in the
+polarization equations \eqref{eq:part-polarization-eq}.
 The \acrlong*{RHS} in the response equation only includes terms that
 depend on particular contributions up to the desired order or
 lower-order perturbed variational densities:\autocite{Ringholm2014-gx}
@@ -612,7 +616,7 @@ where $\mathbfcal{F}$ is the generalized \acrshort*{KS} matrix, see
 A direct solution of the response equation \eqref{eq:response-equation} by inversion
 is not feasible due to the size of the $\left[\genHessian -
 \omega_{b_N}\genMetric \right]$ matrix. \emph{Subspace iteration}
-methods are usually employed, the solution is achieved iteratively
+methods are usually employed and the solution is achieved iteratively
 by enlarging a projection subspace of trial vectors.\autocite{Saad2003-oa,
 Saad2011-gm, Kauczor2011-rd, Malmqvist2013-vw}
 These methods can be implemented efficiently and in matrix-free form

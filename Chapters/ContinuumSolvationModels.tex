@@ -84,7 +84,7 @@ averaging of the microscopically detailed motion over phase space
 trajectories or on the appropriate statistical
 ensemble.\autocite{Hill1960-ql}
 The need for ensemble averages leads us to the following observations:
-\begin{enumerate*}[label={\alph*)},font={\color{PMS1797}}]
+\begin{enumerate}%[label={\alph*)},font={\color{PMS1797}}]
  \item
    the need for \emph{macroscopic} parameters, absent from the
    microscopic Hamiltonian Eq. \eqref{eq:solution-ham}, in carrying out
@@ -97,7 +97,7 @@ The need for ensemble averages leads us to the following observations:
    Even atomistic simulations will lead to results that are essentially
    averages. The discrete picture of the system has been replaced by
    some continuous distribution function.
-\end{enumerate*}
+\end{enumerate}
 
 These observations strongly suggest that one can perform the averaging
 step \emph{before} embarking into the solution of the quantum mechanical
@@ -109,7 +109,7 @@ a term only depending on the solute degrees of freedom, represented by
 the averaged, continuous response functions of the solvent.
 This is the physical setting of the \gls{PCM} and is schematically
 depicted in Figure \ref{fig:IEF}.
-The solute molecule is enclose in a \emph{cavity} inside the
+The solute molecule is enclosed in a \emph{cavity} inside the
 structureless continuum representing the solvent and the basic energetic
 quantity is a \emph{free energy}:\autocite{Tomasi1994-gv,
 Amovilli1998-pv, Tomasi2005-vm}
@@ -123,9 +123,9 @@ as the solute geometry does not change.\autocite{Tomasi1994-gv,
 Floris1997-tu}
 The second term $G_\mathrm{el}$ is the most important one in the
 framework of continuum models. It accounts for the mutual electrostatic
-polarization of solute and solvent, see Section \ref{sec:IEF}.
-The third $G_\mathrm{dis}$ and fourth $G_\mathrm{rep}$ terms account for
-dispersion and repulsion interactions,
+polarization of solute and solvent (Section \ref{sec:IEF})
+The third and fourth terms account for
+dispersion ($G_\mathrm{dis}$) and repulsion ($G_\mathrm{rep}$) interactions,
 respectively.\autocite{Amovilli1997-fo, Weijo2010-jy}
 Finally, $G_\mathrm{Mm}(T)$ accounts for the collective molecular
 motions of the solute-solvent system. It explicitly depends on the
@@ -139,8 +139,10 @@ While a balanced description of solvation chemistry certainly demands
 a proper treatment of all solute-solvent interactions, especially when
 non homogeneous environments are studied,\autocite{Mozgawa2014-ad,
 Mozgawa2016-wf} it is also true that the electrostatic component is the
-most numerically relevant and the most sensitive to changes in the
-system studied and in the level of quantum mechanical description.
+most numerically relevant, especially when considering energy
+differences between different electronic states.
+%and the most sensitive to changes in the
+%system studied and in the level of quantum mechanical description.
 
 \begin{figure}[!h]
   \centering
@@ -176,7 +178,7 @@ be treated within the model.
 However, we assume that its support is entirely within the cavity,
 $\Supp(\rhoi) \subseteq \Omegai$. This assumption is, of course, false
 for quantum mechanical charge densities. It can however be proven that
-the errors induced by this \emph{charge penetration} are not so
+the errors induced by this \emph{charge penetration} are not
 severe.\autocite{Chipman2000-us, Cances2001-qs, Cances2001-qn}
 
 Formulated as such, the \gls*{PCM} is a well-known problem in classical
@@ -202,7 +204,7 @@ find the solution $u(\vect{r})$ to the following set:
 Eqs. \eqref{eq:trace-jump} and \eqref{eq:conormal-jump}
 are the \emph{jump conditions}, expressed in terms of trace operators
 for the solution $u$ and its \emph{conormal} derivative.
-For notational simplicity, will use the symbols $\partiale$ and $\partiali$
+For notational simplicity, we will use the symbols $\partiale$ and $\partiali$
 for the latter and only give it in explicit form when needed.
 Further mathematical details and technical results on the definition of
 function traces and their use in setting up the proper normal and
@@ -314,12 +316,12 @@ only be achieved analytically for simple cavity geometries, such as
 single spheres and ellipsoids.
 When more general molecular cavities are employed one has to resort to a
 numerical technique: the \gls{BEM}. This is implemented in four steps:
-\begin{enumerate*}[label={\alph*)},font={\color{PMS1797}}]
+\begin{enumerate}%[label={\alph*)},font={\color{PMS1797}}]
     \item define the molecular cavity
     \item mesh the molecular surface \label{item:mesh}
     \item discretize the integral equation \label{item:discretize} and
     \item solve the linear systems by a suitable numerical technique.
-\end{enumerate*}
+\end{enumerate}
 Many different approaches to these four steps have been presented, both
 in the field of the \acrshort{BEM} and in the context of the \acrshort{PCM}.
 
@@ -328,7 +330,7 @@ interlocking spheres. The radii are chosen from a suitable set, usually
 van der Waals radii.\autocite{Bondi1964-dt, Mantina2009-hb}
 If one imagines to model a solvent molecule as a rigid sphere,
 three types of molecular surfaces can be defined:
-\begin{enumerate*}[label={\alph*)},font={\color{PMS1797}}]
+\begin{enumerate}%[label={\alph*)},font={\color{PMS1797}}]
   \item
     the union of the interlocking spheres surfaces is the \gls{vdWS},
     Figure \ref{fig:vdWS}
@@ -337,7 +339,7 @@ three types of molecular surfaces can be defined:
     \gls{SAS}, Figure \ref{fig:SAS}
   \item the locus of points defined by the contact point of the solvent
     spherical probe while rolling over the \acrshort{vdWS} is the \gls{SES}, Figure \ref{fig:SES}.
-\end{enumerate*}
+\end{enumerate}
 \begin{figure}[tb]
  \centering
  \begin{subfigure}{.45\textwidth}
@@ -364,7 +366,7 @@ three types of molecular surfaces can be defined:
  Reproduced from \noparcite[ref.][]{Harbrecht2011-dk}.}
 \end{figure}
 Alternative definitions based on the isodensity surface of the molecular solute
-have been put forth.\autocite{Foresman1996-wv}
+have also been put forth.\autocite{Foresman1996-wv}
 
 Steps \ref{item:mesh} and \ref{item:discretize} are closely intertwined,
 in the technical \acrshort{BEM} literature they go under the name of
@@ -558,7 +560,7 @@ but has been successfully exploited in the past.\autocite{Tomasi2005-vm}
 
 In this thesis we advocate a different theoretical approach: the
 variational formulation of classical polarizable models.
-Why so? In such a framework the \acrshort{ASC} becomes an additional,
+In such a framework the \acrshort{ASC} becomes an additional,
 independent, variationally optimizable degree of freedom.
 This makes the coupling to, \eg, extended Lagrangian dynamics
 trivial.\autocite{Car1985-jw}
@@ -569,11 +571,11 @@ The principle of least action is however formulated in terms of
 \acrshort{MEP} or the \acrshort{ASC}.
 A true energy functional has to fulfill the following
 properties:\autocite{Solis2013-ef}
-\begin{enumerate*}[label={\alph*)},font={\color{PMS1797}}]
+\begin{enumerate}%[label={\alph*)},font={\color{PMS1797}}]
     \item physical extremal points,
     \item equilibrium values are true energies \label{item:equil-prop} and
     \item convexity (positive-definiteness)
-\end{enumerate*}
+\end{enumerate}
 \citeauthor{Allen2001-fp} and \citeauthor{Attard2003-vr} pioneering
 attempts resulted in functionals of scalar densities violating
 Property \ref{item:equil-prop} and could not thus be used in extended Lagrangian
@@ -669,7 +671,7 @@ fields and constitutes the polarization energy of the medium.
 The topic of variational formulations is particularly important in the
 field of \acrshort{MD} simulations.\autocite{Jadhao2012-gf, Jadhao2013-ry, Jadhao2013-hs,
 Solis2013-ef}
-Our focus however is on the quantum mechanical calculations of molecular
+Our focus is however on the quantum mechanical calculations of molecular
 properties and the variational formulation is advantageous since it
 dispenses us from manipulating cumbersome nonlinear coupling terms in
 the Hamiltonian.
@@ -684,7 +686,8 @@ entails the existence of a classical Hellmann--Feynman theorem:
 which is paramount in the formulation of molecular properties, see
 Chapter \ref{ch:molprop}.
 The variational formulation also lends itself to an implementation
-in terms of simultaneous optimization.\autocite{Lipparini2011-aj}
+as a simultaneous optimization of the electronic structure and
+polarization degrees of freedom.\autocite{Lipparini2011-aj}
 
 Finally, let us re-express the equations above in a supermatrix
 formalism:

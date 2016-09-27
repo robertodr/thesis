@@ -96,7 +96,7 @@ operators as:\autocite{Szabo1989-vl, McWeeny1992-oj, Konishi2009-zb}
  \end{align}
 \end{subequations}
 while in the relativistic regime with the \gls{DC}
-approximation:\autocite{Dyall2007-tu, Konishi2009-zb, Reiher2014-cp}
+approximation they become:\autocite{Dyall2007-tu, Konishi2009-zb, Reiher2014-cp}
 \begin{subequations}
  \begin{align}
    h(\vect{r}_i) &= (\mat{\beta} - I_4)\si{\electronmass}c^2 +
@@ -203,7 +203,7 @@ that are almost always embedded into approximate wave function ans\"{a}tze.\auto
 According to the former, the energy is stable with respect to orthogonal
 variations of the wave function. In practice this guarantees that
 minimization with respect to the parameters of a well-crafted ansatz
-ensures convergence from above to the exact energy.\autocite{Szabo1989-vl, McWeeny1992-oj, Helgaker2000-tz}
+will converge from above to the exact energy.\autocite{Szabo1989-vl, McWeeny1992-oj, Helgaker2000-tz}
 A wave function ansatz enjoying the latter property guarantees that the
 energy of a system made of noninteracting subsystems is equal to the sum of
 the energies of the isolated subsystems.\autocite{Helgaker2000-tz, Nooijen2005-ux}
@@ -363,9 +363,9 @@ definition of this additional term:
   \quad&
   v_\mathrm{xc}(\vect{r})
   =
-  \frac{\delta E_\mathrm{xc}[\rho(\vect{r})]}{\delta \rho(\vect{r})}
+  \frac{\delta E_\mathrm{xc}[\rho(\vect{r})]}{\delta \rho(\vect{r})}.
 \end{alignat}
-notice moreover the exact exchange admixing factor $\gamma$ in the
+Notice moreover the exact exchange admixing factor $\gamma$ in the
 two-electron part of the \acrshort*{KS} matrix.
 
 How are \glspl*{MO} constructed? The usual approach is to expand them in
@@ -394,9 +394,10 @@ an exponential mapping on top of a single reference
 function:\autocite{Crawford2000-ey, Helgaker2000-tz, Bartlett2007-mz,
 Shavitt2009-mr}
 \begin{equation}
-  \ket{\mathrm{CC}} = \expo{T}\ket{\mathrm{HF}},
+  \label{eq:cluster}
+  \ket{\mathrm{CC}} = \expo{T}\ket{\mathrm{HF}}.
 \end{equation}
-out of convenience we assume, here and in the following, that the
+Out of convenience we assume, here and in the following, that the
 reference function is a closed-shell \acrshort{HF} wave function.
 The \emph{cluster} operator appearing in the exponential is given as:
 \begin{equation}
@@ -428,18 +429,25 @@ the Hamiltonian operator. This leads to the \emph{linked} form of the
 \acrshort{CC} equations, which is manifestly size-extensive term-by-term.
 Use of similarity transformed operators is ubiquitous when dealing with
 \acrshort{CC} theory and we introduce the following notation for it:
-\begin{equation}
+\begin{equation}\label{eq:similarity-transformation}
   \overline{O} =\expo{-T}O\expo{T}
 \end{equation}
 The cluster operator is not Hermitian. Hence, the similarity transformation
 will not, in general, preserve any of the symmetries, such as
 hermiticity, that the bare operators might have possessed.
 Similarity-transformed operators can be expanded in a \acrshort{BCH}
-commutator series.
+commutator series:
+\begin{equation}\label{eq:bch}
+  \overline{O}
+  =
+  O + \BCHfirst{O}{T} + \BCHsecond{O}{T} + \ldots
+  =
+  O + \tilde{O}.
+\end{equation}
 It can be shown that the \acrshort{BCH} expansion of the
 similarity-transformed Hamiltonian \emph{exactly} truncates after the
 four-fold nested commutator, greatly simplifying algebraic derivations
-and manipulations.
+and manipulations.\autocite{Helgaker2000-tz}
 
 Introducing the \gls{MP} partitioning of the Hamiltonian leads to
 further insight:
@@ -458,7 +466,7 @@ relatively compact form:
   \overline{F} = F + \sum_{u=1}^\mathcal{M}\sum_{\mu_u}\denom{\mu_u}\tamp{\mu_u}\cluster{\mu_u}
 \end{equation}
 where $\denom{\mu_u}$ is the difference in orbital energies between the
-virtual and occupied spin-orbitals of excitation $u$.
+occupied and virtual spin-orbitals of excitation $u$.
 For the fluctuation potential the similarity transformation truncates
 after the fifth term, including up to four-fold nested commutators.
 
@@ -511,6 +519,7 @@ where $E_0 = \sum_{i}\epsilon_i$ is the sum of the one-electron orbital
 energies and the shorthand notation for the Lagrangian multiplier state (left
 \acrshort*{CC} state) was introduced:
 \begin{equation}
+  \label{eq:left-state}
   \bra{\tbar{u}} = \sum_{\mu_u}\tbar{\mu_u}\bra{\mu_u}.
 \end{equation}
 Differentiation of the Lagrangian with respect to the multipliers
@@ -587,8 +596,10 @@ To first order, one has:
   \mathrm{HF}}
   = \denom{\mu_2}\tbar{\mu_2}^{[1]}
 \end{equation}
-which shows that singles, due to Brillouin's condition, and triples
-amplitudes are of second and higher order.
+which shows that singles and triples amplitudes are of second and higher
+order.
+For the former this is a consequence of Brillouin's condition, valid for
+the reference closed-shell determinant.
 For second order singles, doubles and triples one obtains:
 \begin{equation}\label{eq:2nd-order}
   \denom{\mu_q}\tamp{\mu_q}^{[2]}
@@ -652,14 +663,14 @@ the energy are given as:
   \end{align}
 \end{subequations}
 These expressions form the basis for the development of reduced-scaling
-\acrshort*{CC} schemes were the double and triple excitation are treated
+\acrshort*{CC} schemes were the double and triple excitations are treated
 approximately. These are the subject of the next Section.
 
 \section{Approximate Coupled Cluster Methods}\label{sec:cc-approximate}
 
 The \acrshort*{CCSD} scheme, which scales as $N^6$, is really successful
 in recovering a large portion of the correlation energy, but as hinted
-at in the previous Section is only correct to third order in
+at in the previous Section, is only correct to third order in
 perturbation theory.
 Triple excitations are needed to get higher accuracy, but the full
 \gls{CCSDT} model, with its steep $N^8$ scaling, is unfeasible for all
@@ -677,6 +688,7 @@ theory.
 For the development of iterative schemes, we assume that $T_1 = O(0)$
 and use $T_1$-transformed operators:
 \begin{equation}
+  \label{eq:t1-transformation}
   \check{O} = \expo{-T_1}O\expo{T_1}.
 \end{equation}
 Since $T_1$ is a one-electron operator, the $T_1$-transformation does
@@ -720,7 +732,7 @@ doubles:\autocite{Christiansen1995-vy, Helgaker2000-tz}
   + \braket{\tbar{2} | \check{\Phi} | \mathrm{HF}}
   \end{aligned}
 \end{equation}
-The \acrshort*{CC2} methods brings the scaling of the \acrshort*{CCSD}
+The \acrshort*{CC2} method brings the scaling of the \acrshort*{CCSD}
 method down to $N^5$ in the iterative step.
 From the approximate \acrshort*{CC2} Lagrangian we can derive the
 multipliers equations:
