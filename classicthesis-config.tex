@@ -42,7 +42,7 @@
 % ****************************************************************************************************
 % 2. Personal data and user ad-hoc commands
 % ****************************************************************************************************
-\newcommand{\myTitle}{PCM Goes Viral\xspace}
+\newcommand{\myTitle}{The Polarizable Continuum Model Goes Viral\xspace}
 \newcommand{\mySubtitle}{Advances in the Theory and Implementation of the
 Polarizable Continuum Model\xspace}
 \newcommand{\myDegree}{Philosphiae Doctor (Ph.~D.)\xspace}
@@ -110,6 +110,14 @@ urldate=long
 \AtEveryBibitem{%
   \clearlist{language}%
 }
+\DeclareFieldFormat[article]{title}{\textsf{#1}}
+\DeclareFieldFormat[inbook]{title}{\textsf{#1}}
+\DeclareFieldFormat[incollection]{title}{\textsf{#1}}
+\DeclareFieldFormat[inproceedings]{title}{\textsf{#1}}
+\DeclareFieldFormat[inproceedings]{booktitle}{\textit{#1}}
+\DeclareFieldFormat[inproceedings]{note}{#1}
+\DeclareFieldFormat[unpublished]{title}{\textsf{#1}}
+
 \DeclareCiteCommand{\noparcite}%[\mkbibbrackets] CITATION LIKE in ref. 6 WITHOUT SQUARE BRACKETS
   {\usebibmacro{cite:init}%
    \usebibmacro{prenote}}
@@ -118,7 +126,6 @@ urldate=long
   {}
   {\usebibmacro{cite:dump}%
    \usebibmacro{postnote}}
-
 
 \PassOptionsToPackage{fleqn}{amsmath}       % math environments and more by the AMS
     \usepackage{amsmath}
@@ -272,7 +279,7 @@ urldate=long
 \usepackage{amssymb}
 \usepackage{fontspec}
 \setmainfont[Mapping=tex-text]{MinionPro-Regular}
-\setsansfont[Scale=0.8]{Open Sans}
+\setsansfont[Scale=0.85]{Open Sans}
 \setmonofont[Scale=0.8]{Bitstream Vera Sans Mono}
 \usepackage[math-style=ISO,
             bold-style=ISO]{unicode-math}
