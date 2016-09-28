@@ -16,11 +16,11 @@ No proofs or examples are given, the interested reader is referred to the
 monographs by \citeauthor{Ern2004-oo}, \citeauthor{Hsiao2008-xb} and
 \citeauthor{Sauter2011-an}\autocite{Ern2004-oo, Hsiao2008-xb, Sauter2011-an}
 
-\section{The \texorpdfstring{$T_1$}{T1}-Transformation}\label{sec:T1-cc}
+\section{The \texorpdfstring{$\T1$}{T1}-Transformation}\label{sec:T1-cc}
 
-$T_1$ is a one-electron operator, carrying out a similarity transformation of
-an operator $O$ by means of its exponential mapping will preserve the particle
-rank of $O$.\autocite{Koch1994-vr}
+Carrying out a similarity transformation of
+an operator $O$ by means of the $T_1$ cluster operator will preserve the particle
+rank of $O$, since $T_1$ is a one-electron operator.\autocite{Koch1994-vr}
 Starting from the arbitrary order Lagrangian \eqref{eq:cc-lagrangian},
 we want to derive their $T_1$-transformed
 expressions.
@@ -291,7 +291,7 @@ is simply:
   + \frac{1}{2}\commutator{\commutator{O}{T_1}}{T_1} | \mathrm{HF} }
 \end{aligned}
 \end{equation}
-Adding double excitation to the manifold yields:
+Adding double excitations to the manifold yields:
 \begin{equation}\label{eq:ccsd-expectation-value}
   \begin{aligned}
   O(\tamp{}, \tbar{})_\mathrm{CCSD}
@@ -304,10 +304,10 @@ Adding double excitation to the manifold yields:
   + \braket{\tbar{1} | \commutator{O}{T_2} | \mathrm{HF} }
   + \braket{\tbar{2} | \commutator{O}{T_2}
       + \commutator{\commutator{O}{T_1}}{T_2}
-  | \mathrm{HF} }
+  | \mathrm{HF} },
   \end{aligned}
 \end{equation}
-a number of terms was dropped thanks to Lemma \ref{lemma:exc-rank} and its
+where a number of terms was dropped thanks to Lemma \ref{lemma:exc-rank} and its
 Corollary.
 Eventually, including triples one obtains:
 \begin{equation}\label{eq:ccsdt-expectation-value}
@@ -332,7 +332,7 @@ where Lemma \ref{lemma:exc-rank} and its corollary were again extensively employ
 
 The use of normal-ordered operators is common in \acrlong*{CC} theory. Both for
 the dressed and bare representations, the expectation values of such operators
-can be formed by simply replacing operator with its normal-ordered counterpart,
+can be formed by simply replacing the operator with its normal-ordered counterpart,
 $\check{O}_\mathrm{N}$ or $O$, respectively.
 This achieves elimination of the reference expectation value from the first
 term in equation \eqref{eq:ccs-expectation-value}.
@@ -604,8 +604,7 @@ equation:
 
 \section{Weak Formulation of Partial Differential Equations}\label{sec:weak}
 
-In this Section, I will show how one can reformulate the transmission problem
-in a variational fashion.
+The transmission problem can be reformulated in a variational fashion.
 Such a formulation allows for a larger vector space, with weaker regularity
 conditions, to be explored as solution space for the problem.
 We will follow the exposition of \citeauthor{Ern2004-oo} quite closely
