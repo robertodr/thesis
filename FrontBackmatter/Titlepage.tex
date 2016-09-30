@@ -1,39 +1,58 @@
 %*******************************************************
 % Titlepage
 %*******************************************************
+
+\newgeometry{textheight=500pt,
+          textwidth=400pt
+         }
 \begin{titlepage}
-    % if you want the titlepage to be centered, uncomment and fine-tune the line below (KOMA classes environment)
-    \begin{addmargin}[-1.5cm]{-1.5cm}
-    \drop=0.1\textheight
-    \vspace*{\drop}
+  \begingroup% Handy Guide to Papermaking
+  \drop=0.1\textheight
+  \begin{minipage}[t]{0.05\textwidth}
+    \color{myBlue}
+    \rule{6pt}{\textheight}
+  \end{minipage}
+  \hspace{0.05\textwidth}
+  \begin{minipage}[t]{0.8\textwidth}
+    \vspace*{0.5\drop}
+    {\LARGE Roberto \textsc{Di Remigio}} \\
+    \rule{\textwidth}{1pt} \par
+    \vspace{3\baselineskip}
+    {\noindent\Huge\color{myBlue}\scshape
+    The Polarizable Continuum Model Goes Viral!} \par
+    \vspace{2\baselineskip}
+    {\Large\itshape Extensible, Modular and Sustainable Development
+    \\
+    of Quantum Mechanical Continuum Solvation Models} \par
+    \vspace{6.5\baselineskip}
+    {
+    \large \textbf{Advisor}
+    \\
+    Ass. Prof. Luca \textsc{Frediani}
+    \\[0.1\drop]
+    \textbf{Coadvisor}
+    \\
+    Prof. Benedetta \textsc{Mennucci}
+    } \par
+    \vspace{\baselineskip}
+    \rule{\textwidth}{1pt} \par
+    %\vspace{\baselineskip}
+    {\small\itshape
     \begin{center}
-      {\LARGE\textsc{\myUni}}\\
-      \myFaculty \\ [0.2\drop]
-      \includegraphics[width=4.cm]{gfx/UiT}
-      \\ [0.2\drop]
-      \myDegree \\ [\drop]
-      \rule{1.1\textwidth}{1pt}\par
-      \vspace{0.5\baselineskip}
-      {\begingroup\color{PMS1797}\Large{\myTitle}\endgroup \\
-      \vspace{\baselineskip}
-      \large  \mySubtitle }\\%[0.5\baselineskip]
-      \rule{1.1\textwidth}{1pt}\par
-      \vspace{\drop}
-      \begin{tabular}{l c r}
-        \large \textbf{Advisor} & \makebox[.4\textwidth]{} & \large \textbf{Coadvisor} \\ [.1\drop]
-        Ass.~Prof.~Luca \textsc{Frediani}
-        & \makebox[.4\textwidth]{}
-        & Prof.~Benedetta \textsc{Mennucci} \\
-      \end{tabular} \\ [.6\drop]
-      {\large\textbf{Candidate}} \\ [.1\drop]
-      \Large{Roberto \textsc{Di Remigio}}
-      \vfill
-%      {\large \myAA}
-
-      \myTime
-
-      \vfill
-
+      Submitted in partial fulfillment of the requirements
+      \\
+      for the degree of Doctor of Philosophy
+      \\[0.1\drop]
+      \textnormal{to the}
+      \\[0.1\drop]
+      Faculty of Science and Technology
+      \\
+      UiT - The Arctic University of Norway
+      \\
+      Tromsø, \myTime
     \end{center}
-  \end{addmargin}
+    }
+  \end{minipage}
+  \endgroup
 \end{titlepage}
+\restoregeometry

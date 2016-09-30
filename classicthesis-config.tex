@@ -244,7 +244,16 @@ urldate=long
 % Changing the text area
 % ********************************************************************
 %\linespread{1.05} % a bit more for Palatino
-\areaset[2cm]{410pt}{700pt}
+\RequirePackage{geometry}
+\geometry{paperwidth=170mm, paperheight=240mm,
+          inner=42pt, %outer=,
+          top=80pt, %bottom=,
+          textheight=500pt, textwidth=280pt,
+          marginparsep=20pt, marginparwidth=100pt,
+          footskip=40pt
+        }
+\savegeometry{Tufte}
+%\areaset[2cm]{410pt}{700pt}
 %\setlength{\marginparwidth}{7em}%
 %\setlength{\marginparsep}{2em}%
 
@@ -268,14 +277,14 @@ urldate=long
 
 \newlength{\drop}% for my convenience
 
-\usepackage{xltxtra}
+\usepackage{metalogo}
 %%% Font stuff
 \usepackage{amssymb}
 \usepackage{fontspec}
 \setmainfont[Ligatures=TeX, Numbers=OldStyle, Contextuals=Swash]{TeX Gyre Termes}
 \newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
 \newfontfamily\greekfontsf[Script=Greek]{Linux Libertine O}
-\setsansfont[Scale=0.85]{TeX Gyre Adventor}
+\setsansfont[Scale=0.85]{TeX Gyre Heros}
 \setmonofont[Scale=0.8]{Bitstream Vera Sans Mono}
 \usepackage[math-style=ISO,
             bold-style=ISO]{unicode-math}
@@ -284,7 +293,7 @@ Path           = fonts/,
 Extension      = .otf,
 BoldFont       = *bold,
 ]
-\usepackage{microtype}
+\microtypesetup{activate={true,nocompatibility},final,factor=1100,stretch=10,shrink=10}
 \usepackage{booktabs}
 \usepackage{url}
 \usepackage[colorinlistoftodos,
@@ -295,6 +304,10 @@ BoldFont       = *bold,
 
 %%% To include the published papers
 \usepackage{pdfpages}
+
+\usepackage[symbol, side, flushmargin]{footmisc}
+\renewcommand*{\footnotelayout}{\scriptsize}
+\setfnsymbol{bringhurst}
 
 \usepackage{epigraph}
 %\setlength\epigraphwidth{7cm}
@@ -307,7 +320,6 @@ BoldFont       = *bold,
 \usepackage{braket}
 \usepackage{cancel}
 \usepackage{amsthm}
-\allowdisplaybreaks[4]
 
 % Comment before compiling final version
 %\usepackage{showkeys}

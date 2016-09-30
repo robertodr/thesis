@@ -3,11 +3,11 @@ SHELL=/bin/bash
 DOCUMENT=RobertoDiRemigioPhDThesis
 
 document:
-	xelatex ${DOCUMENT}.tex
+	lualatex ${DOCUMENT}.tex
 	makeindex ${DOCUMENT}.nlo -s nomencl.ist -o ${DOCUMENT}.nls
 	makeglossaries ${DOCUMENT}
 	biber ${DOCUMENT}
-	xelatex ${DOCUMENT}.tex
+	lualatex ${DOCUMENT}.tex
 
 clean:
 	rm -f *~ *.aux *.idx *.log *.bbl *.lol *.lof *.lot *.blg *-blx.bib *.out
