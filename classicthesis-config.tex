@@ -272,8 +272,10 @@ urldate=long
 %%% Font stuff
 \usepackage{amssymb}
 \usepackage{fontspec}
-\setmainfont[Mapping=tex-text]{MinionPro-Regular}
-\setsansfont[Scale=0.85]{Open Sans}
+\setmainfont[Ligatures=TeX, Numbers=OldStyle, Contextuals=Swash]{TeX Gyre Termes}
+\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
+\newfontfamily\greekfontsf[Script=Greek]{Linux Libertine O}
+\setsansfont[Scale=0.85]{TeX Gyre Adventor}
 \setmonofont[Scale=0.8]{Bitstream Vera Sans Mono}
 \usepackage[math-style=ISO,
             bold-style=ISO]{unicode-math}
