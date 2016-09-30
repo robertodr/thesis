@@ -10,8 +10,9 @@
 
 This thesis is based on the following scientific papers:
 
-\begin{enumerate}[label=\paper{\Roman{*}}, ref=\Roman{*}]
-\item
+\renewcommand{\descriptionlabel}[1]{\hspace*{\labelsep}#1}
+\begin{description}[leftmargin=2mm, style=nextline]
+\item[\paper{I}]
   \textbf{R. Di Remigio}, R. Bast, L. Frediani, and T. Saue
   \\
   \textsf{
@@ -27,7 +28,7 @@ This thesis is based on the following scientific papers:
   DOI: \url{10.1063/1.4943782}
 \label{relapcm}
 
-\item
+\item[\paper{II}]
   M. Bugeanu, \textbf{R. Di Remigio}, K. Mozgawa, S. S. Reine, H.
   Harbrecht,  and L. Frediani
   \\
@@ -42,7 +43,7 @@ This thesis is based on the following scientific papers:
   DOI: \url{10.1039/C5CP03410H}
 \label{wemlin}
 
-\item
+\item[\paper{III}]
   \textbf{R. Di Remigio}, K. Mozgawa, H. Cao, V. Weijo, and L.
   Frediani
   \\
@@ -56,7 +57,7 @@ This thesis is based on the following scientific papers:
   DOI: \url{10.1063/1.4943782}
 \label{spherical}
 
-\item
+\item[\paper{IV}]
   \textbf{R. Di Remigio}, M. Repisky, S. Komorovsky, P. Hrobarik, L.
   Frediani, and K. Ruud
   \\
@@ -71,7 +72,7 @@ This thesis is based on the following scientific papers:
   DOI: \url{10.1080/00268976.2016.1239846}
 \label{pcmepr}
 
-\item
+\item[\paper{V}]
   \textbf{R. Di Remigio}, M. T. P. Beerepoot, Y. Cornaton, M. Ringholm,
   A. H. S. Steindal, K. Ruud, and L. Frediani
   \\
@@ -82,4 +83,5 @@ This thesis is based on the following scientific papers:
   \\
   In preparation for submission to \textit{Phys. Chem. Chem. Phys.}
 \label{pcmopenrsp}
-\end{enumerate}
+\end{description}
+\renewcommand{\descriptionlabel}[1]{\hspace*{\labelsep}\spacedlowsmallcaps{#1}}
