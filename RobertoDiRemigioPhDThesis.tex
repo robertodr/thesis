@@ -3,17 +3,17 @@
 %     Compiler: make
 %       Author: roberto
 % Date Created: 2016 Jul 15
-%  Last Change: 2016 Sep 29
+%  Last Change: 2016 Oct 01
 \RequirePackage{fix-cm} % fix some latex issues see: http://texdoc.net/texmf-dist/doc/latex/base/fixltx2e.pdf
 \documentclass[twoside,openright,titlepage,numbers=noenddot,headinclude,%headlines,% letterpaper a4paper
                footinclude=true,cleardoublepage=empty,
-               DIV=9,paper=a4%,fontsize=12pt
+               DIV=9,paper=a4
                 ]{scrbook}
 
 %********************************************************************
 % Note: Make all your adjustments in here
 %*******************************************************
-\input{classicthesis-config}
+\input{preamble}
 
 %********************************************************************
 % Bibliographies
@@ -32,17 +32,17 @@
 \begin{document}
 \includepdf{gfx/PhDengelskMonster.pdf}
 \blankpage
-\input{acronyms}
 \frenchspacing
 \raggedbottom
 %\renewcommand*{\bibname}{new name}
 %\setbibpreamble{}
 \pagenumbering{roman}
-\pagestyle{plain}
 %********************************************************************
 % Frontmatter
 %*******************************************************
+\pagestyle{empty}
 \include{FrontBackmatter/Titlepage}
+\pagestyle{plain}
 \include{FrontBackmatter/Colophon}
 %\include{FrontBackmatter/Titleback}
 %\cleardoublepage\include{FrontBackmatter/Dedication}

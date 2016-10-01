@@ -6,9 +6,9 @@
 
 \tikzstyle{input}=[draw, fill=green!20, text width=7em, 
     text centered, minimum height=2.5em]
-\tikzstyle{interface}=[draw, fill=PMS2229!20, text width=7em, 
+\tikzstyle{interface}=[draw, fill=brewerBlue!20, text width=7em, 
     text centered, minimum height=2.5em]
-\tikzstyle{pcm} = [draw, fill=PMS1797!20, text width=10em, text centered,
+\tikzstyle{pcm} = [draw, fill=brewerRed!20, text width=10em, text centered,
     minimum height=6em, rounded corners]
 
 % Define distances for bordering
@@ -20,8 +20,8 @@
     %PCM Code part
     \node (pcm) [pcm]  {PCM code
     \[ 
-      \bi{R}_\diel\bi{S}\textcolor{PMS1797}{\sigma(\vect{s})} 
-      = - \bi{R}_\infty\textcolor{PMS2229}{\esp(\vect{s})}
+      \bi{R}_\diel\bi{S}\textcolor{brewerRed}{\sigma(\vect{s})} 
+      = - \bi{R}_\infty\textcolor{brewerBlue}{\esp(\vect{s})}
     \]};
     \path (pcm.west)+(-3.2,0.0) node (inputpcm) [input] {\texttt{input.pcm}};
     \path (pcm.east)+(\blockdist,0) node (interfacepcm) [interface] {Module-side interface};
@@ -44,7 +44,7 @@
         \path (pcm.south -| pcm.east)+(+0.5,-0.5) node (b) {};
         \path (interfacepcm.east |- module.east)+(+0.5,-0.5) node (c) {};
           
-        \path[fill=PMS130!20,rounded corners, draw=black!50, dashed]
+        \path[fill=brewerYellow!20,rounded corners, draw=black!50, dashed]
             (a) rectangle (c);           
         \path (inputpcm.north west)+(-0.2,0.2) node (a) {};
             
@@ -79,16 +79,16 @@
         \path (qm.south -| qm.east)+(+0.5,-0.5) node (b) {};
         \path (interfaceqm.east |- module.east)+(+0.5,-0.5) node (c) {};
           
-        \path[fill=PMS130!20,rounded corners, draw=black!50, dashed]
+        \path[fill=brewerYellow!20,rounded corners, draw=black!50, dashed]
             (a) rectangle (c);           
         \path (inputqm.north west)+(-0.2,0.2) node (a) {};
             
     \end{pgfonlayer}
 
-    \draw[PMS2229,thick,->] ([xshift= 5pt] interfaceqm.north) -- 
-    node [right,yshift=50.5pt] {\bfseries\textcolor{PMS2229}{$\esp(\vect{s})$}} ([xshift= 5pt] interfacepcm.south);
-    \draw[PMS1797,thick,<-] ([xshift=-5pt] interfaceqm.north) -- 
-    node [left, yshift=-50pt] {\bfseries\textcolor{PMS1797}{$\sigma(\vect{s})$}} ([xshift=-5pt] interfacepcm.south);
+    \draw[brewerBlue,thick,->] ([xshift= 5pt] interfaceqm.north) -- 
+    node [right,yshift=50.5pt] {\bfseries\textcolor{brewerBlue}{$\esp(\vect{s})$}} ([xshift= 5pt] interfacepcm.south);
+    \draw[brewerRed,thick,<-] ([xshift=-5pt] interfaceqm.north) -- 
+    node [left, yshift=-50pt] {\bfseries\textcolor{brewerRed}{$\sigma(\vect{s})$}} ([xshift=-5pt] interfacepcm.south);
 
     %\draw[->] (interfacepcm.140) -- (interfaceqm.220);
     %\draw[->] (interfaceqm.40) -- (interfacepcm.320);

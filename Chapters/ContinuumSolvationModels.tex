@@ -53,10 +53,10 @@ the multiscale model, an interaction mediated by some macroscopic
 property of the bulk material the continuum represents.
 Thus, continuum models bypass both problems plaguing explicit models we
 mentioned in the Introduction, namely:
-\begin{enumerate*}[label={\alph*)},font={\color{PMS1797}}]
+\begin{enumerate}
 \item the statistical averaging of environment configurations and
 \item the \acrshort{MM} region electrostatics cutoff choice.
-\end{enumerate*}
+\end{enumerate}
 
 Following \citeauthor{Tomasi2007-es}, we introduce the complete system
 Hamiltonian in the \acrshort{BO} approximation:\autocite{Tomasi2004-dc,
@@ -84,7 +84,7 @@ averaging of the microscopically detailed motion over phase space
 trajectories or on the appropriate statistical
 ensemble.\autocite{Hill1960-ql}
 The need for ensemble averages leads us to the following observations:
-\begin{enumerate}%[label={\alph*)},font={\color{PMS1797}}]
+\begin{enumerate}
  \item
    the need for \emph{macroscopic} parameters, absent from the
    microscopic Hamiltonian Eq. \eqref{eq:solution-ham}, in carrying out
@@ -316,7 +316,7 @@ only be achieved analytically for simple cavity geometries, such as
 single spheres and ellipsoids.
 When more general molecular cavities are employed one has to resort to a
 numerical technique: the \gls{BEM}. This is implemented in four steps:
-\begin{enumerate}%[label={\alph*)},font={\color{PMS1797}}]
+\begin{enumerate}
     \item define the molecular cavity
     \item mesh the molecular surface \label{item:mesh}
     \item discretize the integral equation \label{item:discretize} and
@@ -330,7 +330,7 @@ interlocking spheres. The radii are chosen from a suitable set, usually
 van der Waals radii.\autocite{Bondi1964-dt, Mantina2009-hb}
 If one imagines to model a solvent molecule as a rigid sphere,
 three types of molecular surfaces can be defined:
-\begin{enumerate}%[label={\alph*)},font={\color{PMS1797}}]
+\begin{enumerate}
   \item
     the union of the interlocking spheres surfaces is the \gls{vdWS},
     Figure \ref{fig:vdWS}
@@ -571,7 +571,7 @@ The principle of least action is however formulated in terms of
 \acrshort{MEP} or the \acrshort{ASC}.
 A true energy functional has to fulfill the following
 properties:\autocite{Solis2013-ef}
-\begin{enumerate}%[label={\alph*)},font={\color{PMS1797}}]
+\begin{enumerate}
     \item physical extremal points,
     \item equilibrium values are true energies \label{item:equil-prop} and
     \item convexity (positive-definiteness)

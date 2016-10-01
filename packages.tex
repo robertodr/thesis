@@ -1,0 +1,179 @@
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\setotherlanguages{italian, french, norsk, greek}
+\setdefaultlanguage{english}
+\usepackage{csquotes}
+\usepackage[%
+style=phys,
+maxcitenames=1,
+mincitenames=1,
+maxbibnames=100,
+firstinits=true,
+url=false,
+isbn=false,
+eprint=false,
+texencoding=utf8,
+bibencoding=utf8,
+autocite=superscript,
+backend=biber,
+sorting=none,
+backref=false,
+hyperref=true,
+block=none,
+date=long,
+urldate=long
+]{biblatex}
+\renewcommand{\bibfont}{\normalfont\footnotesize\raggedright}
+\AtBeginBibliography{
+\DeclareFieldFormat{prefixnumber}{\mkbibbold{#1}}
+\DeclareFieldFormat{labelnumber}{\mkbibbold{#1}}
+}
+\AtEveryBibitem{%
+  \clearlist{language}%
+}
+\DeclareFieldFormat[article]{title}{\textsf{#1}}
+\DeclareFieldFormat[inbook]{title}{\textsf{#1}}
+\DeclareFieldFormat[incollection]{title}{\textsf{#1}}
+\DeclareFieldFormat[inproceedings]{title}{\textsf{#1}}
+\DeclareFieldFormat[inproceedings]{booktitle}{\textit{#1}}
+\DeclareFieldFormat[inproceedings]{note}{#1}
+\DeclareFieldFormat[unpublished]{title}{\textsf{#1}}
+
+\DeclareCiteCommand{\noparcite}%[\mkbibbrackets] CITATION LIKE in ref. 6 WITHOUT SQUARE BRACKETS
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}%
+   \usebibmacro{postnote}}
+
+\PassOptionsToPackage{fleqn}{amsmath}       % math environments and more by the AMS
+    \usepackage{amsmath}
+
+%%
+% General useful packages
+\usepackage{textcomp} % fix warning with missing font shapes
+\usepackage{scrhack} % fix warnings when using KOMA with listings package
+\usepackage{xspace} % to get the spacing after macros right
+\usepackage{mparhack} % get marginpar right
+\usepackage{fixltx2e} % fixes some LaTeX stuff --> since 2015 in the LaTeX kernel (see below)
+
+\usepackage{tabularx} % better tables
+    \setlength{\extrarowheight}{3pt} % increase table row height
+\newcommand{\tableheadline}[1]{\multicolumn{1}{c}{\spacedlowsmallcaps{#1}}}
+\newcommand{\myfloatalign}{\centering} % to be used with each float for alignment
+\usepackage{caption}
+\captionsetup{format=hang,indention=-1.1cm,
+              font=footnotesize,labelfont=bf,labelsep=space}
+\usepackage{subcaption}
+\captionsetup[sub]{format=hang,indention=0cm,
+              font=footnotesize,labelfont=bf,labelsep=space}
+
+%%
+% Hyperreferences
+\usepackage[hyperfootnotes=false, pdfpagelabels]{hyperref}
+\hypersetup{%
+    %draft, % = no hyperlinking at all (useful in b/w printouts)
+    colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
+    % uncomment the following line if you want to have black links (e.g., for printing)
+    %colorlinks=false, linktocpage=false, pdfstartpage=3, pdfstartview=FitV, pdfborder={0 0 0},%
+    breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,%
+    plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
+    hypertexnames=true, pdfhighlight=/O,%nesting=true,%frenchlinks,%
+    urlcolor=brewerURL, linkcolor=brewerGray, citecolor=brewerCitation, %pagecolor=RoyalBlue,%
+    %urlcolor=Black, linkcolor=Black, citecolor=Black, %pagecolor=Black,%
+    pdftitle={\myTitle},%
+    pdfauthor={\textcopyright\ \myName},%
+    pdfsubject={},%
+    pdfkeywords={},%
+    pdfcreator={LuaLaTeX},%
+    pdfproducer={LuaLaTeX with hyperref}%
+}
+
+\usepackage{graphicx}
+\graphicspath{{gfx/}}
+
+\RequirePackage{geometry}
+\geometry{paperwidth=170mm, paperheight=240mm,
+          inner=42pt, %outer=,
+          top=80pt, %bottom=,
+          textheight=500pt, textwidth=280pt,
+          marginparsep=20pt, marginparwidth=100pt,
+          footskip=40pt
+        }
+\savegeometry{Tufte}
+
+\newlength{\drop}% for my convenience
+
+\usepackage{metalogo}
+%%% Font stuff
+\usepackage{amssymb}
+\usepackage{fontspec}
+\setmainfont[Ligatures=TeX, Numbers=OldStyle, Contextuals=Swash]{TeX Gyre Termes}
+\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
+\newfontfamily\greekfontsf[Script=Greek]{Linux Libertine O}
+\setsansfont[Scale=0.85]{TeX Gyre Heros}
+\setmonofont[Scale=0.8]{Bitstream Vera Sans Mono}
+\usepackage[math-style=ISO,
+            bold-style=ISO]{unicode-math}
+\setmathfont{xits-math}[
+Path           = fonts/,
+Extension      = .otf,
+BoldFont       = *bold,
+]
+\microtypesetup{activate={true,nocompatibility},final,factor=1100,stretch=10,shrink=10}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage[colorinlistoftodos,
+            textsize=small]{todonotes}
+\usepackage{wrapfig}
+
+\usepackage{siunitx}
+
+%%% To include the published papers
+\usepackage{pdfpages}
+
+\usepackage[symbol, side, flushmargin]{footmisc}
+\renewcommand*{\footnotelayout}{\scriptsize}
+\setfnsymbol{bringhurst}
+
+\usepackage{epigraph}
+%\setlength\epigraphwidth{7cm}
+\setlength\epigraphrule{0pt}
+%\renewcommand{\textflush}{flushleft}
+\renewcommand{\epigraphsize}{\footnotesize}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage[overload]{empheq}
+\usepackage{braket}
+\usepackage{cancel}
+\usepackage{amsthm}
+
+% Comment before compiling final version
+%\usepackage{showkeys}
+\usepackage{verbatim}
+
+\usepackage[inline]{enumitem}
+
+\usepackage[version=4]{mhchem}
+\usepackage{xpatch}
+
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{shapes,arrows,shadows,positioning}
+\usepackage{tcolorbox}
+
+\usepackage[style=long,
+            nolist,
+            nonumberlist,
+            acronym,
+            shortcuts,
+            nopostdot]{glossaries}
+\makeglossaries
+\usepackage[noprefix]{nomencl}
+\makenomenclature
+
+% Change font for sections in TOC
+\renewcommand\cftsecfont{\footnotesize}
+\renewcommand\cftsecpagefont{\footnotesize}

@@ -1,5 +1,5 @@
-\tikzstyle{decision}=[diamond, fill=PMS1797!20, text width=5.5em, text badly centered, inner sep=0pt]
-\tikzstyle{pcmsolver}=[rectangle, minimum size=10mm, rounded corners=3mm, very thick, fill=PMS2229!20, text width=15em, text centered]
+\tikzstyle{decision}=[diamond, fill=brewerRed!20, text width=5.5em, text badly centered, inner sep=0pt]
+\tikzstyle{pcmsolver}=[rectangle, minimum size=10mm, rounded corners=3mm, very thick, fill=brewerBlue!20, text width=15em, text centered]
 \tikzstyle{qmprog}=[rectangle, minimum size=10mm, rounded corners=3mm, text centered, very thick, fill=Green!20, text width=15em]
 
 \begin{tikzpicture}[]
@@ -25,6 +25,6 @@ $f_{\kappa\lambda} = f^\mathrm{vac}_{\kappa\lambda} + \scalprod{\sigma(\vect{s})
       (conv)   edge[->] node[anchor=east]{yes} (end);
 \draw [->] (conv.east) -- ++(1,0) node[anchor=south] {no} --++(1,0) |- (MEP.east);
 \draw [<-] (MEP.west) -- ++ (-1,0) node[anchor=south]
-      {\textcolor{PMS2229}{Cavity}} node [anchor=north] {\textcolor{Green}{\!\!\!\!Geometry}, \textcolor{Green}{$\mat{D}$}} -- ++(-1,0);
-\draw [<-] (CHG.west) -- ++ (-1,0) node[anchor=south] {\textcolor{PMS2229}{BE solver}} -- ++(-1,0);
+      {\textcolor{brewerBlue}{Cavity}} node [anchor=north] {\textcolor{Green}{\!\!\!\!Geometry}, \textcolor{Green}{$\mat{D}$}} -- ++(-1,0);
+\draw [<-] (CHG.west) -- ++ (-1,0) node[anchor=south] {\textcolor{brewerBlue}{BE solver}} -- ++(-1,0);
 \end{tikzpicture}

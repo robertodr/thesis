@@ -1,0 +1,200 @@
+%%
+% Microtypographic stuff
+\usepackage[activate={true,nocompatibility},
+            final,
+            factor=1100,
+            stretch=10,
+            shrink=10]{microtype}
+
+%%
+% Chapter numbers
+\newfont{\chapterNumber}{pplr9d scaled 7000}
+
+%%
+% Own Stuff
+% Disable single lines at the start of a paragraph (Schusterjungen)
+\clubpenalty = 10000
+% Disable single lines at the end of a paragraph (Hurenkinder)
+\widowpenalty = 10000
+\displaywidowpenalty = 10000 % formulas
+
+%%
+% Fancy Stuff
+\usepackage{booktabs} % for better rules in tables
+\usepackage{textcase} % for \MakeTextUppercase
+
+\usepackage{soul} % for letterspacing
+\sodef\allcapsspacing{\upshape}{0.15em}{0.65em}{0.6em}%
+\sodef\lowsmallcapsspacing{\scshape}{0.075em}{0.5em}{0.6em}%
+\DeclareRobustCommand{\spacedallcaps}[1]{\MakeTextUppercase{\allcapsspacing{#1}}}%
+\DeclareRobustCommand{\spacedlowsmallcaps}[1]{\MakeTextLowercase{\textsc{\lowsmallcapsspacing{#1}}}}%\protect
+
+%%
+% Headlines
+\usepackage[automark]{scrlayer-scrpage}
+\clearscrheadings
+\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\enspace\spacedlowsmallcaps{#1}}}
+\lehead{\mbox{\llap{\small\thepage\kern2em}\headmark\hfil}}
+\rohead{\mbox{\hfil{\headmark}\rlap{\small\kern2em\thepage}}}
+\renewcommand{\headfont}{\small}
+\def\toc@heading{%
+    \chapter*{\contentsname}
+    \@mkboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}}
+
+%%
+% Listings
+\usepackage{listings}
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\scriptsize\ttfamily, % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=t,                    % sets the caption-position to bottom
+  commentstyle=\color{brewerComment},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  otherkeywords={*,...},           % if you want to add more keywords to the set
+  numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
+  numberbychapter=true,            % numberbychapter works in listings>=1.4
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{brewerString},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+%%
+% Layout of the chapter-, section-, subsection-, subsubsection-,
+% paragraph and description-headings
+\usepackage{titlesec}
+    % Chapters
+    % something like Bringhurst
+    \titleformat{\chapter}[display]%
+        {\relax}{\raggedright{\color{brewerGray}\chapterNumber\thechapter} \\ }{0pt}%
+        {\raggedright\color{brewerBlue}\LARGE\bfseries\itshape}[\color{black}\normalsize\vspace*{.8\baselineskip}\titlerule]%
+    % sections \FloatBarrier
+    \titleformat{\section}
+        {\relax}{\textsc{\MakeTextLowercase{\thesection}}}{1em}{\spacedlowsmallcaps}
+    % subsections
+    \titleformat{\subsection}
+        {\relax}{\textsc{\MakeTextLowercase{\thesubsection}}}{1em}{\normalsize\itshape}
+    % subsubsections
+    \titleformat{\subsubsection}
+        {\relax}{\textsc{\MakeTextLowercase{\thesubsubsection}}}{1em}{\normalsize\itshape}
+    % paragraphs
+    \titleformat{\paragraph}[runin]
+        {\normalfont\normalsize}{\theparagraph}{0pt}{\spacedlowsmallcaps}
+    % descriptionlabels
+        \renewcommand{\descriptionlabel}[1]{\hspace*{\labelsep}\spacedlowsmallcaps{#1}}   % spacedlowsmallcaps textit textsc
+    % spacing
+    \titlespacing*{\chapter}{0pt}{1\baselineskip}{1.2\baselineskip}
+    \titlespacing*{\section}{0pt}{1.25\baselineskip}{1\baselineskip}
+    \titlespacing*{\subsection}{0pt}{1.25\baselineskip}{1\baselineskip}
+    \titlespacing*{\paragraph}{0pt}{1\baselineskip}{1\baselineskip}
+
+%%
+% Layout of the TOC, LOF and LOT (LOL-workaround see next section)
+\usepackage[titles]{tocloft}
+    % avoid page numbers being right-aligned in fixed-size box
+    \newlength{\newnumberwidth}
+    \settowidth{\newnumberwidth}{999} % yields overfull hbox warnings for pages > 999
+    \cftsetpnumwidth{\newnumberwidth}
+
+    % have the bib neatly positioned after the rest
+    \newlength{\beforebibskip}
+    \setlength{\beforebibskip}{0em}
+
+    % space for more than nine chapters
+    \newlength{\newchnumberwidth}
+    \settowidth{\newchnumberwidth}{.} % <--- tweak here if more space required
+    % pagenumbers right after the titles
+    % chapters
+                        \renewcommand{\cftchappresnum}{\scshape\MakeTextLowercase}%
+            \renewcommand{\cftchapfont}{\normalfont}%
+            \renewcommand{\cftchappagefont}{\normalfont}%
+            %\setlength{\cftbeforechapskip}{.1em}%
+    % sections
+        \renewcommand{\cftsecpresnum}{\scshape\MakeTextLowercase}%
+        \renewcommand{\cftsecfont}{\normalfont}%
+      \renewcommand{\cftsecpagefont}{\normalfont}%
+    % subsections
+        \renewcommand{\cftsubsecpresnum}{\scshape\MakeTextLowercase}%
+        \renewcommand{\cftsubsecfont}{\normalfont}%
+    % subsubsections
+        \renewcommand{\cftsubsubsecpresnum}{\scshape\MakeTextLowercase}%
+        \renewcommand{\cftsubsubsecfont}{\normalfont}%
+    % figures
+        \renewcommand{\cftfigpresnum}{\scshape\MakeTextLowercase}%
+        \renewcommand{\cftfigfont}{\normalfont}%
+      \renewcommand{\cftfigpresnum}{\figurename~}%Fig.~}
+      \newlength{\figurelabelwidth}
+      \settowidth{\figurelabelwidth}{\cftfigpresnum~999}
+      \addtolength{\figurelabelwidth}{2.5em}
+      \cftsetindents{figure}{0em}{\figurelabelwidth}
+    % tables
+        \renewcommand{\cfttabpresnum}{\scshape\MakeTextLowercase}%
+        \renewcommand{\cfttabfont}{\normalfont}%
+      \renewcommand{\cfttabpresnum}{\tablename~}%Tab.~}
+      \newlength{\tablelabelwidth}
+      \settowidth{\tablelabelwidth}{\cfttabpresnum~999}
+      \addtolength{\tablelabelwidth}{2.5em}
+      %\cftsetindents{table}{0em}{\tablelabelwidth}
+      \cftsetindents{table}{0em}{\figurelabelwidth}
+
+    % dirty work-around to get the spacing after the toc/lot/lof-titles right
+            \AtBeginDocument{\addtocontents{toc}{\protect\vspace{-\cftbeforechapskip}}}
+
+    % another dirty work-around to get the spaced low small caps into the toc ;-(
+%% use modified \chapter (thanks to Hinrich Harms)
+         \let\oldchap=\chapter
+         \renewcommand*{\chapter}{%
+                 \secdef{\Chap}{\ChapS}%
+         }
+         \newcommand\ChapS[1]{\oldchap*{#1}}%
+         \newcommand\Chap[2][]{%
+                 \ifpdf\oldchap[\texorpdfstring{\spacedlowsmallcaps{#1}}{#1}]{#2}%
+                 \else\oldchap[\spacedlowsmallcaps{#1}]{#2}%
+                 \fi%
+         }%
+
+    \newcommand{\tocEntry}[1]{% for bib, etc.
+        \ifpdf\texorpdfstring{\spacedlowsmallcaps{#1}}{#1}%
+        \else{#1}\fi%
+    }
+
+        \DeclareRobustCommand*{\deactivateaddvspace}{\let\addvspace\@gobble}%
+        \AtBeginDocument{%
+            \addtocontents{lof}{\deactivateaddvspace}%
+            \addtocontents{lot}{\deactivateaddvspace}%
+                \addtocontents{lol}{\deactivateaddvspace}%
+        }%
+%    }
+
+%%
+% Footnotes setup
+\ifdefined\deffootnote
+  % KOMA-command, footnotemark not superscripted at the bottom
+  \deffootnote{0em}{0em}{\thefootnotemark\hspace*{.5em}}%
+  \message{Using KOMA-command "deffootnote" for footnote setup}%
+\else
+    \PassOptionsToPackage{flushmargin}{footmisc}%
+    \RequirePackage{footmisc}%
+    \setlength{\footnotemargin}{-.5em}%
+    \PackageWarningNoLine{classicthesis}{Using package "footmisc" with option %
+        "flushmargin" for footnote setup (not 100\% the same as with KOMA)}%
+\fi
+
+%%
+% Drafting Stuff
+\usepackage{scrtime} % time access
+\newcommand{\finalVersionString}{\relax}
+\providecommand{\myVersion}{$\!\!$} % w/o classicthesis-config.tex
+\renewcommand{\finalVersionString}{\emph{Final Version} as of \today\ (\texttt{classicthesis}~\myVersion).}
