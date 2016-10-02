@@ -2,7 +2,7 @@
 \setmainlanguage{english}
 \setotherlanguages{italian, french, norsk, greek}
 \setdefaultlanguage{english}
-\usepackage{csquotes}
+\usepackage[autostyle=true]{csquotes}
 \usepackage[%
 style=phys,
 maxcitenames=1,
@@ -38,6 +38,7 @@ urldate=long
 \DeclareFieldFormat[inproceedings]{booktitle}{\textit{#1}}
 \DeclareFieldFormat[inproceedings]{note}{#1}
 \DeclareFieldFormat[unpublished]{title}{\textsf{#1}}
+\DeclareFieldFormat*{citetitle}{\textsf{#1}}
 
 \DeclareCiteCommand{\noparcite}%[\mkbibbrackets] CITATION LIKE in ref. 6 WITHOUT SQUARE BRACKETS
   {\usebibmacro{cite:init}%
@@ -53,12 +54,6 @@ urldate=long
 
 %%
 % General useful packages
-\usepackage{textcomp} % fix warning with missing font shapes
-\usepackage{scrhack} % fix warnings when using KOMA with listings package
-\usepackage{xspace} % to get the spacing after macros right
-\usepackage{mparhack} % get marginpar right
-\usepackage{fixltx2e} % fixes some LaTeX stuff --> since 2015 in the LaTeX kernel (see below)
-
 \usepackage{tabularx} % better tables
     \setlength{\extrarowheight}{3pt} % increase table row height
 \newcommand{\tableheadline}[1]{\multicolumn{1}{c}{\spacedlowsmallcaps{#1}}}
@@ -96,7 +91,7 @@ urldate=long
 
 \RequirePackage{geometry}
 \geometry{paperwidth=170mm, paperheight=240mm,
-          inner=42pt, %outer=,
+          inner=62pt, %outer=,
           top=80pt, %bottom=,
           textheight=500pt, textwidth=280pt,
           marginparsep=20pt, marginparwidth=100pt,
@@ -122,7 +117,7 @@ Path           = fonts/,
 Extension      = .otf,
 BoldFont       = *bold,
 ]
-\microtypesetup{activate={true,nocompatibility},final,factor=1100,stretch=10,shrink=10}
+\removenolimits{\int}
 \usepackage{booktabs}
 \usepackage{url}
 \usepackage[colorinlistoftodos,

@@ -16,7 +16,7 @@
 
 \section*{What Are the Electrons Really Doing in Molecules?}
 
-\beginningthought{This question was posed} by R.~S.~Mulliken over a half-century
+\begthought{This question was posed} by R.~S.~Mulliken over a half-century
 ago\footnote{Mulliken chose it as the title for his Gilbert N.~Lewis
 award acceptance speech in 1960.}
 and can be considered the fundamental research question behind the
@@ -24,7 +24,7 @@ development of quantum chemistry.
 The purpose of quantum chemistry is to provide models based on first
 principles that can help \emph{understand} and \emph{predict}
 macroscopic, observable chemical phenomena, such as reaction mechanisms and
-spectroscopic experiments.
+spectroscopic experiments.\autocite{Kovac2011-ew}
 As stated by \citeauthor{Dirac1929-gn} in his \citetitle{Dirac1929-gn}
 paper:\autocite{Dirac1929-gn, Kutzelnigg2000-fl}
 \blockquote{\small\textit{The underlying physical laws necessary for the mathematical
@@ -41,11 +41,12 @@ their mathematical realizations and devise computable approximations.
 The central idea is, in fact, to be able to obtain an algorithmic
 implementation of the methods that can be applied to interesting
 chemical systems: model building and software implementations are two
-closely intertwined aspects in the practice of quantum chemistry.
+closely intertwined aspects in the practice of quantum
+chemistry.\autocite{Winsberg2010-sy}
 
 \begin{figure}[tb]
 \centering
-\includegraphics[width=.6\textwidth]{qc-axes.png}
+\includegraphics[width=.8\textwidth]{qc-axes.png}
 \caption[Pictorial depiction of the concept of \emph{model chemistries}.]{
 Pictorial depiction of the concept of \emph{model chemistries} as the
 three dimensions of quantum chemistry.\autocite{Pople1999-gt, Saue2011-qg}
@@ -54,7 +55,7 @@ Reproduced from \noparcite[ref.][]{Norman2011-ad} with permission from the PCCP 
 \label{fig:RQC-axis}
 \end{figure}
 
-\newthought{It is easy to manipulate chemicals in a virtual laboratory.} Nowadays
+\arrowthought{It is easy to manipulate chemicals in a virtual laboratory.} Nowadays
 quantum chemical methods often complement traditional experimental
 approaches. They have become invaluable tools in the modern development
 of chemistry,\autocite{Lee1995-pw, Helgaker2004-oz, Tajti2004-ye} as
@@ -87,9 +88,10 @@ respectively.
 
 \section*{The Problem of Solvation or Taming Complexity with Models}
 
-Chemistry can be largely considered a \emph{wet} science: almost always
+\begarrowthought{Chemistry can be largely considered a \emph{wet} science}: almost always
 chemical phenomena happen in a liquid environment.\autocite{Reichardt2010-le}
-We hereby define a "solution", or more generally an "environment", as
+We hereby define a \enquote{solution}, or more generally an
+\enquote{environment}, as
 a system where the number of solvent molecules exceeds by far the number
 of solute molecules.\autocite{Tomasi2004-dc, Tomasi2007-es}
 It is then clear that theoretical and computational approaches to such a
@@ -103,7 +105,7 @@ As is well known from statistical mechanics, microscopic detail cannot
 account for the macroscopic behaviour.\autocite{Hill1960-ql,
 Hansen2013-io}
 To tame this complexity and cure the disease, one must devise
-\emph{models} that simplify physical picture, while offering tools for
+\emph{models} that simplify the physical picture, while offering tools for
 understanding reality and predicting new and exciting
 phenomena and properties.\autocite{Anderson1972-ai, Winsberg2010-sy, Kovac2011-ew}
 One of the earlier attempts at tackling the problem of solvation is due
@@ -111,10 +113,10 @@ to \citeauthor{Onsager1936-wf}. His was a rather crude model, but one
 that has had a lasting impact and informs much of the developments that
 will be presented in this dissertation.\autocite{Onsager1936-wf}
 
-Before introducing our model of choice, let us consider how an
+\newthought{Before introducing our model of choice}, let us consider how an
 environment might affect molecular observables of interest.
 Environment effects are usually classified as:
-\begin{description}[leftmargin=2mm, font=\normalfont\scshape]
+\begin{description}[leftmargin=2mm, font=\normalfont]
 \item[Direct.]
   These effects stem straightforwardly from the modification underwent by
   the solute electronic density when interacting with the environment.
@@ -128,7 +130,8 @@ Environment effects are usually classified as:
   responses.\autocite{Cammi1998-jp, Pipolo2014-sd}
 \item[Dynamic.]
   The presence of the environment radically influences excited states,
-  since relaxation processes in the medium become important.
+  since relaxation processes in the medium become
+  important.\autocite{Aguilar1993-pu, Cammi1995-ah}
 \item[Specific.] This catch-all category includes all effects
   stemming from the peculiar solute-solvent pair interactions that
   cannot be fully described under any of the previous labels.
@@ -142,7 +145,7 @@ strengths and weaknesses.
 Both can be classified as \emph{multiscale} (or \emph{focused})
 models\autocite{Nobel2013} and hinge on the same idea: treat different
 parts of the system with different methods and couple these methods by
-bridging "scales" at the boundary.
+bridging \enquote{scales} at the boundary.
 Figure \ref{fig:qm-to-multiscale} schematically portrays the transition
 from a full \acrshort{QM} model of the relevant system to its multiscale
 representations.
@@ -151,8 +154,13 @@ representations.
 \centering
 \includegraphics[width=\textwidth]{multiscale_models-landscape.png}
 \caption[From quantum mechanical to multiscale models]{
-From quantum mechanical to multiscale models. Picture reproduced
-courtesy of Dr.~Stefano Caprasecca (MoLEcoLab, Università di Pisa).}
+Pictorial depiction of the transition from quantum mechanical to
+multiscale models for the aqueous solvation of \emph{para}-nitroaniline.
+Leftmost panel: a fully quantum mechanical cluster model.
+Upper central panel: a quantum/classical discrete (explicit) model.
+Lower central panel: a quantum/classical continuum (implicit) model.
+Rightmost panel: a quantum/classical mixed explicit/implicit model.
+Picture reproduced courtesy of Dr. Stefano Caprasecca (MoLEcoLab, Università di Pisa).}
 \label{fig:qm-to-multiscale}
 \end{figure}
 
@@ -182,7 +190,7 @@ degrees of freedom of the environment differs:
 \acrshort{QM}/\acrshort{MM} models can capture, albeit approximately, the effect
 of the atomistic nature of the environment on the active part of the
 system.
-However, they demand a statistical average of environment configurations
+However, they demand statistical averaging of environment configurations
 to yield results of any significance. Moreover, a rather large
 \emph{cutoff radius} for the \acrshort{MM} region is usually required to converge
 long-range electrostatic interactions.\autocite{Steindal2011-ki}
@@ -214,12 +222,12 @@ the associated governing equations.
 Borrowing from the work of \citeauthor{Lipparini2010-be},\autocite{Lipparini2010-be,
 Lipparini2015-lq} I will introduce a unifying theoretical formalism for
 \acrshort{QM}/Continuum, \acrshort{QM}/\acrshort{MM} and \acrshort{QM}/\acrshort{MM}/Continuum models that will
-be extensively used throughout the thesis.
+be extensively used throughout.
 
 \section*{The Road to Reality or Molecular Response Properties}
 
-The scope of quantum chemistry is to understand and predict molecular
-properties, but so far we have made no mention of properties other than
+\begarrowthought{The scope of quantum chemistry is to understand and predict molecular
+properties}, but so far we have made no mention of properties other than
 the energy.
 The experimentalists' view of molecular systems is built mainly around
 the use of spectroscopic techniques that explore the interaction of
@@ -246,8 +254,8 @@ variational framework is a powerful theoretical tool.
 
 \section*{Accurate Methods for Accurate Properties}
 
-The concepts of systematic improvability and theoretical model
-chemistries are the foundations for the successful practice of quantum
+\begarrowthought{The concepts of systematic improvability and theoretical model
+chemistries} are the foundations for the successful practice of quantum
 chemistry.
 A balanced description of electron correlation is often necessary
 to achieve accurate enough results in the computation of molecular
