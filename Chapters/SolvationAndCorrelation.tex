@@ -76,7 +76,7 @@ by $\overline{O}$:
 We recall that hermiticity of $O$ is not preserved by the similarity
 transformation.
 Manipulation of similarity transformed operators involves the use of
-their \acrlong*{BCH} expansions:
+their \acrlong{BCH} expansions:
 \begin{equation}
   \overline{O}
   =
@@ -97,7 +97,7 @@ of the operator:
 \end{equation}
 The $T_1$-transformation preserves the particle rank of the operator
 $O$, see Appendix \ref{app:mathematical-results} for details.
-Finally, the $u$-th excited component of the \acrlong*{CC} left state
+Finally, the $u$-th excited component of the \acrlong{CC} left state
 will be denoted as:
 \begin{equation}
   \bra{\tbar{u}} = \sum_{\mu_u}\tbar{\mu_u}\bra{\mu_u},
@@ -204,8 +204,8 @@ One can then write the effective Lagrangian as:
 In accordance with previous work,\autocite{Cammi2009-gu,
 Caricato2011-tx} the Hamiltonian $H_0$ is augmented with the
 ${}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})$ term to yield the
-\acrlong*{PTE} (\acrshort{PTE}) Hamiltonian -- $H$ -- and eventually the
-\acrlong*{PTED} (\acrshort{PTED}) Lagrangian:\autocite{Olivares_del_Valle1991-of,
+\acrlong{PTE} (\acrshort{PTE}) Hamiltonian -- $H$ -- and eventually the
+\acrlong{PTED} (\acrshort{PTED}) Lagrangian:\autocite{Olivares_del_Valle1991-of,
 Aguilar1991-vq, Olivares_del_Valle1991-tq, Olivares_del_Valle1993-xq,
 Olivares_del_Valle1993-ra, Lipparini2009-io}
 \begin{equation}\label{eq:pted-cc}
@@ -453,14 +453,14 @@ and one for the multipliers:
 \end{subequations}
 where no truncation for the source term is introduced.
 Both the amplitudes and multipliers equations are formally identical to
-the \acrshort*{PTED} equations \eqref{eq:pted} but are coupled to
+the \acrshort{PTED} equations \eqref{eq:pted} but are coupled to
 approximate polarization equations.
 For the amplitudes equation \eqref{eq:ptes-cc-amplitudes}, one computes
-the polarization from a modified \acrshort*{CCS} expectation value of
+the polarization from a modified \acrshort{CCS} expectation value of
 the source term. This adds a negligible $O(N^5)$ term to the iterative
 solution of the equations.
 The amplitudes equations are instead coupled to the polarization
-obtained using the full \acrshort*{CCS} expectation value of the source
+obtained using the full \acrshort{CCS} expectation value of the source
 term. This adds another $O(N^5)$ step to the iterative
 procedure, which is, overall, negligible.
 Let us notice that this scheme is not consistent with electrostatics, as
@@ -815,7 +815,7 @@ to second order are given as:
 the complex conjugates of each other for the singles, doubles and
 triples manifolds.\autocite{Koch1997-nm, Helgaker2000-tz,
 Shavitt2009-mr}
-This symmetry is a consequence of choosing a closed-shell \acrshort*{HF}
+This symmetry is a consequence of choosing a closed-shell \acrshort{HF}
 determinant as reference function\autocite{Shavitt2009-mr} and is
 \emph{broken} by the quantum/classical coupling.
 As an example, consider the triples multipliers equation. \emph{In vacuo}
@@ -842,7 +842,7 @@ the second-order triples multipliers.
   \end{aligned}
 \end{equation}
 There are no explicit contributions from the triples and thus the
-\acrshort*{CCSD} polarization is correct through fourth order in the
+\acrshort{CCSD} polarization is correct through fourth order in the
 fluctuation potential.
 
 \subsection{Free energies up to fifth order}\label{sec:energies-pt}
@@ -1129,7 +1129,7 @@ amplitudes, multipliers and polarization:
 \end{equation}
 Similarly to the exposition in Chapter \ref{ch:QM}, these expressions
 will form the basis for the development of approximations
-beyond \acrshort*{CCSD} including connected triples.
+beyond \acrshort{CCSD} including connected triples.
 
 The \acrshort{PTED}-\acrshort{CCSD} scheme for the quantum/classical coupling
 only includes singles and doubles in its excitation manifold and is thus
@@ -1324,7 +1324,7 @@ Approximate Coupled Cluster Methods with Quantum/Classical Polarizable Hamiltoni
 In complete analogy to the discussion in Section
 \ref{sec:cc-approximate}, we can derive iterative and noniterative
 schemes for the approximate inclusion of higher order excitations in the
-\acrshort*{CC} hierarchy.
+\acrshort{CC} hierarchy.
 Starting from the \acrshort{CC2} Lagrangian, Eq.
 \eqref{eq:cc2-lagrangian}, we can write down the corresponding
 \acrshort{PTED} effective Lagrangian:\autocite{Sneskov2011-jm,
@@ -1630,7 +1630,7 @@ implicitly included.
 
 The theory and implementation for iterative \acrshort{CC} methods with
 quantum/classical polarizable Hamiltonians has already been presented in
-the context of the multipolar continuum and \acrlong*{PE}
+the context of the multipolar continuum and \acrlong{PE}
 models.\autocite{Kongsted2002-zm, Osted2003-qc, Sneskov2011-jm,
 Schwabe2012-cf}
 Once again, the \acrshort{PTE} scheme can be trivially derived from the
@@ -1708,7 +1708,7 @@ The multipliers equations are:
     = 0 \label{eq:pte-s-cc3-triples-multipliers}
   \end{align}
 \end{subequations}
-In both \acrlong*{CC} models, the polarization is still determined by
+In both \acrlong{CC} models, the polarization is still determined by
 Eq. \eqref{eq:pte-s-polarization} and only the singles multipliers
 equation is modified.
 
@@ -1770,7 +1770,7 @@ in the implementation of \acrshort{PE}-\acrshort{CC2} presented by
 The resolution of the identity can in fact still be applied when
 assuming the \acrshort{PTES} approximation.
 Moreover, the simplified \acrshort{PE}-\acrshort{CC}
-(s\acrshort*{PE}\acrshort*{CC}) Lagrangian of \citeauthor{Krause2016-ee}
+(s\acrshort{PE}\acrshort{CC}) Lagrangian of \citeauthor{Krause2016-ee}
 is essentially the \acrshort{PTE(S)} approximation for
 \acrshort{PE}-\acrshort{CC}.\autocite{Krause2016-ee}
 

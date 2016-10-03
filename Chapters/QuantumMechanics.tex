@@ -2,7 +2,7 @@
 
 \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
 
-\chapter{Overview of Molecular Electronic Structure Theory}\label{ch:QM}
+\chapter{A Tour of Molecular Electronic Structure Theory}\label{ch:QM}
 
 \begin{epigraphs}
 \setlength\epigraphwidth{7.5cm}
@@ -354,7 +354,7 @@ The \acrshort{KS} matrix:
 \end{equation}
 contains an \acrshort{XC} one-electron contribution due to the
 in addition to the other terms contained in the Fock matrix.
-The functional derivative of the \acrshort*{XC} functional enters in the
+The functional derivative of the \acrshort{XC} functional enters in the
 definition of this additional term:
 \begin{alignat}{2}
   f_{\mathrm{xc}; rs}
@@ -366,7 +366,7 @@ definition of this additional term:
   \frac{\delta E_\mathrm{xc}[\rho(\vect{r})]}{\delta \rho(\vect{r})}.
 \end{alignat}
 Notice moreover the exact exchange admixing factor $\gamma$ in the
-two-electron part of the \acrshort*{KS} matrix.
+two-electron part of the \acrshort{KS} matrix.
 
 How are \glspl*{MO} constructed? The usual approach is to expand them in
 a basis of one-particle, atom-centered basis functions of known
@@ -377,10 +377,10 @@ functional form:
   \sum_{\alpha=1}^{N_\mathrm{basis}}
   C_{\alpha r}\chi_{\alpha}(\vect{r})
 \end{equation}
-and optimize the expansion coefficients in the \acrshort*{SCF} procedure.
-Choosing the one-particle \acrshort*{MO} space is then equivalent to
+and optimize the expansion coefficients in the \acrshort{SCF} procedure.
+Choosing the one-particle \acrshort{MO} space is then equivalent to
 choosing the one-particle \gls{AO} space.
-The functional form of the \acrshort*{AO} basis is chosen to strike a
+The functional form of the \acrshort{AO} basis is chosen to strike a
 balance between a physically accurate description of the short-range
 Coulomb interaction and algorithmic robustness and
 efficiency.\autocite{Helgaker2000-tz}
@@ -389,7 +389,7 @@ Gaussian functions.\autocite{Helgaker1995-gi, Reine2012-tq}
 
 \section{The Coupled Cluster Ansatz}\label{sec:coupled-cluster}
 
-In the \acrlong*{CC} method we construct our correlated wave function as
+In the \acrlong{CC} method we construct our correlated wave function as
 an exponential mapping on top of a single reference
 function:\autocite{Crawford2000-ey, Helgaker2000-tz, Bartlett2007-mz,
 Shavitt2009-mr}
@@ -500,7 +500,7 @@ respect to both sets of parameters:
     = 0
   \end{align}
 \end{subequations}
-The \acrshort*{CC} Lagrangian can thus be expressed as:
+The \acrshort{CC} Lagrangian can thus be expressed as:
 \begin{equation}\label{eq:cc-lagrangian}
   \begin{aligned}
     \mathcal{L}(\tamp{}, \tbar{})_\mathcal{M}
@@ -517,7 +517,7 @@ The \acrshort*{CC} Lagrangian can thus be expressed as:
 \end{equation}
 where $E_0 = \sum_{i}\epsilon_i$ is the sum of the one-electron orbital
 energies and the shorthand notation for the Lagrangian multiplier state (left
-\acrshort*{CC} state) was introduced:
+\acrshort{CC} state) was introduced:
 \begin{equation}
   \label{eq:left-state}
   \bra{\tbar{u}} = \sum_{\mu_u}\tbar{\mu_u}\bra{\mu_u}.
@@ -559,19 +559,19 @@ mean-field approximation is to employ perturbation
 theory.\autocite{Konishi2009-zb}
 The single determinant optimized in the mean-field approximation is used
 as zeroth-order wave function and the perturbation series is developed
-considering the fluctuation potential in the \acrlong*{MP} partitioning
+considering the fluctuation potential in the \acrlong{MP} partitioning
 of the Hamiltonian as the perturbation.\autocite{McWeeny1992-oj, Helgaker2000-tz}
 Notice that the partitioning of the Hamiltonian is not unique and
 other choices are available.\autocite{Shavitt2009-mr}
 
-As shown by \citeauthor{Koch1997-nm}, the \acrshort*{MBPT} series can be
-derived from a \acrshort*{CC} ansatz for the wave function.
+As shown by \citeauthor{Koch1997-nm}, the \acrshort{MBPT} series can be
+derived from a \acrshort{CC} ansatz for the wave function.
 This ensures term-by-term size-extensivity of the energy at all
 orders.\autocite{Helgaker2000-tz}
 The governing equations
 \eqref{eq:cc-amplitudes}--\eqref{eq:cc-multipliers} are expanded in
 terms of the fluctuation potential. Energy corrections are identified
-from the corresponding order expansion of the \acrshort*{CC} Lagrangian
+from the corresponding order expansion of the \acrshort{CC} Lagrangian
 and retaining only terms complying to the $2n+1$ and $2n+2$ rules.
 \autocite{Helgaker1988-to, Helgaker1989-wl, Helgaker1992-ph}
 A superscript index in square brackets - $[i]$ -  will denote an $i$-th
@@ -663,12 +663,12 @@ the energy are given as:
   \end{align}
 \end{subequations}
 These expressions form the basis for the development of reduced-scaling
-\acrshort*{CC} schemes were the double and triple excitations are treated
+\acrshort{CC} schemes were the double and triple excitations are treated
 approximately. These are the subject of the next Section.
 
 \section{Approximate Coupled Cluster Methods}\label{sec:cc-approximate}
 
-The \acrshort*{CCSD} scheme, which scales as $N^6$, is really successful
+The \acrshort{CCSD} scheme, which scales as $N^6$, is really successful
 in recovering a large portion of the correlation energy, but as hinted
 at in the previous Section, is only correct to third order in
 perturbation theory.
@@ -696,7 +696,7 @@ not affect the particle rank of the electronic
 Hamiltonian,\autocite{Koch1994-vr, Helgaker2000-tz}
 see Appendix \ref{app:mathematical-results} for details.
 The assumption that $T_1$ is of zeroth order is contrary to the usual
-\acrshort*{MP} approach but highlights the role of the singles
+\acrshort{MP} approach but highlights the role of the singles
 amplitudes as orbital optimization parameters.
 In the \gls{CC2} method, the amplitudes equations are:\autocite{Christiansen1995-vy, Helgaker2000-tz}
 \begin{subequations}\label{eq:cc2-amplitudes}
@@ -716,7 +716,7 @@ The approximate doubles cluster operator was introduced:
   \denom{\mu_2}^{-1}\braket{\mu_2 | \check{\Phi} | \mathrm{HF}}\cluster{\mu_2}
 \end{equation}
 and we shall refer to it as quasi-$T_2$.
-The \acrshort*{CC2} Lagrangian is constructed based on the approximate
+The \acrshort{CC2} Lagrangian is constructed based on the approximate
 equations obtained for the singles and
 doubles:\autocite{Christiansen1995-vy, Helgaker2000-tz}
 \begin{equation}\label{eq:cc2-lagrangian}
@@ -732,9 +732,9 @@ doubles:\autocite{Christiansen1995-vy, Helgaker2000-tz}
   + \braket{\tbar{2} | \check{\Phi} | \mathrm{HF}}
   \end{aligned}
 \end{equation}
-The \acrshort*{CC2} method brings the scaling of the \acrshort*{CCSD}
+The \acrshort{CC2} method brings the scaling of the \acrshort{CCSD}
 method down to $N^5$ in the iterative step.
-From the approximate \acrshort*{CC2} Lagrangian we can derive the
+From the approximate \acrshort{CC2} Lagrangian we can derive the
 multipliers equations:
 \begin{subequations}\label{eq:cc2-multipliers}
   \begin{align}
@@ -754,8 +754,8 @@ multipliers equations:
      = 0 \label{eq:cc2-doubles-multipliers}
   \end{align}
 \end{subequations}
-Formally, \acrshort*{CC2} expectation values can be computed using the
-expression for the \acrshort*{CCSD} (see Appendix \ref{sec:CC-expval})
+Formally, \acrshort{CC2} expectation values can be computed using the
+expression for the \acrshort{CCSD} (see Appendix \ref{sec:CC-expval})
 and the approximate amplitudes and multipliers:
 \begin{equation}\label{eq:cc2-expectation-value}
   \begin{aligned}
@@ -773,7 +773,7 @@ and the approximate amplitudes and multipliers:
 \end{equation}
 
 The \gls{CC3} model is constructed analogously. Starting from the
-\acrshort*{CCSDT} amplitudes equations in the $T_1$-transformed
+\acrshort{CCSDT} amplitudes equations in the $T_1$-transformed
 representation, we retain only second order terms in the triples
 equation:\autocite{Christiansen1995-pv, Koch1997-nm, Helgaker2000-tz,
 Smith2005-an}
@@ -793,12 +793,12 @@ Smith2005-an}
     | \mathrm{HF}} = 0 \label{eq:cc3-triples-amplitudes}
   \end{align}
 \end{subequations}
-In complete analogy with \acrshort*{CC2}, the quasi-$T_3$ operator was introduced:
+In complete analogy with \acrshort{CC2}, the quasi-$T_3$ operator was introduced:
 \begin{equation}
   Q_3 = - \sum_{\mu_3}
   \denom{\mu_3}^{-1}\braket{\mu_3 | \commutator{\check{\Phi}}{T_2} | \mathrm{HF}}\cluster{\mu_3}.
 \end{equation}
-The \acrshort*{CC3} Lagrangian is constructed based on the approximate
+The \acrshort{CC3} Lagrangian is constructed based on the approximate
 amplitude equations
 \eqref{eq:cc3-amplitudes}:\autocite{Christiansen1995-pv, Koch1997-nm,
 Helgaker2000-tz, Smith2005-an}
@@ -819,9 +819,9 @@ Helgaker2000-tz, Smith2005-an}
   &+ \braket{\tbar{3} | \commutator{\check{\Phi}}{T_2} | \mathrm{HF}}
   \end{aligned}
 \end{equation}
-The \acrshort*{CC3} methods brings the scaling of the \acrshort*{CCSDT}
+The \acrshort{CC3} methods brings the scaling of the \acrshort{CCSDT}
 method down to $N^7$ in the iterative step.
-We can now derive the \acrshort*{CC3} multipliers equations:
+We can now derive the \acrshort{CC3} multipliers equations:
 \begin{subequations}\label{eq:cc3-multipliers}
   \begin{align}
     \denom{\mu_1}\tbar{\mu_1} &+
@@ -861,7 +861,7 @@ We can now derive the \acrshort*{CC3} multipliers equations:
     = 0 \label{eq:cc3-triples-multipliers}
   \end{align}
 \end{subequations}
-\acrshort*{CC3} expectation values can be computed as follows:
+\acrshort{CC3} expectation values can be computed as follows:
 \begin{equation}\label{eq:cc3-expectation-value}
   \begin{aligned}
   O(\tamp{}, \tbar{})_\mathrm{CC3}
@@ -891,16 +891,16 @@ We can now derive the \acrshort*{CC3} multipliers equations:
 Finally, one can construct \emph{noniterative} methods, where the
 expensive $N^7$ step for the inclusion of connected triples is
 calculated as a one-off correction on top of the converged
-\acrshort*{CCSD} energy.
+\acrshort{CCSD} energy.
 The expression for the correction is based on the fourth and fifth order
 triples energy corrections Eqs.
 \eqref{eq:4th-order-triples}--\eqref{eq:5th-order-triples}, but is
-computed using the converged \acrshort*{CCSD} singles and doubles
+computed using the converged \acrshort{CCSD} singles and doubles
 amplitudes,\autocite{Urban1985-xp, Raghavachari1989-bn, Bartlett1990-lk,
 Watts1993-ff, Kucharski1998-qq, Kucharski1998-oi, Crawford1998-vj,
 Taube2008-xv, Taube2008-oq} here and in the following denoted by a $*$
 superscript.
-Since the left and right \acrshort*{CC} states differ, symmetric and
+Since the left and right \acrshort{CC} states differ, symmetric and
 asymmetric variants of the noniterative corrections exist.
 
 The $\Lambda\text{CCSD}[\text{T}]$\autocite{Eriksen2015-il} and
@@ -942,10 +942,10 @@ once again, the symmetric method can be obtained from the asymmetric
 variant by replacing multipliers with amplitudes in the left state.
 
 Results from noniterative methods can be rationalized within the
-framework of \acrshort*{MBPT}.\autocite{Stanton1997-lx, Koch1997-nm,
+framework of \acrshort{MBPT}.\autocite{Stanton1997-lx, Koch1997-nm,
 Eriksen2014-gy, Eriksen2015-il, Kristensen2016-od}
 From Eqs. \eqref{eq:1st-order}--\eqref{eq:2nd-order}, one can derive
-which \acrshort*{MBPT} terms are included in the corrections:
+which \acrshort{MBPT} terms are included in the corrections:
 \begin{equation}
   \begin{aligned}
   {}^* E^{[4]}_{\Lambda\text{[T]}}
@@ -957,7 +957,7 @@ which \acrshort*{MBPT} terms are included in the corrections:
   \end{aligned}
 \end{equation}
 and similarly for ${}^* E^{[4]}_{\text{[T]}}$.
-The \acrshort*{MBPT} terms included in ${}^*
+The \acrshort{MBPT} terms included in ${}^*
 E^{[5]}_{\Lambda\text{(T)}}$ can be seen to be:
 \begin{equation}
   {}^* E^{[5]}_{\Lambda\text{(T)}}

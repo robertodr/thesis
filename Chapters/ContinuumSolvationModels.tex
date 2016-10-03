@@ -345,21 +345,21 @@ three types of molecular surfaces can be defined:
  \begin{subfigure}{.45\textwidth}
    \centering
    \includegraphics[width=.85\textwidth]{vdWS.png}
-   \caption{\acrlong*{vdWS} (\acrshort{vdWS})}
+   \caption{\acrlong{vdWS} (\acrshort{vdWS})}
    \label{fig:vdWS}
  \end{subfigure}
  ~
  \begin{subfigure}{.45\textwidth}
    \centering
    \includegraphics[width=.85\textwidth]{SAS.png}
-   \caption{\acrlong*{SAS} (\acrshort{SAS})}
+   \caption{\acrlong{SAS} (\acrshort{SAS})}
    \label{fig:SAS}
  \end{subfigure}
 
  \begin{subfigure}{.45\textwidth}
    \centering
    \includegraphics[width=.85\textwidth]{SES.png}
-   \caption{\acrlong*{SES} (\acrshort{SES})}
+   \caption{\acrlong{SES} (\acrshort{SES})}
    \label{fig:SES}
  \end{subfigure}
  \caption{Molecular surfaces from interlocking sets of atom-centered spheres.
@@ -761,22 +761,22 @@ the one-electron \acrshort{AO} density matrix as:
 \begin{equation}
   D_{\mu\nu} = \sum_{i=1}^{N_O}C_{\mu i}C^\dagger_{\nu i}
 \end{equation}
-where $C_{\alpha r}$ are the \acrshort*{MO} expansion coefficients and
+where $C_{\alpha r}$ are the \acrshort{MO} expansion coefficients and
 $N_O$ is the total number of occupied orbitals.
-The \acrshort*{SCF} energy functional \emph{in vacuo} can now be
+The \acrshort{SCF} energy functional \emph{in vacuo} can now be
 expressed as:
 \begin{equation}\label{eq:scf-functional}
   \mathcal{E}(\mat{C}) \eqtr \mat{h}\mat{D} + \frac{1}{2}
   \mat{G}^\gamma(\mat{D})\mat{D} + E_\mathrm{xc}[\rho(\vect{r})] +
   V_\mathrm{NN},
 \end{equation}
-and has to be optimized under the \acrshort*{MO} orthonormality
+and has to be optimized under the \acrshort{MO} orthonormality
 constraint, easily introduced by means of Lagrangian multipliers:
 \begin{equation}\label{eq:scf-lagrangian}
   \mathcal{L}(\mat{C}, \mat{\epsilon}) = \mathcal{E}(\mat{C}) -
   \sum_{ij}\epsilon_{ji}(\braket{\phi_i|\phi_j} - \delta_{ij})
 \end{equation}
-The various contributions are expressed in terms of \acrshort*{AO} basis
+The various contributions are expressed in terms of \acrshort{AO} basis
 integral and density matrices:
 \begin{subequations}
   \begin{align}
@@ -796,7 +796,7 @@ integral and density matrices:
   \label{eq:ao-overlap}
   \end{align}
 \end{subequations}
-The quantum/classical polarizable \acrshort*{SCF} functional is obtained by adding the
+The quantum/classical polarizable \acrshort{SCF} functional is obtained by adding the
 polarization functional to Eq. \eqref{eq:scf-functional}:
 \begin{equation}\label{eq:polarizable-scf-functional}
   \mathcal{L}_\mathrm{eff}(\mat{C}, \mat{\epsilon}, \s) =
@@ -804,21 +804,21 @@ polarization functional to Eq. \eqref{eq:scf-functional}:
   \frac{1}{2}{}^t\p\V\p + {}^t\p\Tr\mathbfup{s}\mat{D}.
 \end{equation}
 Differentiation with respect to the variational degrees of freedom
-yields the \acrshort*{KS} and polarization equations:
+yields the \acrshort{KS} and polarization equations:
 \begin{subequations}
   \begin{align}
     \mat{F}\mat{C} &= \mat{S}\mat{C}\mat{\epsilon} \\
     \V\p &+ \Tr\mathbfup{s}\mat{D} = 0 \label{eq:polarization-stat}
   \end{align}
 \end{subequations}
-The \acrshort*{KS} matrix now includes environment contributions:
+The \acrshort{KS} matrix now includes environment contributions:
 \begin{equation}
   f_{\mu\nu} = h_{\mu\nu}  + G^\gamma_{\mu\nu}(\mat{D}) + f_{\mathrm{xc};\mu\nu}
   + {}^t\p\s_{\mu\nu}.
 \end{equation}
 With respect to the coupling described in abstract terms above, the
-\acrshort*{SCF} case is formally simpler. In fact, whereas in the
+\acrshort{SCF} case is formally simpler. In fact, whereas in the
 general case the source term depends on \emph{both} primal (amplitudes)
 and dual (multipliers) variational degrees of freedom, here only the
-dependence on the primal parameters (\acrshort*{MO} coefficients) needs
+dependence on the primal parameters (\acrshort{MO} coefficients) needs
 to be considered.\autocite{Lipparini2011-aj}
