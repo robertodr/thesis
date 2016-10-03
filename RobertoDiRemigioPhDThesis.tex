@@ -3,7 +3,7 @@
 %     Compiler: make
 %       Author: roberto
 % Date Created: 2016 Jul 15
-%  Last Change: 2016 Oct 01
+%  Last Change: 2016 Oct 03
 \RequirePackage{fix-cm} % fix some latex issues see: http://texdoc.net/texmf-dist/doc/latex/base/fixltx2e.pdf
 \documentclass[twoside,openright,titlepage,numbers=noenddot,headinclude,%headlines,% letterpaper a4paper
                footinclude=true,cleardoublepage=empty,
@@ -30,24 +30,21 @@
 % GO!GO!GO! MOVE IT!
 %*******************************************************
 \begin{document}
-\includepdf{gfx/PhDengelskMonster.pdf}
-\blankpage
+\includepdf[pagecommand={\thispagestyle{empty}}, pages=-]{gfx/PhDengelskMonster.pdf}
+\blankpage\blankpage
 \frenchspacing
 \raggedbottom
 %\renewcommand*{\bibname}{new name}
 %\setbibpreamble{}
-\pagenumbering{roman}
 %********************************************************************
 % Frontmatter
 %*******************************************************
 \pagestyle{empty}
 \include{FrontBackmatter/Titlepage}
-\pagestyle{plain}
 \include{FrontBackmatter/Colophon}
-%\include{FrontBackmatter/Titleback}
-%\cleardoublepage\include{FrontBackmatter/Dedication}
-%\cleardoublepage\include{FrontBackmatter/Foreword}
-\cleardoublepage\include{FrontBackmatter/Abstract}
+\pagenumbering{roman}
+\pagestyle{plain}
+\include{FrontBackmatter/Abstract}
 \cleardoublepage\include{FrontBackmatter/Acknowledgments}
 \pagestyle{scrheadings}
 \cleardoublepage\include{FrontBackmatter/Contents}

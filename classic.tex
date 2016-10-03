@@ -189,6 +189,7 @@
 \newcommand{\finalVersionString}{\relax}
 \providecommand{\myVersion}{$\!\!$} % w/o classicthesis-config.tex
 \renewcommand{\finalVersionString}{\emph{Final Version} as of \today\ (\texttt{classicthesis}~\myVersion).}
+\usepackage{scrhack}
 
 \usepackage{polyglossia}
 \setmainlanguage{english}
@@ -298,9 +299,9 @@ urldate=long
 % Font stuff
 %\usepackage{amssymb}
 \usepackage{fontspec}
-\setmainfont[Ligatures=TeX, Numbers=OldStyle]{TeX Gyre Termes}
-\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
-\newfontfamily\greekfontsf[Script=Greek]{Linux Libertine O}
+\setmainfont[Ligatures=TeX, Numbers=OldStyle, Scale=0.9]{TeX Gyre Termes}
+\newfontfamily\greekfont[Script=Greek, Scale=0.9]{Linux Libertine O}
+\newfontfamily\greekfontsf[Script=Greek, Scale=0.9]{Linux Libertine O}
 \setsansfont[Scale=0.85]{TeX Gyre Heros}
 \setmonofont[Scale=0.8]{Bitstream Vera Sans Mono}
 \usepackage[math-style=ISO,
