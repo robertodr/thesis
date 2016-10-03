@@ -1,6 +1,7 @@
 %%%%% Units of measure
 \DeclareSIUnit[number-unit-product = \;]\debye{D}
 \DeclareSIUnit[number-unit-product = \;]\au{a.u.}
+\DeclareSIUnit{\calorie}{cal}
 
 %%%%% URLs
 \newcommand{\GitHub}{\href{https://github.com/robertodr}{GitHub}\xspace}
@@ -126,7 +127,7 @@
 
 %%%%% Response theory stuff
 \newcommand*{\aveQ}{\left\lbrace Q(t)\right\rbrace_T}% Time-averaged quasi-energy
-\newcommand*{\response}[3]{\Braket{\Braket{#1; #2}}_{#3}}% Response function
+\newcommand*{\response}[3]{\braket{\braket{#1; #2}}_{#3}}% Response function
 \newcommand*{\pertmat}[1]{\tilde{\mat{#1}}}
 \newcommand*{\aveL}{\lbrace\tilde{L}(\pertmat{C}, \pertmat{\lambda}, \tilde{\sigma}, t)\rbrace_T}% Time-averaged quasi-energy
 \newcommand*{\aveLa}{\lbrace\tilde{L}^a(\pertmat{C}, \pertmat{\lambda}, \tilde{\sigma}, t)\rbrace_T}% Time-averaged quasi-energy

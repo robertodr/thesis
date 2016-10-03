@@ -6,15 +6,12 @@
 
 \renewcommand{\thefigure}{\Alph{figure}}
 
-\begin{epigraphs}
-\qitem{
+\section*{What Are the Electrons Really Doing in Molecules?}\footnotetext{
 [...] \textnorsk{og fordi jeg alltid har hatt en dragning mot det skjulte og hemmelige.}
-}{
---- \textnorsk{\textsc{K. O. Knausgård}, \textit{Om Høsten}}}
-\end{epigraphs}
-
-
-\section*{What Are the Electrons Really Doing in Molecules?}
+\\
+\hspace*{15pt}
+--- \textnorsk{\textsc{K. O. Knausgård}, \textit{Om Høsten}}
+}
 
 \begthought{This question was posed} by R.~S.~Mulliken over a half-century
 ago\footnote{Mulliken chose it as the title for his Gilbert N.~Lewis
@@ -66,7 +63,10 @@ successes. Introduced by \citeauthor{Pople1999-gt}, theoretical model
 chemistries are specific combinations of approximations in the basis set
 and molecular electronic structure methodology.\autocite{Pople1999-gt}
 Model chemistries are \emph{systematically improvable} so that it is
-possible to achieve the heaven of chemical accuracy by relaxing
+possible to achieve the heaven of chemical
+accuracy\footnote{A theoretical result is said to be \emph{chemically
+accurate} if it is within \SI{1}{\kilo\calorie\per\mol} of the corresponding
+experimental measurement.} by relaxing
 approximations in the model, albeit at an increased computational cost.
 Figure \ref{fig:RQC-axis} presents the usual depiction of this concept
 as a set of orthogonal axes, where chemical accuracy can be achieved by
@@ -78,13 +78,7 @@ and basis axes.\autocite{Saue2011-qg}
 The description of the ideas and methods at the basis of quantum
 chemistry will be the subject of Chapter \ref{ch:QM}.
 I will put emphasis on the methods that have been relevant in the work
-presented in this dissertation. Section \ref{sec:mqm} discusses some of the
-ideas of quantum many-body theory relevant to quantum chemistry. Section
-\ref{sec:mean-field} introduces the workhorses of quantum chemistry
-\acrlong{HF} and \acrlong{KS} \acrlong{DFT}.
-The \acrlong{MBPT} and \acrlong{CC} rungs on the methodology axis will
-be discussed in Sections \ref{sec:mbpt} and \ref{sec:coupled-cluster},
-respectively.
+presented in this dissertation.
 
 \section*{The Problem of Solvation}
 
@@ -116,7 +110,7 @@ will be presented in this dissertation.\autocite{Onsager1936-wf}
 \newthought{Before introducing our model of choice}, let us consider how an
 environment might affect molecular observables of interest.
 Environment effects are usually classified as:
-\begin{description}[leftmargin=2mm, font=\normalfont]
+\begin{description}[leftmargin=2mm, font=\itshape]
 \item[Direct.]
   These effects stem straightforwardly from the modification underwent by
   the solute electronic density when interacting with the environment.
@@ -226,11 +220,8 @@ Lipparini2015-lq} I will introduce a unifying theoretical formalism for
 \acrshort{QM}/Continuum, \acrshort{QM}/\acrshort{MM} and \acrshort{QM}/\acrshort{MM}/Continuum models that will
 be extensively used throughout.
 
-\section*{The Road to Reality or Molecular Response Properties}
+\section*{A Road to Reality or Molecular Response Properties}
 
-\begarrowthought{The scope of quantum chemistry is to understand and predict molecular
-properties}, but so far we have made no mention of properties other than
-the energy.
 The experimentalists' view of molecular systems is built mainly around
 the use of spectroscopic techniques that explore the interaction of
 light and matter. When a system is exposed to an external perturbing
@@ -239,7 +230,8 @@ properties.\autocite{Pedersen2012-il, Jaszunski2012-wy}
 Characterizing, explaining and predicting a large number of measurable
 properties requires a synergistic experimental and theoretical approach.
 \emph{Response theory} is the missing link between theory and
-experiment, making quantum chemistry a full-fledged virtual laboratory.
+these vast classes of
+experiments, making quantum chemistry a full-fledged virtual laboratory.
 Response theory allows the description and computation of
 perturbation-induced changes in observable molecular properties.
 Electric and magnetic properties, excitation energies and transition
@@ -260,8 +252,8 @@ variational framework is a powerful theoretical tool.
 chemistries} are the foundations for the successful practice of quantum
 chemistry.
 A balanced description of electron correlation is often necessary
-to achieve accurate enough results in the computation of molecular
-properties.\autocite{Lee1995-pw, Helgaker2004-oz, Tajti2004-ye}
+to achieve results that are accurate enough for meaningful comparisons
+with experiments.\autocite{Lee1995-pw, Helgaker2004-oz, Tajti2004-ye}
 The cost-effective treatment of electron correlation is a challenging
 problem and a very active line of research in the field.
 \Acrlong*{DFT} approaches are cheap and widespread, but their general
@@ -271,7 +263,7 @@ cost.
 
 In this dissertation, we are interested in the inclusion of
 environment effects in \emph{ab initio} models of interesting chemical
-systems. As already noted, this is a challenging problem, the more so
+systems. As already noted, this is a difficult problem, the more so
 when including electron correlation is necessary to obtain better
 accuracy.
 We will describe our approach to this problem in Chapter
