@@ -1,57 +1,46 @@
 \chapter{Response Theory and Molecular Properties}\label{ch:molprop}
-
-\begin{epigraphs}
-\qitem{
-White light goin' messin' up my brain
-
-White light it's gonna drive me insane
-}{
---- \textsc{The Velvet Underground}
+\footnotetext{White light goin' messin' up my brain \\
+White light it's gonna drive me insane \\
+\hspace*{15pt} --- \textsc{The Velvet Underground}
 }
-\qitem{What's the frequency, Kenneth? [...]
-
-          I never understood the frequency, uh-huh}{
-          --- \textsc{R.E.M.}}
-\end{epigraphs}
 
 Response theory provides an \emph{ab initio} framework for the
-formulation and computation of molecular properties and can be
-considered the connection between quantum chemistry and experimental
-chemistry.
+formulation and computation of molecular properties and thus a
+connection
+between \emph{ab initio} and experimental methods based on spectroscopy.
 The response treatment of molecular properties has its roots in
 time-dependent perturbation theory\autocite{Konishi2009-zb} and has been
 continually developed in quantum chemistry for the past 30
 years.\autocite{Olsen1985-nr, Helgaker1992-ph, Olsen1995-pf,
 Christiansen1998-pe, Norman2011-ad, Helgaker2012-cz, Pawlowski2015-sq}
+\footnotetext{What's the frequency, Kenneth? \\
+I never understood the frequency \\
+\hspace*{15pt} --- \textsc{R.E.M.}}
 
 Section \ref{sec:exact-response} will give a brief introduction to
 response theory for isolated molecules.
-
-\noindent The concepts of quasienergy,\autocite{Christiansen1998-pe} variational
+The concepts of quasienergy,\autocite{Christiansen1998-pe} variational
 perturbation theory\autocite{Helgaker1992-ph} and pole-and-residue
 analysis of response functions\autocite{Olsen1985-nr} will be
-introduced. The exposition closely follows the one by
+introduced. The exposition closely follows that given by
 \citeauthor{Saue2002-ns} in \noparcite[ref.][]{Saue2002-ns}.
 I will explicitly derive the \acrshort{SCF} response function for a
 quantum/classical polarizable Hamiltonian in Section
 \ref{sec:csm-response}. The derivation will employ the
 density matrix-based, \acrshort{AO} formalism introduced by
 \citeauthor{Thorvaldsen2008-sg} in \noparcite[ref.][]{Thorvaldsen2008-sg}.
-This formalism is suitable for the derivation of arbitrary-order
-response functions and their residues, also when perturbation-dependent
-basis sets are considered.\autocite{Friese2015-kb, Friese2015-bu}
-\paper{V} presents the arbitrary-order derivation of the \acrshort{PCM}.
 
 \section{Response Theory in a Nutshell}\label{sec:exact-response}
 
-Let us consider the experimentally relevant situation where a molecular
+\begarrowthought{Let us consider the experimentally relevant
+situation} where a molecular
 system is subject to an external source of electromagnetic radiation,
 Figure \ref{fig:OR}.
 Here and in the following, "external" will be used to mean an
 electromagnetic field which is "weak" when compared to the
 electron--electron and electron--nuclei interactions in the molecule.
 
-\begin{figure}[tb]
+\begin{figure}[!htb]
   \centering
   \includegraphics[width=.7\textwidth]{Optical-rotation.pdf}
   \caption{
@@ -98,11 +87,11 @@ decomposition:
  =
  \sum_{k=-N}^N\expo{-\mathrm{i}\omega_k t} \sum_X \epsilon_X(\omega_k)V_X \\
  &=
- \sum_{x}\expo{-\mathrm{i}\omega_x t}\epsilon_x V_X
+ \sum_{x}\expo{-\mathrm{i}\omega_x t}\epsilon_x V_X,
   \end{aligned}
 \end{equation}
-where all the frequencies are integer multiples, $\omega_k=n_k \omega$
-of the fundamental frequency $\omega = \frac{2\pi}{T}$.\autocite{Olsen1985-nr}
+where all the frequencies are integer multiples, $\omega_k=n_k \omega$,
+of a fundamental frequency $\omega = \frac{2\pi}{T}$.\autocite{Olsen1985-nr}
 Frequencies and amplitudes in the Fourier decomposition obey the
 following relations:
 \begin{alignat}{2}
@@ -116,9 +105,13 @@ since the $V(t)$ is required to be Hermitian.
 For notational convenience, the perturbation operator ($X$) and
 frequency ($k$) indices have been collapsed into the common index $x$.
 
-Under the assumption that the external field is weak with respect to the
+\arrowthought{Under the assumption that the external field is weak} with respect to the
 molecular field, time-dependent perturbation theory is an appropriate
-tool to approximately solve Eq. \eqref{eq:td-schrodinger}.
+tool to approximately solve Eq.
+\eqref{eq:td-schrodinger}.\footnote{\emph{Real-time} methods, where the
+time-dependent Schr\"{o}dinger equation is integrated directly in a
+set time interval, offer an alternative approach to perturbation
+theory.\autocite{Castro2004-tn, Tannor2007-xq, Konishi2009-zb}}
 The response theory route to molecular properties introduces a
 phase-separated ansatz for the time-dependent wave function:
 \begin{equation}\label{eq:phase-separated}
@@ -138,14 +131,16 @@ Fortunately, we can exploit the periodicity of the perturbation operator
 to introduce the time-averaged quasienergy:
 \begin{equation}
   \aveQ =
- \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} \diff t Q(t) =
+  \frac{1}{T} \int_{0}^{T} \diff t Q(t) =
  Q_0 + \sum_{x}\epsilon_x E_x
 \end{equation}
 where:
 \begin{subequations}
  \begin{align}
   Q_0 &= \left\lbrace \Braket{\bar{\psi}(t) | H_0 | \bar{\psi}(t)} \right\rbrace_T
-- \left\lbrace \Braket{\bar{\psi}(t) | \mathrm{i} \pderiv{}{t} | \bar{\psi}(t)}\right\rbrace_T = E_0(0) - S \\
+- \left\lbrace \Braket{\bar{\psi}(t) | \mathrm{i} \pderiv{}{t} |
+\bar{\psi}(t)}\right\rbrace_T \nonumber \\
+&= E_0(0) - S \\
   E_x &= \left\lbrace \Braket{\bar{\psi}(t) | V_X | \bar{\psi}(t)}\exp(-\mathrm{i}\omega_k t) \right\rbrace_T
  \end{align}
 \end{subequations}
@@ -163,8 +158,10 @@ develop the Kubo expansion at zero perturbation strength of the
 expectation value of the observable $H_X$:\autocite{Kubo1957-ay}
 \begin{equation}
 \begin{aligned}
- \Braket{\bar{\psi}(t) | V_X | \bar{\psi}(t)} &\simeq
- \Braket{0|V_X|0} +\sum_{k=-N}^N
+  \langle \bar{\psi}(t) | V_X &| \bar{\psi}(t) \rangle
+  \simeq
+ \Braket{0|V_X|0} \\
+ &+\sum_{k=-N}^N
  \response{V_X}{V(\omega_k)}{\omega_k}\expo{-\mathrm{i}\omega_k t} \\
  &+\frac{1}{2}\sum_{k,l=-N}^N
  \response{V_X}{V(\omega_k),V(\omega_l)}{\omega_k,\omega_l}\expo{-\mathrm{i}(\omega_k+\omega_l)t}
@@ -179,7 +176,7 @@ the right-hand side of Eq. \eqref{eq:tave-hellfeyn} will confirm:
   \deriv{\aveQ}{\epsilon_x}
   &\simeq \Braket{0|V_X|0}\delta_{\omega_x} \\
   &+\sum_{y}\response{V_X}{V_Y}{\omega_y}\epsilon_y\delta_{\omega_x+\omega_y} \\
-  &+\frac{1}{2}\sum_{y,z}\response{V_X}{V_Y,V_Z}{\omega_y,\omega_z}\epsilon_y\epsilon_z\delta_{\omega_x+\omega_y+\omega_z}
+  &+\frac{1}{2}\sum_{y,z}\response{V_X}{V_Y,V_Z}{\omega_y,\omega_z}\epsilon_y\epsilon_z\delta_{\omega_x+\omega_y+\omega_z}.
 \end{aligned}
 \end{equation}
 First and higher order molecular properties can now be identified from
@@ -187,53 +184,58 @@ the response functions appearing as Fourier coefficients in the Kubo
 expansion by taking the appropriate perturbation-strength derivatives at
 zero field strength:
 \begin{equation}\label{eq:nth-order-derivative}
+  \begin{aligned}
   \left.\frac{\diff^n \aveQ}{\diff\epsilon_{x_1}\diff\epsilon_{x_2}\cdots\diff\epsilon_{x_n}} \right|_{\vect{\epsilon}=0}
-  =
-  \response{V_{X_1}}{V_{X_2}, \ldots, V_{X_n}}{\omega_{x_2},\ldots,\omega_{x_n}}\delta_{\omega_{x_1}+\cdots+\omega_{x_n}},
+  &= \\
+  \langle\langle
+  V_{X_1}&; V_{X_2}, \ldots, V_{X_n}
+  \rangle\rangle_{\omega_{x_2},\ldots,\omega_{x_n}}
+  \delta_{\omega_{x_1}+\cdots+\omega_{x_n}},
+  \end{aligned}
 \end{equation}
 the $\delta_{\omega_{x_1}+\cdots+\omega_{x_n}}$ notation is used to
 enforce the sum rule on the probing and response frequencies involved in
 the expansion:
 \begin{equation}\label{eq:sum-rule}
- \sum_{i=1}^{n} \omega_{k_i} = 0
+ \sum_{i=1}^{n} \omega_{x_i} = 0
 \end{equation}
 Response functions quantify how, to a certain order in the perturbing
 field tuples, the expectation value of a given observable is modified.
 The semicolon appearing in the response functions separates the operator
 $V_X$, whose response is measured, from the external perturbations
-$V_Y$, $V_Z$\dots{} causing it.
+$V_Y$, $V_Z$, \dots{} causing it.
 From the perturbation expansion Eq. \eqref{eq:kubo}, it is clear that
 permutation symmetry exists between the external perturbations provided
 that the corresponding frequencies are permuted concomitantly.
 
-Having introduced response functions as a useful tool to quantify the
+\newthought{Having introduced response functions as a useful tool} to quantify the
 effect of external perturbations on molecular properties, it is now time
 to consider how to compute them.
 In this Section, we are concerned with exact wave functions that can
 be variationally parametrized by a set of parameters
-$\vect{\lambda}$: $\ket{0}=\ket{0(\vect{\lambda})}$.
+$\vect{\eta}$: $\ket{0}=\ket{0(\vect{\eta})}$.
 We recall that the Lagrangian method outlined in Section
 \ref{sec:coupled-cluster} can be employed also in this
 case.\autocite{Christiansen1998-pe, Helgaker2012-cz, Pawlowski2015-sq}
 The optimal parameter set is determined upon minimization of the
 time-averaged quasienergy:
 \begin{equation}\label{eq:var-cond}
- \deriv{\aveQ}{\vect{\lambda}} = 0.
+ \deriv{\aveQ}{\vect{\eta}} = 0.
 \end{equation}
 In variational perturbation theory,\autocite{Helgaker1992-ph,
 Saue2002-ns} we assume the variational parameters to be functions of the
-perturbation strength parameters: $\vect{\lambda} =
-\vect{\lambda}(\vect{\epsilon})$.
+perturbation strength parameters: $\vect{\eta} =
+\vect{\eta}(\vect{\epsilon})$.
 Furthermore, we require the stationarity condition to hold at \emph{all}
-perturbation strengths, with $\lambda(0) = 0$, for convenience.
+perturbation strengths, with $\eta(0) = 0$, for convenience.
 
 The perturbation-strength total derivative at zero perturbation strength
 of the time-averaged quasi energy is:
 \begin{equation}
 \begin{aligned}
- \left[\prod_{i=1}^n \deriv{}{\epsilon_{x_i}}\right]\aveQ
- &= Q^{[n]}_{x_1 \ldots x_n}
- =
+ \left[\prod_{i=1}^n \deriv{}{\epsilon_{x_i}}\right]&\aveQ
+ = Q^{[n]}_{x_1 \ldots x_n} \\
+ &=
  Q^{[n]}_{0; x_1 \ldots x_n}
  + \sum_{j=1}^{n}E^{[n-1]}_{x_j;x_1\ldots x_{j-1}x_{j+1}\ldots x_n} \\
  &=
@@ -250,43 +252,46 @@ Application of the chain rule to the total derivatives in fact yields:
  \begin{align}
    Q^{[1]}_{a} &=
    \sum_{\sigma}\left[
-   Q^{[1]}_{0; \sigma}\lambda^{[1]}_{\sigma;a} + E_{a}
+   Q^{[1]}_{0; \sigma}\eta^{[1]}_{\sigma;a} + E_{a}
    \right]\delta_{\omega_a} \\
    Q^{[2]}_{ab} &=
-   \sum_{\sigma\tau}\left[
-   \lambda^{[1]}_{\sigma;a}Q^{[2]}_{0;\sigma\tau}\lambda^{[1]}_{\tau;b}
-   + Q^{[1]}_{0; \sigma}\lambda^{[2]}_{\sigma;a}
-   + E^{[1]}_{a;\sigma}\lambda^{[1]}_{\sigma;b}
-   + E^{[1]}_{b;\sigma}\lambda^{[1]}_{\sigma;a}
-   \right]\delta_{\omega_a+\omega_b} \label{eq:linres}
+   \sum_{\sigma\tau}\big[
+   \eta^{[1]}_{\sigma;a}Q^{[2]}_{0;\sigma\tau}\eta^{[1]}_{\tau;b}
+   + Q^{[1]}_{0; \sigma}\eta^{[2]}_{\sigma;a} \nonumber \\
+ \hspace{10pt} &+ E^{[1]}_{a;\sigma}\eta^{[1]}_{\sigma;b}
+   + E^{[1]}_{b;\sigma}\eta^{[1]}_{\sigma;a}
+   \big]\delta_{\omega_a+\omega_b} \label{eq:linres}
  \end{align}
 \end{subequations}
 where the following tensors were introduced:
 \begin{subequations}
  \begin{align}
  Q^{[n]}_{0; \sigma_1\cdots \sigma_n} &=
- \frac{\partial^n Q_0}{\partial\lambda_{\sigma_1}\cdots\partial\lambda_{\sigma_n}} \\
+ \frac{\partial^n Q_0}{\partial\eta_{\sigma_1}\cdots\partial\eta_{\sigma_n}} \\
  E^{[n]}_{x;\sigma_1\cdots \sigma_n} &=
- \frac{\partial^n E_x}{\partial\lambda_{\sigma_1}\cdots\partial\lambda_{\sigma_n}} \\
-\lambda^{[n]}_{\sigma;x_1\dots x_n} &=
-\frac{\partial^n \lambda_\sigma}{\partial \epsilon_{x_1}\cdots\partial \epsilon_{x_n}}
+ \frac{\partial^n E_x}{\partial\eta_{\sigma_1}\cdots\partial\eta_{\sigma_n}} \\
+\eta^{[n]}_{\sigma;x_1\dots x_n} &=
+\frac{\partial^n \eta_\sigma}{\partial \epsilon_{x_1}\cdots\partial \epsilon_{x_n}}
  \end{align}
 \end{subequations}
 
 The response equations, determining the tensor of
-perturbed wave function parameters $\vect{\lambda}^{[n]}$, are obtained by differentiating the
-variational condition on the time-averaged quasienergy Eq.
-\eqref{eq:var-cond}:\autocite{Olsen1985-nr, Helgaker1992-ph, Christiansen1998-pe}
+perturbed wave function parameters $\vect{\eta}^{[n]}$, are obtained by differentiating the
+time-averaged quasienergy variational condition Eq.
+\eqref{eq:var-cond} with respect to the perturbation parameters:\autocite{Olsen1985-nr, Helgaker1992-ph, Christiansen1998-pe}
 \begin{equation}
  R_{\sigma;x_1\cdots x_n}^{[n]} = \left[\prod_{i=1}^n \deriv{}{\epsilon_{x_i}}\right]
-\left. \deriv{\aveQ}{\lambda_\sigma}\right|_{\vect{\epsilon}=0} = 0.
+\left. \deriv{\aveQ}{\eta_\sigma}\right|_{\vect{\epsilon}=0} = 0,
 \end{equation}
-The determination of second-order properties requires the knowledge of
-the first-order response of the wave function:
+followed by evaluation at zero perturbation strength.
+The first order response of the wave function $\vect{\eta}^{[1]}$,
+needed for the determination of second order properties
+$Q_{ab}^{[2]}$, can be computed by solving the corresponding response
+equation:
 \begin{subequations}
  \begin{align}
  R_{\sigma}^{[0]} &= Q_{0;\sigma}^{[1]} = 0 \\
- R_{\sigma;a}^{[1]} &= \sum_{\tau}Q_{0;\sigma\tau}^{[2]}\lambda_{\tau;a}^{[1]} + E_{a;\sigma}^{[1]} = 0.
+ R_{\sigma;a}^{[1]} &= \sum_{\tau}Q_{0;\sigma\tau}^{[2]}\eta_{\tau;a}^{[1]} + E_{a;\sigma}^{[1]} = 0.
  \label{eq:1st-order-response}
  \end{align}
 \end{subequations}
@@ -296,10 +301,11 @@ perturbation-strength derivatives.
 Moreover, variational perturbation theory achieves a transparent
 derivation of the necessary response equations.\autocite{Helgaker1992-ph}
 
-Let us consider in more detail the form of the linear response function
-Eq. \eqref{eq:linres}. The formal solution to the response equation Eq.
+\arrowthought{Let us consider in more detail the form of the linear
+response function Eq. \eqref{eq:linres}.}
+The formal solution to the response equation Eq.
 \eqref{eq:1st-order-response} can be obtained by inverting the
-\emph{Hessian}. Eq. \eqref{eq:linres} can then be rewritten as:
+\emph{Hessian}, $\mat{Q}_0^{[2]}$. Eq. \eqref{eq:linres} can then be rewritten as:
 \begin{equation}
   \response{V_A}{V_B}{\omega_b}
   =
@@ -311,13 +317,17 @@ Eq. \eqref{eq:linres}. The formal solution to the response equation Eq.
 Expansion into the exact eigenbasis of $H_0$ yields the
 \gls{SOS} expression for the linear response function:
 \begin{equation}
+  \begin{aligned}
   \response{V_A}{V_B}{\omega_b}
   =
-  -\sum_{n>0}\left[
-  \frac{\braket{0|V_A|n}\braket{n|V_B|0}}{\omega_{n0}-\omega_b}
-  +
+  &-\sum_{n>0}
+  \bigg[
+  \frac{\braket{0|V_A|n}\braket{n|V_B|0}}{\omega_{n0}-\omega_b} \\
+  &+
   \frac{\braket{0|V_B|n}\braket{n|V_A|0}}{\omega_{n0}-\omega_a}
-  \right]\delta_{\omega_a+\omega_b}.
+  \bigg]
+  \delta_{\omega_a+\omega_b}.
+\end{aligned}
 \end{equation}
 The excitation energies of the system appear in the denominators
 $\omega_{n0} = E_n - E_0$ and can thus be identified as the \emph{poles}
@@ -334,7 +344,7 @@ pole structure of the higher order quantities also conveys information
 about the excited states \emph{via} single and double
 residues.\autocite{Olsen1985-nr, Christiansen1998-pe, Helgaker2012-cz}
 
-The derivation above holds for an exact state, a situation that is never
+\newthought{The derivation above holds for an exact state,} a situation that is never
 realized in common practice. However, response theory is
 also applicable to approximate states.
 As noted by \citeauthor{Norman2011-ad}, a response theory treatment of
@@ -355,27 +365,27 @@ Thus, one can formulate and compute molecular properties based on
 the approximate state ans\"{a}tze of quantum chemistry.
 An interesting formulation of \acrshort{SCF} response theory is the
 open-ended \acrshort{AO} density matrix-based approach presented by
-\citeauthor{Thorvaldsen2008-sg}.\autocite{Thorvaldsen2008-sg}
-By formulating the perturbation-strenght derivative of the time-averaged
+\citeauthor{Thorvaldsen2008-sg}\autocite{Thorvaldsen2008-sg}
+By formulating the perturbation-strength derivative of the time-averaged
 quasienergy Lagrangian in terms of the \acrshort{AO} density matrix,
 the authors were able to formulate arbitrary order response functions
 in the \acrshort{AO} basis.
 The density matrix is the variational degree of freedom and the response
 equations can be obtained by differentiation of the \gls{TDSCF}
-equation, the stationarity condition on the density matrix.
+equation.
 The approach lends itself to an efficient \acrshort{AO}-based
 implementation,\autocite{Larsen2000-hj, Kjaergaard2008-hy} can fully
 leverage different response parameters elimination
-schemes,\autocite{Thorvaldsen2008-sg, Kristensen2008-hv} and is amenable
+schemes\autocite{Thorvaldsen2008-sg, Kristensen2008-hv} and is amenable
 to an open-ended, recursive implementation.\autocite{Ringholm2014-gx,
 Friese2015-kb, Friese2015-bu}
 We will base our derivation of \acrshort{SCF} response theory for
 quantum/classical polarizable Hamiltonians of this framework.
 
-\section{SCF Response Theory for Quantum/Classical Polarizable Hamiltonians}\label{sec:csm-response}
+\section[Quantum/Classical Polarizable Response Theory]{SCF Response Theory for Quantum/Classical Polarizable Hamiltonians}\label{sec:csm-response}
 
 The development of response theory for quantum/classical polarizable
-Hamiltonians has moved almost at the same pace as the polarizable
+Hamiltonians has moved almost at the same pace as the
 models themselves.
 An ample literature exists in the context of the
 \acrshort{PCM},\autocite{Cammi1994-qj, Cammi1996-wf, Cammi1996-vx,
@@ -384,8 +394,8 @@ polarizable \acrshort{MM} models,\autocite{Curutchet2009-bt, Olsen2010-wa,
 Lipparini2012-hx, Lipparini2012-tl}
 and general \acrshort{QM}/\acrshort{MM}/Continuum models.\autocite{Steindal2011-ki, Caprasecca2012-ir, Lipparini2013-ud}
 
-Solvent relaxation is an important point when formulating response
-properties. Solvation dynamics occurs on timescales and through
+\arrowthought{Solvent relaxation is an important point when formulating response
+properties.} Solvation dynamics occurs on timescales and through
 relaxation modes that are typical of the solvent molecular structure and of the
 peculiar solute-solvent interactions.
 This is clearly difficult to model with continuum models, since the
@@ -400,8 +410,6 @@ corresponding part of the response will remain frozen in the state
 immediately preceding the change.
 Such an assumption, albeit approximate, leads to the following partition
 of the polarization vector:
-The polarization vector will then be (approximately) a sum of two
-components:
 \begin{equation}
  \vect{P} \simeq \vect{P}_\mathrm{fast} + \vect{P}_\mathrm{slow}.
 \end{equation}
@@ -410,7 +418,8 @@ dielectric spectrum, \ie the static $\diels$ and optical
 dielectric constants $\dield$.\autocite{Aguilar1993-pu, Cammi1995-ah,
 Cammi2005-tb, Corni2005-nd}
 
-The variational setting introduced in Section \ref{sec:variational},
+\newthought{The variational setting introduced in Section
+\ref{sec:variational},}
 offers a series of advantages also in the formulation of response
 theory. As already noted, a classical counterpart to the
 Hellmann--Feynman theorem holds:
@@ -441,8 +450,8 @@ generalized free energy:
  \left[\pertmat{h} + \pertmat{V}^{t} +
  \frac{1}{2}\pertmat{G}^{\gamma}(\pertmat{D}) -
  \frac{\mathrm{i}}{2}\pertmat{T}\right]\pertmat{D}
- + \tilde{E}_\mathrm{xc}[\tilde{\rho}(\pertmat{D})] + h_\mathrm{nuc}
- + \frac{1}{2}{}^t\tilde{\p}\V\tilde{\p}
+ + \tilde{E}_\mathrm{xc}[\tilde{\rho}(\pertmat{D})] + h_\mathrm{nuc} \\
+ &+ \frac{1}{2}{}^t\tilde{\p}\V\tilde{\p}
  + {}^t\tilde{\p}\tilde{\mathbfup{s}}\pertmat{D},
  \end{aligned}
 \end{equation}
@@ -454,12 +463,15 @@ we will denote higher-order derivatives of the \acrshort{KS}
 generalized free energy with the composite ${mn, abc\ldots}$
 superscript:
 \begin{equation}\label{eq:differential}
+  \begin{aligned}
   \mathcal{G}^{mn, abc}
-  =
+  &=
   \frac{\partial^{m+n+3}\mathcal{G}}{\partial(\mat{D}^T)^m\partial\p^n\partial\epsilon_a\partial\epsilon_b\partial\epsilon_c}
-  =
+  \\
+  &=
     \mathcal{E}^{m, abc} +
   \frac{\partial^{m+n+3}U_\mathrm{pol}}{\partial(\mat{D}^T)^m\partial\p^n\partial\epsilon_a\partial\epsilon_b\partial\epsilon_c} \text{.}
+  \end{aligned}
 \end{equation}
 In this notation, the $abc\ldots$ indices denote the perturbations with
 respect to which differentiation occurs. The index $m$ denotes the order
@@ -495,15 +507,14 @@ ensures that the polarization appears at most linearly in $\tilde{\mathcal{G}}^{
     \tilde{\mathcal{G}}^{00,a}(\tilde{\mat{D}}, \tilde{\sigma}, t)
     &= \tilde{\mathcal{E}}^{0,a} +
     {}^t\tilde{\p}\Tr({\tilde{\mathbfup{s}}^a\pertmat{D}}) \\
-  &\eqtr
-  (\pertmat{h}^a + \pertmat{V}^{t,a} + \frac{1}{2}\pertmat{G}^{\gamma, a}(\pertmat{D}) + \pertmat{F}^{\Omega_a}_\mathrm{xc}
-  -\frac{\mathrm{i}}{2}\pertmat{T}^a)\pertmat{D}
-  + h_\mathrm{nuc}^a + {}^t\tilde{\p}\tilde{\mathbfup{s}}^a\pertmat{D}.
+  \eqtr
+  (\pertmat{h}^a + \pertmat{V}^{t,a} &+ \frac{1}{2}\pertmat{G}^{\gamma, a}(\pertmat{D}) + \pertmat{F}^{\Omega_a}_\mathrm{xc}
+  -\frac{\mathrm{i}}{2}\pertmat{T}^a)\pertmat{D} \\
+  &+ h_\mathrm{nuc}^a + {}^t\tilde{\p}\tilde{\mathbfup{s}}^a\pertmat{D}.
   \end{aligned}
 \end{equation}
-$\pertmat{F}^{\Omega_a}_\mathrm{xc}$ is the functional derivative matrix
-defined in terms of the perturbed overlap distributions
-$\tilde{\Omega}^a$.
+The integral derivative matrices involved in the previous expression
+were introduced in \noparcite[ref.][]{Thorvaldsen2008-sg}.
 Further perturbation-strength differentiations and evaluation at zero
 perturbation strength will yield the desired response functions:
 \begin{subequations}
@@ -512,8 +523,8 @@ perturbation strength will yield the desired response functions:
     \mathcal{G}^{00,a} - \mat{S}^a\mat{W} \label{eq:first-order} \\
     L^{ab} &\eqavetr \mathcal{G}^{00,ab}
     + \mathcal{G}^{10,a}\mat{D}^{b}
-    + \mathcal{G}^{01,a}\p^{b}
-    - \mat{S}^{ab}\mat{W}
+    + \mathcal{G}^{01,a}\p^{b} \nonumber \\
+    &- \mat{S}^{ab}\mat{W}
     - \mat{S}^{a}\mat{W}^{b} \label{eq:second-order} \\
     L^{abc} &\eqavetr
       \mathcal{G}^{00,abc}
@@ -536,12 +547,12 @@ and similarly for higher orders.
 
 The governing equations for the perturbed polarization densities are
 obtained in complete analogy with the handling of pertubed density
-matrices described in \noparcite[ref.][]{Thorvaldsen2008-sg}
-Denoting by the superscript $b_N$ a tuple of simulatenous perturbations,
-the polarization can be decomposed into frequency components.
+matrices described in \noparcite[ref.][]{Thorvaldsen2008-sg}.
+Denoting by the superscript $b_N$ a tuple of simultaneous perturbations,
+the polarization can be decomposed into frequency components $\p_\omega^{b_N}$.
 Similarly to the treatment of the perturbed density matrices,
 we introduce a partition of the frequency components of the
-polarization $\p_\omega^{b_N}$ into homogeneous (H) and particular (P)
+polarization into homogeneous (H) and particular (P)
 terms:
 \begin{equation}\label{eq:polarization-partition}
   \p_\omega^{b_N} = \p_\mathrm{P}^{b_N} + \p_\mathrm{H}^{b_N} \text{,}
@@ -568,11 +579,12 @@ Response equations can be obtained by differentiating the
 \acrshort{TDSCF} equation with respect to the perturbation tuple
 $b_N$:\autocite{Thorvaldsen2008-sg, Ringholm2014-gx}
 \begin{equation}\label{eq:response-equation}
- \left[\genHessian - \omega_{b_N}\genMetric \right]\rspParam{b_N} = \RHS{b_N}
+ \left[\genHessian - \omega_{b_N}\genMetric \right]\rspParam{b_N} =
+ \RHS{b_N},
 \end{equation}
 where the generalized Hessian $\genHessian$ and metric $\genMetric$
-matrices were introduced and are defined by their transformations on the
-response parameters $\rspParam{b_N}$:\autocite{Larsen2000-hj,
+matrices were introduced and are defined by the transformations of the
+response parameters $\rspParam{b_N}$ they induce:\autocite{Larsen2000-hj,
 Kjaergaard2008-hy}
 \begin{subequations}
 \begin{align}
@@ -594,13 +606,13 @@ The generalized Hessian matrix $\genHessian$ includes two types of
 classical terms: implicit and explicit. \emph{Implicit} terms are those
 included in the zeroth-order Fock matrix, $\mat{F}$.
 The last two terms in Eq. \ref{eq:E2-lintra} are \emph{explicit} terms,
-as they explicitly involve the $N$-th order homogenous polarization
+as they explicitly involve the $N$-th order homogeneous polarization
 variational density.
 The nonequilibrium response framework needed in continuum models when
 dealing with frequency-dependent properties,\autocite{Cammi1999-rb, Tomasi2005-vm}
-will affect the explicit terms in Eq. \ref{eq:E2-lintra} which are
+will affect the explicit terms in Eq. \eqref{eq:E2-lintra}. These are
 evaluated by making use of the optical permittivity $\dield$ in the
-polarization equations \eqref{eq:part-polarization-eq}.
+polarization equations \eqref{eq:homo-polarization-eq} and \eqref{eq:part-polarization-eq}.
 The \acrlong{RHS} in the response equation only includes terms that
 depend on particular contributions up to the desired order or
 lower-order perturbed variational densities:\autocite{Ringholm2014-gx}

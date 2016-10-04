@@ -1,44 +1,32 @@
 % mainfile: ../RobertoDiRemigioPhDThesis.tex
 \chapter{Continuum Solvation Models}\label{ch:CSM}
+\footnotetext{\textitalian{L'acqua è la forza che ti tempra, \\
+nell'acqua ti ritrovi e ti rinnovi: \\
+\hspace*{15pt} --- \textsc{Eugenio Montale}, \\ \hspace*{15pt}
+\textit{Falsetto}}}
 
-\epigraph{
-\textitalian{
-L'acqua è la forza che ti tempra,
-
-nell'acqua ti ritrovi e ti rinnovi:
-
-noi ti pensiamo come un'alga, un ciottolo,
-
-come un'equorea creatura
-
-che la salsedine non intacca
-
-ma torna al lito più pura.
-}
-}{
-    --- \textsc{Eugenio Montale}, \textit{Falsetto}}
-
-Developments of the \gls{PCM}, a continuum solvation model, are at the
+Developments of the \glsfirst{PCM}, a continuum solvation model, are at the
 heart of this dissertation.
 This Chapter is a brief exposition of the major points of the \acrshort{PCM}
 we have worked upon in the thesis.
-Appendix \ref{app:mathematical-results} contains much of the
-mathematical details omitted from the exposition in this Chapter.
-Section \ref{sec:IEF} will present the formulation of the model.
-I will show how a variational approach can facilitate the formulation of
-quantum/classical polarizable Hamiltonians in Section
-\ref{sec:variational}.
-Section \ref{sec:BEM} will be devoted to the numerical strategies used
-in solving the \acrshort{PCM} equation.
-
 Continuum models have a venerable history in quantum chemistry:
 \citeauthor{Onsager1936-wf}'s model\autocite{Onsager1936-wf} appeared in
 1936 and the first form of the \acrshort{PCM} entered the stage in
 1981.\autocite{Miertus1981-mm}
-Section \ref{sec:CSM-why-how} will offer a heuristic "derivation" of
+Section \ref{sec:CSM-why-how} will offer a heuristic
+\enquote{derivation} of
 continuum models.
 While it cannot be thought as formally rigorous, it highlights the major
 physical insights that have informed the creation of continuum models.
+Section \ref{sec:IEF} will present the formulation of the model.
+Section \ref{sec:BEM} will be devoted to the numerical strategies used
+in solving the \acrshort{PCM} equation.
+I will show how a variational approach can facilitate the formulation of
+quantum/classical polarizable Hamiltonians in Section
+\ref{sec:variational}.
+Appendix \ref{app:mathematical-results} contains much of the
+mathematical details omitted from the exposition in this Chapter.
+
 Still nowadays much research activity is expended on the
 \acrshort{PCM}.\autocite{Tomasi2011-un, Mennucci2012-dv, Lipparini2016-mo}
 I will point out throughout the Chapter to developments outside our
@@ -46,16 +34,16 @@ group that are particularly interesting.
 
 \section{Continuum Solvation Models: Why and How}\label{sec:CSM-why-how}
 
-The basic idea of implicit models is that the environment can
-be replaced by a structureless continuum.
+\begarrowthought{The basic idea of implicit models is to replace the environment
+with a structureless continuum.}
 The continuum will interact \emph{classically} with the explicit part of
 the multiscale model, an interaction mediated by some macroscopic
 property of the bulk material the continuum represents.
 Thus, continuum models bypass both problems plaguing explicit models we
 mentioned in the Introduction, namely:
 \begin{enumerate}
-\item the statistical averaging of environment configurations and
-\item the \acrshort{MM} region electrostatics cutoff choice.
+\item the statistical averaging of environment configurations, and
+\item the \acrshort{MM} region electrostatics cutoff radius choice.
 \end{enumerate}
 
 Following \citeauthor{Tomasi2007-es}, we introduce the complete system
@@ -101,7 +89,7 @@ The need for ensemble averages leads us to the following observations:
 
 These observations strongly suggest that one can perform the averaging
 step \emph{before} embarking into the solution of the quantum mechanical
-problem and replace the full Hamiltonian with and \emph{effective}
+problem and replace the full Hamiltonian with an \emph{effective}
 Hamiltonian in which the environment degrees of freedom are properly
 averaged.\autocite{Angyan1992-vo, Tapia1992-pu}
 The solute-environment interaction term would then be replaced by
@@ -109,40 +97,6 @@ a term only depending on the solute degrees of freedom, represented by
 the averaged, continuous response functions of the solvent.
 This is the physical setting of the \gls{PCM} and is schematically
 depicted in Figure \ref{fig:IEF}.
-The solute molecule is enclosed in a \emph{cavity} inside the
-structureless continuum representing the solvent and the basic energetic
-quantity is a \emph{free energy}:\autocite{Tomasi1994-gv,
-Amovilli1998-pv, Tomasi2005-vm}
-\begin{equation}\label{eq:free-energy}
- G = G_\mathrm{cav} + G_\mathrm{el} + G_\mathrm{dis} + G_\mathrm{rep} + G_\mathrm{Mm}(T).
-\end{equation}
-The decomposition of the solute free energy takes into account the
-different physical origins of the different solute-solvent interactions.
-$G_\mathrm{cav}$ is the cavity formation free energy, a constant as long
-as the solute geometry does not change.\autocite{Tomasi1994-gv,
-Floris1997-tu}
-The second term $G_\mathrm{el}$ is the most important one in the
-framework of continuum models. It accounts for the mutual electrostatic
-polarization of solute and solvent (Section \ref{sec:IEF})
-The third and fourth terms account for
-dispersion ($G_\mathrm{dis}$) and repulsion ($G_\mathrm{rep}$) interactions,
-respectively.\autocite{Amovilli1997-fo, Weijo2010-jy}
-Finally, $G_\mathrm{Mm}(T)$ accounts for the collective molecular
-motions of the solute-solvent system. It explicitly depends on the
-temperature $T$ and can be calculated from the solution partition
-function, see \noparcite[ref.][]{Amovilli1998-pv} for further details.
-
-In this dissertation, we focused exclusively on the purely electrostatic
-component of the interaction energy, completely neglecting the other
-terms.
-While a balanced description of solvation chemistry certainly demands
-a proper treatment of all solute-solvent interactions, especially when
-non homogeneous environments are studied,\autocite{Mozgawa2014-ad,
-Mozgawa2016-wf} it is also true that the electrostatic component is the
-most numerically relevant, especially when considering energy
-differences between different electronic states.
-%and the most sensitive to changes in the
-%system studied and in the level of quantum mechanical description.
 
 \begin{figure}[!h]
   \centering
@@ -163,12 +117,45 @@ differences between different electronic states.
   \label{fig:IEF}
 \end{figure}
 
+The solute molecule is enclosed in a \emph{cavity} inside the
+structureless continuum representing the solvent and the basic energetic
+quantity is a \emph{free energy}:\autocite{Tomasi1994-gv,
+Amovilli1998-pv, Tomasi2005-vm}
+\begin{equation}\label{eq:free-energy}
+ G = G_\mathrm{cav} + G_\mathrm{el} + G_\mathrm{dis} + G_\mathrm{rep} + G_\mathrm{Mm}(T).
+\end{equation}
+The decomposition of the solute free energy takes into account the
+different physical origins of the different solute-solvent interactions.
+$G_\mathrm{cav}$ is the cavity formation free energy, a constant as long
+as the solute geometry does not change.\autocite{Tomasi1994-gv,
+Floris1997-tu}
+The second term $G_\mathrm{el}$ is the most important one in the
+framework of continuum models. It accounts for the mutual electrostatic
+polarization of solute and solvent, see Section \ref{sec:IEF}.
+The third and fourth terms account for
+dispersion ($G_\mathrm{dis}$) and repulsion ($G_\mathrm{rep}$) interactions,
+respectively.\autocite{Amovilli1997-fo, Weijo2010-jy}
+Finally, $G_\mathrm{Mm}(T)$ accounts for the collective molecular
+motions of the solute-solvent system. It explicitly depends on the
+temperature $T$ and can be calculated from the solution partition
+function, see \noparcite[ref.][]{Amovilli1998-pv} for further details.
+
+In this dissertation, we focused exclusively on the purely electrostatic
+component of the interaction energy, completely neglecting the other
+terms.
+While a balanced description of solvation chemistry certainly demands
+a proper treatment of all solute-solvent interactions, especially when
+non homogeneous environments are studied,\autocite{Mozgawa2014-ad,
+Mozgawa2016-wf} it is also true that the electrostatic component is the
+most numerically relevant, especially when considering energy
+differences between different electronic states.
+
 \section{Continuum Electrostatics as a Boundary Integral Problem}\label{sec:IEF}
 
 The molecular solute, represented by its charge density
 $\rhoi$ is enclosed in a \emph{cavity} $\Omegai$.
 The boundary of the cavity $\Gamma\equiv\partial\Omegai$ is a
-2-manifold and is assumed to be continuously differentiable, \ie $\mathcal{C}^1$.
+2-manifold and is assumed to be continuously differentiable.
 The cavity is carved out of an infinite, structureless, continuum
 characterized by the bulk properties of the solvent.
 The continuum fully spans the external subdomain $\Omegae$, see Fig. \ref{fig:IEF}.
@@ -188,7 +175,8 @@ continuous medium.\autocite{Jackson1999, Vanderlinde2005-gf}
 In the mathematical literature on \acp{PDE}, it is usually referred to as a
 \emph{transmission} problem.\autocite{Hackbusch1995-uq, Sauter2011-an}
 
-Given the partition of Euclidean space $\mathbb{R}^3$ outlined above,
+Given the partition of Euclidean space $\mathbb{R}^3$ outlined above, we
+want to
 find the solution $u(\vect{r})$ to the following set:
 \begin{subequations}\label{eq:transmission}
   \begin{align}[left={\empheqlbrace}]
@@ -209,7 +197,7 @@ for the latter and only give it in explicit form when needed.
 Further mathematical details and technical results on the definition of
 function traces and their use in setting up the proper normal and
 conormal derivatives can be found in the excellent book by
-\citeauthor{Sauter2011-an}.\autocite{Sauter2011-an}.
+\citeauthor{Sauter2011-an}\autocite{Sauter2011-an}
 The fundamental solutions, or Green's functions, for the elliptic
 differential operators $\Li$ and $\Le$ will be denoted by $\Gi$ and
 $\Ge$, respectively.
@@ -222,51 +210,55 @@ We will take a different approach and reformulate it in terms of
 \emph{boundary integral operators}, \ie transform the \acsp{PDE} into a
 \gls{BIE}.
 
-The first step is to introduce the relevant boundary integral operators for the
+\arrowthought{The first step is to introduce the relevant boundary
+integral operators} for the
 above mentioned transmission problem.
 They are three of the four components of the Calder\'on projector.
 For any function $v$ in the suitable function space and for $\vect{s}, \vect{s}^\prime \in \Gamma$:
 \begin{subequations}
 \begin{align}
-  (\bi{S}_\star v)(\vect{s}) &= \int_\Gamma
-  G_\star(\vect{s}, \vect{s}^\prime)v(\vect{s}^\prime)\diff
-  \vect{s}^\prime \label{eq:S} \\
-  (\bi{D}_\star v)(\vect{s}) &= \int_\Gamma \partial_{L_\star,\vect{s}}
-  G_\star(\vect{s}, \vect{s}^\prime)v(\vect{s}^\prime)\diff
-  \vect{s}^\prime \label{eq:D} \\
-  (\bi{D}^\dagger_\star v)(\vect{s}) &= \int_\Gamma
+  (\bi{S}_\star v)(\vect{s}) &= \int_\Gamma\diff\vect{s}^\prime
+  G_\star(\vect{s}, \vect{s}^\prime)v(\vect{s}^\prime)
+  \label{eq:S} \\
+  (\bi{D}_\star v)(\vect{s}) &= \int_\Gamma\diff\vect{s}^\prime  \partial_{L_\star,\vect{s}}
+  G_\star(\vect{s}, \vect{s}^\prime)v(\vect{s}^\prime)
+  \label{eq:D} \\
+  (\bi{D}^\dagger_\star v)(\vect{s}) &= \int_\Gamma\diff\vect{s}^\prime
 \partial_{L_\star,\vect{s}^\prime}
-  G_\star(\vect{s}, \vect{s}^\prime)v(\vect{s}^\prime)\diff
-  \vect{s}^\prime \label{eq:D-dagger}
+  G_\star(\vect{s}, \vect{s}^\prime)v(\vect{s}^\prime)
+  \label{eq:D-dagger}
 \end{align}
 \end{subequations}
 where $\star$ is a placeholder for the $\mathrm{i}$ or $\mathrm{e}$ subscript.
 Our next step is to rewrite the $u$ as the sum of two contributions:
 \begin{equation}
   u(\vect{r}) = \esp(\vect{r}) + \xi(\vect{r}) = \int_{\Omegai}
+  \diff\vect{r}^\prime
   \frac{\rhoi(\vect{r}^\prime)}{|\vect{r}-\vect{r}^\prime|}
   + \xi(\vect{r})
 \end{equation}
 the former is the electrostatic potential of $\rhoi$ \emph{in vacuo}
 (Newton potential), while the latter is the \emph{reaction} potential.
-The reaction potential describes the polarization in the medium.
-Moreover, it admits an integral representation as a single-layer
+The reaction potential describes the polarization in the medium
+and it admits an integral representation as a single-layer
 potential:
 \begin{equation}
-  \xi_\mathrm{i} = \bi{S}_\mathrm{i}\sigma
+  \xi_\mathrm{i} = \bi{S}_\mathrm{i}\sigma,
 \end{equation}
 where $\sigma$ is the \gls{ASC}, the key quantity in the \acrshort{PCM}.
 As shown by \citeauthor{Cances1998-og}, the \acrshort{ASC} can be computed
 as the \emph{unique} solution to the following integral equation:
 \begin{equation}\label{eq:full-IEF}
-  \left[ \bi{S}_\mathrm{e}\left(2\pi + \bi{D}^\dagger_\mathrm{i}\right)
-  +
-  \left(2\pi - \bi{D}_\mathrm{e}\right)\bi{S}_\mathrm{i}
-  \right]\sigma =
-  -\left[\left(2\pi-\bi{D}_\mathrm{e}\right)
+  \begin{aligned}
+  \big[ \bi{S}_\mathrm{e}\big(2\pi + \bi{D}^\dagger_\mathrm{i}\big)
+  &+
+  \big(2\pi - \bi{D}_\mathrm{e}\big)\bi{S}_\mathrm{i}
+  \big]\sigma = \\
+  &-\big[\big(2\pi-\bi{D}_\mathrm{e}\big)
   -\bi{S}_\mathrm{e}\bi{S}_\mathrm{i}^{-1}
-  \left(2\pi-\bi{D}_\mathrm{i}\right)
-  \right]\esp
+  \big(2\pi-\bi{D}_\mathrm{i}\big)
+  \big]\esp
+  \end{aligned}
 \end{equation}
 commonly called the \gls{IEF} equation.
 The Green's functions for the elliptic differential operators
@@ -299,7 +291,7 @@ where the auxiliary operators:
   = 2\pi-\bi{D}
 \end{alignat}
 have been introduced.
-By letting the $\diel\rightarrow\infty$, one recovers the limiting case
+By letting $\diel\rightarrow\infty$, one recovers the limiting case
 where conductor boundary conditions are imposed. This leads to the
 well-known \gls{COSMO} equation:\autocite{Klamt1993-mj, Cossi2003-xe}
 \begin{equation}
@@ -311,15 +303,16 @@ dielectric as a perfect conductor.
 
 \section{Numerical Approaches to Boundary Integral Equations}\label{sec:BEM}
 
-The solution of the \acrshort{IEF}-\acrshort{PCM} boundary integral equation can
+\begarrowthought{The solution of the \acrshort{IEF}-\acrshort{PCM}
+boundary integral equation} can
 only be achieved analytically for simple cavity geometries, such as
 single spheres and ellipsoids.
 When more general molecular cavities are employed one has to resort to a
 numerical technique: the \gls{BEM}. This is implemented in four steps:
 \begin{enumerate}
-    \item define the molecular cavity
-    \item mesh the molecular surface \label{item:mesh}
-    \item discretize the integral equation \label{item:discretize} and
+    \item define the molecular cavity,
+    \item mesh the molecular surface, \label{item:mesh}
+    \item discretize the integral equation, \label{item:discretize} and
     \item solve the linear systems by a suitable numerical technique.
 \end{enumerate}
 Many different approaches to these four steps have been presented, both
@@ -328,18 +321,7 @@ in the field of the \acrshort{BEM} and in the context of the \acrshort{PCM}.
 The molecular cavity is usually defined as a set of atom-centered
 interlocking spheres. The radii are chosen from a suitable set, usually
 van der Waals radii.\autocite{Bondi1964-dt, Mantina2009-hb}
-If one imagines to model a solvent molecule as a rigid sphere,
-three types of molecular surfaces can be defined:
-\begin{enumerate}
-  \item
-    the union of the interlocking spheres surfaces is the \gls{vdWS},
-    Figure \ref{fig:vdWS}
-  \item the locus of points defined by the center of the solvent
-    spherical probe while rolling over the \acrshort{vdWS} is the
-    \gls{SAS}, Figure \ref{fig:SAS}
-  \item the locus of points defined by the contact point of the solvent
-    spherical probe while rolling over the \acrshort{vdWS} is the \gls{SES}, Figure \ref{fig:SES}.
-\end{enumerate}
+
 \begin{figure}[tb]
  \centering
  \begin{subfigure}{.45\textwidth}
@@ -365,6 +347,19 @@ three types of molecular surfaces can be defined:
  \caption{Molecular surfaces from interlocking sets of atom-centered spheres.
  Reproduced from \noparcite[ref.][]{Harbrecht2011-dk}.}
 \end{figure}
+
+If one imagines to model a solvent molecule as a rigid sphere,
+three types of molecular surfaces can be defined:
+\begin{enumerate}
+  \item
+    the union of the interlocking spheres surfaces is the \gls{vdWS},
+    Figure \ref{fig:vdWS}
+  \item the locus of points defined by the center of the solvent
+    spherical probe while rolling over the \acrshort{vdWS} is the
+    \gls{SAS}, Figure \ref{fig:SAS}
+  \item the locus of points defined by the contact point of the solvent
+    spherical probe while rolling over the \acrshort{vdWS} is the \gls{SES}, Figure \ref{fig:SES}.
+\end{enumerate}
 Alternative definitions based on the isodensity surface of the molecular solute
 have also been put forth.\autocite{Foresman1996-wv}
 
@@ -377,7 +372,7 @@ $N_\mathrm{mesh}$ is the size of the mesh.
 Then, in a rather informal sense, a finite element is the
 mathematical entity formed by the vector space of functions that are
 piecewise regular on any given interval in the mesh.\autocite{Ern2004-oo}
-Basically, given an element in the mesh, we "attach" a basis set of
+Basically, given an element in the mesh, we \enquote{attach} a basis set of
 piecewise polynomials of a prescribed degree and use this basis to
 provide a representation of quantities defined on $\Gamma$ within each
 mesh interval.
@@ -390,11 +385,11 @@ tailored for the wavelet \acrshort{BEM}.\autocite{Harbrecht2009-no,
 Harbrecht2011-dk}
 
 The finite element discretization is usually carried out either by the
-\emph{collocation} or by the \emph{Galerkin} approach.
-Indeed, it is possible to show that discretization by collocation
-corresponds to a Galerkin method with a very specific (and asymmetric)
-choice of \emph{trial} and \emph{test}
-spaces.\autocite{Hackbusch1995-uq, Ern2004-oo}
+\emph{collocation} or by the \emph{Galerkin}
+approach.\autocite{Hackbusch1995-uq, Ern2004-oo}\footnote{ Indeed, it is
+possible to show that discretization by collocation corresponds to a
+Galerkin method with a very specific (and asymmetric) choice of
+\emph{trial} and \emph{test} spaces.}
 This step transforms the original integral equation into a system of
 linear equations whose dimension relates to the underlying mesh size.
 For general integral equations and finite element discretizations,
@@ -407,7 +402,7 @@ operators. These can be recovered by appropriate \emph{a posteriori}
 symmetrization procedures introducing, however, a degree of
 arbitrariness in the \acrshort{BEM} procedure.\autocite{Lange2011-eu}
 
-In the GePol procedure, the molecular surface is meshed by means of
+\arrowthought{In the GePol procedure,} the molecular surface is meshed by means of
 $N_\mathrm{ts}$ spherical polygons $\Pi_i$ whose centroids define the
 collocation points. One-point quadrature rules are then applied at the
 centroid to obtain the matrix equation:
@@ -445,17 +440,17 @@ other matrices are defined as:
 \end{subequations}
 in terms of the centroids $\vect{s}_i, \vect{s}_j$, the finite elements
 areas and their curvatures $R_i$.
-The factor $k=1.07$ is introduced to achieve a better precision on the
-diagonal elements.\autocite{Tomasi2005-vm}
+The factor $k=1.07$ is introduced to achieve a better precision in the
+integration of the diagonal elements.\autocite{Tomasi2005-vm}
 Expressions for $\mat{S}_\mathrm{e}$, $\mat{D}_\mathrm{e}$ and
 $\mat{D}^\dagger_\mathrm{e}$ depend on the specific outer environment
 and can be found in the literature.\autocite{Corni2002-dr, Frediani2004-er,
 Tomasi2005-vm, Delgado2013-kd, DiRemigio2016-nn}
 
-The wavelet Galerkin \acrshort{BEM} was also used in this dissertation. This method
+\arrowthought{The wavelet Galerkin \acrshort{BEM}}
 preserves the fundamental symmetries of the boundary integral operators
 and achieves sparsity in the stiffness matrix.
-This sparsity can be leveraged to implement efficient algorithms with
+This sparsity was leveraged in this dissertation to implement efficient algorithms with
 linear space and time complexity. The approach is thus superior
 to the traditional collocation method.
 
@@ -474,7 +469,7 @@ matrix.\autocite{Harbrecht2004-uo, Harbrecht2006-ug, Dahmen2006-pj}
 Matrix compression is carried out in two rounds, \emph{a priori} and \emph{a
 posteriori}, resulting in a finger-like sparsity pattern for the
 stiffness matrix, Figure \ref{fig:finger-structure}.
-The number of relevant matrix entries scales proportional to $O(N_J)$
+The number of relevant matrix entries scales linearly
 with $N_J$ the number of degrees of freedom for a refinement of the
 geometry up to level $J$.
 
@@ -488,7 +483,7 @@ geometry up to level $J$.
    \label{fig:finger-structure}
 \end{figure}
 
-Continuity of meshes with respect to molecular distortions is a
+\newthought{Continuity of meshes with respect to molecular distortions} is a
 central issue for stable implementations of molecular gradients and
 recurs frequently in the literature.
 Numerous schemes have been proposed to solve or alleviate this issue.
@@ -496,7 +491,7 @@ We here mention the TsLess\autocite{Pomelli2004-lb} and
 DefPol\autocite{Pomelli1998-ob, Pomelli1999-dc} approaches of
 \citeauthor{Pomelli1998-ob} and the FIXPVA
 modification\autocite{Su2009-em} to the GePol algorithm put forth by
-\citeauthor{Su2009-em}.
+\citeauthor{Su2009-em}
 \citeauthor{Scalmani2010-tw} have recently proposed the \gls{CSC} scheme
 which uses a smooth \acrshort{vdWS} and 3D spherical Gaussian basis
 functions.\autocite{Scalmani2010-tw, York1999-xy}
@@ -504,9 +499,11 @@ Gaussian blurring was also advocated by \citeauthor{Lange2010-jp} in
 their \gls{SWIG} method.\autocite{Lange2010-jp, Lange2010-qo}
 Both \acrshort{CSC} and \acrshort{SWIG} achieve continuous \acsp{PES} and smooth
 molecular gradients. However, their convergence to the exact solution of
-the underlying integral equation has yet to be proved.
-A completely different approach to the problem has been taken by
-\citeauthor{Cances2013-jg} by employing a domain decomposition
+the underlying integral equation has yet to be
+proved.\autocite{Ern2004-oo}
+\citeauthor{Cances2013-jg} took
+a completely different approach to the problem
+by employing a domain decomposition
 method, guaranteed to converge to the exact solution.\autocite{Quarteroni1999-jt}
 Moreover, for \acrshort{COSMO}, the formulation is embarrassingly
 parallel and has been implemented in a linearly scaling fashion.\autocite{Cances2013-jg, Lipparini2013-cy, Lipparini2014-to,
@@ -515,11 +512,11 @@ Very recently the method has also been extended to general dielectric
 environments.\autocite{Stamm2016-fv}
 
 In the following, the \acrshort{PCM} equations will be written in the
-"complete basis" meaning that we will be working with the exact integral
+\enquote{complete basis} meaning that we will be working with the exact integral
 equation and not with its discretized counterpart.
 As a consequence, the apparent surface charge $\sigma$ and
 the electrostatic potential $\esp$ will have a \emph{continuous}
-dependence on a cavity surface "index" $\vect{s}$.
+dependence on a cavity surface \enquote{index} $\vect{s}$.
 A product involving any of these quantities will have to be
 interpreted as the \emph{surface integral}, \ie the scalar product in
 the suitable, infinite-dimensional vector space on the cavity boundary
@@ -547,7 +544,7 @@ thesis on continuum models for the quantum mechanical modelling of
 solvation, no mention has been made so far in this Chapter of any
 quantum aspect.
 The strategy usually adopted is to tailor a specific Hamiltonian, which
-includes classical contributions form the continuum and use it in the
+includes classical contributions from the continuum and use it in the
 development of the quantum chemical model.
 Since the \acrshort{MEP} is a linear functional of the solute charge density,
 the \acrshort{ASC} itself incurs in a dependency on the solute charge
@@ -556,9 +553,10 @@ Properly accounting for the mutual solute-solvent polarization induces a
 \emph{nonlinearity} in an otherwise linear problem.
 Manipulating such a \emph{nonlinear} Schr\"{o}dinger equation is
 theoretically cumbersome,\autocite{Sanhueza1979-bp, Heimsoeth1990-ki}
-but has been successfully exploited in the past.\autocite{Tomasi2005-vm}
+but has been successfully done in the past.\autocite{Tomasi2005-vm}
 
-In this dissertation we advocate a different theoretical approach: the
+\arrowthought{In this dissertation, we advocate a different theoretical
+approach:} the
 variational formulation of classical polarizable models.
 In such a framework the \acrshort{ASC} becomes an additional,
 independent, variationally optimizable degree of freedom.
@@ -573,7 +571,7 @@ A true energy functional has to fulfill the following
 properties:\autocite{Solis2013-ef}
 \begin{enumerate}
     \item physical extremal points,
-    \item equilibrium values are true energies \label{item:equil-prop} and
+    \item equilibrium values that are true energies, \label{item:equil-prop} and
     \item convexity (positive-definiteness)
 \end{enumerate}
 \citeauthor{Allen2001-fp} and \citeauthor{Attard2003-vr} pioneering
@@ -612,7 +610,7 @@ We have made no specific reference to the particular explicit
 model used. The variational framework is flexible enough to encompass
 either the MMpol,\autocite{Mennucci2013-go}
 the \gls{PE},\autocite{Olsen2010-wa, Olsen2011-io} or
-the \gls{FQ} model.\autocite{Rick1994-mn, Rick1995-wu, Rick1996-om,
+the \gls{FQ} models.\autocite{Rick1994-mn, Rick1995-wu, Rick1996-om,
 Lipparini2011-rd}
 
 Coupling the implicit and explicit polarizable models is straightforward
@@ -629,7 +627,7 @@ An additional term, as first derived by
 account for the mutual polarization between the implicit and explicit
 layers:
 \begin{equation}
-  \sigma\MMPCM\kappa = \kappa\MMPCM^\dagger\sigma
+  \sigma\MMPCM\kappa = \kappa\MMPCM^\dagger\sigma.
 \end{equation}
 $\MMPCM$ is the implicit/explicit interaction kernel, whose form depends
 on the specific explicit model chosen.
@@ -650,7 +648,7 @@ with respect to the variational degrees of freedom:
   \begin{pmatrix}
    \esp \\
    \zeta
-  \end{pmatrix}
+  \end{pmatrix}.
 \end{equation}
 While $\esp$ is quite clearly the \acrshort{MEP}, $\zeta$ can either be the
 molecular electric field (MMpol and \acrshort{PE} models) or again the
@@ -720,8 +718,8 @@ The scalar products are understood to be in the relevant function
 spaces.
 The supermatrix formalism will be adopted throughout the thesis.
 
-How are quantum/classical polarizable Hamiltonians implemented in this
-framework?
+\arrowthought{How are quantum/classical polarizable Hamiltonians implemented in this
+framework?}
 As shown in Chapter \ref{ch:QM} for the \acrshort{CC} method, one can
 formulate methods in quantum chemistry as the unconstrained minimization
 of a Lagrangian.
@@ -741,7 +739,8 @@ and derive the governing equations in the usual manner:
     \pderiv{\mathcal{L}_\mathrm{eff}(\vect{\eta}, \bar{\vect{\eta}}, \p)}{\vect{\eta}}
     &= \pderiv{\mathcal{E}(\vect{\eta})}{\vect{\eta}} +
     \scalprod[W]{\bar{\vect{\eta}}}{\pderiv{\mat{\Omega(\vect{\eta})}}{\vect{\eta}}}
-    + {}^t\p\pderiv{\s(\vect{\eta}, \bar{\vect{\eta}})}{\vect{\eta}}
+    \nonumber \\
+    &+ {}^t\p\pderiv{\s(\vect{\eta}, \bar{\vect{\eta}})}{\vect{\eta}}
     = 0 \\
     \pderiv{\mathcal{L}_\mathrm{eff}(\vect{\eta}, \bar{\vect{\eta}}, \p)}{\p} &=
     \V\p + \s(\vect{\eta}, \bar{\vect{\eta}}) = 0
@@ -791,7 +790,7 @@ integral and density matrices:
   \Omega_{\kappa\lambda}(\vect{r}^\prime) \label{eq:ao-two-el} \\
   E_\mathrm{xc}[\rho(\vect{r})] &=
   \int\diff\vect{r}
-  v_\mathrm{xc}(\vect{r})\Tr\mat{\Omega}(\vect{r})\mat{D} \label{eq:ao-xc} \\
+  v_\mathrm{xc}(\vect{r})\left(\Tr\mat{\Omega}(\vect{r})\mat{D}\right) \label{eq:ao-xc} \\
   \Omega_{\mu\nu}(\vect{r}) &= \chi_\mu^\dagger(\vect{r})\chi_\nu(\vect{r}).
   \label{eq:ao-overlap}
   \end{align}
@@ -801,7 +800,7 @@ polarization functional to Eq. \eqref{eq:scf-functional}:
 \begin{equation}\label{eq:polarizable-scf-functional}
   \mathcal{L}_\mathrm{eff}(\mat{C}, \mat{\epsilon}, \s) =
   \mathcal{L}(\mat{C}, \mat{\epsilon}) +
-  \frac{1}{2}{}^t\p\V\p + {}^t\p\Tr\mathbfup{s}\mat{D}.
+  \frac{1}{2}{}^t\p\V\p + {}^t\p(\Tr\mathbfup{s}\mat{D}).
 \end{equation}
 Differentiation with respect to the variational degrees of freedom
 yields the \acrshort{KS} and polarization equations:

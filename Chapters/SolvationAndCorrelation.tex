@@ -1,10 +1,9 @@
 % mainfile: ../RobertoDiRemigioPhDThesis.tex
 %************************************************
 \chapter{Electron Correlation and Solvation}\label{ch:solvation-correlation}
-
-\begin{epigraphs}
-\qitem{Potius sero quam numquam}{--- \textsc{Titus Livius}, \textit{Ab Urbe Condita}}
-\end{epigraphs}
+\footnotetext{Potius sero quam numquam \\
+\hspace*{15pt} --- \textsc{Titus Livius}, \\ \hspace*{15pt}
+\textit{Ab Urbe Condita}}
 
 I will present results on the formulation of quantum/classical
 polarizable models when the quantum part of the system includes a
@@ -12,7 +11,7 @@ many-body description of electron correlation either by a \gls{MBPT},
 \gls{CC} or hybrid approach.
 The contents of this Chapter are the result of an ongoing collaboration
 with prof. T. Daniel Crawford (Virginia Tech) and Dr. Andrew
-C. Simmonett (NIH)
+C. Simmonett (NIH).
 
 I will leverage the variational formulation of quantum/classical
 polarizable Hamiltonians described in Section \ref{sec:variational}.
@@ -34,7 +33,7 @@ will introduce the effective \acrshort{CC} Lagrangian and the relevant
 notation for the source terms in the classical energy functional,
 respectively.
 In Section \ref{sec:pcm-cc-models} I will derive the governing equation
-for the effective Lagrangian and show how previous work on
+for the effective Lagrangian, showing how previous work on
 continuum\autocite{Christiansen1999-tj, Cammi2009-gu, Caricato2011-tx}
 and explicit models\autocite{Kongsted2003-py, Sneskov2011-jm} can easily
 be derived in the variational framework.
@@ -78,11 +77,13 @@ transformation.
 Manipulation of similarity transformed operators involves the use of
 their \acrlong{BCH} expansions:
 \begin{equation}
+  \begin{aligned}
   \overline{O}
-  =
+  &=
+  O + \tilde{O} \\
+  &=
   O + \BCHfirst{O}{T} + \BCHsecond{O}{T} + \ldots
-  =
-  O + \tilde{O},
+  \end{aligned}
   \tag{\ref{eq:bch} from Chapter \ref{ch:QM}}
 \end{equation}
 since we are concerned with one- and two-electron operators only,
@@ -141,13 +142,14 @@ and similarly for the source term:
                      &=
     \braket{\mathrm{HF} | \s | \mathrm{HF}}
   + \braket{\mathrm{HF} | \tilde{\s} | \mathrm{HF}}
-  + \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{\s} | \mathrm{HF}}
+  + \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{\s} |
+  \mathrm{HF}}.
   \end{aligned}
 \end{equation}
 The \acrshort{BCH} expansions of the source term has been rewritten as:
-\begin{equation}
+\begin{equation}\label{eq:source-BCH}
   \overline{\s} = \s + \tilde{\s} = \s + \commutator{\s}{T}
-  + \frac{1}{2}\commutator{\commutator{\s}{T}}{T}
+  + \frac{1}{2}\commutator{\commutator{\s}{T}}{T},
 \end{equation}
 taking advantage of the fact that $\s$ is a
 nondiagonal, one-electron operators and hence its commutator
@@ -163,7 +165,8 @@ source term one-electron operators to remove the reference source terms:
   + \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{\s} | \mathrm{HF}} \\
   &=
     \braket{\mathrm{HF} | \overline{\s} - \s_\mathrm{HF} | \mathrm{HF}}
-  + \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{\s} - \s_\mathrm{HF} | \mathrm{HF}}
+  + \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{\s} -
+  \s_\mathrm{HF} | \mathrm{HF}}.
   \end{aligned}
 \end{equation}
 
@@ -172,8 +175,8 @@ Eventually, the polarization functional can be rewritten as:
   \begin{aligned}
   U_\mathrm{pol}
   &=
-  \frac{1}{2}({}^t\p_\mathrm{HF}+{}^t\p)\V(\p_\mathrm{HF}+\p)
-  + ({}^t\p_\mathrm{HF}+{}^t\p)(\s_\mathrm{HF}+\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}) \\
+  \frac{1}{2}({}^t\p_\mathrm{HF}+{}^t\p)\V(\p_\mathrm{HF}+\p) \\
+  &+ ({}^t\p_\mathrm{HF}+{}^t\p)(\s_\mathrm{HF}+\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}) \\
   &=
     \frac{1}{2}{}^t\p_\mathrm{HF}\V\p_\mathrm{HF} + {}^t\p_\mathrm{HF}\s_\mathrm{HF}
   + \frac{1}{2}{}^t\p_\mathrm{HF}\V\p + \frac{1}{2}{}^t\p\V\p_\mathrm{HF} \\
@@ -183,7 +186,7 @@ Eventually, the polarization functional can be rewritten as:
   &=
     U_\mathrm{pol}^\mathrm{ref}
   + \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}
-  + {}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}
+  + {}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}.
   \end{aligned}
 \end{equation}
 The reference polarization energy $U_\mathrm{pol}^\mathrm{ref}$ still
@@ -196,8 +199,9 @@ One can then write the effective Lagrangian as:
   \braket{\mathrm{HF} | \overline{H_0} | \mathrm{HF}}
   + \sum_{u=1}^{\mathcal{M}}\braket{\tamp{u} | \overline{H_0} | \mathrm{HF}} \\
   &+
-  \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}
-  + {}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}
+  \frac{1}{2}{}^t\p\V\p +
+  {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M} \\
+  &+ {}^t\p_\mathrm{HF}\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}
   + U_\mathrm{pol}^\mathrm{ref}
   \end{aligned}
 \end{equation}
@@ -211,7 +215,8 @@ Olivares_del_Valle1993-ra, Lipparini2009-io}
 \begin{equation}\label{eq:pted-cc}
   \lag(\tamp{}, \tbar{}, \p)_\mathcal{M} =
   {}^\mathrm{PTE}\lag(\tamp{}, \tbar{})_\mathcal{M}
-  + \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M}
+  + \frac{1}{2}{}^t\p\V\p +
+  {}^t\p\s_{\mathrm{N}}(\tamp{},\tbar{})_\mathcal{M},
 \end{equation}
 where the \acrshort{PTE} Lagrangian has been introduced:
 \begin{equation}
@@ -219,12 +224,12 @@ where the \acrshort{PTE} Lagrangian has been introduced:
   =
   \braket{\mathrm{HF} | \overline{H} | \mathrm{HF}}
   + \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{H} | \mathrm{HF}}
-  + U_\mathrm{pol}^\mathrm{ref}
+  + U_\mathrm{pol}^\mathrm{ref}.
 \end{equation}
 
 As noted by \citeauthor{Cammi2009-gu} for the implicit \acrshort{PCM} model,
 the \acrshort{PTE} Hamiltonian is computed in \acrshort{MP}-partitioned form by
-employing the ``solvated'' orbitals and Fock matrix:
+employing the \enquote{solvated} orbitals and Fock matrix:
 \begin{equation}
   H = F + \Phi.
 \end{equation}
@@ -233,34 +238,26 @@ fluctuation potential.
 The simple nature of the Fock operator lets us re-express the \acrshort{PTE}
 Lagrangian as follows:
 \begin{equation}
+  \begin{aligned}
   {}^\mathrm{PTE}\lag(\tamp{}, \tbar{})_\mathcal{M}
-  =
+  &=
   G_0
   + \sum_{u=1}^{\mathcal{M}}\tbar{\mu_u}\denom{\mu_u}\tamp{\mu_u}
-  + \braket{\mathrm{HF} | \overline{\Phi} | \mathrm{HF}}
-  + \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{\Phi} | \mathrm{HF}}
+  + \braket{\mathrm{HF} | \overline{\Phi} | \mathrm{HF}} \\
+  &+ \sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \overline{\Phi} | \mathrm{HF}}
+\end{aligned}
 \end{equation}
 where $G_0 = E_0 + U_\mathrm{pol}^\mathrm{ref}$ is the reference free
 energy.
 
-Before delving into the details of the governing equations for
-amplitudes, multipliers and polarization, we need to take a closer look
-at the source term in classical energy functional. This is the purpose
-of the next Section.
-
 \section{Source Terms in the Classical Energy Functional}
 \label{sec:source-terms}
 
-In the supermatrix formalism, the similarity-transformed terms will be
-written as:
-\begin{equation}
-  \overline{\s} = \s + \tilde{\s} = \s +
-  \commutator{\s}{T} +
-  \frac{1}{2}\commutator{\commutator{\s}{T}}{T}
-\end{equation}
+Let us take a closer look at the source term in the classical energy
+functional.
 It is important to single out which terms contribute in the various
-expectation values where the similarity-transformed sources will be
-involved.
+expectation values where the similarity-transformed sources Eq.
+\eqref{eq:source-BCH} are involved.
 This analysis is carried out in detail in Appendix \ref{sec:CC-expval}
 and we report here the final results for the \gls{CCS}, \gls{CCSD} and
 \gls{CCSDT} models.
@@ -294,19 +291,20 @@ terms are added:
   \begin{aligned}
     \s_{\mathrm{N}}(\tamp{}, \tbar{})_\mathrm{CCSDT} &=
   \s_{\mathrm{N}}(\tamp{}, \tbar{})_\mathrm{CCSD}
-  + \braket{\tbar{2} | \BCHfirst{\s}{T_3} | \mathrm{HF}}
-  + \braket{\tbar{3} | \BCHfirst{\s}{T_3} | \mathrm{HF}} \\
+  + \braket{\tbar{2} | \BCHfirst{\s}{T_3} | \mathrm{HF}} \\
+  &+ \braket{\tbar{3} | \BCHfirst{\s}{T_3} | \mathrm{HF}} \\
   &+ \frac{1}{2}
   \braket{\tbar{3} | \commutator{\commutator{\s}{T_2}}{T_2} |
-  \mathrm{HF}}
-  + \braket{\tbar{3} | \commutator{\commutator{\s}{T_1}}{T_3} |
+  \mathrm{HF}} \\
+  &+ \braket{\tbar{3} | \commutator{\commutator{\s}{T_1}}{T_3} |
   \mathrm{HF}}
   \end{aligned}
 \end{equation}
 
 \section{Governing Equations and Their Approximations}\label{sec:pcm-cc-models}
 
-Differentiation of the effective Lagrangian in Eq. \eqref{eq:pted-cc}
+\begarrowthought{Differentiation of the effective Lagrangian in Eq.
+\eqref{eq:pted-cc}}
 with respect to the variational parameters $\tamp{\mu_i}$,
 $\tbar{\mu_i}$ and $\p$ yields the \acrshort{PTED}-\acrshort{CC}
 equations:
@@ -324,10 +322,11 @@ equations:
     \commutator{\overline{\Phi}}{\cluster{\mu_q}} | \mathrm{HF}}
     \nonumber \\
     &+
-    {}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_q}} | \mathrm{HF}}\delta_{\mu_q\mu_1} \nonumber \\
-    &+
-    {}^t\p\sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \commutator{\s}{\cluster{\mu_q}} | \mathrm{HF}}
+    {}^t\p\braket{\mathrm{HF} | \commutator{\s}{\cluster{\mu_q}} | \mathrm{HF}}\delta_{\mu_q\mu_1}
     +
+    {}^t\p\sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} |
+    \commutator{\s}{\cluster{\mu_q}} | \mathrm{HF}} \nonumber \\
+    &+
     {}^t\p\sum_{u=1}^{\mathcal{M}}\braket{\tbar{u} | \commutator{\commutator{\s}{T}}{\cluster{\mu_q}} | \mathrm{HF}}
              = 0 \label{eq:pted-cc-multipliers}\\
     \Omega_\p(\tamp{}, \tbar{}, \p)
@@ -345,7 +344,7 @@ As a consequence, a single-point \acrshort{PTED}-\acrshort{CC} will suffer from 
 $2\times$ prefactor in its computational cost with respect to an
 \emph{in vacuo} \acrshort{CC} calculation.
 
-It is thus convenient to devise approximations that are able to simplify the
+\newthought{It is thus convenient to devise approximations} that are able to simplify the
 Lagrangian and the governing equations by breaking or weakening the coupling.
 While Eq. \eqref{eq:pted-cc-polarization} is \emph{directly} coupled to
 the multipliers equation, since the source terms directly depends on
@@ -363,10 +362,13 @@ The first approximate scheme truncates the source term to its
 \acrshort{CCS} expectation value, yielding the effective
 Lagrangian:\autocite{Caricato2011-tx, Krause2016-ee}
 \begin{equation}\label{eq:ptes-cc}
-  {}^{\mathrm{PTES}}\lag(\tamp{}, \tbar{}, \p)_\mathcal{M} =
-  {}^\mathrm{PTE}\lag(\tamp{}, \tbar{})_\mathcal{M}
-  + \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},
+  \begin{aligned}
+  \hspace{-20pt}  {}^{\mathrm{PTES}}\lag(\tamp{}, \tbar{},
+  \p)_\mathcal{M} &=
+  {}^\mathrm{PTE}\lag(\tamp{}, \tbar{})_\mathcal{M} \\
+  &+ \frac{1}{2}{}^t\p\V\p + {}^t\p\s_{\mathrm{N}}(\tamp{},
   \tbar{})_\mathrm{CCS}
+\end{aligned}
 \end{equation}
 and the corresponding governing equations:
 \begin{subequations}\label{eq:ptes}
