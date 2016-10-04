@@ -1,9 +1,5 @@
 \chapter{Some Mathematical Results}\label{app:mathematical-results}
 
-\begin{epigraphs}
-\qitem{\textitalian{Non temerai i terrori della notte non temerai il terrore}}{--- \textsc{CCCP}}
-\end{epigraphs}
-
 For brevity's sake, some results and derivations have been omitted from the main
 body of the thesis. I collect the ones I judge most relevant in this Appendix.
 Section \ref{sec:T1-cc} presents the $T_1$-transformed form of the
@@ -13,8 +9,8 @@ and multipliers equations and the one-electron operators expectation values.
 Basic results in the fields of functional analysis and boundary integral
 equations that were omitted from Chapter \ref{ch:CSM} are presented here.
 No proofs or examples are given, the interested reader is referred to the
-monographs by \citeauthor{Ern2004-oo}, \citeauthor{Hsiao2008-xb} and
-\citeauthor{Sauter2011-an}\autocite{Ern2004-oo, Hsiao2008-xb, Sauter2011-an}
+monographs by \citeauthor{Ern2004-oo},\autocite{Ern2004-oo} \citeauthor{Hsiao2008-xb}\autocite{Hsiao2008-xb} and
+\citeauthor{Sauter2011-an}\autocite{Sauter2011-an}
 
 \section{The \texorpdfstring{$\T1$}{T1}-Transformation}\label{sec:T1-cc}
 
@@ -24,7 +20,7 @@ rank of $O$, since $T_1$ is a one-electron operator.\autocite{Koch1994-vr}
 Starting from the arbitrary order Lagrangian \eqref{eq:cc-lagrangian},
 we want to derive their $T_1$-transformed
 expressions.
-For the \acrshort{CCS} model, this is straightforward.
+\arrowthought{For the \acrshort{CCS} model, this is straightforward.}
 The Lagrangian is:
 \begin{equation}\label{eq:ccs-lagrangian}
  \mathcal{L}(\tamp{}, \tbar{})_\mathrm{CCS}
@@ -71,24 +67,27 @@ nonzero if and only if the sum of cluster operator ranks satisfies:
 \end{equation}
 In compact form:
 \begin{equation}
-  \braket{\mu_n |
+\begin{aligned}
+  &\braket{\mu_n |
   \commutator{\commutator{\commutator{O}{T_{n_1}}}{\ldots}}{T_{n_k}} | \mathrm{HF}} \neq 0
-  \Longleftrightarrow
-  n - m_O + k \leq \sum_{i=1}^k n_i \leq n + m_O
+  \Longleftrightarrow \\
+  &n - m_O + k \leq \sum_{i=1}^k n_i \leq n + m_O
+\end{aligned}
 \end{equation}
 \end{corollary}
 
-The \acrshort{CCSD} Lagrangian is then:
+\arrowthought{The \acrshort{CCSD} Lagrangian is then:}
 \begin{equation}\label{eq:ccsd-lagrangian}
  \begin{aligned}
  \mathcal{L}(\tamp{}, \tbar{})_\mathrm{CCSD}
 &=
  E_0
- + \sum_{u=1}^{2}\tbar{\mu_u}\denom{\mu_u}\tamp{\mu_u}
- + \braket{\mathrm{HF} | \check{\Phi} + \commutator{\check{\Phi}}{T_2} | \mathrm{HF}} \\
+ + \sum_{u=1}^{2}\tbar{\mu_u}\denom{\mu_u}\tamp{\mu_u} \\
+ &+ \braket{\mathrm{HF} | \check{\Phi} + \commutator{\check{\Phi}}{T_2} | \mathrm{HF}} \\
  &+ \braket{\tbar{1} | \check{\Phi} + \commutator{\check{\Phi}}{T_2} | \mathrm{HF}} \\
- &+ \braket{\tbar{2} | \check{\Phi} + \commutator{\check{\Phi}}{T_2}
-   +\frac{1}{2}\commutator{\commutator{\check{\Phi}}{T_2}}{T_2} | \mathrm{HF}}
+ &+ \braket{\tbar{2} | \check{\Phi} + \commutator{\check{\Phi}}{T_2} | \mathrm{HF}} \\
+ &+ \braket{\tbar{2} |
+   \frac{1}{2}\commutator{\commutator{\check{\Phi}}{T_2}}{T_2} | \mathrm{HF}}
   \end{aligned}
 \end{equation}
 with the governing equations:
@@ -129,20 +128,22 @@ be compared with the corresponding \acrshort{CC2} equations
 \eqref{eq:cc2-doubles-multipliers}, respectively, to highlight which terms were neglected in
 constructing the iterative method for the approximate inclusion of double excitations.
 
-The \acrshort{CCSDT} Lagrangian is built in the same exact manner:
+\arrowthought{The \acrshort{CCSDT} Lagrangian is built in the same exact manner:}
 \begin{equation}\label{eq:ccsdt-lagrangian}
  \begin{aligned}
  \mathcal{L}(\tamp{}, \tbar{})_\mathrm{CCSDT}
 &=
  E_0
- + \sum_{u=1}^{3}\tbar{\mu_u}\denom{\mu_u}\tamp{\mu_u}
- + \braket{\mathrm{HF} | \check{\Phi} + \commutator{\check{\Phi}}{T_2} | \mathrm{HF}} \\
+ + \sum_{u=1}^{3}\tbar{\mu_u}\denom{\mu_u}\tamp{\mu_u} \\
+ &+ \braket{\mathrm{HF} | \check{\Phi} + \commutator{\check{\Phi}}{T_2} | \mathrm{HF}} \\
  &+ \braket{\tbar{1} | \check{\Phi} + \commutator{\check{\Phi}}{T_2} + \commutator{\check{\Phi}}{T_3} | \mathrm{HF}} \\
- &+ \braket{\tbar{2} | \check{\Phi} + \commutator{\check{\Phi}}{T_2}
-   +\frac{1}{2}\commutator{\commutator{\check{\Phi}}{T_2}}{T_2} + \commutator{\check{\Phi}}{T_3} | \mathrm{HF}} \\
+ &+ \braket{\tbar{2} | \check{\Phi} + \commutator{\check{\Phi}}{T_2} | \mathrm{HF}} \\
+ &+ \braket{\tbar{2} |
+   \frac{1}{2}\commutator{\commutator{\check{\Phi}}{T_2}}{T_2} + \commutator{\check{\Phi}}{T_3} | \mathrm{HF}} \\
  &+ \braket{\tbar{3} | \commutator{\check{\Phi}}{T_2}
-   + \frac{1}{2}\commutator{\commutator{\check{\Phi}}{T_2}}{T_2} + \commutator{\check{\Phi}}{T_3}
-   + \commutator{\commutator{\check{\Phi}}{T_2}}{T_3}
+   + \frac{1}{2}\commutator{\commutator{\check{\Phi}}{T_2}}{T_2}
+   | \mathrm{HF}} \\
+ &+ \braket{\tbar{3} | \commutator{\check{\Phi}}{T_3} + \commutator{\commutator{\check{\Phi}}{T_2}}{T_3}
    | \mathrm{HF}}
   \end{aligned}
 \end{equation}
@@ -163,14 +164,21 @@ The \acrshort{CCSDT} amplitude equations are:
    \check{\Phi} + \commutator{\check{\Phi}}{T_2} + \commutator{\check{\Phi}}{T_3}
    | \mathrm{HF}}
              = 0 \label{eq:ccsdt-singles-amplitudes}\\
-   \denom{\mu_2}\tamp{\mu_2} &+ \braket{\mu_2 |
+   \denom{\mu_2}\tamp{\mu_2}
+   &+ \braket{\mu_2 |
    \check{\Phi} + \commutator{\check{\Phi}}{T_2}
-   + \frac{1}{2}\commutator{\commutator{\check{\Phi}}{T_2}}{T_2} + \commutator{\check{\Phi}}{T_3}
+   | \mathrm{HF}} \nonumber \\
+   &+ \braket{\mu_2 |
+    \frac{1}{2}\commutator{\commutator{\check{\Phi}}{T_2}}{T_2} + \commutator{\check{\Phi}}{T_3}
    | \mathrm{HF}}
              = 0 \label{eq:ccsdt-doubles-amplitudes} \\
-   \denom{\mu_3}\tamp{\mu_3} &+ \braket{\mu_3 |
+   \denom{\mu_3}\tamp{\mu_3} &+
+   \braket{\mu_3 |
    \commutator{\check{\Phi}}{T_2}
-   + \frac{1}{2}\commutator{\commutator{\check{\Phi}}{T_2}}{T_2} + \commutator{\check{\Phi}}{T_3}
+   + \frac{1}{2}\commutator{\commutator{\check{\Phi}}{T_2}}{T_2}
+   | \mathrm{HF}} \nonumber \\
+   &+ \braket{\mu_3 |
+     \commutator{\check{\Phi}}{T_3}
    + \commutator{\commutator{\check{\Phi}}{T_2}}{T_3}
    | \mathrm{HF}}
              = 0 \label{eq:ccsdt-triples-amplitudes}
@@ -193,7 +201,9 @@ while the multipliers are determined by solving the following:
    &+ \braket{\tbar{3} |
       \commutator{\commutator{\check{\Phi}}{\cluster{\mu_1}}}{T_2}
     + \frac{1}{2}\commutator{\commutator{\commutator{\check{\Phi}}{\cluster{\mu_1}}}{T_2}}{T_2}
-    + \commutator{\commutator{\check{\Phi}}{\cluster{\mu_1}}}{T_3}
+    | \mathrm{HF}} \nonumber \\
+   &+ \braket{\tbar{3} |
+     \commutator{\commutator{\check{\Phi}}{\cluster{\mu_1}}}{T_3}
     | \mathrm{HF}}
              = 0 \label{eq:ccsdt-singles-multipliers} \\
     \denom{\mu_2}\tbar{\mu_2} &+
@@ -208,7 +218,9 @@ while the multipliers are determined by solving the following:
    &+ \braket{\tbar{3} |
       \commutator{\check{\Phi}}{\cluster{\mu_2}}
     +  \commutator{\commutator{\check{\Phi}}{\cluster{\mu_2}}}{T_2}
-    +  \commutator{\commutator{\check{\Phi}}{\cluster{\mu_2}}}{T_3}
+    | \mathrm{HF}} \nonumber \\
+   &+ \braket{\tbar{3} |
+      \commutator{\commutator{\check{\Phi}}{\cluster{\mu_2}}}{T_3}
     | \mathrm{HF}}
              = 0 \label{eq:ccsdt-doubles-multipliers} \\
     \denom{\mu_3}\tbar{\mu_3} &+
@@ -278,16 +290,16 @@ in Chapter \ref{ch:solvation-correlation}.
 We will refer to the $T_1$-transformed expressions as \emph{dressed}, in contrast to the
 \emph{bare} expressions, where the operator $O$ appears untransformed.
 
-For the \acrshort{CCS} model, the expectation value of a one-electron operator
-is simply:
+\arrowthought{For the \acrshort{CCS} model, the expectation value of a one-electron operator
+is simply:}
 \begin{equation}\label{eq:ccs-expectation-value}
 \begin{aligned}
   O(\tamp{}, \tbar{})_\mathrm{CCS} &=
   \braket{\mathrm{HF} | \check{O} | \mathrm{HF} }
   + \braket{\tbar{1} | \check{O} | \mathrm{HF} } \\
   &=
-  \braket{\mathrm{HF} | O + \commutator{O}{T_1} | \mathrm{HF} }
-  + \braket{\tbar{1} | O + \commutator{O}{T_1}
+  \braket{\mathrm{HF} | O + \commutator{O}{T_1} | \mathrm{HF} } \\
+  &+ \braket{\tbar{1} | O + \commutator{O}{T_1}
   + \frac{1}{2}\commutator{\commutator{O}{T_1}}{T_1} | \mathrm{HF} }
 \end{aligned}
 \end{equation}
@@ -297,12 +309,12 @@ Adding double excitations to the manifold yields:
   O(\tamp{}, \tbar{})_\mathrm{CCSD}
   &=
     O(\tamp{}, \tbar{})_\mathrm{CCS}
-  + \braket{\tbar{1} | \commutator{\check{O}}{T_2} | \mathrm{HF} }
-  + \braket{\tbar{2} | \commutator{\check{O}}{T_2} | \mathrm{HF} } \\
+  + \braket{\tbar{1} | \commutator{\check{O}}{T_2} | \mathrm{HF} } \\
+  &+ \braket{\tbar{2} | \commutator{\check{O}}{T_2} | \mathrm{HF} } \\
   &=
     O(\tamp{}, \tbar{})_\mathrm{CCS}
-  + \braket{\tbar{1} | \commutator{O}{T_2} | \mathrm{HF} }
-  + \braket{\tbar{2} | \commutator{O}{T_2}
+  + \braket{\tbar{1} | \commutator{O}{T_2} | \mathrm{HF} } \\
+  &+ \braket{\tbar{2} | \commutator{O}{T_2}
       + \commutator{\commutator{O}{T_1}}{T_2}
   | \mathrm{HF} },
   \end{aligned}
@@ -324,7 +336,9 @@ Eventually, including triples one obtains:
   + \braket{\tbar{2} | \commutator{O}{T_3} | \mathrm{HF} } \\
   &+ \braket{\tbar{3} | \commutator{O}{T_3}
     + \commutator{\commutator{O}{T_1}}{T_3}
-    + \frac{1}{2}\commutator{\commutator{O}{T_2}}{T_2}
+  | \mathrm{HF} } \\
+  &+ \braket{\tbar{3} |
+     \frac{1}{2}\commutator{\commutator{O}{T_2}}{T_2}
   | \mathrm{HF} }
 \end{aligned}
 \end{equation}
@@ -338,6 +352,26 @@ This achieves elimination of the reference expectation value from the first
 term in equation \eqref{eq:ccs-expectation-value}.
 
 \section{Selected Results in Functional Analysis}
+
+\begin{defin}[Continuity]\label{def:continuity}
+  A bilinear form on a normed vector space $V$ is \emph{bounded}, or
+  \emph{continuous}, if there is a constant $C$ such that
+  $\forall u, v \in V$:
+  \[
+  a(u, v) \leq C\lVert u\rVert\lVert v\rVert
+  \]
+\end{defin}
+
+\begin{defin}[Coercivity]\label{def:coercivity}
+  A bilinear form on a normed vector space $V$ is \emph{coercive},
+  or \emph{elliptic}, if there is a constant $\alpha >0$ such that
+  $\forall u \in V$:
+  \[
+  a(u, u) \geq \alpha\lVert u\rVert^2
+  \]
+\end{defin}
+Coercivity implies that no eigenvalue of the linear operator associated to the
+bilinear form can be zero, hence its invertibility.\autocite{Ern2004-oo}
 
 \begin{defin}[Sobolev spaces]
 Let $s$ and $p$ be two integers with $s\geq 0$ and $1\leq p \leq +\infty$.
@@ -367,42 +401,22 @@ exponent} is defined as
 \begin{equation}
 W^{s, p}(\Omega) =
 \left\lbrace
-u \in L^p(\Omega) |
+u \in L^p(\Omega) \Bigg|
 \frac{u(\vect{r}) - u(\vect{r}^\prime)}{\| \vect{r} - \vect{r}^\prime\|^{s+\frac{d}{p}}}
 \in L^p(\Omega \times \Omega)
 \right\rbrace.
 \end{equation}
 Furthermore, when $s> 1$ is not integer, letting $\sigma = s - [s]$, where $[s]$ is the integer
 part of $s$, $W^{s,p}(\Omega)$ is defined as
-\begin{equation}
+\begin{equation*}
 W^{s, p}(\Omega) =
 \left\lbrace
 u \in W^{[s], p}(\Omega) |
 \partial^\alpha u \in W^{\sigma, p}(\Omega)\, \forall \alpha,\, |\alpha| = [s]
 \right\rbrace.
-\end{equation}
+\end{equation*}
 When $p=2$, we denote $H^s(\Omega) = W^{s,2}(\Omega)$.
 \end{defin}
-
-\begin{defin}[Continuity]\label{def:continuity}
-  A bilinear form on a normed vector space $V$ is \emph{bounded}, or
-  \emph{continuous}, if there is a constant $C$ such that
-  $\forall u, v \in V$:
-  \[
-  a(u, v) \leq C\lVert u\rVert\lVert v\rVert
-  \]
-\end{defin}
-
-\begin{defin}[Coercivity]\label{def:coercivity}
-  A bilinear form on a normed vector space $V$ is \emph{coercive},
-  or \emph{elliptic}, if there is a constant $\alpha >0$ such that
-  $\forall u \in V$:
-  \[
-  a(u, u) \geq \alpha\lVert u\rVert^2
-  \]
-\end{defin}
-Coercivity implies that no eigenvalue of the linear operator associated to the
-bilinear form can be zero, hence its invertibility.\autocite{Ern2004-oo}
 
 \begin{defin}[Abstract weak problem]\label{def:abstract-weak}
 An abstract weak problem is posed as follows:
@@ -506,22 +520,22 @@ For the transmission problem \ref{eq:transmission-general} there holds:
 \item $\forall \vect{r} \in \Omegai$
 \begin{equation}
 u = \bi{S}_\mathrm{i}(\partiali u)
-- \bi{D}_\mathrm{i}(\ui) + \int_{\Omegai} \Gi f_\mathrm{i}\diff \vect{r}^\prime
+- \bi{D}_\mathrm{i}(\ui) + \int_{\Omegai}\diff \vect{r}^\prime \Gi f_\mathrm{i}
 \end{equation}
 \item $\forall \vect{r} \in \Omegae$
 \begin{equation}
 u = -\bi{S}_\mathrm{e}(\partiale u)
-+ \bi{D}_\mathrm{e}(\ue) + \int_{\Omegae}\Ge f_\mathrm{e}\diff \vect{r}^\prime
++ \bi{D}_\mathrm{e}(\ue) + \int_{\Omegae}\diff \vect{r}^\prime\Ge f_\mathrm{e}
 \end{equation}
 \item $\forall \vect{r} \in \Gamma$
   \begin{equation}\label{eq:stat3}
     \frac{1}{2}\ui = \bi{S}_\mathrm{i}(\partiali u)
-    - \bi{D}_\mathrm{i}(\ui) + \int_{\Omegai}\Gi f_\mathrm{i}\diff \vect{r}^\prime
+    - \bi{D}_\mathrm{i}(\ui) + \int_{\Omegai}\diff \vect{r}^\prime\Gi f_\mathrm{i}
   \end{equation}
 \item $\forall \vect{r} \in \Gamma$
   \begin{equation}\label{eq:stat4}
     \frac{1}{2}\ue = -\bi{S}_\mathrm{e}(\partiale u)
-    + \bi{D}_\mathrm{e}(\ue) + \int_{\Omegae}\Ge f_\mathrm{e}\diff \vect{r}^\prime
+    + \bi{D}_\mathrm{e}(\ue) + \int_{\Omegae}\diff \vect{r}^\prime\Ge f_\mathrm{e}
   \end{equation}
 \end{enumerate}
 \end{lemma}
@@ -529,8 +543,8 @@ u = -\bi{S}_\mathrm{e}(\partiale u)
 We introduce the following auxiliary potential:
 \begin{subequations}
 \begin{empheq}[left={h(\vect{r}) = \empheqlbrace}]{align}
-    &\int_{\mathbb{R}^3}\Gi\rhoi(\vect{r}^\prime)\diff \vect{r}^\prime  \quad \vect{r} \in \Omegai \\
-    &\int_{\mathbb{R}^3}\Ge\rhoi(\vect{r}^\prime)\diff \vect{r}^\prime  \quad \vect{r} \in \Omegae
+    &\int_{\mathbb{R}^3}\diff \vect{r}^\prime\Gi\rhoi(\vect{r}^\prime)  \quad \vect{r} \in \Omegai \\
+    &\int_{\mathbb{R}^3}\diff \vect{r}^\prime\Ge\rhoi(\vect{r}^\prime)  \quad \vect{r} \in \Omegae
 \end{empheq}
 \end{subequations}
 for which we have:
@@ -579,7 +593,7 @@ the jump conditions and the integral representations of the reaction and auxilia
 The final ingredient is the \gls{DtN} map, which can be derived by employing Eq. \eqref{eq:stat3}
 to the Newton potential:
 \begin{equation}
-  \phi(\vect{r}) = (\bi{N}\rhoi)(\vect{r}) = \int_{\mathbb{R}^3}\Gi\rhoi(\vect{r}^\prime)\diff \vect{r}^\prime
+  \phi(\vect{r}) = (\bi{N}\rhoi)(\vect{r}) = \int_{\mathbb{R}^3}\diff \vect{r}^\prime\Gi\rhoi(\vect{r}^\prime)
    = \left.h(\vect{r})\right|_{\Omegai}
 \end{equation}
 which is equal, in $\Omegai$, to the auxiliary potential $h(\vect{r})$.
@@ -591,14 +605,16 @@ The \acrshort{DtN} map is thus given as:
 With this last ingredient at hand, algebraic manipulations lead to the \acrshort{IEF}
 equation:
 \begin{equation}
-  \left[ \bi{S}_\mathrm{e}\left(2\pi + \bi{D}^\dagger_\mathrm{i}\right)
-  +
-  \left(2\pi - \bi{D}_\mathrm{e}\right)\bi{S}_\mathrm{i}
-  \right]\sigma =
-  -\left[\left(2\pi-\bi{D}_\mathrm{e}\right)
+  \begin{aligned}
+  \big[ \bi{S}_\mathrm{e}\big(2\pi + \bi{D}^\dagger_\mathrm{i}\big)
+  &+
+  \big(2\pi - \bi{D}_\mathrm{e}\big)\bi{S}_\mathrm{i}
+  \big]\sigma = \\
+  &-\big[\big(2\pi-\bi{D}_\mathrm{e}\big)
   -\bi{S}_\mathrm{e}\bi{S}_\mathrm{i}^{-1}
-  \left(2\pi-\bi{D}_\mathrm{i}\right)
-  \right]\esp,
+  \big(2\pi-\bi{D}_\mathrm{i}\big)
+  \big]\esp,
+  \end{aligned}
   \tag{\ref{eq:full-IEF} from Chapter \ref{ch:CSM}}
 \end{equation}
 

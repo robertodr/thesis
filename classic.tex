@@ -244,6 +244,7 @@ urldate=long
 
 \PassOptionsToPackage{fleqn}{amsmath}       % math environments and more by the AMS
     \usepackage{amsmath}
+\allowdisplaybreaks
 
 %%
 % General useful packages
@@ -318,7 +319,7 @@ urldate=long
 \usepackage{pdfpages}
 
 \usepackage[symbol, side, flushmargin, perpage]{footmisc}
-\renewcommand*{\footnotelayout}{\footnotesize}
+\renewcommand*{\footnotelayout}{\scriptsize}
 \setfnsymbol{bringhurst}
 %%
 % For you reference, these are Bringhurst's footnote markers:
@@ -330,10 +331,10 @@ urldate=long
 % \textparagraph
 
 \usepackage{epigraph}
-\setlength\epigraphwidth{4.5cm}
+\setlength\epigraphwidth{5cm}
 \setlength\epigraphrule{0pt}
 \renewcommand{\textflush}{flushleft}
-\renewcommand{\epigraphsize}{\footnotesize}
+%\renewcommand{\epigraphsize}{\footnotesize}
 
 \usepackage[overload]{empheq}
 \usepackage{braket}

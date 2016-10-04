@@ -19,7 +19,7 @@ management philosophy.
 I will also give some details on the interfaces we have developed to different
 quantum chemistry codes.
 A shorter version of the material in Section \ref{sec:software} has been
-accepted for publication in the proceedings of the \emph{Producing High
+published in the proceedings of the \emph{Producing High
 Performance and Sustainable Software for Molecular Simulation} workshop
 held at the 2015 Supercomputing Conference.\autocite{%SC15, Trott2016-pf,
 DiRemigio2016-es}
@@ -29,7 +29,8 @@ My coauthors have all read and approved the description of contributions.
 
 \section{Software}\label{sec:software}
 
-The growing complexity of quantum chemical program packages requires that an
+\begarrowthought{The growing complexity of quantum chemical program
+  packages} requires that an
 appropriate strategy be devised to implement new features.
 Scalability is of paramount importance, but it has become clear that
 maintainability and extensibility of the code play an equally important role in
@@ -38,8 +39,8 @@ netherlands-escience, coderefinery, molssi} and ensuring
 scientific reproducibility.\autocite{Hatton1994-us, Hatton1997-ml,
 Hatton1997-bb, Ioannidis2005-aj, Merali2010-uy, Prinz2011-kz}
 
-The idea of a \emph{modular programming paradigm} can be traced back to
-the dawn of computer science. \citeauthor{Dijkstra1968-zp}
+\arrowthought{The idea of a \emph{modular programming paradigm} can be traced back to
+the dawn of computer science.} \citeauthor{Dijkstra1968-zp}
 successfully used it in the development of the THE operating
 system in 1968,\autocite{Dijkstra1968-zp} while
 \citeauthor{Parnas1972-im} advocated it as a best practice already in
@@ -74,10 +75,14 @@ have significant impact, in terms of improved reproducibility and
 overall code quality, when an open-source licensing model is adopted.
 Open-source development can fully leverage the benefits of widespread,
 cloud-based, free, code development services, such as hosted
-\acp{DVCS},\autocite{github, gitlab} continuous
-integration,\autocite{travis-ci, magnum-ci, appveyor-ci} code
-coverage analysis,\autocite{coveralls} static and dynamic code
-analyses,\autocite{coverity-scan} nightly regression testing, public
+\acp{DVCS},\footnote{\url{https://github.com/} \\
+\url{https://gitlab.com/}}
+continuous integration,\footnote{\url{https://travis-ci.org/} \\
+\url{https://www.appveyor.com/} \\
+\url{https://magnum-ci.com}}
+code coverage analysis,\footnote{\url{https://coveralls.io/}}
+static and dynamic code analyses,\footnote{\url{https://scan.coverity.com/}}
+nightly regression testing, public
 issue tracking, code review and so forth: adoption of a modern code
 development workflow is easily within reach.
 
@@ -92,7 +97,7 @@ impact. Third-parties can easily contribute to the project: by improving
 the documentation, by reporting bugs or by actively extending the
 codebase with new functionality.
 
-The \acrshort{PCM} is an ideal candidate for the creation of a solvation
+\arrowthought{The \acrshort{PCM} is an ideal candidate} for the creation of a solvation
 \acrshort{API}. Consider for example the schematic representation of a
 \acrshort{PCM}-\acrshort{SCF} algorithm given in Figure \ref{fig:algorithm}.
 The input to and from the \acrshort{PCM} library is limited and well-defined,
@@ -135,13 +140,14 @@ needed.
 Evaluation of the Green's functions, needed to set up the representation
 of the boundary integral operators, leverages \gls{AD}. We use the \Taylor library, a template C++
 implementation of \acrshort{AD}.\autocite{Bartholomew-Biggs2000-db, libtaylor}
-The adoption of \git as \acrshort{DVCS}, \cmake for cross-platform builds and
-automatic documentation deployment on \readthedocs simplify
+The adoption of git\footnote{\url{https://git-scm.com/}} as \acrshort{DVCS},
+CMake\footnote{\url{https://cmake.org/}} for cross-platform builds and
+automatic documentation deployment on ReadTheDocs\footnote{\url{https://readthedocs.org/}} simplify
 extensibility of the module and promote third-party contributions to the
 code base. Continuous integration and nightly testing offer an
 invaluable level of confidence in the code.
 
-Careful usage of the C++ object-oriented paradigm is the key to this
+Judicious usage of the C++ object-oriented paradigm is the key to this
 wide spectrum of functionalities. The library is in itself made of
 modules, communicating by means of composition at the outermost
 level of design.
@@ -205,12 +211,17 @@ I/O operations.
 \end{figure}
 
 The \acrshort{API} is implemented in ISO C99 as a \emph{context-aware} set of
-functions.\autocite{library-ronacher, context-api-example}
+functions.\autocite{library-ronacher}\footnote{\url{https://github.com/bast/context-api-example}}
 Upon initialization of the library, a \emph{context} object containing
 the state of the \acrshort{PCM} \acrshort{API} is constructed and an
 opaque handle to it (a pointer in C++ parlance) is returned to the host
 program. Further transactions between \pcmsolver and the host program
 proceed through manipulations of the context object.
+A context-aware \acrshort{API} offers a simple strategy for parallelization.
+The host program could spawn contexts on a per-process basis,
+limiting ownership and access to a context just to its parent process.
+Race conditions are trivially avoided in such a scenario.
+
 \pcmsolver introduces the concept of surface functions:
 labelled instances of any quantity defined on the cavity surface.
 Bookkeeping of a possibly arbitrary number of such quantities is managed
@@ -218,7 +229,7 @@ through a map storing labels and pointers to the contents of the
 functions.
 Listings \ref{lst:C-host} and \ref{lst:Fortran-host} show how calls to
 \pcmsolver \acrshort{API} functions might look like in an actual C or Fortran
-program, respectively.
+host program, respectively.
 
 \lstinputlisting[language=C,
                  caption={Relevant calls to \pcmsolver in a C host program.
@@ -227,11 +238,6 @@ program, respectively.
                  \url{http://pcmsolver.readthedocs.io/en/v1.1.6/users/C-example.html}},
                  label={lst:C-host}
                 ]{snippets/C_host.c}
-
-A context-aware \acrshort{API} offers a simple strategy for parallelization.
-The host program could spawn contexts on a per-process basis,
-limiting ownership and access to a context just to its parent process.
-Race conditions are trivially avoided in such a scenario.
 
 \lstinputlisting[language=Fortran,
                  caption={Relevant calls to \pcmsolver in a Fortran host program.
@@ -250,7 +256,7 @@ functions for spherical diffuse interfaces\autocite{DiRemigio2016-nn} and
 the delayed solvers for real-time \acrlong{TDSCF}
 simulations.\autocite{Corni2015-pe}
 
-Programming effort in this dissertation has not only been directed at the
+\arrowthought{Programming effort in this dissertation} has not only been directed at the
 creation of the \pcmsolver library, but also at interfacing it with a
 number of quantum chemistry codes.
 The first interface was implemented and released within the \DIRAC code
@@ -299,7 +305,7 @@ a noticeable interplay of relativistic and solvent effects when heavier
 elements are involved.
 The main point of \paper{I} was, however, the adoption of a fully modular
 programming strategy. We showed that it is entirely possible to adopt the same
-\acrshort{PCM} code and implementation "checkpoints" across altogether different
+\acrshort{PCM} code and implementation \enquote{checkpoints} across altogether different
 problem domains, Fig.~\ref{fig:algorithm}.
 
 As a by-product of the four-component implementation, we were able to obtain and visualize \acrshort{MEP} maps
@@ -314,7 +320,7 @@ properties. I devised the coupling of the four-component program \DIRAC with
 \pcmsolver by providing the implementation and testing of:
 \begin{enumerate}
   \item \acrshort{MEP} integrals for four-component wave functions,
-  \item the additional Fock matrix contributions and
+  \item the additional Fock matrix contributions, and
   \item the additional terms in the response equations.
 \end{enumerate}
 I performed all the calculations and large part of the data analysis
@@ -357,11 +363,11 @@ collocation methods, both to achieve a better computational scaling and to
 provide accurate, benchmark results.\autocite{Harbrecht2004-uo,
 Harbrecht2006-ug, Dahmen2006-pj}
 
-Already~\citeauthor{Weijo2010-hy} had shown that using \gls{PWC} bases can lead
+Already~\citeauthor{Weijo2010-hy} had shown that using \gls{PWC} wavelet bases can lead
 to superior accuracy and convergence in the calculation of quantum mechanical
 molecular solvation energies.
 In this work we showed that even faster convergence can be achieved when
-\gls{PWL} bases are used instead.
+\gls{PWL} wavelet bases are used instead.
 Moreover, the same holds for the calculation of static electric properties.
 Notably, the traditional collocation solver cannot guarantee the same accuracy,
 even for very large finite element bases. This suggests that, in some cases,
@@ -411,14 +417,16 @@ cavity.
 As outlined in Chapter \ref{ch:CSM}, the boundary integral operators in the
 \acrshort{IEF} equation:
 \begin{equation}
-  \left[ \bi{S}_\mathrm{e}\left(2\pi + \bi{D}^\dagger_\mathrm{i}\right)
-  +
-  \left(2\pi - \bi{D}_\mathrm{e}\right)\bi{S}_\mathrm{i}
-  \right]\sigma =
-  -\left[\left(2\pi-\bi{D}_\mathrm{e}\right)
+  \begin{aligned}
+  \big[ \bi{S}_\mathrm{e}\big(2\pi + \bi{D}^\dagger_\mathrm{i}\big)
+  &+
+  \big(2\pi - \bi{D}_\mathrm{e}\big)\bi{S}_\mathrm{i}
+  \big]\sigma = \\
+  &-\big[\big(2\pi-\bi{D}_\mathrm{e}\big)
   -\bi{S}_\mathrm{e}\bi{S}_\mathrm{i}^{-1}
-  \left(2\pi-\bi{D}_\mathrm{i}\right)
-  \right]\esp,
+  \big(2\pi-\bi{D}_\mathrm{i}\big)
+  \big]\esp,
+  \end{aligned}
   \tag{\ref{eq:full-IEF} from Chapter \ref{ch:CSM}}
 \end{equation}
 can be set up once the Green's functions $\Gi$ and $\Ge$ are known.\autocite{Cances1998-og}
@@ -439,7 +447,7 @@ Coulomb singularity from the computed Green's function and its efficient
 implementation.
 Interface width and curvature influence the transfer of ions and molecules across
 spherically symmetric interfaces and peculiar properties may arise.
-In this work, we analyzed both effect on the water-vapor and oil-water transfer
+In this work, we analyzed both effects on the water-vapor and oil-water transfer
 of \ce{Li+}, \ce{Br-}, acetone, \emph{para}-nitroaniline and the L0 dye.
 Nonelectrostatic interactions were not included in our implementation, although
 they have been proved to be crucial for non homogeneous
@@ -449,7 +457,10 @@ of such nontrivial environments.
 
 I contributed the theoretical work for \paper{III}, based on earlier drafts from coauthors
 Ville Weijo and Hui Cao. In particular, I derived the separation of
-the Coulomb singularity in its final form.
+the Coulomb singularity in its final form.\footnote{
+Equation (40) for $G_\mathrm{img}(\vect{r}, \vect{r}^\prime)$ in the
+final published version of the paper contains a misprint. The
+parentheses should not appear.}
 Moreover, I contributed the implementation and testing of the Green's function code.
 The interface to the \LSDALTON program package, developed within
 \paper{II}, was
@@ -529,13 +540,13 @@ design and carry out experiments where the high-order response of
 molecular materials can be routinely probed.
 The more intense the light source, the more complicated the interpretation of
 the measured signal.
-Our group has newly developed an open-ended methodology for the computation of
+Our group has recently developed an open-ended methodology for the computation of
 \acrshort{SCF} response functions\autocite{Thorvaldsen2008-sg, Ringholm2014-gx} and
-their residues.\autocite{Friese2015-kb}
+their single residues.\autocite{Friese2015-kb}
 These developments offer a route towards a synergistic experimental and
 theoretical approach to high-order absorption spectroscopies.
 \paper{V} grafts a classical polarizable continuum approach to solvation on top
-of the open-ended methodology of \citeauthor{Thorvaldsen2008-sg}.
+of the open-ended methodology of \citeauthor{Thorvaldsen2008-sg}
 Still nowadays, continuum models represent a cost-effective methodology for the
 approximate inclusion of solvent effects, albeit their known limitations with respect
 to specific solute-solvent interactions.
@@ -549,7 +560,7 @@ I provided its implementation within the \DALTON code, by interfacing the
 I performed extensive testing of the code by comparing with previously
 published implementations of the \acrshort{PCM}-\acrshort{SCF} response functions within
 \DALTON.\autocite{Cammi2003-qy, Frediani2005-nc, Ferrighi2010-pm}
-Together with coauthors Maarten T.~P.~Beerepoot and Yann Cornaton, I carried out
+Together with coauthors Maarten T. P. Beerepoot and Yann Cornaton, I carried out
 the multiphoton absorption calculations presented in the paper. I contributed
 to data collection and data analysis.
 I drafted the initial versions of Sections 2 and 3 of the manuscript and coordinated all
