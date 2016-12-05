@@ -3,7 +3,7 @@
 %     Compiler: make
 %       Author: roberto
 % Date Created: 2016 Jul 15
-%  Last Change: 2016 Oct 03
+%  Last Change: 2016 Dec 05
 \RequirePackage{fix-cm} % fix some latex issues see: http://texdoc.net/texmf-dist/doc/latex/base/fixltx2e.pdf
 \documentclass[twoside,openright,titlepage,numbers=noenddot,headinclude,%headlines,% letterpaper a4paper
                footinclude=true,cleardoublepage=empty,
@@ -39,9 +39,11 @@
 %********************************************************************
 % Frontmatter
 %*******************************************************
+\pagenumbering{gobble}
 \pagestyle{empty}
 \include{FrontBackmatter/Titlepage}
 \include{FrontBackmatter/Colophon}
+\include{FrontBackmatter/Errata}
 \pagenumbering{roman}
 \pagestyle{plain}
 \include{FrontBackmatter/Abstract}
