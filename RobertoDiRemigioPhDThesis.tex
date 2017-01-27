@@ -3,7 +3,7 @@
 %     Compiler: make
 %       Author: roberto
 % Date Created: 2016 Jul 15
-%  Last Change: 2016 Dec 06
+%  Last Change: 2016 Dec 13
 \RequirePackage{fix-cm} % fix some latex issues see: http://texdoc.net/texmf-dist/doc/latex/base/fixltx2e.pdf
 \documentclass[twoside,openright,titlepage,numbers=noenddot,headinclude,%headlines,% letterpaper a4paper
                footinclude=true,%cleardoublepage=empty,
@@ -31,7 +31,7 @@
 %*******************************************************
 \begin{document}
 %\includepdf[pagecommand={\thispagestyle{empty}}, pages=-]{gfx/PhDengelskMonster.pdf}
-\blankpage\blankpage
+\blankpage
 \frenchspacing
 \raggedbottom
 %\renewcommand*{\bibname}{new name}
@@ -43,10 +43,10 @@
 \pagestyle{empty}
 \include{FrontBackmatter/Titlepage}
 \include{FrontBackmatter/Colophon}
-\include{FrontBackmatter/Errata}
+\blankpage\blankpage
 \pagenumbering{roman}
 \pagestyle{plain}
-\cleardoublepage
+%\cleardoublepage
 \include{FrontBackmatter/Abstract}
 \cleardoublepage\include{FrontBackmatter/Acknowledgments}
 \pagestyle{scrheadings}
